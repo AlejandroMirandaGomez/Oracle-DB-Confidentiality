@@ -361,7 +361,7 @@ El ritmo vertical es de reglas, no de huecos: 0.35rem entre pulsadores, 0.7rem p
 
 ## Elevation & Depth
 
-El sistema es plano por defecto. La profundidad se transmite con tonos de acero (`--panel`, `--panel-claro`, `--panel-hondo`), reglas de tinta y brillo interior en las piezas encendidas. La única elevación es la del panel lateral de detalle.
+El sistema es plano por defecto. La profundidad se transmite con tonos de acero (`--panel`, `--panel-claro`, `--panel-hondo`), reglas de tinta y brillo interior en las piezas encendidas. Las únicas elevaciones son la del panel lateral de detalle y la de la pista de nivel, ambas con `--sombra-panel`.
 
 ### Shadow Vocabulary
 - **Sombra de panel** (`box-shadow: 0 28px 56px -20px rgb(30 33 36 / 0.5), 0 8px 18px -8px rgb(30 33 36 / 0.28)`, `--sombra-panel`): solo el panel lateral, tintada hacia la tinta.
@@ -388,7 +388,10 @@ Cinco intensidades fijas de lámpara blanca para los niveles 0 a 4, siempre con 
 
 ### Pulsador, SelectorNivel y BotoneraEstado
 Pulsador global `.pulsador`: borde de 1 px en tinta, 2 px de radio, fondo `--panel-claro`, texto 0.875rem a 600 y ancho 88 por ciento, alto mínimo 2.25rem (2.75rem con puntero grueso), relieve inferior. Hover (solo con puntero fino): `--panel-hondo`. Pulsado: `scale(0.97)` y presión interior, con transición de 140 ms en transform, sombra y color. Variantes: `data-principal`, `aria-pressed="true"` y `aria-checked="true"` pasan a fondo `--placa` y texto `--panel-claro` (hover `--placa-suave`); `data-compacto` baja a 1.875rem y 0.8125rem. Deshabilitado: borde junta, texto remache, sin relieve.
-SelectorNivel es una fila de pulsadores mono 0 a 4 teñidos con la intensidad de la rampa; el elegido lleva borde de 2 px y brillo interior. BotoneraEstado son pulsadores de 5.5rem que, al quedar pulsados, se encienden en verde, ámbar o roja con brillo interior.
+SelectorNivel es una fila de pulsadores mono 0 a 4 teñidos con la intensidad de la rampa; el elegido lleva borde de 2 px, brillo interior y una barra interior inferior de 0.3rem en tinta; el nivel sugerido se marca con una lámpara ámbar de 0.6rem en la esquina, y su texto lo anuncia también en el nombre accesible. BotoneraEstado son pulsadores de 5.5rem que, al quedar pulsados, se encienden en verde, ámbar o roja con brillo interior.
+
+### PistaNivel y DescripcionNivel
+La pista de nivel es una placa de tinta (`--placa`, texto `--panel-claro`, borde de 1 px en `--remache`, radio de 2 px, `--sombra-panel`) de hasta 40rem que se abre en la capa superior con la API popover, para no recortarse dentro del panel lateral ni de las tablas. Lleva el número en mono, el nombre del nivel en versalitas condensadas, el control y el modelo COBIT en 0.75rem, y el texto de origen precedido por su rótulo. Aparece a 100 ms con el puntero, al instante con el foco o el toque, y se cierra con Escape, al salir o al tocar fuera; aparece con 140 ms de opacidad y 2 px de desplazamiento. DescripcionNivel es la misma definición en una ficha de `--panel-claro` con borde de 1 px, bajo el selector de la fila.
 
 ### ComponenteTabular
 Región con regla superior de 2 px y regla inferior de 1 px en tinta. Encabezado en franja `--panel-hondo` con regla de 1 px; filas separadas por reglas de 1 px en junta; cabeceras de grupo en `--panel-claro` con título condensado de 1.125rem. Las filas son clicables y abren el panel lateral: hover (puntero fino) y foco interior las pasan a `--panel-claro`. A 760 px se apilan como registros: cada fila es un bloque con borde de 1 px, etiqueta generada en rótulo a 6.5rem, y la primera celda sobre `--panel-hondo`.
@@ -439,4 +442,3 @@ Lámparas 160 a 200 ms, pulsadores 120 a 160 ms, panel 0,4 s con salida de 180 m
 - Las lámparas de progreso de Inicio usan ámbar (En curso, Listos) y verde (Completa, Visto) porque el plan lo ordena; el texto las distingue de CUMPLE y PARCIAL.
 - La declaración de uso de IA es contenido firmado del autor y conserva sus menciones originales.
 - `--remache` (#454b50) y `--lampara-verde` (#2a8452) se oscurecieron respecto al plan por contraste AA medido.
-- Defecto de la construcción no canonizado: el selector de nivel resalta la opción sugerida con contorno discontinuo de 2 px y aplica anillos duros de 2 px y 4 px al nivel elegido mediante box-shadow; ambos contradicen las reglas de trama y de una sola sombra, y no deben copiarse a superficies nuevas.
