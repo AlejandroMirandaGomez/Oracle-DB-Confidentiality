@@ -1,14 +1,16 @@
-import type { FilaMatriz } from './tipos'
+import type { EvidenciaRequerida, FilaMatriz } from '../tipos'
+import { controles } from './controles'
+import { pruebas } from './pruebas'
 
-export const matrizInicial: FilaMatriz[] = [
+type FilaBase = Omit<FilaMatriz, 'evidenciasRequeridas'>
+
+const filasBase: FilaBase[] = [
   {
     id: 'M-01',
     tarea: 'T-01',
     riesgo: 'R-CONF-01',
     control: 'A5.16',
     criterio: 'Internas bloqueadas, cuentas nominales y bajas oportunas.',
-    nivel: 2,
-    evidencia: 'Internas bloqueadas salvo SYS y SYSTEM, pero no hay cuentas nominales.',
     pruebas: ['PR-02'],
   },
   {
@@ -17,8 +19,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-01',
     control: 'A5.18',
     criterio: 'Sin ANY fuera de administración y sin cuentas abiertas sin uso.',
-    nivel: 2,
-    evidencia: 'Ningún ANY, pero PDBADMIN y CLOUDCR_STRESS abiertas sin uso.',
     pruebas: ['PR-04', 'PR-23'],
   },
   {
@@ -27,8 +27,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-01',
     control: 'A8.2',
     criterio: 'DBA y SYSDBA solo en cuentas nominales autorizadas y auditadas.',
-    nivel: 2,
-    evidencia: 'Titulares mínimos y SYS auditado, pero solo cuentas genéricas.',
     pruebas: ['PR-03'],
   },
   {
@@ -37,8 +35,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A5.15',
     criterio: 'Acceso por roles de función con negación por omisión.',
-    nivel: 2,
-    evidencia: 'Rol de lectura demostrado; las cuentas previas tienen privilegios directos.',
     pruebas: ['PR-09'],
   },
   {
@@ -47,8 +43,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A8.12',
     criterio: 'PUBLIC sin paquetes de extracción y exportación restringida.',
-    nivel: 1,
-    evidencia: 'Siete paquetes de archivos y red siguen otorgados a PUBLIC.',
     pruebas: ['PR-05'],
   },
   {
@@ -57,8 +51,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-02',
     control: 'A8.5',
     criterio: 'Perfil con bloqueo, verificación y no reutilización en todas las cuentas.',
-    nivel: 2,
-    evidencia: 'Bloqueo demostrado con el perfil seguro; DEFAULT sigue débil.',
     pruebas: ['PR-06', 'PR-07'],
   },
   {
@@ -67,8 +59,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-02',
     control: 'A5.17',
     criterio: 'Sin contraseñas de fábrica y solo verificadores 12C.',
-    nivel: 2,
-    evidencia: 'Sin contraseñas de fábrica; siete cuentas con verificador 11G.',
     pruebas: ['PR-01', 'PR-08'],
   },
   {
@@ -77,8 +67,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-03',
     control: 'A8.24',
     criterio: 'Almacén de claves abierto y tablespaces clasificados cifrados.',
-    nivel: 0,
-    evidencia: 'Sin almacén de claves ni tablespaces cifrados.',
     pruebas: ['PR-14'],
   },
   {
@@ -87,8 +75,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A8.11',
     criterio: 'Redacción activa sobre todas las columnas confidenciales.',
-    nivel: 2,
-    evidencia: 'Redacción demostrada en el esquema de prueba; sin aplicar a esquemas existentes.',
     pruebas: ['PR-11'],
   },
   {
@@ -97,8 +83,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A8.3',
     criterio: 'VPD habilitado en cada tabla confidencial.',
-    nivel: 2,
-    evidencia: 'VPD demostrado en el esquema de prueba; sin aplicar a esquemas existentes.',
     pruebas: ['PR-10'],
   },
   {
@@ -107,8 +91,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-03',
     control: 'A8.13',
     criterio: 'Respaldo reciente, cifrado y con restauración validada.',
-    nivel: 2,
-    evidencia: 'Respaldo reciente y restauración validada, pero piezas sin cifrar.',
     pruebas: ['PR-17', 'PR-18'],
   },
   {
@@ -117,8 +99,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-05',
     control: 'A8.15',
     criterio: 'Registro de inicios fallidos, privilegios y acceso a datos clasificados.',
-    nivel: 3,
-    evidencia: 'Inicios fallidos y accesos a CLIENTES registrados y verificados.',
     pruebas: ['PR-15'],
   },
   {
@@ -127,8 +107,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-02',
     control: 'A8.8',
     criterio: 'Actualización trimestral vigente aplicada.',
-    nivel: 0,
-    evidencia: 'Versión de lanzamiento sin ningún parche.',
     pruebas: ['PR-22'],
   },
   {
@@ -137,8 +115,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-02',
     control: 'A8.20',
     criterio: 'Cifrado e integridad exigidos y listener restringido.',
-    nivel: 1,
-    evidencia: 'Listener con autenticación local por omisión; tráfico en claro.',
     pruebas: ['PR-19', 'PR-20'],
   },
   {
@@ -147,8 +123,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-03',
     control: 'A8.10',
     criterio: 'Borrado definitivo y papelera sin datos clasificados.',
-    nivel: 2,
-    evidencia: 'Purga demostrada y papelera vacía; sin calendario de retención.',
     pruebas: ['PR-21'],
   },
   {
@@ -157,8 +131,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-05',
     control: 'A5.33',
     criterio: 'Rastro inalterable con retención y purga definidas.',
-    nivel: 2,
-    evidencia: 'Rastro inalterable incluso para SYSDBA; sin retención ni purga.',
     pruebas: ['PR-16'],
   },
   {
@@ -167,8 +139,6 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A8.31',
     criterio: 'Copias de desarrollo sin valores reales ni privilegios hacia producción.',
-    nivel: 2,
-    evidencia: 'Copia enmascarada sin valores reales; sin procedimiento formal de clonado.',
     pruebas: ['PR-13'],
   },
   {
@@ -177,8 +147,47 @@ export const matrizInicial: FilaMatriz[] = [
     riesgo: 'R-CONF-04',
     control: 'A5.12',
     criterio: 'Todas las columnas con datos personales etiquetadas.',
-    nivel: 2,
-    evidencia: 'Esquema de prueba clasificado; esquemas existentes sin etiquetas.',
     pruebas: ['PR-12'],
   },
 ]
+
+const pasosDeObservable = [
+  'Conéctese a la base con una cuenta autorizada a consultar el diccionario de datos.',
+  'Ejecute la consulta.',
+  'Compare el resultado con el criterio de aceptación.',
+]
+
+function evidenciasDeFila(controlId: string, pruebaIds: string[]): EvidenciaRequerida[] {
+  const evidencias: EvidenciaRequerida[] = []
+  const observable = controles.find((control) => control.id === controlId)?.observable
+  if (observable) {
+    evidencias.push({
+      id: observable.id,
+      origen: 'observable',
+      titulo: observable.enunciado,
+      pasos: pasosDeObservable,
+      codigo: observable.consulta,
+      lenguaje: 'SQL',
+      esperado: observable.criterio,
+    })
+  }
+  pruebaIds.forEach((pruebaId) => {
+    const prueba = pruebas.find((item) => item.id === pruebaId)
+    if (!prueba) return
+    evidencias.push({
+      id: prueba.id,
+      origen: 'prueba',
+      titulo: prueba.nombre,
+      pasos: prueba.procedimiento,
+      codigo: prueba.sql,
+      lenguaje: prueba.lenguaje,
+      esperado: prueba.resultadoEsperado,
+    })
+  })
+  return evidencias
+}
+
+export const matriz: FilaMatriz[] = filasBase.map((fila) => ({
+  ...fila,
+  evidenciasRequeridas: evidenciasDeFila(fila.control, fila.pruebas),
+}))

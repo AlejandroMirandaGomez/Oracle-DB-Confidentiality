@@ -1,14 +1,26 @@
 export type Nivel = 0 | 1 | 2 | 3 | 4
 
-export type Estado = 'Cumple' | 'Parcial' | 'No cumple'
+export type NivelEvaluado = Nivel | null
+
+export type Estado = 'Cumple' | 'Parcial' | 'No cumple' | 'Sin evaluar'
 
 export type Veredicto = 'Conforme' | 'Parcial' | 'No conforme'
+
+export type RespuestaEvidencia = 'Sí' | 'Parcial' | 'No'
+
+export type RespuestaPrueba = Veredicto
 
 export type FasePhva = 'Planificar' | 'Hacer' | 'Verificar' | 'Actuar'
 
 export type Propiedad = 'C' | 'I' | 'D'
 
 export type Escala = 1 | 2 | 3 | 4 | 5
+
+export type BandaRiesgo = 'Bajo' | 'Medio' | 'Alto' | 'Crítico'
+
+export type Prioridad = 'Alta' | 'Media' | 'Baja'
+
+export type LenguajeCodigo = 'SQL' | 'RMAN' | 'Comandos'
 
 export type Riesgo = {
   id: string
@@ -37,6 +49,13 @@ export type Tarea = {
   controles: string[]
 }
 
+export type Observable = {
+  id: string
+  enunciado: string
+  consulta: string
+  criterio: string
+}
+
 export type Control = {
   id: string
   nombre: string
@@ -48,20 +67,10 @@ export type Control = {
   justificacion: string
   implementacion: string[]
   evidencia: string
+  observable?: Observable
   riesgos: string[]
   tareas: string[]
   pruebas: string[]
-}
-
-export type Observable = {
-  id: string
-  control: string
-  enunciado: string
-  consulta: string
-  criterio: string
-  pruebas: string[]
-  veredicto: Veredicto
-  resultado: string
 }
 
 export type TipoPrueba =
@@ -78,6 +87,75 @@ export type Prueba = {
   objetivo: string
   procedimiento: string[]
   resultadoEsperado: string
+  herramienta: string
+  lenguaje: LenguajeCodigo
+  sql: string
+}
+
+export type EvidenciaRequerida = {
+  id: string
+  origen: 'observable' | 'prueba'
+  titulo: string
+  pasos: string[]
+  codigo: string
+  lenguaje: LenguajeCodigo
+  esperado: string
+}
+
+export type FilaMatriz = {
+  id: string
+  tarea: string
+  riesgo: string
+  control: string
+  criterio: string
+  pruebas: string[]
+  evidenciasRequeridas: EvidenciaRequerida[]
+}
+
+export type PlantillaHallazgo = {
+  control: string
+  titulo: string
+  condicionNoCumple: string
+  condicionParcial: string
+  criterio: string
+  causa: string
+  efecto: string
+  recomendacion: string
+  remediacion: string
+}
+
+export type Hallazgo = {
+  id: string
+  titulo: string
+  prioridad: Prioridad
+  condicion: string
+  criterio: string
+  causa: string
+  efecto: string
+  recomendacion: string
+  remediacion: string
+  controles: string[]
+  pruebas: string[]
+  riesgos: string[]
+  filas: string[]
+  contradiccion: boolean
+}
+
+export type ObservableEjemplo = Observable & {
+  control: string
+  pruebas: string[]
+  veredicto: Veredicto
+  resultado: string
+}
+
+export type PruebaEjemplo = {
+  id: string
+  nombre: string
+  tipo: TipoPrueba
+  controles: string[]
+  objetivo: string
+  procedimiento: string[]
+  resultadoEsperado: string
   resultadoObtenido: string
   veredicto: Veredicto
   herramienta: string
@@ -85,7 +163,7 @@ export type Prueba = {
   evidencia: string
 }
 
-export type FilaMatriz = {
+export type FilaMatrizEjemplo = {
   id: string
   tarea: string
   riesgo: string
@@ -96,9 +174,7 @@ export type FilaMatriz = {
   pruebas: string[]
 }
 
-export type Prioridad = 'Alta' | 'Media' | 'Baja'
-
-export type Hallazgo = {
+export type HallazgoEjemplo = {
   id: string
   titulo: string
   prioridad: Prioridad

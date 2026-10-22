@@ -1,6 +1,6 @@
-import type { Observable } from './tipos'
+import type { ObservableEjemplo } from '../../tipos'
 
-export const observables: Observable[] = [
+export const observables: ObservableEjemplo[] = [
   {
     id: 'OBS-01',
     control: 'A5.12',

@@ -1,4 +1,4 @@
-import type { SeccionTeorica } from './tipos'
+import type { SeccionTeorica } from '../tipos'
 
 export const marcoTeorico: SeccionTeorica[] = [
   {

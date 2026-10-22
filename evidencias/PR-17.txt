@@ -49,9 +49,9 @@ Configuración persistente de RMAN
 
 NAME                               VALUE
 ---------------------------------- ------------------------------------------------
-CHANNEL                            DEVICE TYPE DISK FORMAT   'D:\Respaldos\XE\%U'
+CHANNEL                            DEVICE TYPE DISK FORMAT   '<DIR_RESPALDOS>\%U'
 CONTROLFILE AUTOBACKUP             ON
-CONTROLFILE AUTOBACKUP FORMAT FOR  DISK TO 'D:\Respaldos\XE\%F'
+CONTROLFILE AUTOBACKUP FORMAT FOR  DISK TO '<DIR_RESPALDOS>\%F'
 DEVICE TYPE
 
 

@@ -1,4 +1,4 @@
-import type { Referencia } from './tipos'
+import type { Referencia } from '../tipos'
 
 export const referencias: Referencia[] = [
   {

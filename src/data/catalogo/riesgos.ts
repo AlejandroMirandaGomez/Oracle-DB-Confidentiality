@@ -1,20 +1,22 @@
-import type { Riesgo } from './tipos'
+import type { Riesgo } from '../tipos'
 
 export const riesgos: Riesgo[] = [
   {
     id: 'R-CONF-01',
-    nombre: 'Privilegios excesivos y cuentas administrativas genéricas',
+    nombre: 'Privilegios excesivos y cuentas administrativas compartidas',
     descripcion:
       'Cuentas con más privilegios de los que su función necesita, o cuentas administrativas compartidas, permiten leer cualquier dato sin que la acción se pueda atribuir a una persona.',
     escenario:
       'Un operador usa SYSTEM para una consulta de soporte, ejecuta SELECT sobre la tabla de clientes y exporta el resultado. La sesión aparece como SYSTEM y no identifica a nadie.',
-    activos: ['Cuentas SYS, SYSTEM y PDBADMIN', 'Roles DBA y PDB_DBA', 'Datos de todos los esquemas'],
+    activos: ['Cuentas SYS, SYSTEM y la cuenta administradora de cada PDB', 'Roles DBA y PDB_DBA', 'Datos de todos los esquemas'],
     amenaza: 'Abuso de privilegios por personal interno o por un atacante que obtiene una credencial administrativa.',
-    vulnerabilidad: 'Cuentas genéricas abiertas, privilegios otorgados directamente y sin revisión periódica.',
+    vulnerabilidad:
+      'Cuentas administrativas compartidas o abiertas sin dueño, privilegios otorgados directamente a las cuentas y sin revisión periódica.',
     impacto: 5,
     probabilidad: 4,
     justificacionImpacto: 'Una cuenta con DBA lee la totalidad de los datos personales y puede desactivar otros controles.',
-    justificacionProbabilidad: 'SYS, SYSTEM y PDBADMIN están abiertas y no existen cuentas administrativas nominales (PR-02, PR-03).',
+    justificacionProbabilidad:
+      'Es frecuente que SYS y SYSTEM sigan abiertas, que no existan cuentas administrativas nominales y que los privilegios no se revisen por calendario.',
     tareas: ['T-01', 'T-02'],
     controles: ['A8.2', 'A5.18', 'A5.15'],
   },
@@ -24,14 +26,16 @@ export const riesgos: Riesgo[] = [
     descripcion:
       'Contraseñas débiles, verificadores antiguos, tráfico en claro o vulnerabilidades conocidas permiten que un tercero obtenga una sesión válida o capture datos en tránsito.',
     escenario:
-      'Un equipo en la misma red captura el tráfico TCP hacia el puerto 1521 y lee en claro los resultados de las consultas, o prueba contraseñas contra una cuenta del perfil DEFAULT, que admite 10 intentos.',
-    activos: ['Listener y servicio XEPDB1', 'Credenciales de las cuentas', 'Datos en tránsito'],
+      'Un equipo en la misma red captura el tráfico TCP hacia el puerto del listener y lee en claro los resultados de las consultas, o prueba contraseñas contra una cuenta del perfil DEFAULT, que por omisión admite 10 intentos.',
+    activos: ['Listener y servicios de la base', 'Credenciales de las cuentas', 'Datos en tránsito'],
     amenaza: 'Captura de tráfico, ataques de fuerza bruta o explotación de vulnerabilidades publicadas del motor.',
-    vulnerabilidad: 'Oracle Net sin cifrado, verificadores 11G, perfil DEFAULT sin función de verificación y versión 21.3 sin parches.',
+    vulnerabilidad:
+      'Oracle Net sin cifrado, verificadores de contraseña 11G, perfil DEFAULT sin función de verificación y versiones del motor sin las actualizaciones trimestrales.',
     impacto: 5,
     probabilidad: 3,
     justificacionImpacto: 'Una sesión obtenida así hereda todos los privilegios de la cuenta comprometida.',
-    justificacionProbabilidad: 'Requiere acceso a la red local, pero las debilidades están presentes y verificadas (PR-08, PR-19, PR-22).',
+    justificacionProbabilidad:
+      'Requiere acceso a la red, pero las configuraciones por omisión del motor dejan estas debilidades presentes hasta que alguien las corrige.',
     tareas: ['T-03', 'T-08', 'T-09'],
     controles: ['A8.5', 'A5.17', 'A8.20', 'A8.8'],
   },
@@ -41,14 +45,15 @@ export const riesgos: Riesgo[] = [
     descripcion:
       'Los datafiles, las piezas de respaldo y los objetos borrados conservan los datos en un formato legible fuera de los controles de acceso de la base.',
     escenario:
-      'Alguien copia las piezas de D:\\Respaldos\\XE a un medio externo y las restaura en otra instancia: obtiene la base completa porque las piezas no están cifradas.',
-    activos: ['Datafiles de XEPDB1', 'Piezas de respaldo RMAN', 'Papelera de reciclaje', 'Volcados de Data Pump'],
+      'Alguien copia las piezas del directorio de respaldos a un medio externo y las restaura en otra instancia: obtiene la base completa porque las piezas no están cifradas.',
+    activos: ['Datafiles de la base', 'Piezas de respaldo RMAN', 'Papelera de reciclaje', 'Volcados de Data Pump'],
     amenaza: 'Robo o copia de archivos por acceso al sistema operativo o al almacenamiento.',
     vulnerabilidad: 'Sin TDE, respaldos sin cifrar y papelera activa que conserva tablas borradas.',
     impacto: 5,
     probabilidad: 3,
     justificacionImpacto: 'Una sola copia de respaldo expone todos los datos sin pasar por ningún control de la base.',
-    justificacionProbabilidad: 'Requiere acceso al equipo, pero las 101 piezas de respaldo activas están sin cifrar (PR-14, PR-17).',
+    justificacionProbabilidad:
+      'Requiere acceso al equipo o al almacenamiento, pero Oracle no cifra los respaldos por omisión y es habitual que las piezas queden legibles.',
     tareas: ['T-04', 'T-06', 'T-10'],
     controles: ['A8.13', 'A8.10', 'A8.12', 'A8.24'],
   },
@@ -61,11 +66,13 @@ export const riesgos: Riesgo[] = [
       'Para depurar un error se clona la tabla de clientes a desarrollo con las cédulas y salarios reales, y un desarrollador la exporta a una hoja de cálculo.',
     activos: ['Columnas clasificadas (cédula, correo, salario)', 'Copias para DEV/TEST', 'Paquetes UTL_FILE y UTL_HTTP'],
     amenaza: 'Divulgación por personal autorizado a la base pero no a esos datos, o extracción por paquetes de red y archivos.',
-    vulnerabilidad: 'Datos sin clasificar, ausencia de redacción y enmascaramiento en los esquemas existentes, PUBLIC con EXECUTE sobre UTL_*.',
+    vulnerabilidad:
+      'Datos sin clasificar, ausencia de redacción y enmascaramiento en los esquemas de la organización, PUBLIC con EXECUTE sobre paquetes UTL_*.',
     impacto: 4,
     probabilidad: 4,
     justificacionImpacto: 'Expone datos personales de acceso restringido según el artículo 9 de la Ley 8968.',
-    justificacionProbabilidad: 'Es la vía más frecuente de fuga interna y PUBLIC conserva siete paquetes de extracción (PR-05, PR-12).',
+    justificacionProbabilidad:
+      'Es la vía más frecuente de fuga interna, y el motor otorga a PUBLIC paquetes de extracción como UTL_FILE y UTL_HTTP mientras nadie los revoque.',
     tareas: ['T-05', 'T-12', 'T-13', 'T-02'],
     controles: ['A5.12', 'A8.3', 'A8.11', 'A8.12', 'A5.15', 'A8.31'],
   },
@@ -82,7 +89,8 @@ export const riesgos: Riesgo[] = [
     impacto: 4,
     probabilidad: 3,
     justificacionImpacto: 'Impide demostrar el cumplimiento del artículo 10 de la Ley 8968 y responder a un incidente.',
-    justificacionProbabilidad: 'Las políticas por omisión existen, pero no cubren el acceso a datos ni tienen purga ni archivo (PR-15, PR-16).',
+    justificacionProbabilidad:
+      'Las políticas de auditoría por omisión existen, pero no cubren el acceso a los datos ni definen archivo ni purga del rastro.',
     tareas: ['T-07', 'T-11'],
     controles: ['A8.15', 'A5.33'],
   },

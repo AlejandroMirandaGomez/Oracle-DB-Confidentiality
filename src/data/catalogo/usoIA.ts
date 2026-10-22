@@ -1,4 +1,4 @@
-import type { UsoIA } from './tipos'
+import type { UsoIA } from '../tipos'
 
 export const validacionPendiente = 'Por completar por el estudiante'
 
@@ -14,7 +14,7 @@ export const usosIA: UsoIA[] = [
   {
     id: 'IA-02',
     herramienta: 'Claude (Anthropic), en Claude Code',
-    prompt: 'NOTA: EN D:\\UNA\\AdministracionBasesDatos\\Documentacion Tienes varia documentación sobre varias cosas que podrían ser importantes entre ellas esta el documento que compre y tengo licencia para usar, además se puede usar pues es para un trabajo meramente academico: ISO IEC 27002-2022.pdf No hagas nada todavía, solo toma contexto de la información',
+    prompt: 'NOTA: EN [carpeta local de documentación] Tienes varia documentación sobre varias cosas que podrían ser importantes entre ellas esta el documento que compre y tengo licencia para usar, además se puede usar pues es para un trabajo meramente academico: ISO IEC 27002-2022.pdf No hagas nada todavía, solo toma contexto de la información',
     aporte: 'Lectura de los 15 controles en la norma y de los catálogos previos; advirtió que A8.13 no está marcado como control de confidencialidad y que la escala del enunciado es 0-4.',
     validacion: validacionPendiente,
     fuente: 'ISO/IEC 27002:2022, tablas de atributos de los controles 5.12 a 8.20',

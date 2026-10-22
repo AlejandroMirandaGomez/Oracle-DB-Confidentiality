@@ -1,4 +1,4 @@
-import type { Tarea } from './tipos'
+import type { Tarea } from '../tipos'
 
 export const tareas: Tarea[] = [
   {

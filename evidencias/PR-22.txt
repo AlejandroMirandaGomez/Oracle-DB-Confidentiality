@@ -27,4 +27,4 @@ ninguna fila seleccionada
 
 
 ----- opatch lspatches
-No hay parches temporales instalados en este directorio raíz de Oracle "C:\app\Ale\product\21c\dbhomeXE".
+No hay parches temporales instalados en este directorio raíz de Oracle "<ORACLE_BASE>\dbhomeXE".

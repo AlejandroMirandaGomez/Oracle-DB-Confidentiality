@@ -1,6 +1,6 @@
-import type { Prueba } from './tipos'
+import type { PruebaEjemplo } from '../../tipos'
 
-export const pruebas: Prueba[] = [
+export const pruebas: PruebaEjemplo[] = [
   {
     id: 'PR-01',
     nombre: 'Cuentas con contraseña por defecto',
@@ -28,7 +28,7 @@ export const pruebas: Prueba[] = [
     ],
     resultadoEsperado: 'Solo SYS y SYSTEM abiertas entre las internas; cuentas de la organización nominales y en uso.',
     resultadoObtenido:
-      'Solo SYS y SYSTEM abiertas; 33 internas bloqueadas sin autenticación. Las tres cuentas de la organización previas (PDBADMIN, CLOUDCR_STRESS, MONITOR_USER) son genéricas y dos nunca iniciaron sesión.',
+      'Solo SYS y SYSTEM abiertas; 33 internas bloqueadas sin autenticación. Las tres cuentas de la organización previas (PDBADMIN, CLOUDCR_STRESS, MONITOR_USER) no son nominales y dos nunca iniciaron sesión.',
     veredicto: 'Parcial',
     herramienta: 'SQL*Plus',
     script: 'PR-02_cuentas_oracle_abiertas.sql',

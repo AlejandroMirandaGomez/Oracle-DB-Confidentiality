@@ -1,6 +1,6 @@
-import type { Hallazgo } from './tipos'
+import type { HallazgoEjemplo } from '../../tipos'
 
-export const hallazgos: Hallazgo[] = [
+export const hallazgos: HallazgoEjemplo[] = [
   {
     id: 'H-01',
     titulo: 'El tráfico de Oracle Net viaja sin cifrar',
@@ -103,10 +103,10 @@ export const hallazgos: Hallazgo[] = [
   },
   {
     id: 'H-08',
-    titulo: 'Cuentas genéricas y cuentas abiertas sin uso',
+    titulo: 'Cuentas compartidas y cuentas abiertas sin uso',
     prioridad: 'Media',
     condicion: 'No existen cuentas administrativas nominales; PDBADMIN y CLOUDCR_STRESS están abiertas y nunca iniciaron sesión.',
-    criterio: 'A8.2 pide evitar identidades administrativas genéricas; A5.16 y A5.18 piden retirar identidades que no se usan.',
+    criterio: 'A8.2 pide evitar identidades administrativas compartidas; A5.16 y A5.18 piden retirar identidades que no se usan.',
     causa: 'Las cuentas se crearon para instalación y pruebas y no se revisaron después.',
     efecto: 'Las acciones administrativas no se atribuyen a personas y hay credenciales abiertas sin dueño (R-CONF-01).',
     recomendacion: 'Crear cuentas nominales con rol DBA auditadas, bloquear las cuentas sin uso y revisar cada trimestre.',
