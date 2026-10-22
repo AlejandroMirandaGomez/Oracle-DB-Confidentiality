@@ -1,0 +1,86 @@
+.entrada {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  margin-bottom: 1.25rem;
+  max-width: 60ch;
+}
+
+.escenario {
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1rem 0.95rem;
+  border-left: 1px solid var(--rojo);
+  background: var(--rojo-tenue);
+  color: var(--tinta-suave);
+  font-size: 0.9375rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.escenarioRotulo {
+  font-size: 0.75rem;
+  font-stretch: 85%;
+  font-weight: 650;
+  color: var(--tinta);
+}
+
+.nota {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--grafito);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.propiedades {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.propiedades > span {
+  color: var(--grafito);
+  text-decoration: line-through;
+  text-decoration-color: rgb(86 98 91 / 0.5);
+}
+
+.propiedades > span[data-marcada] {
+  color: var(--tinta);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.bloque {
+  margin-block: 1.25rem;
+}
+
+.veredictos {
+  list-style: none;
+  padding: 0 !important;
+}
+
+.veredictos li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nivel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.prioridad {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 650;
+  font-stretch: 85%;
+  color: var(--tinta);
+}

@@ -1,0 +1,47 @@
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  color: var(--rojo);
+}
+
+.icono {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  transform: rotate(-7deg);
+}
+
+.marca[data-tipo='parcial'] .icono {
+  transform: rotate(18deg);
+}
+
+.texto {
+  font-size: 0.875rem;
+  font-weight: 560;
+  font-stretch: 88%;
+}
+
+.marca[data-tipo='positivo'] .texto {
+  color: var(--tinta);
+}
+
+.marca[data-tipo='parcial'] .texto {
+  color: var(--tinta-suave);
+}
+
+.marca[data-estampar] .icono {
+  animation: estampar 260ms var(--ease-out) both;
+}
+
+@keyframes estampar {
+  from {
+    opacity: 0;
+    transform: rotate(-16deg) scale(1.35);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-7deg) scale(1);
+  }
+}

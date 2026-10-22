@@ -1,0 +1,78 @@
+.bloque {
+  margin: 0;
+  border: 1px solid var(--regla-fuerte);
+  background: var(--papel-claro);
+  min-width: 0;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.3rem 0.4rem 0.3rem 0.75rem;
+  border-bottom: 1px solid var(--regla);
+  background: var(--papel-hondo);
+}
+
+.titulo {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--tinta-suave);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid transparent;
+  background: none;
+  font-size: 0.8125rem;
+  color: var(--azul);
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out), border-color 140ms ease;
+}
+
+.copiar:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .copiar:hover {
+    border-color: var(--regla-fuerte);
+  }
+}
+
+.pre {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  overflow: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  tab-size: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bloque[data-variante='listado'] .pre {
+  font-size: 0.75rem;
+  line-height: 1.75rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgb(146 174 140 / 0.24) 0,
+    rgb(146 174 140 / 0.24) 3.5rem,
+    transparent 3.5rem,
+    transparent 7rem
+  );
+  background-attachment: local;
+  white-space: pre;
+  overflow-wrap: normal;
+  max-height: 32rem;
+}
