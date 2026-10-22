@@ -1,0 +1,67 @@
+.entrada {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  max-width: 60ch;
+}
+
+.pasos {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+.paso {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tituloPaso {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+}
+
+.numero {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--placa);
+  border-radius: var(--radio);
+  background: var(--panel-hondo);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.contenidoPaso {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 2.35rem;
+  font-size: 0.9375rem;
+  min-width: 0;
+}
+
+.procedimiento {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.2rem;
+}
+
+.veredicto {
+  display: flex;
+  align-items: center;
+}
+
+.bloque {
+  margin-block: 1.25rem;
+}
+
+@media (max-width: 560px) {
+  .contenidoPaso {
+    padding-left: 0;
+  }
+}

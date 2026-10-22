@@ -1,37 +1,58 @@
-import { nivelesMadurez } from '../data/legajo'
-import type { Nivel } from '../data/tipos'
+import { useRef, type KeyboardEvent } from 'react'
+import { nivelesMadurez } from '../data/catalogo/escalas'
+import type { NivelEvaluado } from '../data/tipos'
+import { RampaMadurez } from './RampaMadurez'
 import estilos from './SelectorNivel.module.css'
 
 type Props = {
-  nivel: Nivel
-  original: Nivel
+  nivel: NivelEvaluado
   etiqueta: string
-  alCambiar?: (nivel: Nivel) => void
+  sugerido?: NivelEvaluado
+  alCambiar?: (nivel: NivelEvaluado) => void
 }
 
-export function SelectorNivel({ nivel, original, etiqueta, alCambiar }: Props) {
-  const editable = alCambiar !== undefined
+const opciones: NivelEvaluado[] = [0, 1, 2, 3, 4, null]
+
+export function SelectorNivel({ nivel, etiqueta, sugerido = null, alCambiar }: Props) {
+  const grupo = useRef<HTMLDivElement>(null)
+
+  if (!alCambiar) return <RampaMadurez nivel={nivel} />
+
+  function alPresionar(evento: KeyboardEvent<HTMLDivElement>) {
+    const hacia = evento.key === 'ArrowRight' || evento.key === 'ArrowDown' ? 1 : evento.key === 'ArrowLeft' || evento.key === 'ArrowUp' ? -1 : 0
+    if (hacia === 0 || !alCambiar) return
+    evento.preventDefault()
+    const actual = opciones.indexOf(nivel)
+    const siguiente = opciones[(actual + hacia + opciones.length) % opciones.length]
+    if (siguiente === undefined) return
+    alCambiar(siguiente)
+    const botones = grupo.current?.querySelectorAll<HTMLButtonElement>('button')
+    botones?.[(actual + hacia + opciones.length) % opciones.length]?.focus()
+  }
+
   return (
-    <div className={estilos.selector} role="radiogroup" aria-label={etiqueta}>
-      {nivelesMadurez.map(({ nivel: valor, nombre }) => {
+    <div ref={grupo} className={estilos.selector} role="radiogroup" aria-label={etiqueta} onKeyDown={alPresionar}>
+      {opciones.map((valor) => {
         const activo = valor === nivel
+        const descripcion = valor === null ? null : nivelesMadurez[valor]
+        const etiquetaOpcion = valor === null ? 'Sin evaluar' : `${valor}: ${descripcion?.nombre ?? ''}`
+        const tabulable = activo || (nivel === null && valor === null)
         return (
           <button
-            key={valor}
+            key={valor ?? 'sin'}
             type="button"
             role="radio"
             aria-checked={activo}
-            disabled={!editable}
-            className={estilos.opcion}
-            data-activo={activo || undefined}
-            data-original={valor === original && valor !== nivel ? true : undefined}
-            title={`${valor}: ${nombre}`}
-            onClick={() => alCambiar?.(valor)}
+            aria-label={etiquetaOpcion}
+            tabIndex={tabulable ? 0 : -1}
+            className={`pulsador ${estilos.opcion}`}
+            data-nivel={valor ?? 'sin'}
+            data-tono="nivel"
+            data-sugerido={sugerido !== null && valor === sugerido ? true : undefined}
+            title={etiquetaOpcion}
+            onClick={() => alCambiar(valor)}
           >
-            <span className={estilos.numero}>{valor}</span>
-            <svg className={estilos.circulo} viewBox="0 0 40 32" aria-hidden="true">
-              <path d="M21 3.5 C 31 3, 37.5 9, 36.5 16.5 C 35.5 25, 27 29.5, 18.5 28.8 C 9 28, 3 22.5, 3.6 15.2 C 4.3 7.8, 11.5 3.2, 23.5 4.8" pathLength={1} />
-            </svg>
+            {valor === null ? 'Sin evaluar' : valor}
           </button>
         )
       })}

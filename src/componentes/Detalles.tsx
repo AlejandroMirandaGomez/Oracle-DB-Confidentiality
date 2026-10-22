@@ -1,27 +1,16 @@
-import { estadoDeNivel, nivelesMadurez } from '../data/legajo'
-import type { Control, FilaMatriz, Hallazgo, Observable, Prueba, Riesgo, Tarea } from '../data/tipos'
+import type { Control, HallazgoEjemplo, Riesgo, Tarea, Hallazgo, Prioridad } from '../data/tipos'
 import { valorarRiesgo } from '../estado/calculos'
-import {
-  buscarPrueba,
-  filasDeControl,
-  filasDeRiesgo,
-  filasDeTarea,
-  hallazgosDe,
-  observableDeControl,
-  observablesDePrueba,
-  pruebasDeRiesgo,
-  type Entidad,
-} from '../estado/indice'
-import { useLegajo } from '../estado/LegajoProvider'
-import { evidenciaDe, rutaDeScript, scriptDe } from '../recursos'
-import { BandaPuntaje } from './BandaPuntaje'
+import type { Entidad } from '../estado/indice'
+import { useIndice } from '../estado/fuente'
+import { useNivelDe } from '../estado/useNivelDe'
+import { BandaRiesgo } from './BandaRiesgo'
 import { BloqueCodigo } from './BloqueCodigo'
 import { Campo, Rejilla } from './Campo'
+import { DetalleFila, DetalleFilaEjemplo } from './DetalleFila'
+import { DetallePrueba, DetallePruebaEjemplo } from './DetallePrueba'
 import estilos from './Detalles.module.css'
-import { Marca } from './Marca'
-import { Trama } from './Trama'
+import { LamparaEstado, PuntoLampara } from './Lampara'
 import { ListaRefs } from './Ref'
-import { SelectorNivel } from './SelectorNivel'
 
 export function Detalle({ entidad }: { entidad: Entidad }) {
   switch (entidad.tipo) {
@@ -31,27 +20,37 @@ export function Detalle({ entidad }: { entidad: Entidad }) {
       return <DetalleTarea tarea={entidad.dato} />
     case 'control':
       return <DetalleControl control={entidad.dato} />
-    case 'observable':
-      return <DetalleObservable observable={entidad.dato} />
     case 'prueba':
       return <DetallePrueba prueba={entidad.dato} />
     case 'fila':
       return <DetalleFila fila={entidad.dato} />
     case 'hallazgo':
-      return <DetalleHallazgo hallazgo={entidad.dato} />
+      return <VistaHallazgo hallazgo={entidad.dato} />
+    case 'pruebaEjemplo':
+      return <DetallePruebaEjemplo prueba={entidad.dato} />
+    case 'filaEjemplo':
+      return <DetalleFilaEjemplo fila={entidad.dato} />
+    case 'hallazgoEjemplo':
+      return <VistaHallazgo hallazgo={entidad.dato} />
   }
 }
 
 function DetalleRiesgo({ riesgo }: { riesgo: Riesgo }) {
-  const { nivelDe } = useLegajo()
-  const valoracion = valorarRiesgo(riesgo, nivelDe)
+  const indice = useIndice()
+  const nivelDe = useNivelDe()
+  const filas = indice.filasDeRiesgo(riesgo.id)
+  const valoracion = valorarRiesgo(
+    riesgo,
+    filas.map((fila) => fila.id),
+    nivelDe,
+  )
   return (
     <>
       <p className={estilos.entrada}>{riesgo.descripcion}</p>
-      <blockquote className={estilos.escenario}>
-        <span className={estilos.escenarioRotulo}>Escenario en Oracle</span>
-        {riesgo.escenario}
-      </blockquote>
+      <div className={estilos.escenario}>
+        <p className="rotulo">{indice.modo === 'ejemplo' ? 'Escenario en Oracle' : 'Escenario típico en Oracle'}</p>
+        <p>{riesgo.escenario}</p>
+      </div>
       <Rejilla>
         <Campo etiqueta="Impacto">
           {riesgo.impacto} de 5. {riesgo.justificacionImpacto}
@@ -60,11 +59,15 @@ function DetalleRiesgo({ riesgo }: { riesgo: Riesgo }) {
           {riesgo.probabilidad} de 5. {riesgo.justificacionProbabilidad}
         </Campo>
         <Campo etiqueta="Riesgo inherente">
-          <BandaPuntaje puntaje={valoracion.inherente} />
+          <BandaRiesgo puntaje={valoracion.inherente} />
         </Campo>
         <Campo etiqueta="Riesgo residual">
-          <BandaPuntaje puntaje={valoracion.residual} />
-          <span className={estilos.nota}>Cobertura de los controles: {Math.round(valoracion.cobertura * 100)} %</span>
+          <BandaRiesgo puntaje={valoracion.residual} />
+          <span className={estilos.nota}>
+            {valoracion.cobertura === null
+              ? 'Evalúe las filas de la matriz de este riesgo para calcularlo.'
+              : `Cobertura de los controles: ${Math.round(valoracion.cobertura * 100)} % (${valoracion.evaluadas} de ${valoracion.total} filas evaluadas)`}
+          </span>
         </Campo>
         <Campo etiqueta="Amenaza">{riesgo.amenaza}</Campo>
         <Campo etiqueta="Vulnerabilidad">{riesgo.vulnerabilidad}</Campo>
@@ -77,14 +80,8 @@ function DetalleRiesgo({ riesgo }: { riesgo: Riesgo }) {
         <Campo etiqueta="Controles">
           <ListaRefs ids={riesgo.controles} />
         </Campo>
-        <Campo etiqueta="Filas de la matriz">
-          <ListaRefs ids={filasDeRiesgo(riesgo.id).map((fila) => fila.id)} />
-        </Campo>
-        <Campo etiqueta="Pruebas">
-          <ListaRefs ids={pruebasDeRiesgo(riesgo.id)} />
-        </Campo>
-        <Campo etiqueta="Hallazgos" ancho>
-          <ListaRefs ids={hallazgosDe(riesgo.id).map((hallazgo) => hallazgo.id)} conNombre />
+        <Campo etiqueta="Filas de la matriz" ancho>
+          <ListaRefs ids={filas.map((fila) => fila.id)} />
         </Campo>
       </Rejilla>
     </>
@@ -92,6 +89,7 @@ function DetalleRiesgo({ riesgo }: { riesgo: Riesgo }) {
 }
 
 function DetalleTarea({ tarea }: { tarea: Tarea }) {
+  const indice = useIndice()
   return (
     <>
       <p className={estilos.entrada}>{tarea.descripcion}</p>
@@ -108,7 +106,7 @@ function DetalleTarea({ tarea }: { tarea: Tarea }) {
           <ListaRefs ids={tarea.controles} />
         </Campo>
         <Campo etiqueta="Filas de la matriz" ancho>
-          <ListaRefs ids={filasDeTarea(tarea.id).map((fila) => fila.id)} />
+          <ListaRefs ids={indice.filasDeTarea(tarea.id).map((fila) => fila.id)} />
         </Campo>
       </Rejilla>
     </>
@@ -118,26 +116,36 @@ function DetalleTarea({ tarea }: { tarea: Tarea }) {
 const nombrePropiedad = { C: 'Confidencialidad', I: 'Integridad', D: 'Disponibilidad' } as const
 
 function DetalleControl({ control }: { control: Control }) {
-  const observable = observableDeControl(control.id)
+  const indice = useIndice()
+  const observable = control.observable
+  const resultado = indice.observableDeControl(control.id)
   return (
     <>
       <p className={estilos.entrada}>{control.proposito}</p>
       <Rejilla>
-        <Campo etiqueta="Tema">{control.tema}{control.complementario ? ', complementario' : ''}</Campo>
+        <Campo etiqueta="Tema">
+          {control.tema}
+          {control.complementario ? ', complementario' : ''}
+        </Campo>
         <Campo etiqueta="Tipo">{control.tipo.join(' y ')}</Campo>
         <Campo etiqueta="Propiedades marcadas por la norma" ancho>
-          <span className={estilos.propiedades}>
-            {(['C', 'I', 'D'] as const).map((propiedad) => (
-              <span key={propiedad} data-marcada={control.propiedades.includes(propiedad) || undefined}>
-                {nombrePropiedad[propiedad]}
-              </span>
-            ))}
-          </span>
+          <ul className={estilos.propiedades}>
+            {(['C', 'I', 'D'] as const).map((propiedad) => {
+              const marcada = control.propiedades.includes(propiedad)
+              return (
+                <li key={propiedad} data-marcada={marcada || undefined}>
+                  <PuntoLampara tono={marcada ? 'blanca' : 'apagada'} />
+                  {nombrePropiedad[propiedad]}
+                  {!marcada && <span className="solo-lectores"> (no marcada)</span>}
+                </li>
+              )
+            })}
+          </ul>
         </Campo>
         <Campo etiqueta="Por qué aplica al DBA" ancho>
           {control.justificacion}
         </Campo>
-        <Campo etiqueta="Implementación en Oracle 21c XE" ancho>
+        <Campo etiqueta="Implementación en Oracle" ancho>
           <ol>
             {control.implementacion.map((paso) => (
               <li key={paso}>{paso}</li>
@@ -148,6 +156,28 @@ function DetalleControl({ control }: { control: Control }) {
       <div className={estilos.bloque}>
         <BloqueCodigo codigo={control.evidencia} titulo="Evidencia observable" />
       </div>
+      {observable && (
+        <section className={estilos.auditor} aria-labelledby={`auditor-${control.id}`}>
+          <h3 id={`auditor-${control.id}`} className={estilos.subtitulo}>
+            Lo que verifica un auditor externo
+          </h3>
+          <p className={estilos.enunciado}>{observable.enunciado}</p>
+          <BloqueCodigo codigo={observable.consulta} titulo={`Consulta ${observable.id}`} />
+          <Rejilla>
+            <Campo etiqueta="Criterio de aceptación" ancho>
+              {observable.criterio}
+            </Campo>
+            {resultado && (
+              <Campo etiqueta="Se observó" ancho>
+                <span className={estilos.observado}>
+                  <LamparaEstado valor={resultado.veredicto} />
+                  {resultado.resultado}
+                </span>
+              </Campo>
+            )}
+          </Rejilla>
+        </section>
+      )}
       <Rejilla>
         <Campo etiqueta="Riesgos">
           <ListaRefs ids={control.riesgos} />
@@ -158,144 +188,28 @@ function DetalleControl({ control }: { control: Control }) {
         <Campo etiqueta="Pruebas">
           <ListaRefs ids={control.pruebas} />
         </Campo>
-        <Campo etiqueta="Observable">
-          <ListaRefs ids={observable ? [observable.id] : []} />
-        </Campo>
         <Campo etiqueta="Filas de la matriz">
-          <ListaRefs ids={filasDeControl(control.id).map((fila) => fila.id)} />
-        </Campo>
-        <Campo etiqueta="Hallazgos">
-          <ListaRefs ids={hallazgosDe(control.id).map((hallazgo) => hallazgo.id)} />
+          <ListaRefs ids={indice.filasDeControl(control.id).map((fila) => fila.id)} />
         </Campo>
       </Rejilla>
     </>
   )
 }
 
-function DetalleObservable({ observable }: { observable: Observable }) {
-  return (
-    <>
-      <p className={estilos.entrada}>{observable.enunciado}</p>
-      <div className={estilos.bloque}>
-        <BloqueCodigo codigo={observable.consulta} titulo="Lo que ejecuta el auditor" />
-      </div>
-      <Rejilla>
-        <Campo etiqueta="Criterio de aceptación" ancho>
-          {observable.criterio}
-        </Campo>
-        <Campo etiqueta="Se observó" ancho>
-          <Marca valor={observable.veredicto} estampar /> {observable.resultado}
-        </Campo>
-        <Campo etiqueta="Control">
-          <ListaRefs ids={[observable.control]} conNombre />
-        </Campo>
-        <Campo etiqueta="Resultado de las pruebas">
-          <ul className={estilos.veredictos}>
-            {observable.pruebas.map((id) => {
-              const prueba = buscarPrueba(id)
-              return (
-                <li key={id}>
-                  <ListaRefs ids={[id]} />
-                  {prueba && <Marca valor={prueba.veredicto} />}
-                </li>
-              )
-            })}
-          </ul>
-        </Campo>
-      </Rejilla>
-    </>
-  )
+type DatosHallazgo = Hallazgo | HallazgoEjemplo
+
+function tieneFilas(hallazgo: DatosHallazgo): hallazgo is Hallazgo {
+  return 'filas' in hallazgo
 }
 
-function DetallePrueba({ prueba }: { prueba: Prueba }) {
-  const script = scriptDe(prueba.script)
-  const evidencia = evidenciaDe(prueba.evidencia)
-  return (
-    <>
-      <p className={estilos.entrada}>{prueba.objetivo}</p>
-      <Rejilla>
-        <Campo etiqueta="Tipo">{prueba.tipo}</Campo>
-        <Campo etiqueta="Herramienta">{prueba.herramienta}</Campo>
-        <Campo etiqueta="Procedimiento" ancho>
-          <ol>
-            {prueba.procedimiento.map((paso) => (
-              <li key={paso}>{paso}</li>
-            ))}
-          </ol>
-        </Campo>
-        <Campo etiqueta="Resultado esperado">{prueba.resultadoEsperado}</Campo>
-        <Campo etiqueta="Resultado obtenido">{prueba.resultadoObtenido}</Campo>
-        <Campo etiqueta="Veredicto">
-          <Marca valor={prueba.veredicto} estampar />
-        </Campo>
-        <Campo etiqueta="Controles">
-          <ListaRefs ids={prueba.controles} />
-        </Campo>
-        <Campo etiqueta="Observables" ancho>
-          <ListaRefs ids={observablesDePrueba(prueba.id).map((observable) => observable.id)} />
-        </Campo>
-      </Rejilla>
-      {script && (
-        <div className={estilos.bloque}>
-          <BloqueCodigo codigo={script} titulo={rutaDeScript(prueba.script)} />
-        </div>
-      )}
-      {evidencia && (
-        <div className={estilos.bloque}>
-          <BloqueCodigo codigo={evidencia} titulo={`evidencias/${prueba.evidencia}.txt`} variante="listado" />
-        </div>
-      )}
-    </>
-  )
-}
-
-function DetalleFila({ fila }: { fila: FilaMatriz }) {
-  const { nivelDe, nivelOriginal, fijarNivel, estaAjustado } = useLegajo()
-  const nivel = nivelDe(fila.id)
-  const descripcion = nivelesMadurez.find((item) => item.nivel === nivel)
-  return (
-    <>
-      <p className={estilos.entrada}>{fila.criterio}</p>
-      <Rejilla>
-        <Campo etiqueta="Tarea">
-          <ListaRefs ids={[fila.tarea]} conNombre />
-        </Campo>
-        <Campo etiqueta="Riesgo">
-          <ListaRefs ids={[fila.riesgo]} conNombre />
-        </Campo>
-        <Campo etiqueta="Control" ancho>
-          <ListaRefs ids={[fila.control]} conNombre />
-        </Campo>
-        <Campo etiqueta="Criterio de madurez 0-4" ancho>
-          <div className={estilos.nivel}>
-            <SelectorNivel nivel={nivel} original={nivelOriginal(fila.id)} etiqueta={`Nivel de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
-            <Marca valor={estadoDeNivel(nivel)} estampar />
-          </div>
-          {descripcion && (
-            <span className={estilos.nota}>
-              {descripcion.nombre}: {descripcion.descripcion}
-              {estaAjustado(fila.id) ? ` Ajustado por el revisor; la evidencia sostiene el nivel ${nivelOriginal(fila.id)}.` : ''}
-            </span>
-          )}
-        </Campo>
-        <Campo etiqueta="Evidencia" ancho>
-          {fila.evidencia}
-        </Campo>
-        <Campo etiqueta="Pruebas" ancho>
-          <ListaRefs ids={fila.pruebas} conNombre />
-        </Campo>
-      </Rejilla>
-    </>
-  )
-}
-
-function DetalleHallazgo({ hallazgo }: { hallazgo: Hallazgo }) {
+function VistaHallazgo({ hallazgo }: { hallazgo: DatosHallazgo }) {
+  const prioridad: Prioridad = hallazgo.prioridad
   return (
     <>
       <p className={estilos.entrada}>
         <span className={estilos.prioridad}>
-          <Trama densidad={hallazgo.prioridad === 'Alta' ? 4 : hallazgo.prioridad === 'Media' ? 2 : 1} />
-          Prioridad {hallazgo.prioridad.toLowerCase()}
+          <LamparaEstado valor={prioridad} texto={`Prioridad ${prioridad.toLowerCase()}`} />
+          {tieneFilas(hallazgo) && hallazgo.contradiccion && <span className={estilos.nota}>Una prueba contradice el nivel declarado.</span>}
         </span>
       </p>
       <Rejilla>
@@ -307,9 +221,11 @@ function DetalleHallazgo({ hallazgo }: { hallazgo: Hallazgo }) {
         <Campo etiqueta="Efecto">{hallazgo.efecto}</Campo>
         <Campo etiqueta="Recomendación">{hallazgo.recomendacion}</Campo>
       </Rejilla>
-      <div className={estilos.bloque}>
-        <BloqueCodigo codigo={hallazgo.remediacion} titulo="Remediación propuesta" />
-      </div>
+      {hallazgo.remediacion !== '' && (
+        <div className={estilos.bloque}>
+          <BloqueCodigo codigo={hallazgo.remediacion} titulo="Remediación propuesta" />
+        </div>
+      )}
       <Rejilla>
         <Campo etiqueta="Controles">
           <ListaRefs ids={hallazgo.controles} />
@@ -317,6 +233,11 @@ function DetalleHallazgo({ hallazgo }: { hallazgo: Hallazgo }) {
         <Campo etiqueta="Pruebas">
           <ListaRefs ids={hallazgo.pruebas} />
         </Campo>
+        {tieneFilas(hallazgo) && (
+          <Campo etiqueta="Filas de la matriz">
+            <ListaRefs ids={hallazgo.filas} />
+          </Campo>
+        )}
         <Campo etiqueta="Riesgos" ancho>
           <ListaRefs ids={hallazgo.riesgos} conNombre />
         </Campo>

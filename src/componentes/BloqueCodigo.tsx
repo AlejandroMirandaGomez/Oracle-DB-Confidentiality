@@ -30,7 +30,7 @@ export function BloqueCodigo({ codigo, titulo, variante = 'sql' }: Props) {
     <figure className={estilos.bloque} data-variante={variante}>
       <figcaption className={estilos.barra}>
         <span className={estilos.titulo}>{titulo ?? (variante === 'sql' ? 'SQL' : 'Salida')}</span>
-        <button type="button" className={estilos.copiar} onClick={copiar} aria-live="polite">
+        <button type="button" className="pulsador" data-compacto="" onClick={copiar} aria-live="polite">
           {copiado ? <CheckIcon weight="bold" aria-hidden="true" /> : <CopySimpleIcon aria-hidden="true" />}
           <span>{copiado ? 'Copiado' : 'Copiar'}</span>
         </button>

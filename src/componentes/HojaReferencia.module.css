@@ -2,45 +2,22 @@
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgb(21 34 26 / 0.22);
+  background: var(--velo);
 }
 
 .hoja {
   position: fixed;
-  top: 0.75rem;
-  right: 0.75rem;
-  bottom: 0.75rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
   z-index: 41;
-  width: min(41rem, calc(100vw - 1.5rem));
-  transform-origin: 100% 0%;
-  will-change: transform;
-}
-
-.bajo {
-  position: absolute;
-  inset: 0.6rem 0.9rem -0.4rem -0.5rem;
-  background: var(--papel-hondo);
-  border: 1px solid var(--regla-fuerte);
-  box-shadow: var(--sombra-baja);
-  transform: rotate(-1.2deg);
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-
-.bajo[data-visible] {
-  opacity: 1;
-}
-
-.papel {
-  position: relative;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--papel-claro);
-  background-image: linear-gradient(to right, transparent 2.6rem, rgb(176 38 30 / 0.22) 2.6rem, rgb(176 38 30 / 0.22) calc(2.6rem + 1px), transparent calc(2.6rem + 1px)), var(--rayado);
-  border: 1px solid var(--regla-fuerte);
-  box-shadow: var(--sombra-hoja);
-  overflow: hidden;
+  width: min(44rem, 100vw);
+  background: var(--panel);
+  border-left: 2px solid var(--placa);
+  box-shadow: var(--sombra-panel);
+  will-change: transform;
 }
 
 .barra {
@@ -48,9 +25,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.6rem 0.75rem 0.6rem 3.4rem;
-  border-bottom: 1px solid var(--regla-fuerte);
-  background: var(--papel-hondo);
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--placa);
+  background: var(--panel-hondo);
 }
 
 .recorrido {
@@ -68,31 +45,43 @@
 }
 
 .flecha {
-  width: 0.7rem;
-  height: 1px;
-  background: var(--grafito);
+  width: 0.75rem;
+  height: 2px;
+  background: var(--placa-suave);
 }
 
 .pasoActual,
 .pasoPrevio {
   font-family: var(--mono);
   font-size: 0.75rem;
-  padding: 0.15rem 0.3rem;
+  font-weight: 600;
+  padding: 0.2rem 0.35rem;
 }
 
 .pasoActual {
-  color: var(--tinta);
-  font-weight: 600;
+  color: var(--placa);
+  background: var(--panel-claro);
+  border: 1px solid var(--placa);
+  border-radius: var(--radio);
 }
 
 .pasoPrevio {
+  position: relative;
   border: 0;
   background: none;
-  color: var(--azul);
+  color: var(--placa);
   cursor: pointer;
   text-decoration: underline;
-  text-decoration-color: rgb(28 74 146 / 0.4);
-  text-underline-offset: 0.2em;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--placa-suave);
+  text-underline-offset: 0.25em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pasoPrevio:hover {
+    text-decoration-color: var(--placa);
+    text-decoration-thickness: 4px;
+  }
 }
 
 .acciones {
@@ -100,39 +89,6 @@
   align-items: center;
   gap: 0.35rem;
   flex: none;
-}
-
-.boton,
-.botonIcono {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  border: 1px solid var(--regla-fuerte);
-  background: var(--papel-claro);
-  color: var(--tinta);
-  cursor: pointer;
-  font-size: 0.8125rem;
-  transition: transform 140ms var(--ease-out), border-color 140ms ease;
-}
-
-.boton {
-  padding: 0.3rem 0.6rem;
-}
-
-.botonIcono {
-  padding: 0.4rem;
-}
-
-.boton:active,
-.botonIcono:active {
-  transform: scale(0.96);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .boton:hover,
-  .botonIcono:hover {
-    border-color: var(--tinta-suave);
-  }
 }
 
 .desplazable {
@@ -143,24 +99,28 @@
 }
 
 .contenido {
-  padding: 1.75rem 1.75rem 3rem 3.4rem;
+  padding: 1.75rem 1.75rem 3.5rem;
 }
 
 .encabezado {
   display: grid;
   gap: 0.6rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--placa);
 }
 
 .tipo {
   font-size: 0.8125rem;
-  color: var(--grafito);
+  font-weight: 600;
+  color: var(--remache);
 }
 
 .titulo {
   display: grid;
   gap: 0.35rem;
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-stretch: 68%;
   outline: none;
 }
 
@@ -168,34 +128,22 @@
   font-family: var(--mono);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--tinta-suave);
+  font-stretch: 100%;
+  color: var(--placa-suave);
   letter-spacing: -0.01em;
 }
 
 @media (max-width: 640px) {
   .hoja {
-    inset: 0;
     width: 100vw;
-  }
-
-  .bajo {
-    display: none;
-  }
-
-  .papel {
-    background-image: var(--rayado);
-    border: 0;
-  }
-
-  .barra {
-    padding-left: 1rem;
+    border-left: 0;
   }
 
   .contenido {
     padding: 1.25rem 1rem 3rem;
   }
 
-  .boton span {
+  .acciones span {
     display: none;
   }
 }

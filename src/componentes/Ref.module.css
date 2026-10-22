@@ -3,15 +3,28 @@
   width: fit-content;
   display: inline-flex;
   align-items: baseline;
-  gap: 0.5em;
-  padding: 0.05em 0.1em 0.2em;
+  gap: 0.6em;
+  padding: 0.1em 0.05em 0.3em;
   margin: 0;
   border: 0;
   background: none;
-  color: var(--azul);
+  color: var(--placa);
   cursor: pointer;
   text-align: left;
-  transition: transform 140ms var(--ease-out), color 140ms ease;
+  transition: transform 140ms var(--ease-out);
+}
+
+.ref::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--placa-suave);
+  transition:
+    height 160ms var(--ease-out),
+    background-color 160ms var(--ease-out);
 }
 
 .ref:active {
@@ -21,74 +34,53 @@
 .codigo {
   font-family: var(--mono);
   font-size: 0.8125rem;
-  font-weight: 560;
+  font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--placa);
   white-space: nowrap;
 }
 
 .nombre {
   font-size: 0.9375rem;
-  color: var(--tinta-suave);
   line-height: 1.35;
+  color: var(--placa-suave);
 }
 
-.trazo {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.05em;
-  width: 100%;
-  height: 0.45em;
-  overflow: visible;
-  pointer-events: none;
+.ref[data-resaltado]::after {
+  height: 4px;
+  background: var(--placa);
 }
 
-.trazo path {
-  fill: none;
-  stroke: var(--azul);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0.85;
-  transition: stroke-dashoffset 220ms var(--ease-out);
-}
-
-.ref[data-resaltado] .trazo path {
-  stroke-width: 2.2;
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 320ms var(--ease-out) var(--retardo, 0ms);
+.ref:focus-visible::after {
+  height: 4px;
+  background: var(--placa);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .ref:hover .trazo path {
-    stroke-dashoffset: 0;
+  .ref:hover::after {
+    height: 4px;
+    background: var(--placa);
   }
 
   .ref:hover .nombre {
-    color: var(--tinta);
+    color: var(--placa);
   }
-}
-
-.ref:focus-visible .trazo path {
-  stroke-dashoffset: 0;
 }
 
 .lista {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.15rem 0.6rem;
+  gap: 0.2rem 0.85rem;
 }
 
 .listaApilada {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .vacio {
-  color: var(--grafito);
+  color: var(--remache);
   font-size: 0.875rem;
 }

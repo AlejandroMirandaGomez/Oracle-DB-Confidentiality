@@ -14,6 +14,7 @@ import type {
   FilaMatrizEjemplo,
   Hallazgo,
   HallazgoEjemplo,
+  NivelEvaluado,
   ObservableEjemplo,
   Prueba,
   PruebaEjemplo,
@@ -81,6 +82,7 @@ export type Indice = {
   pruebasDeRiesgo: (id: string) => string[]
   hallazgosDe: (id: string) => HallazgoBasico[]
   observableDeControl: (id: string) => ObservableEjemplo | undefined
+  nivelFijoDe: ((filaId: string) => NivelEvaluado) | null
 }
 
 export function tituloDeEntidad(entidad: Entidad): string {
@@ -106,6 +108,7 @@ type Fuente = {
   filas: FilaBasica[]
   hallazgos: HallazgoBasico[]
   observables: ObservableEjemplo[]
+  nivelFijoDe: ((filaId: string) => NivelEvaluado) | null
 }
 
 function armarIndice(fuente: Fuente): Indice {
@@ -142,6 +145,7 @@ function armarIndice(fuente: Fuente): Indice {
     hallazgosDe: (id) =>
       fuente.hallazgos.filter((hallazgo) => hallazgo.controles.includes(id) || hallazgo.pruebas.includes(id) || hallazgo.riesgos.includes(id)),
     observableDeControl: (id) => fuente.observables.find((observable) => observable.control === id),
+    nivelFijoDe: fuente.nivelFijoDe,
   }
 }
 
@@ -159,6 +163,7 @@ export function crearIndiceCatalogo(hallazgos: Hallazgo[]): Indice {
     filas: matriz,
     hallazgos,
     observables: [],
+    nivelFijoDe: null,
   })
 }
 
@@ -177,4 +182,5 @@ export const indiceEjemplo = armarIndice({
   filas: matrizEjemplo,
   hallazgos: hallazgosEjemplo,
   observables: observablesEjemplo,
+  nivelFijoDe: (filaId) => matrizEjemplo.find((fila) => fila.id === filaId)?.nivel ?? null,
 })
