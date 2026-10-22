@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import type { Control, HallazgoEjemplo, Riesgo, Tarea, Hallazgo, Prioridad } from '../data/tipos'
 import { valorarRiesgo } from '../estado/calculos'
 import type { Entidad } from '../estado/indice'
@@ -7,10 +8,12 @@ import { BandaRiesgo } from './BandaRiesgo'
 import { BloqueCodigo } from './BloqueCodigo'
 import { Campo, Rejilla } from './Campo'
 import { DetalleFila, DetalleFilaEjemplo } from './DetalleFila'
-import { DetallePrueba, DetallePruebaEjemplo } from './DetallePrueba'
+import { DetallePrueba } from './DetallePrueba'
 import estilos from './Detalles.module.css'
 import { LamparaEstado, PuntoLampara } from './Lampara'
 import { ListaRefs } from './Ref'
+
+const DetallePruebaEjemplo = lazy(() => import('./DetallePruebaEjemplo').then((modulo) => ({ default: modulo.DetallePruebaEjemplo })))
 
 export function Detalle({ entidad }: { entidad: Entidad }) {
   switch (entidad.tipo) {
@@ -27,7 +30,11 @@ export function Detalle({ entidad }: { entidad: Entidad }) {
     case 'hallazgo':
       return <VistaHallazgo hallazgo={entidad.dato} />
     case 'pruebaEjemplo':
-      return <DetallePruebaEjemplo prueba={entidad.dato} />
+      return (
+        <Suspense fallback={<p className={estilos.nota}>Cargando el detalle de la prueba.</p>}>
+          <DetallePruebaEjemplo prueba={entidad.dato} />
+        </Suspense>
+      )
     case 'filaEjemplo':
       return <DetalleFilaEjemplo fila={entidad.dato} />
     case 'hallazgoEjemplo':

@@ -1,8 +1,8 @@
 import { createHashRouter } from 'react-router'
 import App from './App'
+import { Cargando } from './paginas/Cargando'
 import { Controles } from './paginas/Controles'
 import { Ejemplos } from './paginas/Ejemplos'
-import { EjemploXepdb1 } from './paginas/EjemploXepdb1'
 import { Hallazgos } from './paginas/Hallazgos'
 import { Inicio } from './paginas/Inicio'
 import { MarcoTeorico } from './paginas/MarcoTeorico'
@@ -17,6 +17,7 @@ export const router = createHashRouter([
   {
     path: '/',
     element: <App />,
+    HydrateFallback: Cargando,
     children: [
       { index: true, element: <Inicio /> },
       { path: 'riesgos', element: <Riesgos /> },
@@ -29,7 +30,10 @@ export const router = createHashRouter([
       { path: 'marco-teorico', element: <MarcoTeorico /> },
       { path: 'uso-ia', element: <UsoIA /> },
       { path: 'ejemplos', element: <Ejemplos /> },
-      { path: 'ejemplos/xepdb1', element: <EjemploXepdb1 /> },
+      {
+        path: 'ejemplos/xepdb1',
+        lazy: async () => ({ Component: (await import('./paginas/EjemploXepdb1')).EjemploXepdb1 }),
+      },
       { path: '*', element: <NoEncontrada /> },
     ],
   },

@@ -1,0 +1,11 @@
+.entidad {
+  font-size: 1rem;
+  font-weight: 700;
+  font-stretch: 90%;
+}
+
+.fecha {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
