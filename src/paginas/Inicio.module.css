@@ -1,0 +1,252 @@
+.inicio {
+  width: 100%;
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 6rem) var(--margen) clamp(3.5rem, 8vw, 6.5rem);
+  display: grid;
+  gap: clamp(4rem, 9vw, 7.5rem);
+}
+
+.portada {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 2.5rem clamp(2rem, 6vw, 5rem);
+}
+
+.mensaje {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  min-width: 0;
+}
+
+.titular {
+  max-width: 17em;
+  font-size: clamp(2.5rem, 7.4vw, 5.75rem);
+  font-weight: 800;
+  font-stretch: 62%;
+  line-height: 0.95;
+}
+
+.descripcion {
+  max-width: 54ch;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--placa-suave);
+}
+
+.llamada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.comenzar {
+  margin-top: 1.05rem;
+  min-height: 2.75rem;
+  padding-inline: 1.4rem;
+  font-size: 1rem;
+}
+
+.placa {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 16rem;
+  padding: 0.85rem 1.1rem;
+  border: 2px solid var(--placa);
+  outline: 1px solid var(--placa);
+  outline-offset: -6px;
+  background: var(--panel-claro);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--placa-suave);
+}
+
+.placaAutor {
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-stretch: 85%;
+  color: var(--placa);
+}
+
+.bloque {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 2px solid var(--placa);
+}
+
+.subtitulo {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.apoyo {
+  max-width: 52ch;
+  font-size: 0.9375rem;
+  color: var(--placa-suave);
+}
+
+.pasos {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paso {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) minmax(11rem, auto);
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--junta);
+  animation: entrada 240ms var(--ease-out) both;
+  animation-delay: calc(var(--posicion) * 45ms);
+}
+
+.numero {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 2px solid var(--placa);
+  border-radius: var(--radio);
+  background: var(--panel-claro);
+  font-family: var(--mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.texto {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.texto p {
+  max-width: 56ch;
+  color: var(--placa-suave);
+}
+
+.enlacePaso {
+  width: fit-content;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-weight: 750;
+  font-stretch: 72%;
+  line-height: 1.1;
+  color: var(--placa);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--placa-suave);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness 160ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .enlacePaso:hover {
+    text-decoration-thickness: 5px;
+    text-decoration-color: var(--placa);
+  }
+}
+
+.estado {
+  display: grid;
+  justify-items: start;
+  gap: 0.4rem;
+}
+
+.avance {
+  font-size: 0.8125rem;
+  color: var(--placa-suave);
+}
+
+.bloqueada {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retomar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.listaApoyo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.elementoApoyo {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--junta);
+}
+
+.elementoApoyo p {
+  grid-column: 1 / -1;
+  max-width: 42ch;
+  font-size: 0.9375rem;
+  color: var(--placa-suave);
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .portada {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .placa {
+    min-width: 0;
+    max-width: 22rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .paso {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.5rem 0.9rem;
+  }
+
+  .numero {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  .estado {
+    grid-column: 2;
+  }
+}
