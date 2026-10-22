@@ -1,0 +1,49 @@
+.pagina {
+  width: 100%;
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.5rem) var(--margen) clamp(3rem, 7vw, 5.5rem);
+}
+
+.cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 2px solid var(--placa);
+}
+
+.titulos {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 50rem;
+}
+
+.titulo {
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 750;
+  font-stretch: 66%;
+  line-height: 1;
+}
+
+.introduccion {
+  max-width: 62ch;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--placa-suave);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cuerpo {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  min-width: 0;
+}

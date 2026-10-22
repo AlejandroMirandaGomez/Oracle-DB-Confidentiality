@@ -1,0 +1,145 @@
+.marco {
+  position: relative;
+  overflow-x: auto;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.tabla thead th {
+  padding: 0.65rem 0.85rem;
+  background: var(--panel-hondo);
+  border-bottom: 1px solid var(--placa);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.fila {
+  transition:
+    opacity 160ms var(--ease-out),
+    background-color 160ms var(--ease-out);
+}
+
+.fila + .fila > * {
+  border-top: 1px solid var(--junta);
+}
+
+.fila[data-activo] {
+  background: var(--panel-claro);
+}
+
+.fila[data-atenuado] {
+  opacity: 0.6;
+}
+
+.tabla td,
+.tabla tbody th {
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.riesgo {
+  min-width: 15rem;
+}
+
+.abrir {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.nombre {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  line-height: 1.25;
+}
+
+.estados {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.conteo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .marco {
+    overflow-x: visible;
+    border: 0;
+  }
+
+  .tabla,
+  .tabla tbody,
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    display: block;
+  }
+
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .fila {
+    margin-top: 0.75rem;
+    border: 1px solid var(--placa);
+    background: var(--panel-claro);
+  }
+
+  .fila + .fila > * {
+    border-top: 0;
+  }
+
+  .tabla td,
+  .tabla tbody th {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.55rem 0.85rem;
+    border-top: 1px solid var(--junta);
+  }
+
+  .tabla tbody th {
+    display: block;
+    border-top: 0;
+    background: var(--panel-hondo);
+  }
+
+  .tabla td::before {
+    content: attr(data-etiqueta);
+    font-size: 0.75rem;
+    font-weight: 650;
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.8;
+    color: var(--remache);
+  }
+}

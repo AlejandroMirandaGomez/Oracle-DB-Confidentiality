@@ -1,0 +1,54 @@
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  line-height: 1.25;
+}
+
+.bloqueo {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  max-width: 44rem;
+  padding: 1.5rem 1.5rem 1.75rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.subtitulo {
+  font-size: 1.75rem;
+}
+
+.explicacion {
+  max-width: 60ch;
+  color: var(--placa-suave);
+}
+
+.cabecera {
+  display: grid;
+  gap: 1rem;
+}
+
+.plan {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.aviso {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+  font-weight: 600;
+}

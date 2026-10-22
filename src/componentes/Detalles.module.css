@@ -1,34 +1,27 @@
 .entrada {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.5;
-  color: var(--tinta);
+  color: var(--placa);
   margin-bottom: 1.25rem;
   max-width: 60ch;
 }
 
 .escenario {
+  display: grid;
+  gap: 0.35rem;
   margin: 0 0 1.5rem;
   padding: 0.85rem 1rem 0.95rem;
-  border-left: 1px solid var(--rojo);
-  background: var(--rojo-tenue);
-  color: var(--tinta-suave);
+  border: 1px solid var(--junta);
+  background: var(--panel-claro);
+  color: var(--placa-suave);
   font-size: 0.9375rem;
-  display: grid;
-  gap: 0.3rem;
-}
-
-.escenarioRotulo {
-  font-size: 0.75rem;
-  font-stretch: 85%;
-  font-weight: 650;
-  color: var(--tinta);
 }
 
 .nota {
   display: block;
   margin-top: 0.4rem;
   font-size: 0.8125rem;
-  color: var(--grafito);
+  color: var(--remache);
 }
 
 .mono {
@@ -37,50 +30,57 @@
 }
 
 .propiedades {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  gap: 0.5rem 1.25rem;
+  padding: 0;
+  list-style: none;
 }
 
-.propiedades > span {
-  color: var(--grafito);
-  text-decoration: line-through;
-  text-decoration-color: rgb(86 98 91 / 0.5);
+.propiedades li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--remache);
 }
 
-.propiedades > span[data-marcada] {
-  color: var(--tinta);
-  text-decoration: none;
+.propiedades li[data-marcada] {
+  color: var(--placa);
   font-weight: 600;
+}
+
+.estadoPropiedad {
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 .bloque {
   margin-block: 1.25rem;
 }
 
-.veredictos {
-  list-style: none;
-  padding: 0 !important;
+.auditor {
+  display: grid;
+  gap: 1rem;
+  margin-block: 1.75rem;
+  padding: 1rem 1.1rem 0.4rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
 }
 
-.veredictos li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.enunciado {
+  max-width: 60ch;
 }
 
-.nivel {
+.observado {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .prioridad {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem;
-  font-weight: 650;
-  font-stretch: 85%;
-  color: var(--tinta);
+  gap: 0.75rem;
 }

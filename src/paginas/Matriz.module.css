@@ -1,0 +1,253 @@
+.escala {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.escalon {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 0.5rem;
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.escalon + .escalon {
+  border-left: 1px solid var(--junta);
+}
+
+.escalonNombre {
+  font-size: 1rem;
+  font-weight: 700;
+  font-stretch: 85%;
+}
+
+.escalonTexto {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--placa-suave);
+}
+
+.organizacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.barra {
+  display: grid;
+  gap: 1rem;
+}
+
+.totales {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.progreso {
+  font-weight: 700;
+}
+
+.conteo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.promedio {
+  color: var(--placa-suave);
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+
+.filtros {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.marco {
+  position: relative;
+  overflow-x: auto;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.tabla thead th {
+  padding: 0.65rem 0.85rem;
+  background: var(--panel-hondo);
+  border-bottom: 1px solid var(--placa);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.tabla tbody tr + tr > * {
+  border-top: 1px solid var(--junta);
+}
+
+.tabla td,
+.tabla tbody th {
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.control {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.controlNombre {
+  font-size: 0.8125rem;
+  color: var(--placa-suave);
+}
+
+.nivel {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 24rem;
+}
+
+.criterio {
+  font-size: 0.875rem;
+  color: var(--placa-suave);
+}
+
+.evidencia {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+}
+
+.vacio {
+  padding: 1.25rem 0.85rem;
+  color: var(--remache);
+}
+
+@media (max-width: 1080px) {
+  .escala {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .escalon {
+    border-top: 1px solid var(--junta);
+  }
+
+  .escalon + .escalon {
+    border-left: 0;
+  }
+
+  .escalon:nth-child(even) {
+    border-left: 1px solid var(--junta);
+  }
+}
+
+@media (max-width: 760px) {
+  .escala {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .escalon {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    padding-block: 0.55rem;
+  }
+
+  .escalon:nth-child(even) {
+    border-left: 0;
+  }
+
+  .escalonTexto,
+  .escalonEstado {
+    display: none;
+  }
+
+  .marco {
+    overflow-x: visible;
+    border: 0;
+  }
+
+  .tabla,
+  .tabla tbody,
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    display: block;
+  }
+
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0.75rem;
+    border: 1px solid var(--placa);
+    background: var(--panel-claro);
+  }
+
+  .tabla tbody th,
+  .tabla tbody td {
+    grid-column: 1 / -1;
+  }
+
+  .tabla tbody td[data-etiqueta='Tarea'],
+  .tabla tbody td[data-etiqueta='Riesgo'] {
+    grid-column: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+
+  .tabla tbody tr + tr > * {
+    border-top: 0;
+  }
+
+  .tabla td,
+  .tabla tbody th {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.55rem 0.85rem;
+    border-top: 1px solid var(--junta);
+  }
+
+  .tabla tbody th {
+    border-top: 0;
+    background: var(--panel-hondo);
+  }
+
+  .tabla [data-etiqueta]::before {
+    content: attr(data-etiqueta);
+    font-size: 0.75rem;
+    font-weight: 650;
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.8;
+    color: var(--remache);
+  }
+}

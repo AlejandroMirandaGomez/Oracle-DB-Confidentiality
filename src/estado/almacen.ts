@@ -1,4 +1,4 @@
-const prefijo = 'legajo-iso27002:'
+const prefijo = 'confidencialidad-oracle:'
 
 export function leerAlmacen<T>(clave: string, valorPorOmision: T): T {
   try {

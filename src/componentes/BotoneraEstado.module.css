@@ -1,0 +1,46 @@
+.botonera {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.opcion {
+  min-width: 5.5rem;
+}
+
+.opcion[aria-pressed='true'] {
+  border-color: var(--placa);
+  box-shadow: var(--brillo-interior);
+  font-weight: 700;
+}
+
+.opcion[aria-pressed='true'][data-tono='verde'] {
+  background: var(--lampara-verde);
+  color: var(--sobre-lampara);
+}
+
+.opcion[aria-pressed='true'][data-tono='ambar'] {
+  background: var(--lampara-ambar);
+  color: var(--placa);
+}
+
+.opcion[aria-pressed='true'][data-tono='roja'] {
+  background: var(--lampara-roja);
+  color: var(--sobre-lampara);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .opcion:hover:not(:disabled) {
+    filter: brightness(0.94);
+  }
+}
+
+.nota {
+  display: grid;
+  gap: 0.3rem;
+}

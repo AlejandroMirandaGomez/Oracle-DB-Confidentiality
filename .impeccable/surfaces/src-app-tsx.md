@@ -5,38 +5,43 @@ primary_target: "src/App.tsx"
 related_targets: []
 ---
 
-# Legajo de auditoría ISO 27002 · Confidencialidad DBA
+# Confidencialidad en bases de datos Oracle: tablero anunciador
 
 ## Scope and mode
 
-Sitio completo de una sola ruta (React + Vite + TS). Modo **Read**, con bolsillos **Operate** (matriz editable, firma de revisión, filtros). Escritorio primero (laptop del profesor, luz de día); móvil debe funcionar.
+Aplicación de varias páginas (React, rutas por hash) con navbar fijo. Modo **Operate** (tablas, matriz, batería, hallazgos, archivo de evaluación) con bolsillos **Read** (marco teórico y ejemplo XEPDB1 de solo lectura). Escritorio primero, en una oficina con luz de día; a 390 px debe funcionar completo.
 
 ## Audience, job, proof, constraints
 
-- Profesor que califica contra la rúbrica: encontrar cada punto exigido en segundos y comprobar que cada control está respaldado por evidencia real.
-- Autor que lo usa como demostración en el video de 5 minutos.
-- Prueba: resultados reales de scripts ejecutados sobre Oracle 21c XE (PDB XEPDB1), incluidos objetos de prueba creados y eliminados.
-- Restricciones: escala 0-4; la norma se parafrasea y se cita; sin rayas largas (em dash) en el texto visible; idioma español.
+- DBA o responsable de seguridad de cualquier organización, y el profesor que califica la rúbrica del curso.
+- Tarea: recorrer riesgos, tareas, controles, matriz, batería y hallazgos; exportar el plan de acción y la evaluación.
+- Prueba: consultas SQL repetibles, evidencias requeridas por fila y un ejemplo real de solo lectura (XEPDB1) con su salida.
+- Restricciones: escala 0 a 4; español; tema claro; sin rayas largas; sin comentarios en el código; el contenido común no menciona la instancia del ejemplo.
 
 ## Chosen direction and memorable moment
 
-Papeles de trabajo de auditoría. El momento memorable: tocar una referencia en lápiz azul y ver cómo el papel destino se levanta sobre la pila, la fila destino se subraya sola y aparece la referencia de vuelta.
+Tablero anunciador de sala de control, fijado por el autor. Momento memorable: al documentar la última evidencia de una fila, su lámpara se enciende en el color del estado y el panel de detalle deja seguir la cadena riesgo, control, prueba y hallazgo.
 
 ## Unresolved
 
-- Contenido del marco teórico (papel M) y tabla de uso de IA con declaración jurada (papel H): viven dentro del legajo; su texto final depende del autor.
-- Resultados obtenidos: se completan cuando se ejecuten los scripts en la instancia.
+- Inicio: el recorrido de seis pasos puede ser una fila de ventanas de anunciador o una lista vertical; se decide al construir esa página.
+
+## Accepted deviations
+
+- Progreso en Inicio: las lámparas de los pasos usan ámbar (En curso, Listos) y verde (Completa, Visto) porque el plan lo ordena textualmente ("apagada si no se empezó, ámbar en curso, verde completa"). El texto de cada lámpara las distingue de CUMPLE y PARCIAL. El estado "Listos" de Hallazgos desbloqueados es una extensión de esa regla.
+- Declaración de uso de IA: el contenido de `src/data/catalogo/usoIA.ts` es la declaración firmada del autor y se copia tal cual salvo la ruta local; por eso conserva menciones del trabajo original.
+- Tokens ajustados por contraste AA medido: `--remache` #454b50 (el plan sugería #5b6166, 4,01:1 sobre `--panel`) y `--lampara-verde` #2a8452 (el plan decía #2e8b57, 4,25:1 con texto blanco).
 
 ## Direction contract
 
-THESIS: El artefacto es un legajo de auditoría vivo: cada afirmación lleva su marca de cotejo y su referencia cruzada al papel donde está la evidencia. Rechaza el centro de cumplimiento GRC (sidebar, tarjetas, insignias) y el sitio cyber oscuro con candados y neón.
+THESIS: La aplicación es un tablero anunciador de sala de control: cada control es una ventana que se enciende según la evidencia que la organización documenta, y la trazabilidad es el diagrama mímico que la recorre. Rechaza el centro de cumplimiento (sidebar, tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón.
 
-OWN-WORLD: Papel de columnas verde pálido con rayado contable verde; tinta verde negra; lápiz bicolor con roles fijos: rojo para marcas de cotejo y excepciones, azul para referencias cruzadas; grafito para notas. Cada papel lleva encabezado de formulario (Entidad, Papel N.º, Preparado por y fecha, Revisado por y fecha) y leyenda de marcas al pie. Archivo con eje de ancho (condensada en formularios, normal en prosa) y JetBrains Mono para SQL e índices. Esquinas rectas, reglas finas, sin tarjetas ni sombras salvo la hoja levantada.
+OWN-WORLD: Acero pintado gris claro con placas grabadas en Archivo condensado y tinta casi negra. El chasis usa dos tintas y el color existe solo como lámpara encendida (verde, ámbar, roja, blanca), siempre con texto grabado encima. Ventanas de esquinas casi rectas (2 a 3 px) con brillo interior y nunca resplandor exterior. Pulsadores con borde de 1 px y presión de scale(0.97). Cinta de mímico: IDs en JetBrains Mono con subrayado grueso que se enciende al enfocar. Madurez 0 a 4 como cinco intensidades fijas de lámpara blanca con su número. Sin sombras salvo el panel lateral de detalle, tintada hacia la tinta.
 
-STORY: El profesor entiende que el marco descansa en evidencia de una instancia Oracle real, cree en cada control porque puede seguir su referencia hasta el resultado del script, y actúa: recorre la cédula sumaria, abre papeles por referencia, firma como revisor y ajusta la matriz.
+STORY: La persona entiende que el tablero muestra qué tan protegida está su base Oracle, cree en cada lámpara porque nace de evidencias que ella documentó y de consultas que puede repetir, y actúa: completa la matriz, corre la batería, abre un hallazgo y exporta su plan de acción.
 
-FIRST VIEWPORT: Franja de carátula del legajo arriba (UNA, curso, autor, profesor, período). A la izquierda, índice de papeles A a M en columna angosta. Al centro, ocupando el resto, la cédula sumaria de trazabilidad: cinco filas R-CONF con impacto, probabilidad, marcas y referencias azules a tareas, controles y pruebas; al tocar una fila se encienden sus referencias y un trazo azul se dibuja hacia cada columna. Acción primaria: abrir el riesgo, que levanta su cadena completa en una hoja lateral.
+FIRST VIEWPORT: Navbar fijo de 60 px: nombre corto del proyecto a la izquierda y los menús Herramientas y Material de apoyo a la derecha, con una lámpara pequeña en la ruta activa. Debajo, mucho aire: la placa del título (dos líneas como máximo, Archivo condensado), una descripción breve, el campo Organización evaluada y un único pulsador Comenzar el diagnóstico. Más abajo, el recorrido de seis pasos con su lámpara de progreso y una placa de créditos discreta.
 
-FORM: Papeles de trabajo de auditoría, tarjeta IMPECCABLE'S PICK, mi candidato 1 de 7 (el sorteo asignó el 3, tablero anunciador). Seed 4c196d78. Raises retenidos: el color nunca es la única señal (marca con forma y texto); madurez 0-4 como rampa fija de cinco densidades de marca; el estado es una marca y se recuerda dónde quedó el lector; IDs canónicos como idioma de referencias; selección en la URL; dos tintas para el chasis, color solo como lápiz. Interacción firma: seguir la referencia. Gramática de movimiento: hojas que se levantan con peso, trazos de lápiz que se dibujan, marcas que se estampan; todo instantáneo con movimiento reducido.
+FORM: Tablero anunciador de sala de control (THE ROLL), dirección fijada por el usuario en el plan de rediseño; no se sorteó ni se presentaron alternativas. Interacción firma: seguir una referencia en el panel lateral anclado a la derecha y ver encenderse la lámpara. Movimiento: lámparas en 160 a 200 ms, panel con resorte corto (0,4 s, rebote 0,1) y salida de 180 ms ease-out, pulsadores en 120 a 160 ms; con movimiento reducido todo pasa a solo opacidad. Construcción code-led, sin comp.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

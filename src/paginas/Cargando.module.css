@@ -1,0 +1,4 @@
+.mensaje {
+  padding: 2rem var(--margen);
+  font-weight: 600;
+}

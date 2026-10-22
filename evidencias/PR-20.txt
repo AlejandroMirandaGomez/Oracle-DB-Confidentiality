@@ -18,13 +18,13 @@ Nivel de Rastreo        off
 Seguridad               ON: Local OS Authentication
 SNMP                      OFF
 Servicio por Defecto           XE
-Parámetros del Listener   C:\app\Ale\product\21c\homes\OraDB21Home1\network\admin\listener.ora
-Log del Listener          C:\app\Ale\product\21c\diag\tnslsnr\EQUIPO-LOCAL\listener\alert\log.xml
+Parámetros del Listener   <ORACLE_BASE_HOME>\network\admin\listener.ora
+Log del Listener          <ORACLE_BASE>\diag\tnslsnr\EQUIPO-LOCAL\listener\alert\log.xml
 Recibiendo Resumen de Puntos Finales...
   (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=IP-LOCAL)(PORT=1521)))
   (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=127.0.0.1)(PORT=1521)))
   (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(PIPENAME=\\.\pipe\EXTPROC1521ipc)))
-  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST=127.0.0.1)(PORT=5500))(Security=(my_wallet_directory=C:\APP\ALE\PRODUCT\21C\admin\XE\xdb_wallet))(Presentation=HTTP)(Session=RAW))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST=127.0.0.1)(PORT=5500))(Security=(my_wallet_directory=<ORACLE_BASE>\admin\XE\xdb_wallet))(Presentation=HTTP)(Session=RAW))
 Resumen de Servicios...
 El servicio "60565dc525ec4f8188b1eb56329af865" tiene 1 instancia(s).
   La instancia "xe", con estado READY, tiene 2 manejador(es) para este servicio...
@@ -52,9 +52,9 @@ SID_LIST_LISTENER =
   (SID_LIST =
     (SID_DESC =
       (SID_NAME = CLRExtProc)
-      (ORACLE_HOME = C:\app\Ale\product\21c\dbhomeXE)
+      (ORACLE_HOME = <ORACLE_BASE>\dbhomeXE)
       (PROGRAM = extproc)
-      (ENVS = "EXTPROC_DLLS=ONLY:C:\app\Ale\product\21c\dbhomeXE\bin\oraclr.dll")
+      (ENVS = "EXTPROC_DLLS=ONLY:<ORACLE_BASE>\dbhomeXE\bin\oraclr.dll")
     )
   )
 LISTENER =

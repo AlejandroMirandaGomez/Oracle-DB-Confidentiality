@@ -33,8 +33,8 @@ canal asignado: ORA_DISK_1
 canal ORA_DISK_1: SID=867 tipo de dispositivo=DISK
 
 canal ORA_DISK_1: iniciando validación del juego de copias de seguridad del archivo de datos
-canal ORA_DISK_1: leyendo desde la parte de copia de seguridad D:\RESPALDOS\XE\3P54TEIS_121_1_1
-canal ORA_DISK_1: manejador de parte=D:\RESPALDOS\XE\3P54TEIS_121_1_1 etiqueta=TAG20261015T021047
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad <DIR_RESPALDOS>\3P54TEIS_121_1_1
+canal ORA_DISK_1: manejador de parte=<DIR_RESPALDOS>\3P54TEIS_121_1_1 etiqueta=TAG20261015T021047
 canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
 canal ORA_DISK_1: validación terminada, tiempo transcurrido: 00:00:03
 Se ha finalizado restore a las 21/10/26

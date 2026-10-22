@@ -4,12 +4,12 @@ import estilos from './Campo.module.css'
 export function Campo({ etiqueta, children, ancho = false }: { etiqueta: string; children: ReactNode; ancho?: boolean }) {
   return (
     <div className={estilos.campo} data-ancho={ancho || undefined}>
-      <h4 className={estilos.etiqueta}>{etiqueta}</h4>
-      <div className={estilos.valor}>{children}</div>
+      <dt className={`rotulo ${estilos.etiqueta}`}>{etiqueta}</dt>
+      <dd className={estilos.valor}>{children}</dd>
     </div>
   )
 }
 
 export function Rejilla({ children }: { children: ReactNode }) {
-  return <div className={estilos.rejilla}>{children}</div>
+  return <dl className={estilos.rejilla}>{children}</dl>
 }

@@ -1,0 +1,62 @@
+.celda {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--remache);
+  border-radius: var(--radio);
+  background: var(--panel-hondo);
+  color: var(--placa);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.celda[data-nivel='sin'] {
+  border-color: var(--junta);
+  background: var(--panel-claro);
+  color: var(--remache);
+  font-stretch: 78%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.celda[data-nivel='0'] {
+  border-color: var(--junta);
+}
+
+.celda[data-nivel='1'] {
+  border-color: var(--remache);
+  background: color-mix(in srgb, var(--lampara-blanca) 28%, var(--panel-hondo));
+}
+
+.celda[data-nivel='2'] {
+  border-color: var(--placa-suave);
+  background: color-mix(in srgb, var(--lampara-blanca) 52%, var(--panel-hondo));
+}
+
+.celda[data-nivel='3'] {
+  border-color: var(--placa);
+  background: color-mix(in srgb, var(--lampara-blanca) 76%, var(--panel-hondo));
+  box-shadow: var(--brillo-interior);
+}
+
+.celda[data-nivel='4'] {
+  border: 2px solid var(--placa);
+  background: var(--lampara-blanca);
+  box-shadow: var(--brillo-interior);
+}
+
+.numero {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.nombre {
+  font-stretch: 88%;
+}

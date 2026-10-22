@@ -8,28 +8,31 @@ web
 
 ## Stack
 
-React + Vite + TypeScript, sitio estático sin backend. El estado editable (matriz de evaluación) se guarda en el navegador. Por ahora se ejecuta solo en local; más adelante se publicará en GitHub Pages desde el repositorio Git del curso.
+React + Vite + TypeScript, sitio estático sin backend. La evaluación de cada persona se guarda en su navegador y se puede exportar e importar como archivo `.json`. Se publicará en GitHub Pages desde el repositorio Git del curso, con rutas por hash para que la recarga funcione sin servidor.
 
 ## Users
 
-- **Primario:** el profesor Johnny Villalobos Murillo (curso Administración de Bases de Datos, Escuela de Informática, Universidad Nacional de Costa Rica, II Ciclo 2026), que califica el artefacto contra una rúbrica de 100 puntos y necesita encontrar cada elemento exigido y verificar que sea técnicamente correcto y auditable.
-- **Secundario (inferido):** el autor, Alejandro Obed Miranda Gómez, que usa el artefacto como demostración en el video explicativo de 5 minutos.
+- **Primario:** DBA o responsable de seguridad de cualquier organización que usa bases de datos Oracle. Quiere medir qué tan protegida está la confidencialidad de sus datos, saber qué falta y recibir un plan de acción con remediación que pueda aplicar.
+- **Secundario:** el profesor Johnny Villalobos Murillo (curso Administración de Bases de Datos, Escuela de Informática, Universidad Nacional de Costa Rica, II Ciclo 2026), que califica el artefacto contra una rúbrica de 100 puntos y necesita encontrar cada elemento exigido y verificar que sea técnicamente correcto y auditable.
+- **Terciario (inferido):** el autor, Alejandro Obed Miranda Gómez, que usa la aplicación como demostración en el video explicativo de 5 minutos.
 
 ## Product Purpose
 
-Artefacto académico individual que diseña y demuestra un marco de controles ISO/IEC 27001:2022 (Anexo A) e ISO/IEC 27002:2022 para mitigar riesgos de confidencialidad en las tareas de un Administrador de Bases de Datos sobre Oracle 21c XE, con matriz de evaluación y pruebas observables auditables. El éxito es cumplir la rúbrica: riesgos y tareas (20 %), mapeo y justificación de controles (20 %), matriz y controles observables (20 %), pruebas técnicas y scripts (15 %), documentación de uso de IA y APA 7 (15 %), presentación (10 %).
+Aplicación de autoevaluación de la confidencialidad en bases de datos Oracle para cualquier organización. Guía un recorrido ordenado: entender los cinco riesgos de confidencialidad, conocer las tareas críticas del DBA, elegir los controles ISO/IEC 27001:2022 (Anexo A) e ISO/IEC 27002:2022 que los mitigan, evaluar la madurez de cada control de 0 a 4 con evidencias requeridas, ejecutar una batería de pruebas técnicas y obtener hallazgos priorizados con remediación. El éxito es doble: que una organización termine con un plan de acción propio, y que el artefacto cumpla la rúbrica del curso: riesgos y tareas (20 %), mapeo y justificación de controles (20 %), matriz y controles observables (20 %), pruebas técnicas y scripts (15 %), documentación de uso de IA y APA 7 (15 %), presentación (10 %).
 
 ## Positioning
 
-Las evidencias provienen de una instancia real de Oracle 21c XE del autor: los scripts de verificación se ejecutan sobre ella (incluidos objetos de prueba creados y luego eliminados) y el artefacto muestra el resultado obtenido junto al esperado. Toda la información está encadenada: riesgo → tarea → control → evidencia → prueba.
+Une el marco normativo con consultas SQL y pruebas que se pueden repetir sobre cualquier instancia Oracle, y genera hallazgos y remediación a partir de lo que la propia organización documenta. Incluye un ejemplo real de solo lectura, evaluado sobre una instancia Oracle 21c XE (PDB `XEPDB1`), donde cada afirmación se puede seguir hasta el resultado de su script. Toda la información está encadenada: riesgo → tarea → control → evidencia → prueba → hallazgo.
 
 ## Operating Context
 
 - Metodología PHVA (Planificar-Hacer-Verificar-Actuar) y principio de mínimo privilegio.
-- Motor Oracle 21c XE (CDB `XE`, PDB `XEPDB1`); herramienta SQL Developer.
-- Los scripts `.sql` de verificación son entregables propios dentro del repositorio.
+- Motor Oracle Database con herramientas SQL*Plus, SQL Developer, RMAN y lsnrctl.
+- Las pruebas funcionales usan un entorno de prueba temporal con objetos `PRUEBA_*` que el usuario crea y elimina con los scripts de la aplicación.
+- El estado vive en el navegador de quien evalúa; no hay cuentas ni servidor, y nada se ejecuta contra la base de la organización desde la aplicación.
+- Los scripts `.sql` de verificación del ejemplo son entregables propios dentro del repositorio.
 - Referencias en APA 7; normativa costarricense: Ley 8968 y su reglamento.
-- Otros entregables del curso fuera de este artefacto: repositorio Git, video de 5 minutos, tabla de uso de IA firmada. El informe PDF quedó fuera del alcance por decisión del autor.
+- Otros entregables del curso fuera de esta aplicación: repositorio Git, video de 5 minutos, tabla de uso de IA firmada. El informe PDF quedó fuera del alcance por decisión del autor.
 
 ## Capabilities and Constraints
 
@@ -41,11 +44,18 @@ Contenido obligatorio del artefacto:
 5. Matriz de evaluación: Tarea | Riesgo | Control | Criterio 0-4 | Evidencia | Estado (Cumple / No cumple / Parcial).
 6. Batería de pruebas: ID, Tipo, Procedimiento, Resultado esperado, Herramienta, con scripts de verificación.
 
+Capacidades de la herramienta:
+- Matriz de 18 filas que arranca sin evaluar; cada fila pide evidencias (Sí, Parcial, No) y sugiere un nivel que la persona confirma.
+- Batería de 23 pruebas con SQL para copiar y resultado observado documentado por la persona.
+- Hallazgos que se desbloquean al completar la matriz y se refinan al completar la batería.
+- Nombre opcional de la organización evaluada, exportación de la evaluación en `.json` y exportación de la matriz y del plan de acción.
+
 Restricciones:
-- La escala de madurez de esta asignación es 0-4 (no 0-5 como en el proyecto CloudCR).
-- El texto de ISO/IEC 27002:2022 está licenciado al autor para uso académico, pero el sitio será público: se parafrasea y se cita, nunca se transcribe.
-- Idioma: español.
-- Decisión abierta: si la tabla de uso de IA con declaración jurada y el marco teórico (2-3 páginas) viven dentro del artefacto, ya que el informe PDF quedó fuera.
+- La escala de madurez es 0-4.
+- El texto de ISO/IEC 27002:2022 está licenciado al autor para uso académico, pero el sitio es público: se parafrasea y se cita, nunca se transcribe.
+- Idioma: español. Tema claro únicamente.
+- El contenido común no menciona la instancia del ejemplo ni sus cuentas, fechas o resultados; esos datos viven solo en el ejemplo de solo lectura.
+- Nada de rutas locales de los equipos del autor en el proyecto entregable.
 
 ## Brand Commitments
 
@@ -53,15 +63,18 @@ Encabezado académico de la asignación: Universidad Nacional de Costa Rica · E
 
 ## Evidence on Hand
 
-- Enunciado: `Asignacion-ISO27001-Confidencialidad-DBA-II-Ciclo-2026-UNA.pdf`.
-- `D:\UNA\AdministracionBasesDatos\Documentacion\`: ISO IEC 27002-2022.pdf (versión en español), catálogo propio de los 93 controles con peso y C/I/D, Top 30 y Top 10 de controles para auditar BD con preguntas, niveles de madurez derivados de COBIT 4.1, COBIT 4.1 y 2019, documento del Proyecto Integrador CloudCR (metodología de madurez y riesgo).
-- Instancia local Oracle 21c XE donde se ejecutarán los scripts.
-- Ausencias que no deben inventarse: no hay organización auditada real distinta de la instancia del autor, ni resultados de pruebas hasta que se ejecuten.
+- Enunciado de la asignación (documento del curso, fuera del repositorio).
+- Salidas reales de las 23 pruebas ejecutadas sobre la instancia del ejemplo, en `evidencias/`, con sus scripts en `sql/` y el ejecutor en `scripts/`.
+- Ausencias que no deben inventarse: no hay una segunda organización evaluada ni resultados de pruebas distintos de los del ejemplo.
 
 ## Product Principles
 
-1. **Trazabilidad total:** cada riesgo se puede seguir hasta sus tareas, controles, evidencias y pruebas, y de vuelta.
-2. **Evidencia antes que afirmación:** ningún control se marca como Cumple sin un resultado real que lo respalde.
-3. **Legible para quien califica:** cada elemento de la rúbrica se encuentra en segundos.
-4. **Honestidad técnica:** las limitaciones de Oracle XE y los incumplimientos se muestran tal cual, con su plan de mejora.
+1. **Trazabilidad total:** cada riesgo se puede seguir hasta sus tareas, controles, evidencias, pruebas y hallazgos, y de vuelta.
+2. **Evidencia antes que afirmación:** ningún control se marca como cumplido sin una evidencia que la persona haya documentado.
+3. **Del conocimiento a la acción:** cada pantalla acerca a la persona a un plan de acción propio, no a un informe ajeno.
+4. **Honestidad técnica:** las limitaciones del motor y los incumplimientos se muestran tal cual, con su remediación.
 5. **La norma se cita, no se copia.**
+
+## Accessibility & Inclusion
+
+Contraste AA en todo texto, foco visible, navegación completa por teclado, respeto de `prefers-reduced-motion` y ningún desplazamiento horizontal de la página a 390 px. El color nunca es la única señal: todo estado lleva texto.

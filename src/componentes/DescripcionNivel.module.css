@@ -1,0 +1,34 @@
+.descripcion {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 70ch;
+  padding: 0.85rem 1rem 1rem;
+  border: 1px solid var(--remache);
+  border-radius: var(--radio);
+  background: var(--panel-claro);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.descripcion > p {
+  margin: 0;
+}
+
+.titulo {
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.modelo {
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--junta);
+  color: var(--remache);
+  font-size: 0.75rem;
+}
+
+.vacio {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--remache);
+  font-size: 0.8125rem;
+}

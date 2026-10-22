@@ -9,7 +9,7 @@ Estado del almacén de claves por contenedor (se espera OPEN)
 
     CON_ID WRL_TYPE             WRL_PARAMETER                                STATUS           WALLET_TYP KEYSTORE
 ---------- -------------------- -------------------------------------------- ---------------- ---------- --------
-         1 FILE                 C:\APP\ALE\PRODUCT\21C\ADMIN\XE\WALLET       NOT_AVAILABLE    UNKNOWN    NONE
+         1 FILE                 <ORACLE_BASE>\ADMIN\XE\WALLET       NOT_AVAILABLE    UNKNOWN    NONE
          2 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED
          3 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED
          4 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED

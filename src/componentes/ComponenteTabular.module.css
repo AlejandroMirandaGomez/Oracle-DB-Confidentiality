@@ -1,0 +1,178 @@
+.marco {
+  position: relative;
+  overflow-x: auto;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.encabezado {
+  padding: 0.65rem 0.85rem;
+  background: var(--panel-hondo);
+  border-bottom: 1px solid var(--placa);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.encabezado[data-alineacion='derecha'],
+.celda[data-alineacion='derecha'] {
+  text-align: right;
+}
+
+.encabezado[data-alineacion='centro'],
+.celda[data-alineacion='centro'] {
+  text-align: center;
+}
+
+.fila {
+  cursor: pointer;
+  transition: background-color 140ms var(--ease-out);
+}
+
+.fila + .fila .celda {
+  border-top: 1px solid var(--junta);
+}
+
+.cabeceraGrupo + .fila .celda {
+  border-top: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fila:hover {
+    background: var(--panel-claro);
+  }
+}
+
+.fila:focus-within {
+  background: var(--panel-claro);
+}
+
+.celda {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.abrir {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.grupo {
+  border-top: 1px solid var(--placa);
+}
+
+.cabeceraGrupo th {
+  padding: 0.7rem 0.85rem;
+  background: var(--panel-claro);
+  border-top: 1px solid var(--placa);
+  border-bottom: 1px solid var(--junta);
+  text-align: left;
+}
+
+.tituloGrupo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-stretch: 72%;
+  margin-right: 0.85rem;
+}
+
+.detalleGrupo {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--remache);
+}
+
+.vacio {
+  padding: 1.25rem 0.85rem;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+  color: var(--remache);
+}
+
+@media (max-width: 760px) {
+  .marco {
+    overflow-x: visible;
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .tabla,
+  .tabla tbody,
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    display: block;
+  }
+
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .grupo {
+    border-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .cabeceraGrupo th {
+    border: 1px solid var(--placa);
+  }
+
+  .fila {
+    margin-top: 0.5rem;
+    border: 1px solid var(--placa);
+    background: var(--panel-claro);
+  }
+
+  .fila + .fila .celda {
+    border-top: 0;
+  }
+
+  .celda {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.5rem 0.85rem;
+    border-top: 1px solid var(--junta);
+  }
+
+  .celda[data-primera] {
+    display: block;
+    padding: 0.7rem 0.85rem;
+    border-top: 0;
+    background: var(--panel-hondo);
+  }
+
+  .celda[data-etiqueta]::before {
+    content: attr(data-etiqueta);
+    font-size: 0.75rem;
+    font-weight: 650;
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: var(--remache);
+  }
+
+  .celda[data-alineacion='derecha'],
+  .celda[data-alineacion='centro'] {
+    text-align: left;
+  }
+}

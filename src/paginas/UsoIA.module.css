@@ -1,0 +1,189 @@
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.estado {
+  max-width: 60ch;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.marco {
+  position: relative;
+  overflow-x: auto;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.tabla thead th {
+  padding: 0.65rem 0.85rem;
+  background: var(--panel-hondo);
+  border-bottom: 1px solid var(--placa);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.tabla tbody tr + tr > * {
+  border-top: 1px solid var(--junta);
+}
+
+.tabla td,
+.tabla tbody th {
+  padding: 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.tabla tbody th {
+  font-weight: 700;
+  font-stretch: 90%;
+}
+
+.tabla td:nth-child(2) {
+  min-width: 15rem;
+}
+
+.tabla td:nth-child(3) {
+  min-width: 15rem;
+}
+
+.tabla td:nth-child(4) {
+  min-width: 15rem;
+}
+
+.prompt {
+  quotes: '"' '"';
+  font-style: italic;
+  color: var(--placa-suave);
+}
+
+.validacion[data-pendiente] {
+  border-style: dashed;
+}
+
+.declaracion {
+  display: grid;
+  gap: 1rem;
+  max-width: 52rem;
+  padding: 1.25rem 1.4rem 1.5rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.subtitulo {
+  font-size: 1.75rem;
+}
+
+.texto {
+  max-width: 64ch;
+  line-height: 1.6;
+}
+
+.formulario {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fila input {
+  flex: 1 1 16rem;
+  width: auto;
+}
+
+.firmada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.sello {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+}
+
+.firmaNombre {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.firmaFecha {
+  font-size: 0.875rem;
+  color: var(--placa-suave);
+}
+
+@media (max-width: 760px) {
+  .marco {
+    overflow-x: visible;
+    border: 0;
+  }
+
+  .tabla,
+  .tabla tbody,
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    display: block;
+  }
+
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla tbody tr {
+    margin-top: 0.75rem;
+    border: 1px solid var(--placa);
+    background: var(--panel-claro);
+  }
+
+  .tabla tbody tr + tr > * {
+    border-top: 0;
+  }
+
+  .tabla td,
+  .tabla tbody th {
+    padding: 0.55rem 0.85rem;
+    border-top: 1px solid var(--junta);
+  }
+
+  .tabla td:nth-child(n) {
+    min-width: 0;
+  }
+
+  .tabla tbody th {
+    border-top: 0;
+    background: var(--panel-hondo);
+  }
+
+  .tabla [data-etiqueta]:not(th)::before {
+    content: attr(data-etiqueta);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 650;
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--remache);
+  }
+}

@@ -10,6 +10,7 @@ $env:NLS_LANG = 'SPANISH_COSTA RICA.AL32UTF8'
 $utf8SinBom = New-Object System.Text.UTF8Encoding($false)
 
 $oracleHome = Split-Path -Parent (Split-Path -Parent (Get-Command sqlplus).Source)
+$oracleBase = Split-Path -Parent $oracleHome
 $oracleBaseHome = (& (Join-Path $oracleHome 'bin\orabasehome.exe')).Trim()
 $dirRed = Join-Path $oracleBaseHome 'network\admin'
 
@@ -18,10 +19,32 @@ $direccionesLocales = @(Get-NetIPAddress -AddressFamily IPv4 |
     Where-Object { $_.IPAddress -ne '127.0.0.1' } |
     ForEach-Object { $_.IPAddress })
 
+function Get-DirectorioRespaldos {
+    $consulta = "SET HEADING OFF FEEDBACK OFF PAGESIZE 0`nSELECT value FROM v`$rman_configuration WHERE name = 'CHANNEL';`nEXIT"
+    $salida = $consulta | & sqlplus -s -L '/ as sysdba' 2>&1 | Out-String
+    if ($salida -match "FORMAT\s+'([^']+)'") {
+        return Split-Path -Parent $Matches[1]
+    }
+    return $null
+}
+
+$dirRespaldos = Get-DirectorioRespaldos
+
+$sustitucionesDeRutas = @(
+    @{ Ruta = $oracleBaseHome; Marcador = '<ORACLE_BASE_HOME>' },
+    @{ Ruta = $oracleBase; Marcador = '<ORACLE_BASE>' }
+)
+if ($dirRespaldos) {
+    $sustitucionesDeRutas += @{ Ruta = $dirRespaldos; Marcador = '<DIR_RESPALDOS>' }
+}
+
 function ConvertTo-EvidenciaPublicable([string]$texto) {
     $resultado = $texto -ireplace [regex]::Escape($nombreEquipo), 'EQUIPO-LOCAL'
     foreach ($direccion in $direccionesLocales) {
         $resultado = $resultado -replace ('(?<![\d.])' + [regex]::Escape($direccion) + '(?![\d.])'), 'IP-LOCAL'
+    }
+    foreach ($sustitucion in $sustitucionesDeRutas) {
+        $resultado = $resultado -ireplace [regex]::Escape($sustitucion.Ruta), $sustitucion.Marcador
     }
     return $resultado
 }
@@ -39,12 +62,12 @@ function Invoke-Sqlplus([string]$archivo, [string[]]$argumentos = @()) {
     return [pscustomobject]@{ Texto = $salida; Codigo = $LASTEXITCODE }
 }
 
-$registro = New-Object System.Collections.Generic.List[object]
+$registro = New-Object System.Collections.ArrayList
 
 function Save-Evidencia([string]$id, [string]$texto, [int]$codigo) {
     $archivo = Join-Path $dirEvidencias "$id.txt"
     [System.IO.File]::WriteAllText($archivo, (ConvertTo-EvidenciaPublicable $texto).TrimEnd() + "`n", $utf8SinBom)
-    $registro.Add([pscustomobject]@{ id = $id; archivo = "evidencias/$id.txt"; codigoSalida = $codigo })
+    [void]$registro.Add([pscustomobject]@{ id = $id; archivo = "evidencias/$id.txt"; codigoSalida = $codigo })
     Write-Host ("{0,-24} codigo {1}" -f $id, $codigo)
 }
 

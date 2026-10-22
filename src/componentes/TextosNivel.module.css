@@ -1,0 +1,17 @@
+.textos {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.texto {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.texto p {
+  margin: 0;
+}
+
+.origen {
+  color: var(--tinta-rotulo, var(--remache));
+}
