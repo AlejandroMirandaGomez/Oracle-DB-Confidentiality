@@ -189,6 +189,22 @@ export type HallazgoEjemplo = {
   riesgos: string[]
 }
 
+export type RegistroEvidencia = {
+  respuesta: RespuestaEvidencia | null
+  nota: string
+}
+
+export type RegistroPrueba = {
+  respuesta: RespuestaPrueba | null
+  nota: string
+}
+
+export type Niveles = Record<string, Nivel>
+
+export type RespuestasEvidencia = Record<string, Record<string, RegistroEvidencia>>
+
+export type RespuestasPruebas = Record<string, RegistroPrueba>
+
 export type SeccionTeorica = {
   id: string
   titulo: string
