@@ -1,3 +1,5 @@
+import type { IdModelo } from './catalogo/madurez'
+
 export type Nivel = 0 | 1 | 2 | 3 | 4
 
 export type NivelEvaluado = Nivel | null
@@ -56,6 +58,53 @@ export type Observable = {
   criterio: string
 }
 
+export type ItemNorma = {
+  texto: string
+  subitems?: string[]
+}
+
+export type BloqueNorma =
+  | { tipo: 'parrafo'; texto: string }
+  | { tipo: 'subtitulo'; texto: string }
+  | { tipo: 'lista'; items: ItemNorma[] }
+
+export type FuenteNorma = {
+  apartado: string
+  paginasPdf: string
+  paginasImpresas: string
+}
+
+export type NormaControl = {
+  fuente: FuenteNorma
+  descripcion: string
+  guia: BloqueNorma[]
+  otraInformacion: BloqueNorma[]
+  conceptos: string[]
+  dominios: string[]
+}
+
+export type TextoNivel = {
+  origen: string
+  texto: string
+}
+
+export type ModeloMadurez = {
+  id: string
+  nombre: string
+  area: string
+  descripcion: string
+  paginaImpresa: string
+  paginaPdf: string
+  niveles: Record<Nivel, TextoNivel[]>
+}
+
+export type ObjetivoCobit = {
+  objetivo: string
+  nombre: string
+  modelo: IdModelo
+  motivo: string
+}
+
 export type Control = {
   id: string
   nombre: string
@@ -68,6 +117,8 @@ export type Control = {
   implementacion: string[]
   evidencia: string
   observable?: Observable
+  norma: NormaControl
+  cobit: ObjetivoCobit
   riesgos: string[]
   tareas: string[]
   pruebas: string[]

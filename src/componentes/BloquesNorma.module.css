@@ -1,0 +1,47 @@
+.bloques {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 68ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.bloques p {
+  margin: 0;
+}
+
+.lista,
+.subitems {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subitems {
+  margin-top: 0.4rem;
+  padding-left: 1.5rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  column-gap: 0.35rem;
+}
+
+.item > .subitems {
+  grid-column: 2;
+}
+
+.marcador {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.85;
+  color: var(--remache);
+}
+
+.sinMarcador {
+  grid-column: 1 / -1;
+}

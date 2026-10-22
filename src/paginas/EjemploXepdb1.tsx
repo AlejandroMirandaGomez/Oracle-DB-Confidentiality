@@ -55,7 +55,7 @@ const columnasMatriz: ColumnaTabular<FilaMatrizEjemplo>[] = [
   { clave: 'control', encabezado: 'Control', celda: (fila) => <ListaRefs ids={[fila.control]} /> },
   { clave: 'riesgo', encabezado: 'Riesgo', celda: (fila) => <ListaRefs ids={[fila.riesgo]} /> },
   { clave: 'criterio', encabezado: 'Criterio', celda: (fila) => <span className={estilos.texto}>{fila.criterio}</span> },
-  { clave: 'nivel', encabezado: 'Nivel 0-4', celda: (fila) => <RampaMadurez nivel={fila.nivel} /> },
+  { clave: 'nivel', encabezado: 'Nivel 0-4', celda: (fila) => <RampaMadurez nivel={fila.nivel} control={fila.control} /> },
   { clave: 'evidencia', encabezado: 'Evidencia', celda: (fila) => <span className={estilos.texto}>{fila.evidencia}</span> },
   { clave: 'estado', encabezado: 'Estado', celda: (fila) => <LamparaEstado valor={estadoDeNivel(fila.nivel)} /> },
 ]

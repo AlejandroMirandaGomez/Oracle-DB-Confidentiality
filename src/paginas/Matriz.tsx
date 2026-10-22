@@ -46,14 +46,14 @@ export function Matriz() {
   return (
     <Pagina
       titulo="Matriz de evaluación"
-      introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para documentar sus evidencias con Sí, Parcial o No y confirme un nivel de madurez de 0 a 4. La matriz arranca sin evaluar."
+      introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para documentar sus evidencias con Sí, Parcial o No y confirme un nivel de madurez de 0 a 4. Pase el cursor sobre un nivel para leer qué significa en el control de esa fila. La matriz arranca sin evaluar."
     >
       <section className={estilos.escala} aria-label="Escala de madurez de 0 a 4">
         {nivelesMadurez.map((nivel) => (
           <div key={nivel.nivel} className={estilos.escalon}>
             <RampaMadurez nivel={nivel.nivel} />
             <span className={estilos.escalonNombre}>{nivel.nombre}</span>
-            <span className={estilos.escalonTexto}>{nivel.descripcion}</span>
+            <span className={estilos.escalonTexto}>{nivel.origenCobit}</span>
             <span className={estilos.escalonEstado}>
               <LamparaEstado valor={estadoDeNivel(nivel.nivel)} />
             </span>
@@ -146,7 +146,7 @@ export function Matriz() {
                   </td>
                   <td data-etiqueta="Criterio 0-4">
                     <div className={estilos.nivel}>
-                      <SelectorNivel nivel={nivel} sugerido={sugerido} etiqueta={`Nivel de madurez de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
+                      <SelectorNivel nivel={nivel} control={fila.control} sugerido={sugerido} etiqueta={`Nivel de madurez de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
                       <span className={estilos.criterio}>{fila.criterio}</span>
                     </div>
                   </td>

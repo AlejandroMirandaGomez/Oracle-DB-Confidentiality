@@ -1,10 +1,11 @@
-import { estadoDeNivel, nivelesMadurez } from '../data/catalogo/escalas'
+import { estadoDeNivel } from '../data/catalogo/escalas'
 import type { EvidenciaRequerida, FilaMatriz, FilaMatrizEjemplo, RespuestaEvidencia } from '../data/tipos'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import { nivelSugerido } from '../estado/nivelSugerido'
 import { BloqueCodigo } from './BloqueCodigo'
 import { BotoneraEstado } from './BotoneraEstado'
 import { Campo, Rejilla } from './Campo'
+import { DescripcionNivel } from './DescripcionNivel'
 import estilos from './DetalleFila.module.css'
 import { LamparaEstado } from './Lampara'
 import { RampaMadurez } from './RampaMadurez'
@@ -53,7 +54,6 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
   const nivel = nivelDe(fila.id)
   const progreso = progresoEvidencias(fila.id)
   const sugerido = nivelSugerido(fila.evidenciasRequeridas.map((evidencia) => respuestaEvidencia(fila.id, evidencia.id).respuesta))
-  const descripcion = nivel === null ? null : nivelesMadurez[nivel]
   return (
     <>
       <Rejilla>
@@ -93,17 +93,16 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
             'Documente al menos una evidencia para obtener un nivel sugerido.'
           ) : (
             <>
-              Nivel sugerido por sus respuestas: <RampaMadurez nivel={sugerido} conNombre />
+              Nivel sugerido por sus respuestas: <RampaMadurez nivel={sugerido} control={fila.control} conNombre />
             </>
           )}
         </p>
         <div className={estilos.confirmacion}>
-          <SelectorNivel nivel={nivel} sugerido={sugerido} etiqueta={`Nivel de madurez de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
+          <SelectorNivel nivel={nivel} control={fila.control} sugerido={sugerido} etiqueta={`Nivel de madurez de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
           <LamparaEstado valor={estadoDeNivel(nivel)} />
         </div>
-        <p className={estilos.nota}>
-          {descripcion ? `${descripcion.nombre}: ${descripcion.descripcion}` : 'Confirme el nivel final con los pulsadores.'} El nivel 4 solo lo asigna usted, porque exige verificación periódica.
-        </p>
+        <DescripcionNivel control={fila.control} nivel={nivel} />
+        <p className={estilos.nota}>El nivel 4 solo lo asigna usted, porque exige verificación periódica.</p>
       </section>
 
       <Rejilla>
@@ -116,7 +115,6 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
 }
 
 export function DetalleFilaEjemplo({ fila }: { fila: FilaMatrizEjemplo }) {
-  const descripcion = nivelesMadurez[fila.nivel]
   return (
     <>
       <Rejilla>
@@ -131,10 +129,10 @@ export function DetalleFilaEjemplo({ fila }: { fila: FilaMatrizEjemplo }) {
         </Campo>
         <Campo etiqueta="Nivel de madurez" ancho>
           <div className={estilos.confirmacion}>
-            <RampaMadurez nivel={fila.nivel} conNombre />
+            <RampaMadurez nivel={fila.nivel} control={fila.control} conNombre />
             <LamparaEstado valor={estadoDeNivel(fila.nivel)} />
           </div>
-          {descripcion && <span className={estilos.nota}>{descripcion.descripcion}</span>}
+          <DescripcionNivel control={fila.control} nivel={fila.nivel} />
         </Campo>
         <Campo etiqueta="Evidencia" ancho>
           {fila.evidencia}

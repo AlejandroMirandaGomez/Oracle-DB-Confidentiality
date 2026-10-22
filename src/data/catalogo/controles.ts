@@ -1,6 +1,10 @@
 import type { Control } from '../tipos'
+import { cobitPorControl } from './madurez'
+import { normas, type IdControl } from './norma'
 
-export const controles: Control[] = [
+type ControlBase = Omit<Control, 'id' | 'norma' | 'cobit'> & { id: IdControl }
+
+const base: ControlBase[] = [
   {
     id: 'A5.12',
     nombre: 'Clasificación de la información',
@@ -451,3 +455,9 @@ export const controles: Control[] = [
     pruebas: ['PR-13'],
   },
 ]
+
+export const controles: Control[] = base.map((control) => ({
+  ...control,
+  norma: normas[control.id],
+  cobit: cobitPorControl[control.id],
+}))

@@ -1,0 +1,79 @@
+.seccion {
+  display: grid;
+  gap: 1rem;
+  margin-block: 1.75rem;
+}
+
+.fuente {
+  margin: 0;
+  color: var(--remache);
+  font-size: 0.8125rem;
+}
+
+.desplegable {
+  border: 1px solid var(--placa);
+  border-radius: var(--radio);
+  background: var(--panel-claro);
+}
+
+.desplegable summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+
+.desplegable summary::-webkit-details-marker {
+  display: none;
+}
+
+.desplegable summary::after {
+  content: '';
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--placa);
+  border-bottom: 2px solid var(--placa);
+  transform: rotate(45deg);
+  transition: transform 140ms var(--ease-out);
+}
+
+.desplegable[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.desplegable[open] summary {
+  border-bottom: 1px solid var(--junta);
+}
+
+.desplegable > :last-child {
+  margin: 0;
+  padding: 0.9rem 0.9rem 1rem;
+}
+
+.objetivo {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.niveles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ayuda {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--remache);
+  font-size: 0.8125rem;
+}

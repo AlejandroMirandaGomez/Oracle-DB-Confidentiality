@@ -15,7 +15,7 @@ La aplicación usa rutas por hash, así que cualquier ruta se puede recargar sin
 | `#/` | Inicio: organización evaluada opcional, recorrido de seis pasos con su avance y material de apoyo |
 | `#/riesgos` | Tabla de los cinco riesgos de confidencialidad, mapa de calor y escalas |
 | `#/tareas` | Las 13 tareas críticas del DBA por fase PHVA |
-| `#/controles` y `#/controles/:id` | Controles ISO/IEC 27001:2022 con su implementación en Oracle y lo que verifica un auditor externo |
+| `#/controles` y `#/controles/:id` | Controles ISO/IEC 27001:2022 con su implementación en Oracle, lo que verifica un auditor externo, el texto de la norma ISO/IEC 27002:2022 y su mapeo a COBIT 4.1 |
 | `#/matriz` | Matriz de evaluación de 18 filas, con evidencias requeridas y nivel de madurez de 0 a 4 |
 | `#/pruebas` | Batería de 23 pruebas técnicas, con entorno de prueba y SQL para copiar |
 | `#/hallazgos` | Hallazgos y plan de acción, desbloqueados al completar la matriz |
@@ -24,6 +24,12 @@ La aplicación usa rutas por hash, así que cualquier ruta se puede recargar sin
 | `#/ejemplos` y `#/ejemplos/xepdb1` | Lista de ejemplos y el ejemplo XEPDB1 de solo lectura |
 
 Cualquier referencia (riesgo, tarea, control, fila, prueba o hallazgo) abre un panel de detalle a la derecha. El enlace profundo viaja en el hash, por ejemplo `#/riesgos?ref=R-CONF-01`.
+
+## Contenido de los controles y madurez
+
+- `src/data/catalogo/controles.ts` reúne la información del DBA por control y la une con `src/data/catalogo/norma.ts`, que guarda el texto de ISO/IEC 27002:2022 (descripción, guía, otra información, concepto de ciberseguridad, dominio y páginas de origen).
+- `src/data/catalogo/madurez.ts` guarda el objetivo de COBIT 4.1 de cada control y cinco modelos de madurez (PO2, AI3, AI7, DS5 y DS11) con un texto por nivel de 0 a 4. El nivel 1 lleva los dos textos de origen, COBIT 1 y COBIT 2.
+- Al pasar el cursor, enfocar o tocar un número de nivel se muestra qué significa ese nivel en ese control. El mismo texto aparece bajo el selector de la fila al elegir un nivel.
 
 ## Cómo se guarda la evaluación
 

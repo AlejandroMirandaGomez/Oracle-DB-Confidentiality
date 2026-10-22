@@ -1,0 +1,63 @@
+.pista {
+  --tinta-rotulo: var(--junta);
+  position: fixed;
+  inset: auto;
+  top: 0;
+  left: 0;
+  width: min(40rem, calc(100vw - 1rem));
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--remache);
+  border-radius: var(--radio);
+  background: var(--placa);
+  box-shadow: var(--sombra-panel);
+  color: var(--panel-claro);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: left;
+  animation: aparecer 140ms var(--ease-out) both;
+}
+
+.cabeza {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.15rem;
+}
+
+.numero {
+  font-family: var(--mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--lampara-blanca);
+}
+
+.nombre {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  font-stretch: 78%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contexto {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--placa-suave);
+  color: var(--junta);
+  font-size: 0.75rem;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

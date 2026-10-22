@@ -67,10 +67,6 @@
   background: var(--panel-claro);
 }
 
-.subtitulo {
-  font-size: 1.25rem;
-}
-
 .enunciado {
   max-width: 60ch;
 }
