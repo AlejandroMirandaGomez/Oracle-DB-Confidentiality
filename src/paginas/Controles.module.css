@@ -83,7 +83,7 @@
   border: 1px solid currentColor;
   border-radius: var(--radio);
   font-family: var(--mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   opacity: 0.55;
 }
 

@@ -30,7 +30,7 @@
 
 .descripcion {
   max-width: 54ch;
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
   line-height: 1.5;
   color: var(--placa-suave);
 }

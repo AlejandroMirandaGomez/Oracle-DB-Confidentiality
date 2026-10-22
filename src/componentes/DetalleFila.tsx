@@ -57,7 +57,6 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
   const descripcion = nivel === null ? null : nivelesMadurez[nivel]
   return (
     <>
-      <p className={estilos.entrada}>{fila.criterio}</p>
       <Rejilla>
         <Campo etiqueta="Tarea">
           <ListaRefs ids={[fila.tarea]} conNombre />
@@ -121,7 +120,6 @@ export function DetalleFilaEjemplo({ fila }: { fila: FilaMatrizEjemplo }) {
   const descripcion = nivelesMadurez[fila.nivel]
   return (
     <>
-      <p className={estilos.entrada}>{fila.criterio}</p>
       <Rejilla>
         <Campo etiqueta="Tarea">
           <ListaRefs ids={[fila.tarea]} conNombre />
