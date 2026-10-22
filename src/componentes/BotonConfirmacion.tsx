@@ -1,35 +1,38 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
+import { DialogoConfirmacion } from './DialogoConfirmacion'
 
 type Props = {
   etiqueta: string
-  etiquetaConfirmacion: string
+  titulo: string
+  etiquetaConfirmar: string
   alConfirmar: () => void
   deshabilitado?: boolean
   icono?: ReactNode
+  children: ReactNode
 }
 
-export function BotonConfirmacion({ etiqueta, etiquetaConfirmacion, alConfirmar, deshabilitado = false, icono }: Props) {
-  const [armado, setArmado] = useState(false)
-
-  useEffect(() => {
-    if (!armado) return
-    const temporizador = window.setTimeout(() => setArmado(false), 4000)
-    return () => window.clearTimeout(temporizador)
-  }, [armado])
-
-  function alPulsar() {
-    if (!armado) {
-      setArmado(true)
-      return
-    }
-    setArmado(false)
-    alConfirmar()
-  }
+export function BotonConfirmacion({ etiqueta, titulo, etiquetaConfirmar, alConfirmar, deshabilitado = false, icono, children }: Props) {
+  const [abierto, setAbierto] = useState(false)
 
   return (
-    <button type="button" className="pulsador" data-principal={armado || undefined} disabled={deshabilitado} onClick={alPulsar} aria-live="polite">
-      {icono}
-      {armado ? etiquetaConfirmacion : etiqueta}
-    </button>
+    <>
+      <button type="button" className="pulsador" disabled={deshabilitado} onClick={() => setAbierto(true)}>
+        {icono}
+        {etiqueta}
+      </button>
+      <DialogoConfirmacion
+        abierto={abierto}
+        aviso="Esta acción no se puede deshacer"
+        titulo={titulo}
+        etiquetaConfirmar={etiquetaConfirmar}
+        alCancelar={() => setAbierto(false)}
+        alConfirmar={() => {
+          alConfirmar()
+          setAbierto(false)
+        }}
+      >
+        {children}
+      </DialogoConfirmacion>
+    </>
   )
 }

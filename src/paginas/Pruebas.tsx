@@ -94,11 +94,15 @@ export function Pruebas() {
         </p>
         <BotonConfirmacion
           etiqueta="Limpiar batería"
-          etiquetaConfirmacion="Confirmar limpieza"
+          titulo="¿Limpiar la batería de pruebas?"
+          etiquetaConfirmar="Sí, limpiar batería"
           deshabilitado={progresoBateria.hechas === 0}
           alConfirmar={limpiarBateria}
           icono={<EraserIcon aria-hidden="true" />}
-        />
+        >
+          <p>Se borrarán los resultados y las notas de las pruebas que ya documentó.</p>
+          <p>Si quiere conservar su evaluación, expórtela antes de continuar.</p>
+        </BotonConfirmacion>
       </section>
 
       <LeyendaLamparas tipo="bateria" />

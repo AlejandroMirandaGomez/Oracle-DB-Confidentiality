@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
 import { LamparaEstado } from '../componentes/Lampara'
-import { LeyendaLamparas } from '../componentes/LeyendaLamparas'
 import { Pagina } from '../componentes/Pagina'
 import { ListaRefs, Ref } from '../componentes/Ref'
 import { SelectorNivel } from '../componentes/SelectorNivel'
@@ -84,15 +83,17 @@ export function Matriz() {
           </button>
           <BotonConfirmacion
             etiqueta="Limpiar matriz"
-            etiquetaConfirmacion="Confirmar limpieza"
+            titulo="¿Limpiar la matriz?"
+            etiquetaConfirmar="Sí, limpiar matriz"
             deshabilitado={!hayMatriz}
             alConfirmar={limpiarMatriz}
             icono={<EraserIcon aria-hidden="true" />}
-          />
+          >
+            <p>Se borrarán los niveles de las 18 filas y las respuestas de evidencias.</p>
+            <p>Si quiere conservar su evaluación, expórtela antes de continuar.</p>
+          </BotonConfirmacion>
         </div>
       </div>
-
-      <LeyendaLamparas tipo="matriz" />
 
       <div className={estilos.marco}>
         <table className={estilos.tabla}>

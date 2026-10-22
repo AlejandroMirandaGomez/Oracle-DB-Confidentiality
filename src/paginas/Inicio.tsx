@@ -1,8 +1,8 @@
 import { ArrowRightIcon, EraserIcon, LockSimpleIcon } from '@phosphor-icons/react'
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
-import { DialogoConfirmacion } from '../componentes/DialogoConfirmacion'
+import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
 import { Lampara, PuntoLampara } from '../componentes/Lampara'
 import type { Tono } from '../componentes/tonosLampara'
 import { proyecto } from '../data/catalogo/proyecto'
@@ -23,8 +23,6 @@ const apoyo: Apoyo[] = [
 
 export function Inicio() {
   const { pasosVistos, progresoMatriz, progresoBateria, matrizCompleta, bateriaCompleta, hallazgos, hayDatos, limpiarAvance } = useEvaluacion()
-  const [confirmandoLimpieza, setConfirmandoLimpieza] = useState(false)
-
   useEffect(() => {
     document.title = proyecto.titulo
   }, [])
@@ -98,24 +96,17 @@ export function Inicio() {
           </h2>
           <div className={estilos.apoyoConAccion}>
             <p className={estilos.apoyo}>Siga el recorrido en orden. Su avance se guarda en este navegador y se puede exportar.</p>
-            <button type="button" className="pulsador" disabled={!hayDatos && pasosVistos.length === 0} onClick={() => setConfirmandoLimpieza(true)}>
-              <EraserIcon aria-hidden="true" />
-              Limpiar avance
-            </button>
-            <DialogoConfirmacion
-              abierto={confirmandoLimpieza}
-              aviso="Esta acción no se puede deshacer"
+            <BotonConfirmacion
+              etiqueta="Limpiar avance"
               titulo="¿Limpiar todo el avance?"
               etiquetaConfirmar="Sí, limpiar avance"
-              alCancelar={() => setConfirmandoLimpieza(false)}
-              alConfirmar={() => {
-                limpiarAvance()
-                setConfirmandoLimpieza(false)
-              }}
+              deshabilitado={!hayDatos && pasosVistos.length === 0}
+              alConfirmar={limpiarAvance}
+              icono={<EraserIcon aria-hidden="true" />}
             >
               <p>Se borrarán los niveles de la matriz, las respuestas de evidencias, los resultados de la batería y los pasos marcados como vistos.</p>
               <p>Si quiere conservar su evaluación, expórtela antes de continuar.</p>
-            </DialogoConfirmacion>
+            </BotonConfirmacion>
           </div>
         </div>
         <ol className={estilos.pasos}>
