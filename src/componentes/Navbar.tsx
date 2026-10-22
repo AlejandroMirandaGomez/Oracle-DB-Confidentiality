@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router'
 import { proyecto } from '../data/catalogo/proyecto'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import { PuntoLampara } from './Lampara'
+import { MenuUsuario } from './MenuUsuario'
 import estilos from './Navbar.module.css'
 
 type Enlace = { ruta: string; nombre: string; bloqueable?: boolean }
@@ -93,49 +94,62 @@ export function Navbar() {
           {proyecto.nombreCorto}
         </NavLink>
 
-        <nav className={estilos.menus} aria-label="Principal">
-          {grupos.map((grupo) => {
-            const activo = grupo.enlaces.some((enlace) => perteneceA(pathname, enlace.ruta))
-            const idPanel = `menu-${grupo.id}`
-            return (
-              <div key={grupo.id} className={estilos.grupo}>
-                <button
-                  ref={(elemento) => {
-                    if (elemento) disparadores.current.set(grupo.id, elemento)
-                    else disparadores.current.delete(grupo.id)
-                  }}
-                  type="button"
-                  className={estilos.disparador}
-                  aria-expanded={abierto === grupo.id}
-                  aria-controls={idPanel}
-                  onClick={() => setAbierto(abierto === grupo.id ? null : grupo.id)}
-                >
-                  <PuntoLampara tono={activo ? 'blanca' : 'apagada'} />
-                  {grupo.titulo}
-                  <CaretDownIcon className={estilos.caret} weight="bold" aria-hidden="true" />
-                </button>
-                <ul id={idPanel} className={estilos.panel} hidden={abierto !== grupo.id}>
-                  {grupo.enlaces.map((enlace) => (
-                    <li key={enlace.ruta}>
-                      <EnlaceMenu enlace={enlace} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
-        </nav>
+        <div className={estilos.acciones}>
+          <nav className={estilos.menus} aria-label="Principal">
+            {grupos.map((grupo) => {
+              const activo = grupo.enlaces.some((enlace) => perteneceA(pathname, enlace.ruta))
+              const idPanel = `menu-${grupo.id}`
+              return (
+                <div key={grupo.id} className={estilos.grupo}>
+                  <button
+                    ref={(elemento) => {
+                      if (elemento) disparadores.current.set(grupo.id, elemento)
+                      else disparadores.current.delete(grupo.id)
+                    }}
+                    type="button"
+                    className={estilos.disparador}
+                    aria-expanded={abierto === grupo.id}
+                    aria-controls={idPanel}
+                    onClick={() => setAbierto(abierto === grupo.id ? null : grupo.id)}
+                  >
+                    <PuntoLampara tono={activo ? 'blanca' : 'apagada'} />
+                    {grupo.titulo}
+                    <CaretDownIcon className={estilos.caret} weight="bold" aria-hidden="true" />
+                  </button>
+                  <ul id={idPanel} className={estilos.panel} hidden={abierto !== grupo.id}>
+                    {grupo.enlaces.map((enlace) => (
+                      <li key={enlace.ruta}>
+                        <EnlaceMenu enlace={enlace} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
+          </nav>
 
-        <button
-          type="button"
-          className={`pulsador ${estilos.botonMenu}`}
-          aria-expanded={movilAbierto}
-          aria-controls="menu-movil"
-          onClick={() => setMovilAbierto(!movilAbierto)}
-        >
-          {movilAbierto ? <XIcon weight="bold" aria-hidden="true" /> : <ListIcon weight="bold" aria-hidden="true" />}
-          Menú
-        </button>
+          <button
+            type="button"
+            className={`pulsador ${estilos.botonMenu}`}
+            aria-label="Menú"
+            aria-expanded={movilAbierto}
+            aria-controls="menu-movil"
+            onClick={() => setMovilAbierto(!movilAbierto)}
+          >
+            {movilAbierto ? <XIcon weight="bold" aria-hidden="true" /> : <ListIcon weight="bold" aria-hidden="true" />}
+            <span className={estilos.textoBoton}>Menú</span>
+          </button>
+
+          <MenuUsuario
+            abierto={abierto === 'usuario'}
+            alAlternar={() => setAbierto(abierto === 'usuario' ? null : 'usuario')}
+            alCerrar={cerrarTodo}
+            registrarDisparador={(elemento) => {
+              if (elemento) disparadores.current.set('usuario', elemento)
+              else disparadores.current.delete('usuario')
+            }}
+          />
+        </div>
       </div>
 
       <nav id="menu-movil" className={estilos.movil} aria-label="Principal en pantallas angostas" hidden={!movilAbierto}>

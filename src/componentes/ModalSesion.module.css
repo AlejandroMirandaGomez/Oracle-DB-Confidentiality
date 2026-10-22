@@ -1,0 +1,56 @@
+.modal {
+  width: min(26rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 2px solid var(--placa);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--placa);
+  box-shadow: var(--sombra-panel);
+}
+
+.modal[open] {
+  animation: entrar 180ms var(--ease-out);
+}
+
+.modal::backdrop {
+  background: var(--velo);
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+.formulario {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.titulo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-stretch: 66%;
+}
+
+.campo {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ayuda {
+  font-size: 0.8125rem;
+  color: var(--remache);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}

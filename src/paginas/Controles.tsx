@@ -61,7 +61,7 @@ export function Controles() {
       <div className={estilos.detalle}>
         <Pagina
           titulo={`${control.id} ${control.nombre}`}
-          introduccion="Los 15 controles del Anexo A de ISO/IEC 27001:2022 sobre confidencialidad y tres complementarios, con su justificación para el DBA, su implementación en Oracle y lo que verifica un auditor externo."
+          introduccion="Controles ISO/IEC 27001:2022 sobre confidencialidad, con su justificación para el DBA, su implementación en Oracle y lo que verifica un auditor externo."
         >
           <label className={estilos.selector}>
             <span className="rotulo">Control</span>

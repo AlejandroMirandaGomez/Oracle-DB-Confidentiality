@@ -2,14 +2,12 @@ import { DownloadSimpleIcon, EraserIcon } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
-import { CampoOrganizacion } from '../componentes/CampoOrganizacion'
 import { LamparaEstado } from '../componentes/Lampara'
 import { LeyendaLamparas } from '../componentes/LeyendaLamparas'
 import { Pagina } from '../componentes/Pagina'
-import { RampaMadurez } from '../componentes/RampaMadurez'
 import { ListaRefs, Ref } from '../componentes/Ref'
 import { SelectorNivel } from '../componentes/SelectorNivel'
-import { estadoDeNivel, nivelesMadurez } from '../data/catalogo/escalas'
+import { estadoDeNivel } from '../data/catalogo/escalas'
 import { matriz } from '../data/catalogo/matriz'
 import type { Estado } from '../data/tipos'
 import { conteoDeEstados, formatoDecimal, madurezPromedio } from '../estado/calculos'
@@ -48,21 +46,7 @@ export function Matriz() {
       titulo="Matriz de evaluación"
       introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para documentar sus evidencias con Sí, Parcial o No y confirme un nivel de madurez de 0 a 4. Pase el cursor sobre un nivel para leer qué significa en el control de esa fila. La matriz arranca sin evaluar."
     >
-      <section className={estilos.escala} aria-label="Escala de madurez de 0 a 4">
-        {nivelesMadurez.map((nivel) => (
-          <div key={nivel.nivel} className={estilos.escalon}>
-            <RampaMadurez nivel={nivel.nivel} />
-            <span className={estilos.escalonNombre}>{nivel.nombre}</span>
-            <span className={estilos.escalonTexto}>{nivel.origenCobit}</span>
-            <span className={estilos.escalonEstado}>
-              <LamparaEstado valor={estadoDeNivel(nivel.nivel)} />
-            </span>
-          </div>
-        ))}
-      </section>
-
       <section className={estilos.organizacion} aria-label="Organización y archivo de la evaluación">
-        <CampoOrganizacion />
         <ArchivoEvaluacion />
       </section>
 

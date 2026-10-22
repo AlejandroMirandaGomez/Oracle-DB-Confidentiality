@@ -24,7 +24,7 @@ export const ejemplos: EjemploDisponible[] = [
   {
     id: entidad.id,
     ruta: `/ejemplos/${entidad.id}`,
-    entidad: `PDB ${entidad.pdb}`,
+    entidad: entidad.empresa,
     motor: `${entidad.motor} ${entidad.version}`,
     fechaEvaluacion: `${entidad.fechaEjecucion} ${entidad.horaEjecucion}`,
     resultado: resumenXepdb1(),

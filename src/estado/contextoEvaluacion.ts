@@ -7,8 +7,6 @@ import type {
 } from '../data/tipos'
 import type { ResumenImportacion } from './archivoEvaluacion'
 
-export type FirmaDeclaracion = { nombre: string; fecha: string }
-
 export type Progreso = { hechas: number; total: number }
 
 export type ResultadoImportacion =
@@ -26,6 +24,7 @@ export type ValorEvaluacion = {
   fijarRespuestaPrueba: (pruebaId: string, cambios: Partial<RegistroPrueba>) => void
   limpiarMatriz: () => void
   limpiarBateria: () => void
+  limpiarAvance: () => void
   exportarEvaluacion: () => void
   importarEvaluacion: (archivo: File) => Promise<ResultadoImportacion>
   hayDatos: boolean
@@ -37,11 +36,6 @@ export type ValorEvaluacion = {
   hallazgos: Hallazgo[]
   pasosVistos: string[]
   marcarPasoVisto: (paso: string) => void
-  validacionesIA: Record<string, string>
-  fijarValidacionIA: (usoId: string, texto: string) => void
-  firmaDeclaracion: FirmaDeclaracion | null
-  firmarDeclaracion: (nombre: string) => void
-  quitarFirmaDeclaracion: () => void
   pila: string[]
   direccion: 1 | -1
   abrirReferencia: (id: string) => void

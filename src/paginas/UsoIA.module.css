@@ -2,14 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.75rem 1.5rem;
-}
-
-.estado {
-  max-width: 60ch;
-  font-size: 0.9375rem;
-  font-weight: 600;
 }
 
 .marco {
@@ -67,10 +61,6 @@
   color: var(--placa-suave);
 }
 
-.validacion[data-pendiente] {
-  border-style: dashed;
-}
-
 .declaracion {
   display: grid;
   gap: 1rem;
@@ -87,22 +77,6 @@
 .texto {
   max-width: 64ch;
   line-height: 1.6;
-}
-
-.formulario {
-  display: grid;
-  gap: 0.4rem;
-}
-
-.fila {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.fila input {
-  flex: 1 1 16rem;
-  width: auto;
 }
 
 .firmada {

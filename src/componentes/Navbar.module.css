@@ -40,6 +40,12 @@
   transform: scale(0.97);
 }
 
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .menus {
   display: flex;
   align-items: center;
@@ -178,6 +184,24 @@
     padding: 1rem var(--margen) 1.5rem;
     border-top: 1px solid var(--placa);
     background: var(--panel);
+  }
+}
+
+@media (max-width: 480px) {
+  .contenido {
+    gap: 0.75rem;
+  }
+
+  .acciones {
+    gap: 0.5rem;
+  }
+
+  .marca {
+    font-size: 1rem;
+  }
+
+  .textoBoton {
+    display: none;
   }
 }
 

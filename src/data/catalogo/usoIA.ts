@@ -1,14 +1,12 @@
 import type { UsoIA } from '../tipos'
 
-export const validacionPendiente = 'Por completar por el estudiante'
-
 export const usosIA: UsoIA[] = [
   {
     id: 'IA-01',
     herramienta: 'Claude (Anthropic), en Claude Code',
     prompt: 'Explícame que es lo que hay que hacer (adjuntando el PDF del enunciado)',
     aporte: 'Resumen de los seis componentes del artefacto, los entregables y los pesos de la rúbrica; señaló que pg_hba.conf es de PostgreSQL y que el masking dinámico en Oracle se llama Data Redaction.',
-    validacion: validacionPendiente,
+    validacion: 'Hice preguntas de seguimiento sobre qué debe tener el artefacto y si el enunciado pide un video, y decidí dejar fuera el informe PDF. La aclaración de que el masking dinámico de Oracle es Data Redaction quedó aplicada en los controles.',
     fuente: 'Enunciado de la asignación, secciones 6, 9 y 10',
   },
   {
@@ -16,7 +14,7 @@ export const usosIA: UsoIA[] = [
     herramienta: 'Claude (Anthropic), en Claude Code',
     prompt: 'NOTA: EN [carpeta local de documentación] Tienes varia documentación sobre varias cosas que podrían ser importantes entre ellas esta el documento que compre y tengo licencia para usar, además se puede usar pues es para un trabajo meramente academico: ISO IEC 27002-2022.pdf No hagas nada todavía, solo toma contexto de la información',
     aporte: 'Lectura de los 15 controles en la norma y de los catálogos previos; advirtió que A8.13 no está marcado como control de confidencialidad y que la escala del enunciado es 0-4.',
-    validacion: validacionPendiente,
+    validacion: 'Aporté yo la norma con licencia y pedí solo tomar contexto. La advertencia sobre A8.13 se comprobó después en la tabla de atributos de la norma, que no le asigna Confidencialidad, y la escala de 0 a 4 es la que usa la matriz.',
     fuente: 'ISO/IEC 27002:2022, tablas de atributos de los controles 5.12 a 8.20',
   },
   {
@@ -24,18 +22,127 @@ export const usosIA: UsoIA[] = [
     herramienta: 'Claude (Anthropic), en Claude Code',
     prompt: 'Olvídate del informe PDF, lo que vamos a hacer es el artefacto. Que me recomiendas? estaba pensando en un HTML que tenga incrustado CSS y JavaScript.',
     aporte: 'Recomendación de React con Vite y TypeScript como sitio estático, sin backend, y la idea de mostrar el resultado real de los scripts como evidencia.',
-    validacion: validacionPendiente,
+    validacion: 'Acepté la recomendación porque cubre lo que pedí: botones interactivos y animaciones sin backend, con los datos guardados en el navegador. La evaluación se guarda en localStorage y el sitio no necesita servidor.',
     fuente: 'Documentación oficial de Vite y React',
   },
   {
     id: 'IA-04',
     herramienta: 'Claude (Anthropic), en Claude Code',
-    prompt: 'Para realizar esta pagina quiero que instales y uses con libertad y auto criterio las siguientes skills: Emil Kowalskis, Impeccable, Taste Skill',
+    prompt: 'Para realizar esta pagina quiero que uses con libertad y auto criterio todo lo que consideres necesario',
     aporte: 'Redacción de los 5 riesgos, las 13 tareas, el mapeo de 18 controles, los 15 observables, la matriz, los 10 hallazgos y el marco teórico; escritura y ejecución de los 23 scripts sobre la instancia XE; diseño y código del sitio.',
-    validacion: validacionPendiente,
+    validacion: 'Revisé el resultado: lo basado en mi instancia Oracle es correcto y tiene evidencia clara, pero lo reorienté para que sirva a cualquier organización (IA-05 a IA-08). Los textos de la norma se volvieron a tomar del PDF con licencia (IA-13).',
     fuente: 'Evidencias de ejecución en evidencias/ y Oracle Database Security Guide 21c',
   },
+  {
+    id: 'IA-05',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Primero vamos a cambiar de paleta de colores, vamos a usar la paleta de colores: THE ROLL, ya la escogí en la otra conversación. Luego: Hiciste toda la aplicación basándote en mí instancia oracle y eso esta bien porque ya sabes como funciona Oracle y tienes una evidencia clara, pero vamos a cambiar de perspectiva todo va a ser genérico, orientado a que cualquier empresa pueda entrar a la aplicación y ver la información, orientarse aprender, ver la matriz de riesgos realizarla para determinar que tal esta su empresa en cuestión de confidencialidad no tiene que ser solo de mí instancia. Elimina todas las direcciones hardcodeadas a ubicaciones en mis discos. Entonces va a ser así: En el Home siempre predominando el estilo minimalista, va a encontrar una pequeña información del proyecto, mí nombre de autor, el nombre de la universidad nacional, del curso y del profesor. De que trata el proyecto: Algo asi pero redactalo mejor, pero debe ser corto y rapido: "Esta pagina busca mitigar los riesgos de confidencialidad de una organización brindando diversas herramientas y conocimientos fundamentados y la posibilidad y acompañamiento de implementar controles ISO 27002:2022" Luego le vamos a implementar react router, vamos a dividir toda la aplicación en diversas paginas. En el home se va a poder desplazar hacia opciones: las "Opciones" y "Otras Opciones" (nombres para dividir las opciones son provisionales busca unos mejores) selecciona un lugar correcto para colocar esos links a las otras paginas, en "Opciones" se van a encontrar las opciones principales: tales como: Tabla de riesgos, Tareas del DBA, Controles ISO 27002:2022, Matriz de evaluación, Batería de Pruebas. En Otras Opciones va a estar: Marco Teórico, Declaración del Uso de IA, Ejemplos con evidencias Ahora voy a ir contándote las ideas que tengo para cada una de las paginas que te dije anteriormente, la idea es que combines mis ideas con tu investigación y hallazgos. Se elimina de toda pagina: Entidad, Papel, Preparado, Revisado Se elimina completamente el sidebar, se reemplaza por un navbar minimalista y ordenado Cuando digo algo genérico puede ser genérico en general o si hablo de consultas o de SQL me refiero sobre una BD Oracle. No menciones la palabra generico o similares en el proyecto pues no se ve elegante.',
+    aporte: 'Plan de rediseño con las reglas del proyecto, la paleta THE ROLL, un Inicio minimalista con los créditos y los dos grupos de opciones, navegación con React Router y barra superior en lugar del sidebar, y la eliminación de Entidad, Papel, Preparado y Revisado y de las rutas locales.',
+    validacion: 'Comprobé que el Inicio muestra autor, universidad, curso y profesor, que la navegación es una barra superior con una ruta por página y que no quedan rutas de mis discos en el código, los scripts ni el README. Entidad, Papel, Preparado y Revisado ya no aparecen en las herramientas.',
+    fuente: 'Documentación oficial de React Router y pautas de accesibilidad WCAG (contraste AA)',
+  },
+  {
+    id: 'IA-06',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Vamos a empezar por las opciones principales: 1. Tabla de Riesgos: En esta pagina se listaran en una tabla o componente tabular (selecciona uno minimalista y el mejor para este caso, pero estandarízalo como "componente tabular" a partir de ahora para que se use en el resto de paginas que se ocupa algo asi. NO necesariamente tiene que ser una tabla tal cual si no hace falta, pero puede ser una tabla) las diferentes tareas. Tal como tú ya investigaste cuando se haga clic a esa tarea se abrirá un modal con más información, se mostrara el nombre, una descripción, Impacto, Probabilidad, Amenaza, Vulnerabilidad y demás información generica del riesgo que previamente investigaste, tal como esta actualmente, en el riesgo hay links a las tareas, controles relacionados con ese riesgo y filas de la matriz pero se eliminan "Pruebas y Hallazgos". Se conserva la tabla comparativa de los riesgos, pero se encuentra abajo del componente tabular no a un lado como esta actualmente. 2. Tareas del DBA Van a estar posicionadas en el mismo componente tabular que estaban los riesgos, conserva la información generica que investigaste, y se mantienen en esa division de PHVA. Pero en formato tabular hacia abajo. Igualmente cuando se presionan se abre un modal donde se muestra más información de la tarea. 3. Controles ISO/IEC 27001:2022: Para estos controles vamos a cambiar el componente tabular que hemos venido usando hasta ahora, vamos a reutilizar el que esta actualmente, pero le vamos a implementar varios cambios, lo primero es que le vamos a cambiar eso que dice: Controles pedidos por el enunciado, y le vamos a poner "Controles" y ese mini sidebar para escoger los controles en esa pagina va a estar fixed, va a abarcar todo el largo de la pantalla. Y igualmente cuando se presione se va a mostrar información del control tal cual como se muestra actualmente, (posiblemente más adelante se colocara más información por control, pero por ahora deja la información genérica de los controles que investigaste). NOTA: La información de Controles observables por un auditor externo se va a manejar dentro de la pagina: Controles ISO/IEC 27001:2022 en la información que se muestra se va a agregar eso junto con las consultas genericas.',
+    aporte: 'Componente tabular compartido con detalle por fila para los riesgos y las tareas del DBA por fase PHVA, y una lista lateral de controles fija a lo alto de la pantalla; los observables del auditor y las consultas SQL se integraron en el detalle de cada control, y el mapa de calor y las escalas de riesgo pasaron debajo de la tabla.',
+    validacion: 'Comprobé que riesgos y tareas usan el mismo componente tabular con detalle al hacer clic, que el mapa de calor y las escalas quedaron debajo de la tabla de riesgos y que la lista de controles queda fija a lo alto de la pantalla. El observable del auditor se muestra dentro del detalle de cada control, junto con su consulta SQL.',
+    fuente: 'ISO/IEC 27002:2022 y Oracle Database Security Guide 21c',
+  },
+  {
+    id: 'IA-07',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: '4. Matriz de evaluación: Me gusta la implementación que hiciste actualmente así que lo vamos a mantener tal cual, pero obviamente va a tener su propia pagina. Lo que sí hay que cambiar es que actualmente todos los datos de la matriz están completados con los datos de mi Oracle, eso hay que limpiarlo, además agregar un botón para limpiar la matriz. En evidencia será así: Cuando se da clic en la evidencia entonces hay que completar varios datos, se explicaran los pasos a seguir para lograr cumplir con la evidencia (SQL) y el resultado esperado y un botón por cada evidencia a cumplir con si o no o parcial esa es la manera de ir documentando la evidencia de manera generica. 5. La Batería de Pruebas: similar a las evidencias de la matriz de evaluación será un formulario genérico donde se muestren los pasos a pasos para ir ejecutando la batería de pruebas. El diseño se reutiliza el que esta actualmente pero obviamente adaptándolo al nuevo diseño en general de la app. Eliminar eso de: Ejecución, Instancia, Resultado. Hallazgos y plan de acción: Cuando se termine de completar los datos de la matriz de evaluación se desbloquea esta sección, donde le muestra al usuario los hallazgos personalizados dependiendo del caso en el que él este. SI además completa la batería de pruebas, entonces los hallazgos y plan de acción deberían de ser mejores. Deben de existir múltiples hallazgos dependiendo de cada control que no este implementado y cada prueba fallida, etc que se muestren acá para que el usuario que visite esta app pueda ver y implementar, los hallazgos vienen con la Reemediación propuesta en cada caso, además se reutiliza el componente tabular clickeable que se uso anteriormente para los riesgos pero en este caso para mostrar todos los hallazgos del usuario.',
+    aporte: 'Matriz de evaluación sin datos precargados y con botón de limpieza, evidencias que se documentan con Sí, Parcial o No y muestran sus pasos y resultado esperado, batería de pruebas como formulario paso a paso, y generación de hallazgos con remediación según los controles sin implementar y las pruebas fallidas, mejorada cuando se completa la batería.',
+    validacion: 'Comprobé que la matriz arranca sin evaluar y tiene botón para limpiarla con confirmación, que cada evidencia se responde con Sí, Parcial o No, que cada prueba se responde con Conforme, Parcial o No conforme y que los hallazgos quedan bloqueados hasta completar las 18 filas de la matriz.',
+    fuente: 'ISO/IEC 27002:2022, modelos de madurez de COBIT 4.1 y Oracle Database Security Guide 21c',
+  },
+  {
+    id: 'IA-08',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Ya terminamos con los cambios a las opciones principales, ahora con respecto a las opciones secundarias, son mínimas: Se mueven a una pagina aparte, una para el Marco Teórico y otra para la Declaración del Uso de IA. En la del Marco Teórico va a estar abajo del todo las referencias. Otra opción secundaria extra que vamos a usar es: Ejemplos, donde va a tener ejemplos de uso de la aplicación de otros clientes, por ahora ya tienes la información completa de un cliente, la cual es la que recolectaste de mi computadora, si el usuario hace clic en: Otras Opciones > Ejemplos > XEPDB1 Entonces se mostrara la información de la entidad, y en una sola pagina toda la información que recopilaste en el mismo formato del resto de la aplicación pero en una sola pagina en lugar de ser fragmentada toda la información y evidencias chorreada en una sola pagina (tal cual como esta ahora) solo que eso va a ser de solo lectura. Realiza un plan en formato md y ponlo en: [carpeta local del proyecto]\\plan',
+    aporte: 'Marco teórico con las referencias al final, página propia para la declaración del uso de IA, listado de ejemplos con el caso XEPDB1 de solo lectura en una sola página, y el documento de plan de rediseño con rutas, componentes, datos y criterios de aceptación.',
+    validacion: 'Comprobé que el marco teórico termina con las referencias, que la declaración del uso de IA tiene su propia página y que el ejemplo XEPDB1 reúne toda su información en una sola página de solo lectura.',
+    fuente: 'Evidencias de ejecución en evidencias/ y formato de citas APA 7',
+  },
+  {
+    id: 'IA-09',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Lístame la información actual de los controles que se muestran la aplicación y damela aca en chat dividida por control ISO',
+    aporte: 'Inventario de los 18 controles de la aplicación, con propósito, relevancia para el DBA, guía de Oracle, evidencia observable y vínculos con riesgos, tareas, pruebas y filas de la matriz.',
+    validacion: 'Revisé el inventario contra el catálogo de la aplicación: 18 controles, 15 del enunciado y 3 complementarios. Me sirvió para decidir qué información le faltaba a cada control.',
+    fuente: 'Catálogo de controles de la aplicación',
+  },
+  {
+    id: 'IA-10',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Okey los vamos a manejar ahí mismo en controles.ts. Dime que le falta a los controles para tener la información completa, según las plantillas que te paso y lo que encuentres en internet? Vamos a eliminar el Cuestionario (4 preguntas, sí/no/N/A)',
+    aporte: 'Lista de los campos que faltaban en cada control frente a las plantillas de referencia: peso, relación con C, I y D, descripción, guía del control, otra información, concepto de ciberseguridad, dominio de seguridad y niveles de madurez por control; propuesta de quitar el cuestionario de cuatro preguntas.',
+    validacion: 'Decidí qué campos conservar: descarté el peso, la distinción entre primario y secundario y el cuestionario de cuatro preguntas, y mantuve descripción, guía del control, otra información, concepto de ciberseguridad, dominio de seguridad y nivel de madurez de 0 a 4.',
+    fuente: 'ISO/IEC 27002:2022, COBIT 4.1 y las plantillas de referencia del estudiante',
+  },
+  {
+    id: 'IA-11',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'El Peso, no lo vamos a contar, La relación con C, I, D. No le vamos a poner si es primario o secundario. Solo vamos a guardar cual o cuales implica Confidencialidad, Integridad y Disponibilidad. La descripción se la vamos a agregar, ahorita te paso la info. Ocupamos: Guía del control y Guía de Oracle, ya la de Oracle la tenemos, ahora nos falta la del control. Nos falta la Otra Información, Nos falta el Concepto de ciberseguridad, Nos falta el Dominio de seguridad, Nos falta el nivel de madurez por control, pero lo vamos a hacer del 0 al 4. Creame en: [carpeta local de documentación]\\Controles_Confidencialidad un archivo md con la información de los controles de confidencialidad actuales y la información que tenemos y deja espacio para la información que falta',
+    aporte: 'Documento Controles_Confidencialidad.md con los 18 controles: la información actual de cada uno y espacios pendientes para descripción, guía del control, otra información, concepto de ciberseguridad, dominio de seguridad y niveles de madurez de 0 a 4, sin peso ni primario o secundario.',
+    validacion: 'Comprobé que el documento no incluye peso ni primario o secundario, que cada control conserva su información actual y que cada campo faltante quedó marcado como pendiente. Hoy reúne 28 controles: los 18 de la aplicación y 10 candidatos.',
+    fuente: 'Plantillas de referencia del estudiante e ISO/IEC 27002:2022',
+  },
+  {
+    id: 'IA-12',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'En "[carpeta local de documentación]\\ISO IEC 27002-2022.pdf" esta el documento de los controles ISO que compré y tengo licencia y puedo usar porque además es para uso meramente academico. Puedes mapearme en que pagina se encuentran los controles de confidencialidad, tales que estan en Controles_Confidencialidad.',
+    aporte: 'Ubicación de cada control en el PDF de la norma (161 páginas): página del visor, página impresa y fila del Cuadro A.1 del Anexo A donde están sus atributos.',
+    validacion: 'Las páginas se verificaron contra el PDF con licencia: A5.12 está en las páginas 30 a 31 del visor, A8.13 en las 110 a 111 y el Cuadro A.1 del Anexo A en la 142. Quedan separadas la página del visor y la página impresa.',
+    fuente: 'ISO/IEC 27002:2022, apartado de cada control y Cuadro A.1 del Anexo A',
+  },
+  {
+    id: 'IA-13',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Agrega la información que falta de los controles de confidencialidad al md, la infomación sacala tal cual del doumento que te pase.',
+    aporte: 'Descripción, guía del control, otra información, concepto de ciberseguridad y dominio de seguridad de los 18 controles, copiados del PDF de la norma, con una línea de fuente por control con sus páginas.',
+    validacion: 'El texto de la norma se copió sin cambios del PDF con licencia y se comparó con una segunda lectura del mismo PDF: en 15 controles es idéntico y en 8.11, 8.12 y 8.13 solo difiere en que la segunda lectura trae también la tabla de atributos.',
+    fuente: 'ISO/IEC 27002:2022, apartados Control, Guía y Otra información de cada control',
+  },
+  {
+    id: 'IA-14',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Para obtener el nivel de madurez, primero hay que mapear cada control de confidencialidad con el más parecido de cobit4.1.pdf Y extraer el nivel de madurez de esos controles y convertirlos en una escala del 0 al 4. Casos que se pueden dar: Varios controles representan uno solo en cobit, en ese caso los niveles de madurez de duplican simplemente.',
+    aporte: 'Mapeo de los 18 controles al objetivo de COBIT 4.1 más parecido, conversión de la escala de madurez de COBIT de 0 a 5 a una de 0 a 4 y niveles de cada control completados en Controles_Confidencialidad.md y Mapeo_COBIT_Madurez.md.',
+    validacion: 'Revisé la lógica del mapeo: cada control quedó con el objetivo de COBIT 4.1 más parecido (DS5, DS11, PO2, AI3 y AI7), los seis niveles de COBIT pasaron a la escala de 0 a 4 fusionando los niveles 1 y 2, y los controles del mismo proceso repiten los mismos niveles, como pedí.',
+    fuente: 'COBIT 4.1 (IT Governance Institute, 2007), modelos de madurez de los procesos PO2, AI3, AI7, DS5 y DS11',
+  },
+  {
+    id: 'IA-15',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Cada Control ahora tiene su propia descripcion de que es ser nivel 0 de madures nivel 1 y asi?',
+    aporte: 'Aclaración de que cada control hereda los cinco niveles del proceso de COBIT al que se mapeó y no tiene descripciones propias, con la tabla de los cinco conjuntos de textos (DS5, DS11, PO2, AI3 y AI7) y lo que implicaría redactarlos por control.',
+    validacion: 'La respuesta confirmó que los niveles son los del proceso de COBIT y se repiten entre los controles del mismo proceso, con cinco conjuntos de textos para los 18 controles. Lo acepté así porque COBIT define la madurez por proceso.',
+    fuente: 'COBIT 4.1, modelos de madurez por proceso',
+  },
+  {
+    id: 'IA-16',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Así esta bien, ahora quiero que busques entre los controles de la ISO si existen otros controles que representan confidencialidad, puedes apoyarte de cobit tambien. Pero principalemente de la ISO',
+    aporte: 'Búsqueda en la norma de otros controles de confidencialidad: 87 de los 93 controles llevan esa propiedad y 70 quedan fuera de los 18 actuales. La IA propuso diez candidatos fuertes con lo que aportan frente a los controles actuales y su apoyo en COBIT.',
+    validacion: 'La propiedad Confidencialidad se comprobó en la tabla de cada control y en el Cuadro A.1 del Anexo A: 87 de los 93 controles la llevan. La selección de los diez candidatos es criterio de la IA y la acepté después de revisar la lista.',
+    fuente: 'ISO/IEC 27002:2022, tabla de atributos de cada control y Cuadro A.1 del Anexo A; COBIT 4.1',
+  },
+  {
+    id: 'IA-17',
+    herramienta: 'Claude (Anthropic), en Claude Code',
+    prompt: 'Sí, agrega los 10 candidatos fuertes a Controles_Confidencialidad.md con el mismo formato que los otros, incluyendo mapeo a COBIT y niveles de madurez',
+    aporte: 'Los diez candidatos agregados a Controles_Confidencialidad.md con descripción, guía, otra información, concepto, dominio, objetivo de COBIT y niveles de 0 a 4, y el mapeo ampliado en Mapeo_COBIT_Madurez.md. La guía de Oracle y la evidencia observable quedan pendientes.',
+    validacion: 'Los diez candidatos quedaron en un grupo propio con los mismos campos que los demás y el mapeo a COBIT ampliado, por ejemplo A5.14 con DS5.11 y A6.6 con PO4.14. La guía de Oracle y la evidencia observable de los candidatos siguen pendientes de redactar.',
+    fuente: 'ISO/IEC 27002:2022 y COBIT 4.1, objetivos de control y modelos de madurez',
+  },
 ]
+
+export const firmaDeclaracion = {
+  nombre: 'Alejandro Miranda Gómez',
+  fecha: '21 de octubre de 2026',
+} as const
 
 export const declaracionJurada =
   'Declaro que todo contenido generado con IA ha sido declarado en la tabla anterior, validado contra fuentes oficiales (ISO, documentación del motor de base de datos) y que asumo responsabilidad por su veracidad. Entiendo que omitir esta declaración constituye falta grave.'

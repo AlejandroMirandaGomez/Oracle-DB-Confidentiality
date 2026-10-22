@@ -1,8 +1,8 @@
-import { ArrowRightIcon, LockSimpleIcon } from '@phosphor-icons/react'
-import { useEffect, type CSSProperties } from 'react'
+import { ArrowRightIcon, EraserIcon, LockSimpleIcon } from '@phosphor-icons/react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
-import { CampoOrganizacion } from '../componentes/CampoOrganizacion'
+import { DialogoConfirmacion } from '../componentes/DialogoConfirmacion'
 import { Lampara, PuntoLampara } from '../componentes/Lampara'
 import type { Tono } from '../componentes/tonosLampara'
 import { proyecto } from '../data/catalogo/proyecto'
@@ -22,7 +22,8 @@ const apoyo: Apoyo[] = [
 ]
 
 export function Inicio() {
-  const { pasosVistos, progresoMatriz, progresoBateria, matrizCompleta, bateriaCompleta, hallazgos } = useEvaluacion()
+  const { pasosVistos, progresoMatriz, progresoBateria, matrizCompleta, bateriaCompleta, hallazgos, hayDatos, limpiarAvance } = useEvaluacion()
+  const [confirmandoLimpieza, setConfirmandoLimpieza] = useState(false)
 
   useEffect(() => {
     document.title = proyecto.titulo
@@ -73,7 +74,6 @@ export function Inicio() {
             Herramientas y conocimiento para identificar los riesgos de confidencialidad de una base de datos Oracle, medir la madurez de sus controles y aplicar ISO/IEC 27002:2022 con un plan de acción a la medida.
           </p>
           <div className={estilos.llamada}>
-            <CampoOrganizacion />
             <Link to="/riesgos" className={`pulsador ${estilos.comenzar}`} data-principal="">
               Comenzar el diagnóstico
               <ArrowRightIcon weight="bold" aria-hidden="true" />
@@ -96,7 +96,27 @@ export function Inicio() {
           <h2 id="titulo-herramientas" className={estilos.subtitulo}>
             Herramientas
           </h2>
-          <p className={estilos.apoyo}>Siga el recorrido en orden. Su avance se guarda en este navegador y se puede exportar.</p>
+          <div className={estilos.apoyoConAccion}>
+            <p className={estilos.apoyo}>Siga el recorrido en orden. Su avance se guarda en este navegador y se puede exportar.</p>
+            <button type="button" className="pulsador" disabled={!hayDatos && pasosVistos.length === 0} onClick={() => setConfirmandoLimpieza(true)}>
+              <EraserIcon aria-hidden="true" />
+              Limpiar avance
+            </button>
+            <DialogoConfirmacion
+              abierto={confirmandoLimpieza}
+              aviso="Esta acción no se puede deshacer"
+              titulo="¿Limpiar todo el avance?"
+              etiquetaConfirmar="Sí, limpiar avance"
+              alCancelar={() => setConfirmandoLimpieza(false)}
+              alConfirmar={() => {
+                limpiarAvance()
+                setConfirmandoLimpieza(false)
+              }}
+            >
+              <p>Se borrarán los niveles de la matriz, las respuestas de evidencias, los resultados de la batería y los pasos marcados como vistos.</p>
+              <p>Si quiere conservar su evaluación, expórtela antes de continuar.</p>
+            </DialogoConfirmacion>
+          </div>
         </div>
         <ol className={estilos.pasos}>
           {pasos.map((paso, posicion) => (

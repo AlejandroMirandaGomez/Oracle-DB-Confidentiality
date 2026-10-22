@@ -17,3 +17,11 @@ export function guardarAlmacen<T>(clave: string, valor: T): void {
     return
   }
 }
+
+export function borrarAlmacen(clave: string): void {
+  try {
+    window.localStorage.removeItem(prefijo + clave)
+  } catch {
+    return
+  }
+}

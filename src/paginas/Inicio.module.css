@@ -37,14 +37,10 @@
 
 .llamada {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1rem 1.25rem;
   margin-top: 0.5rem;
 }
 
 .comenzar {
-  margin-top: 1.05rem;
   min-height: 2.75rem;
   padding-inline: 1.4rem;
   font-size: 1rem;
@@ -97,6 +93,13 @@
   color: var(--placa-suave);
 }
 
+.apoyoConAccion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
 .pasos {
   display: grid;
   margin: 0;
@@ -105,6 +108,7 @@
 }
 
 .paso {
+  position: relative;
   display: grid;
   grid-template-columns: 2.75rem minmax(0, 1fr) minmax(11rem, auto);
   align-items: center;
@@ -153,10 +157,32 @@
   transition: text-decoration-thickness 160ms var(--ease-out);
 }
 
+.enlacePaso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.enlacePaso:focus-visible {
+  outline: none;
+}
+
+.paso:has(.enlacePaso:focus-visible),
+.elementoApoyo:has(.enlacePaso:focus-visible) {
+  outline: 2px solid var(--placa);
+  outline-offset: 2px;
+  border-radius: var(--radio);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .enlacePaso:hover {
+  .paso:hover .enlacePaso,
+  .elementoApoyo:hover .enlacePaso {
     text-decoration-thickness: 5px;
     text-decoration-color: var(--placa);
+  }
+
+  .paso:hover .numero {
+    background: var(--panel-hondo);
   }
 }
 
@@ -193,6 +219,7 @@
 }
 
 .elementoApoyo {
+  position: relative;
   display: grid;
   grid-template-columns: 2.75rem minmax(0, 18rem) minmax(0, 1fr);
   align-items: center;

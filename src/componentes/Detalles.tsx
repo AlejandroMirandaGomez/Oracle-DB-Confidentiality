@@ -144,9 +144,7 @@ function DetalleControl({ control }: { control: Control }) {
               return (
                 <li key={propiedad} data-marcada={marcada || undefined}>
                   <PuntoLampara tono={marcada ? 'blanca' : 'apagada'} />
-                  {nombrePropiedad[propiedad]}
-                  <span className={estilos.estadoPropiedad}>{marcada ? 'marcada' : 'no marcada'}</span>
-                </li>
+                  {nombrePropiedad[propiedad]}                </li>
               )
             })}
           </ul>

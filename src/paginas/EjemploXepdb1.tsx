@@ -102,14 +102,18 @@ export function EjemploXepdb1() {
 
   return (
     <Pagina
-      titulo="Ejemplo XEPDB1"
-      introduccion="Evaluación real de una instancia Oracle 21c XE, de solo lectura. Muestra cómo termina el recorrido completo: riesgos, tareas, controles, matriz, batería ejecutada y hallazgos."
+      titulo={entidad.empresa}
+      introduccion="Evaluación de solo lectura sobre una instancia Oracle 21c XE real, presentada a nombre de una empresa ficticia. Muestra cómo termina el recorrido completo: riesgos, tareas, controles, matriz, batería ejecutada y hallazgos."
     >
       <section className={estilos.ficha} aria-labelledby="titulo-entidad">
         <h2 id="titulo-entidad" className={estilos.subtitulo}>
           Entidad evaluada
         </h2>
         <dl className={estilos.datos}>
+          <div>
+            <dt className="rotulo">Empresa (ficticia)</dt>
+            <dd>{entidad.empresa}</dd>
+          </div>
           <div>
             <dt className="rotulo">Motor</dt>
             <dd>

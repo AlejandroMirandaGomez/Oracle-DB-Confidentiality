@@ -16,7 +16,7 @@ export function Ejemplos() {
   return (
     <Pagina
       titulo="Ejemplos de evaluación"
-      introduccion="Evaluaciones reales de solo lectura que muestran cómo se ve el recorrido completo, con sus pruebas ejecutadas y sus hallazgos. Abra una para recorrerla."
+      introduccion="Evaluaciones de solo lectura sobre instancias reales, presentadas a nombre de empresas ficticias, que muestran cómo se ve el recorrido completo, con sus pruebas ejecutadas y sus hallazgos. Abra una para recorrerla."
     >
       <ComponenteTabular
         etiqueta="Ejemplos de evaluación disponibles"

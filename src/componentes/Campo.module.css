@@ -39,6 +39,10 @@
   padding-left: 1.2rem;
 }
 
+.valor ol {
+  padding-left: 1.5rem;
+}
+
 @media (max-width: 560px) {
   .rejilla {
     grid-template-columns: minmax(0, 1fr);

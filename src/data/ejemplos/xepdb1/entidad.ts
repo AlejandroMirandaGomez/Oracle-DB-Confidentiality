@@ -1,5 +1,6 @@
 export const entidad = {
   id: 'xepdb1',
+  empresa: 'Banco Los Tres Chanchitos',
   nombre: 'Instancia Oracle Database 21c Express Edition (CDB XE, PDB XEPDB1)',
   motor: 'Oracle Database 21c XE',
   version: '21.3.0.0.0',

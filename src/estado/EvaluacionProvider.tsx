@@ -20,8 +20,8 @@ import {
   validarArchivo,
   type Evaluacion,
 } from './archivoEvaluacion'
-import { guardarAlmacen, leerAlmacen } from './almacen'
-import { ContextoEvaluacion, type FirmaDeclaracion, type Progreso, type ResultadoImportacion, type ValorEvaluacion } from './contextoEvaluacion'
+import { borrarAlmacen, guardarAlmacen, leerAlmacen } from './almacen'
+import { ContextoEvaluacion, type Progreso, type ResultadoImportacion, type ValorEvaluacion } from './contextoEvaluacion'
 import { generarHallazgos } from './hallazgos'
 
 const registroVacioEvidencia: RegistroEvidencia = { respuesta: null, nota: '' }
@@ -39,20 +39,17 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
     sanearRespuestasPruebas(leerAlmacen<unknown>('pruebas', {})),
   )
   const [pasosVistos, setPasosVistos] = useState<string[]>(() => leerAlmacen<string[]>('pasos-vistos', []))
-  const [validacionesIA, setValidacionesIA] = useState<Record<string, string>>(() => leerAlmacen('validaciones-ia', {}))
-  const [firmaDeclaracion, setFirmaDeclaracion] = useState<FirmaDeclaracion | null>(() =>
-    leerAlmacen<FirmaDeclaracion | null>('declaracion', null),
-  )
   const [pila, setPila] = useState<string[]>([])
   const [direccion, setDireccion] = useState<1 | -1>(1)
 
-  useEffect(() => guardarAlmacen('organizacion', organizacion), [organizacion])
+  useEffect(() => {
+    if (organizacion === '') borrarAlmacen('organizacion')
+    else guardarAlmacen('organizacion', organizacion)
+  }, [organizacion])
   useEffect(() => guardarAlmacen('niveles', niveles), [niveles])
   useEffect(() => guardarAlmacen('evidencias', respuestasEvidencia), [respuestasEvidencia])
   useEffect(() => guardarAlmacen('pruebas', respuestasPruebas), [respuestasPruebas])
   useEffect(() => guardarAlmacen('pasos-vistos', pasosVistos), [pasosVistos])
-  useEffect(() => guardarAlmacen('validaciones-ia', validacionesIA), [validacionesIA])
-  useEffect(() => guardarAlmacen('declaracion', firmaDeclaracion), [firmaDeclaracion])
 
   const fijarOrganizacion = useCallback((nombre: string) => setOrganizacion(sanearOrganizacion(nombre)), [])
 
@@ -105,6 +102,13 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const limpiarBateria = useCallback(() => setRespuestasPruebas({}), [])
+
+  const limpiarAvance = useCallback(() => {
+    setNiveles({})
+    setRespuestasEvidencia({})
+    setRespuestasPruebas({})
+    setPasosVistos([])
+  }, [])
 
   const evaluacionActual = useMemo<Evaluacion>(
     () => ({ organizacion, niveles, respuestasEvidencia, respuestasPruebas }),
@@ -173,18 +177,6 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
     setPasosVistos((previos) => (previos.includes(paso) ? previos : [...previos, paso]))
   }, [])
 
-  const fijarValidacionIA = useCallback((usoId: string, texto: string) => {
-    setValidacionesIA((previas) => ({ ...previas, [usoId]: texto }))
-  }, [])
-
-  const firmarDeclaracion = useCallback((nombre: string) => {
-    const limpio = nombre.trim()
-    if (!limpio) return
-    setFirmaDeclaracion({ nombre: limpio, fecha: new Intl.DateTimeFormat('es-CR', { dateStyle: 'long' }).format(new Date()) })
-  }, [])
-
-  const quitarFirmaDeclaracion = useCallback(() => setFirmaDeclaracion(null), [])
-
   const abrirReferencia = useCallback((id: string) => {
     setDireccion(1)
     setPila([id])
@@ -218,6 +210,7 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       fijarRespuestaPrueba,
       limpiarMatriz,
       limpiarBateria,
+      limpiarAvance,
       exportarEvaluacion,
       importarEvaluacion,
       hayDatos,
@@ -229,11 +222,6 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       hallazgos,
       pasosVistos,
       marcarPasoVisto,
-      validacionesIA,
-      fijarValidacionIA,
-      firmaDeclaracion,
-      firmarDeclaracion,
-      quitarFirmaDeclaracion,
       pila,
       direccion,
       abrirReferencia,
@@ -252,6 +240,7 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       fijarRespuestaPrueba,
       limpiarMatriz,
       limpiarBateria,
+      limpiarAvance,
       exportarEvaluacion,
       importarEvaluacion,
       hayDatos,
@@ -263,11 +252,6 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       hallazgos,
       pasosVistos,
       marcarPasoVisto,
-      validacionesIA,
-      fijarValidacionIA,
-      firmaDeclaracion,
-      firmarDeclaracion,
-      quitarFirmaDeclaracion,
       pila,
       direccion,
       abrirReferencia,

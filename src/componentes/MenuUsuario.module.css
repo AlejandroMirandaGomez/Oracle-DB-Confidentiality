@@ -1,0 +1,119 @@
+.usuario {
+  position: relative;
+}
+
+.circulo {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid var(--placa);
+  border-radius: 50%;
+  background: var(--panel-claro);
+  color: var(--placa);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 140ms var(--ease-out);
+}
+
+.circulo:focus-visible {
+  border-radius: 50%;
+}
+
+.circulo:active {
+  transform: scale(0.95);
+}
+
+.circulo[data-activo] {
+  background: var(--placa);
+  color: var(--panel-claro);
+}
+
+.circulo[aria-expanded='true']:not([data-activo]) {
+  background: var(--panel-hondo);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .circulo:hover:not([data-activo]) {
+    background: var(--panel-hondo);
+  }
+
+  .circulo[data-activo]:hover {
+    background: var(--placa-suave);
+  }
+}
+
+@media (pointer: coarse) {
+  .circulo {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+.inicial {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  line-height: 1;
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 31;
+  display: grid;
+  gap: 0.5rem;
+  width: min(18rem, calc(100vw - 2rem));
+  padding: 0.35rem;
+  border: 2px solid var(--placa);
+  background: var(--panel);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.identidad {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.5rem 0.6rem 0.6rem;
+  border-bottom: 1px solid var(--junta);
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ayuda {
+  font-size: 0.8125rem;
+  color: var(--remache);
+}
+
+.accion {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  border-radius: var(--radio);
+  background: none;
+  color: var(--placa);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .accion:hover {
+    background: var(--panel-claro);
+  }
+}

@@ -34,7 +34,7 @@ Cualquier referencia (riesgo, tarea, control, fila, prueba o hallazgo) abre un p
 ## Cómo se guarda la evaluación
 
 - El avance se guarda solo en el `localStorage` del navegador, con el prefijo `confidencialidad-oracle:`. No hay servidor ni cuentas.
-- La evaluación también se puede **exportar e importar** como archivo `.json` (formato `evaluacion-confidencialidad-oracle`, versión 1) desde el Inicio, la Matriz y los Hallazgos. El archivo incluye el nombre de la organización, los niveles y las respuestas de evidencias y de pruebas. No incluye las validaciones de IA ni la firma de la declaración.
+- La evaluación también se puede **exportar e importar** como archivo `.json` (formato `evaluacion-confidencialidad-oracle`, versión 1) desde el Inicio, la Matriz y los Hallazgos. El archivo incluye el nombre de la organización, los niveles y las respuestas de evidencias y de pruebas. No incluye la declaración del uso de IA ni su firma.
 - El nombre de la organización es opcional y aparece en los hallazgos, en el CSV de la matriz, en el plan de acción y en el archivo de la evaluación.
 - Los hallazgos se generan con una función pura (`src/estado/hallazgos.ts`) a partir de los niveles, las evidencias y las pruebas, y mejoran cuando la batería está completa.
 
