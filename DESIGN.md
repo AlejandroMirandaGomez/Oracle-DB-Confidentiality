@@ -1,301 +1,442 @@
 ---
-name: Legajo de auditoría ISO 27002 · Confidencialidad DBA
-description: Papeles de trabajo de auditoría vivos, con marcas de cotejo en lápiz rojo y referencias cruzadas en lápiz azul.
+name: Confidencialidad en bases de datos Oracle, tablero anunciador
+description: Tablero anunciador de sala de control en acero gris y tinta casi negra, donde cada control es una lámpara que se enciende con la evidencia documentada.
 colors:
-  papel: "#e8f0e5"
-  papel-claro: "#f3f8f1"
-  papel-hondo: "#d9e5d4"
-  regla: "#bfd2ba"
-  regla-fuerte: "#92ae8c"
-  tinta: "#15221a"
-  tinta-suave: "#364740"
-  grafito: "#56625b"
-  rojo: "#b0261e"
-  rojo-tenue: "rgb(176 38 30 / 0.09)"
-  azul: "#1c4a92"
-  azul-tenue: "rgb(28 74 146 / 0.1)"
+  panel: "#cbd0cc"
+  panel-claro: "#dde1de"
+  panel-hondo: "#b9bfbb"
+  placa: "#1e2124"
+  placa-suave: "#3a3f43"
+  remache: "#454b50"
+  junta: "#a7aeaa"
+  lampara-verde: "#2a8452"
+  lampara-ambar: "#e39b17"
+  lampara-roja: "#c8372d"
+  lampara-blanca: "#f5f2e8"
+  sobre-lampara: "#ffffff"
+  velo: "rgb(30 33 36 / 0.32)"
 typography:
-  display:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(3rem, 6vw, 4.25rem)"
+  titular-inicio:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 7.4vw, 5.75rem)"
     fontWeight: 800
-    lineHeight: 0.82
+    lineHeight: 0.95
+    letterSpacing: "0"
     fontVariation: "'wdth' 62"
-  headline-caratula:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(1.55rem, 2.1vw, 2.05rem)"
+  titulo-pagina:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 4.2vw, 3.25rem)"
     fontWeight: 750
-    lineHeight: 1.05
-    letterSpacing: "-0.012em"
+    lineHeight: 1
+    letterSpacing: "0"
+    fontVariation: "'wdth' 66"
+  subtitulo-inicio:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 4vw, 3rem)"
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "0"
     fontVariation: "'wdth' 72"
-  headline:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "clamp(1.6rem, 3vw, 2.25rem)"
-    fontWeight: 650
-    lineHeight: 1.12
-    letterSpacing: "-0.01em"
-    fontVariation: "'wdth' 78"
-  title:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 600
-    lineHeight: 1.3
-    fontVariation: "'wdth' 92"
-  body:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+  subtitulo-fluido:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.5rem, 3vw, 2.1rem)"
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "0"
+    fontVariation: "'wdth' 72"
+  subtitulo-fluido-menor:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.5rem, 2.6vw, 2rem)"
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "0"
+    fontVariation: "'wdth' 72"
+  titulo-panel:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.6rem, 3vw, 2.1rem)"
+    fontWeight: 700
+    lineHeight: 1.08
+    letterSpacing: "0"
+    fontVariation: "'wdth' 68"
+  enlace-paso:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.4rem, 2.2vw, 1.75rem)"
+    fontWeight: 750
+    lineHeight: 1.1
+    letterSpacing: "0"
+    fontVariation: "'wdth' 72"
+  descripcion-inicio:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.125rem, 1.5vw, 1.25rem)"
+    fontWeight: 400
+    lineHeight: 1.5
+  seccion-175:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "1.75rem"
+    fontWeight: 700
+    lineHeight: 1.08
+    fontVariation: "'wdth' 72"
+  seccion-15:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 700
+    lineHeight: 1.08
+    fontVariation: "'wdth' 72"
+  subtitulo-125:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 700
+    lineHeight: 1.08
+    fontVariation: "'wdth' 72"
+  titulo-grupo-1125:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 700
+    lineHeight: 1.08
+    fontVariation: "'wdth' 72"
+  introduccion:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  cuerpo:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.55
-    fontFeature: "'tnum'"
-  body-campo:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+  cuerpo-menor:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
     lineHeight: 1.5
-  label:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+  texto-tabla:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  nota:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.4
+  rotulo:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 650
-    fontVariation: "'wdth' 85"
-  label-formulario:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
-    fontSize: "0.6875rem"
-    fontWeight: 600
-    fontVariation: "'wdth' 85"
-  marca:
-    fontFamily: "'Archivo Variable', 'Archivo', system-ui, sans-serif"
+    lineHeight: 1.2
+    letterSpacing: "0.08em"
+    fontVariation: "'wdth' 78"
+  pulsador:
+    fontFamily: "Archivo Variable, Archivo, system-ui, sans-serif"
     fontSize: "0.875rem"
-    fontWeight: 560
+    fontWeight: 600
+    lineHeight: 1.2
     fontVariation: "'wdth' 88"
-  id:
-    fontFamily: "'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace"
+  id-mono:
+    fontFamily: "JetBrains Mono Variable, JetBrains Mono, ui-monospace, monospace"
     fontSize: "0.8125rem"
-    fontWeight: 560
+    fontWeight: 600
+    lineHeight: 1.2
     letterSpacing: "-0.01em"
-  codigo:
-    fontFamily: "'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace"
+  numero-mono:
+    fontFamily: "JetBrains Mono Variable, JetBrains Mono, ui-monospace, monospace"
+    fontSize: "0.9375rem"
+    fontWeight: 700
+    lineHeight: 1.2
+  codigo-bloque:
+    fontFamily: "JetBrains Mono Variable, JetBrains Mono, ui-monospace, monospace"
     fontSize: "0.8125rem"
     fontWeight: 400
     lineHeight: 1.6
+  codigo-listado:
+    fontFamily: "JetBrains Mono Variable, JetBrains Mono, ui-monospace, monospace"
+    fontSize: "0.75rem"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
-  none: "0px"
-  foco: "2px"
-  punto: "50%"
+  radio: "2px"
 spacing:
-  renglon: "1.75rem"
-  margen: "clamp(1rem, 3vw, 2.5rem)"
-  ancho-indice: "15.5rem"
-  celda: "0.6rem 0.85rem"
-  campo: "0.85rem 1rem 0.95rem 0"
-  entre-papeles: "clamp(3.5rem, 8vw, 6.5rem)"
+  alto-navbar: "3.75rem"
+  margen: "clamp(1rem, 4vw, 3rem)"
+  ancho-contenido: "78rem"
+  gap-pulsadores: "0.35rem"
+  celda-v: "0.7rem"
+  celda-h: "0.85rem"
+  seccion: "1.75rem"
 components:
-  ref:
-    backgroundColor: "transparent"
-    textColor: "{colors.azul}"
-    typography: "{typography.id}"
-    rounded: "{rounded.none}"
-    padding: "0.05em 0.1em 0.2em"
-  boton:
-    backgroundColor: "{colors.papel-claro}"
-    textColor: "{colors.tinta}"
-    rounded: "{rounded.none}"
-    padding: "0.3rem 0.6rem"
-  accion:
-    backgroundColor: "{colors.papel-claro}"
-    textColor: "{colors.tinta}"
-    rounded: "{rounded.none}"
-    padding: "0.32rem 0.7rem"
-  boton-pendiente:
-    backgroundColor: "transparent"
-    textColor: "{colors.azul}"
-    rounded: "{rounded.none}"
-    padding: "0.15rem 0.45rem"
-  filtro:
-    backgroundColor: "transparent"
-    textColor: "{colors.tinta-suave}"
-    rounded: "{rounded.none}"
-    padding: "0.3rem 0.65rem"
-  filtro-activo:
-    backgroundColor: "{colors.tinta}"
-    textColor: "{colors.papel-claro}"
-    rounded: "{rounded.none}"
-    padding: "0.3rem 0.65rem"
-  formulario-encabezado:
-    backgroundColor: "{colors.papel-claro}"
-    textColor: "{colors.tinta}"
-    typography: "{typography.label-formulario}"
-    rounded: "{rounded.none}"
-    padding: "0.45rem 0.75rem 0.5rem"
-  cabecera-tabla:
-    backgroundColor: "{colors.papel-hondo}"
-    textColor: "{colors.grafito}"
-    typography: "{typography.label}"
-    padding: "{spacing.celda}"
+  lampara-apagada:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.remache}"
+    rounded: "{rounded.radio}"
+    padding: "0.28rem 0.6rem"
+    height: "1.5rem"
+  lampara-verde:
+    backgroundColor: "{colors.lampara-verde}"
+    textColor: "{colors.sobre-lampara}"
+    rounded: "{rounded.radio}"
+    padding: "0.28rem 0.6rem"
+  lampara-ambar:
+    backgroundColor: "{colors.lampara-ambar}"
+    textColor: "{colors.placa}"
+    rounded: "{rounded.radio}"
+    padding: "0.28rem 0.6rem"
+  lampara-roja:
+    backgroundColor: "{colors.lampara-roja}"
+    textColor: "{colors.sobre-lampara}"
+    rounded: "{rounded.radio}"
+    padding: "0.28rem 0.6rem"
+  lampara-blanca:
+    backgroundColor: "{colors.lampara-blanca}"
+    textColor: "{colors.placa}"
+    rounded: "{rounded.radio}"
+    padding: "0.28rem 0.6rem"
+  pulsador:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa}"
+    typography: "{typography.pulsador}"
+    rounded: "{rounded.radio}"
+    padding: "0.35rem 0.85rem"
+    height: "2.25rem"
+  pulsador-hover:
+    backgroundColor: "{colors.panel-hondo}"
+  pulsador-principal:
+    backgroundColor: "{colors.placa}"
+    textColor: "{colors.panel-claro}"
+    rounded: "{rounded.radio}"
+  pulsador-principal-hover:
+    backgroundColor: "{colors.placa-suave}"
+  pulsador-deshabilitado:
+    textColor: "{colors.remache}"
+    rounded: "{rounded.radio}"
+  campo-texto:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa}"
+    rounded: "{rounded.radio}"
+    padding: "0.45rem 0.7rem"
+    height: "2.5rem"
+  navbar:
+    backgroundColor: "{colors.panel-hondo}"
+    textColor: "{colors.placa}"
+    height: "{spacing.alto-navbar}"
+  navbar-menu:
+    backgroundColor: "{colors.panel}"
+    textColor: "{colors.placa}"
+    padding: "0.35rem"
+  navbar-enlace-activo:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa}"
+    rounded: "{rounded.radio}"
+  tabla-encabezado:
+    backgroundColor: "{colors.panel-hondo}"
+    textColor: "{colors.placa}"
+    padding: "0.65rem 0.85rem"
+  tabla-fila-hover:
+    backgroundColor: "{colors.panel-claro}"
+  panel-detalle:
+    backgroundColor: "{colors.panel}"
+    textColor: "{colors.placa}"
+    width: "44rem"
+  panel-detalle-barra:
+    backgroundColor: "{colors.panel-hondo}"
+    padding: "0.6rem 0.9rem"
   bloque-codigo:
-    backgroundColor: "{colors.papel-claro}"
-    textColor: "{colors.tinta}"
-    typography: "{typography.codigo}"
-    rounded: "{rounded.none}"
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa}"
+    typography: "{typography.codigo-bloque}"
     padding: "0.85rem 1rem"
-  hoja:
-    backgroundColor: "{colors.papel-claro}"
-    textColor: "{colors.tinta}"
-    rounded: "{rounded.none}"
-    width: "min(41rem, calc(100vw - 1.5rem))"
+  bloque-codigo-barra:
+    backgroundColor: "{colors.panel-hondo}"
+    textColor: "{colors.placa-suave}"
+    typography: "{typography.codigo-listado}"
+  placa-creditos:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa-suave}"
+    padding: "0.85rem 1.1rem"
+  paso-numero:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.placa}"
+    rounded: "{rounded.radio}"
+    size: "2.75rem"
+  celda-madurez-4:
+    backgroundColor: "{colors.lampara-blanca}"
+    textColor: "{colors.placa}"
+    typography: "{typography.numero-mono}"
+    rounded: "{rounded.radio}"
+  celda-madurez-sin:
+    backgroundColor: "{colors.panel-claro}"
+    textColor: "{colors.remache}"
+    typography: "{typography.rotulo}"
+    rounded: "{rounded.radio}"
+  lista-controles:
+    backgroundColor: "{colors.panel-hondo}"
+    textColor: "{colors.placa}"
+    width: "21rem"
+  lista-controles-activo:
+    backgroundColor: "{colors.placa}"
+    textColor: "{colors.panel-claro}"
 ---
 
-# Design System: Legajo de auditoría ISO 27002 · Confidencialidad DBA
+# Design System: Confidencialidad en bases de datos Oracle, tablero anunciador
 
 ## Overview
 
-**Creative North Star: "El legajo de papeles de trabajo"**
+**Creative North Star: "Tablero anunciador de sala de control"**
 
-El sistema es un legajo de auditoría impreso en papel de columnas verde pálido, con rayado contable, y anotado a mano con un lápiz bicolor. Cada sección es un papel con su letra (S, A a J), su encabezado de formulario (Entidad, Papel N.º, Preparado, Revisado) y su leyenda de marcas al pie. La tinta verde negra lleva el texto y los IDs; el lápiz rojo estampa marcas de cotejo y señala excepciones; el lápiz azul subraya referencias cruzadas que se pueden seguir hasta el papel destino.
+Cada control es una ventana iluminada de un anunciador industrial, y la trazabilidad (riesgo, control, prueba, hallazgo) es el diagrama mímico que la enciende. La escena es una oficina con luz de día, de modo que el sistema es claro únicamente: acero pintado gris claro, placas grabadas en Archivo condensado y tinta casi negra. El chasis trabaja con dos tintas, `--panel` (gris acero) y `--placa` (tinta casi negra). El color no decora: existe solo como lámpara encendida (verde, ámbar, roja, blanca) y siempre lleva texto grabado encima.
 
-La densidad es la de un papel de trabajo real: tablas con reglas finas, celdas compactas, etiquetas condensadas de formulario y cifras tabulares. La jerarquía no viene de cajas ni de color, sino del eje de ancho de Archivo (condensada en letras de papel, títulos y formularios; ancho normal en prosa) y de reglas de distinto grosor (2px tinta entre papeles, 1px regla fuerte en encabezados, 1px regla en filas).
+La densidad es de instrumento, no de panel de marketing. Las páginas son listas, tablas y regiones separadas por reglas de 1 px y 2 px, con mucho aire en Inicio y compactas en las herramientas. Las esquinas son casi rectas (2 px) y las lámparas muestran brillo interior, nunca resplandor exterior. El único objeto elevado de todo el sistema es el panel lateral de detalle.
 
-Tema claro únicamente, elegido por la escena de uso: el profesor califica en una laptop con luz de día. El mundo rechaza el centro de cumplimiento GRC (barra lateral de tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón.
+El sistema rechaza el centro de cumplimiento (barra lateral de navegación, tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón. La construcción confirma ambas negativas: la navegación es una barra superior con menús, los contenedores son regiones con regla y no tarjetas, y el único fondo oscuro es la tinta de un pulsador activo o de la opción seleccionada.
 
 **Key Characteristics:**
-- Papel verde pálido con rayado contable cada renglón (1.75rem) y doble regla vertical de margen.
-- Dos tintas para el chasis (tinta y grafito); el color solo aparece como lápiz.
-- Esquinas rectas en todo; reglas finas en lugar de tarjetas.
-- Una sola superficie con sombra: la hoja que se levanta sobre la pila.
-- Marcas con forma y texto: el color nunca es la única señal.
-- Movimiento de papel: hojas que se levantan con peso, trazos que se dibujan, sellos que se estampan.
+- Dos tintas de chasis (`--panel` y `--placa`); el color solo aparece como lámpara encendida con texto grabado.
+- Radio único de 2 px; reglas de 1 px y 2 px en tinta o junta, nunca de color.
+- Archivo Variable con eje de ancho: condensado (62 a 78 por ciento) en placas, títulos y rótulos; ancho normal en prosa.
+- JetBrains Mono para IDs canónicos, números y código.
+- Una sola sombra, la del panel lateral, tintada hacia la tinta.
+- Movimiento corto de instrumento: lámparas 160 a 200 ms, pulsadores 120 a 160 ms, panel 0,4 s.
 
 ## Colors
 
-Paleta de papel contable: verdes desaturados para el soporte y las reglas, tinta verde negra para el texto, y dos lápices saturados con roles fijos.
+Paleta de acero pintado y tinta, con cuatro lámparas como único color.
 
 ### Primary
-- **Tinta verde negra** (tinta): texto, IDs canónicos, reglas de 2px que abren cada papel, letra del papel, relleno del estado seleccionado (filtro activo, opción de control activa, punto enfocado del mapa de calor).
+- **Tinta de placa** (#1e2124, `--placa`): texto, bordes de 1 px y 2 px, reglas, foco y fondo del pulsador activo o de la opción seleccionada. Es la segunda tinta del chasis.
+- **Tinta suave** (#3a3f43, `--placa-suave`): texto secundario, subrayados en reposo, fondo del pulsador principal al pasar el cursor.
 
 ### Secondary
-- **Lápiz rojo** (rojo): marcas de cotejo (visto, parcial, no cumple), sello de firma de revisión, círculo a lápiz del nivel 0-4 elegido y de la letra del papel actual en el índice, tramas de banda, la palabra "Crítico", el escenario de riesgo (rojo-tenue de fondo con filete de 1px) y el cursor de escritura.
-- **Lápiz azul** (azul): referencias cruzadas (IDs en mono con trazo de lápiz que se dibuja debajo), enlaces, botones de texto que llevan a otra acción (Firmar revisión, Copiar), anillo de foco y selección de texto.
+- **Lámpara verde** (#2a8452, `--lampara-verde`): estados completos (Completa, Visto, CUMPLE). Texto blanco encima, 4,65:1.
+- **Lámpara ámbar** (#e39b17, `--lampara-ambar`): estados en curso o parciales. Texto `--placa` encima, 6,91:1.
+- **Lámpara roja** (#c8372d, `--lampara-roja`): riesgo alto o crítico, incumplimiento. Texto blanco encima, 5,20:1.
+- **Lámpara blanca** (#f5f2e8, `--lampara-blanca`): madurez 0 a 4 en cinco intensidades, y marca de propiedad activa. Texto `--placa`.
+- **Texto sobre lámpara** (#ffffff, `--sobre-lampara`): solo sobre verde y rojo.
 
 ### Neutral
-- **Papel** (papel): fondo general del legajo.
-- **Papel claro** (papel-claro): superficies que se escriben: formularios de encabezado, la hoja levantada, bloques de código, fila activa de la cédula, botones.
-- **Papel hondo** (papel-hondo): cabeceras de tabla, barra de la hoja y del bloque de código, pista de la barra de desplazamiento, hoja de abajo de la pila.
-- **Regla** (regla): filetes entre filas y entre celdas de formulario.
-- **Regla fuerte** (regla-fuerte): bordes de formularios, bloques, botones y filtros; regla bajo el encabezado de cada papel.
-- **Tinta suave** (tinta-suave): texto secundario, objetivo del papel, nombres junto a referencias, IDs dentro de filas.
-- **Grafito** (grafito): etiquetas de formulario y de tabla, notas, fechas, pie de papel, nivel 0 de la trama (borde punteado).
+- **Acero** (#cbd0cc, `--panel`): fondo de página, del menú desplegable y del panel lateral.
+- **Acero claro** (#dde1de, `--panel-claro`): superficie de pulsadores, campos, bloques de código, filas apiladas y placa de créditos.
+- **Acero hondo** (#b9bfbb, `--panel-hondo`): navbar, franja de encabezado de tabla, barras de bloque y panel, lista lateral de Controles.
+- **Remache** (#454b50, `--remache`): rótulos, texto de apoyo, estados deshabilitados, marcador del scroll. 5,66:1 sobre `--panel` y 4,73:1 sobre `--panel-hondo`.
+- **Junta** (#a7aeaa, `--junta`): reglas finas entre filas, borde de lámpara apagada y de pulsador deshabilitado.
+- **Velo** (rgb(30 33 36 / 0.32), `--velo`): cubre la página detrás del panel lateral.
 
 ### Named Rules
-**La Regla del Lápiz Bicolor.** Rojo solo para marcas de cotejo y excepciones; azul solo para referencias cruzadas y lo que se sigue o se activa; tinta verde negra para IDs y texto. Un ID que no es enlace va en tinta o tinta suave, nunca en azul. La regla vertical roja de margen al 20 % y el rayado verde son impresión del papel, no lápiz: son material propio del mundo y están permitidos.
+**The Lámpara Encendida Rule.** El color solo existe como lámpara encendida y siempre con texto grabado. Una lámpara apagada es acero claro con borde de junta y texto remache; no hay un cuarto estado de color.
 
-**La Regla de las Dos Tintas.** El chasis (texto, reglas, superficies, selección) se resuelve solo con verdes y tinta. Un estado seleccionado se marca invirtiendo a tinta sobre papel claro, nunca con un tono de acento.
+**The Dos Tintas Rule.** El chasis (fondos, bordes, reglas, texto) usa únicamente la familia de `--panel` y la de `--placa`. Un tinte de lámpara mezclado con acero solo se admite en celdas de baja intensidad (mapa de calor, escala de madurez) con su texto o inicial al lado.
+
+**The Contraste Medido Rule.** Los tokens de texto sobre lámpara se ajustaron por medición AA, no por gusto: `--remache` y `--lampara-verde` son más oscuros que los valores que sugería el plan. No se aclaran sin medir de nuevo.
 
 ## Typography
 
-**Display Font:** Archivo Variable (eje de ancho 62 a 125 %, con system-ui)
-**Body Font:** Archivo Variable
-**Label/Mono Font:** JetBrains Mono Variable (con ui-monospace)
+**Display Font:** Archivo Variable (con Archivo, system-ui, sans-serif), eje de ancho condensado
+**Body Font:** Archivo Variable a ancho normal
+**Label/Mono Font:** JetBrains Mono Variable (con JetBrains Mono, ui-monospace, monospace)
 
-**Character:** Una sola familia que cambia de ancho según el oficio: muy condensada y pesada como rótulo de carpeta en la letra del papel, condensada en títulos y formularios, ancho normal en la prosa. JetBrains Mono lleva todo lo que es código o identificador canónico (R-CONF-01, T-03, A8.13, PR-07), fechas y SQL.
+**Character:** Una placa grabada y una columna de códigos de instrumento. El ancho condensado da la voz de rótulo industrial en titulares y placas; la prosa permanece en ancho normal para leerse sin esfuerzo. Los números y IDs son monoespaciados y todo el cuerpo usa cifras tabulares.
 
 ### Hierarchy
-- **Display** (800, clamp(3rem, 6vw, 4.25rem), 0.82, ancho 62 %): la letra de cada papel (S, A a J) a la izquierda del título.
-- **Headline carátula** (750, clamp(1.55rem, 2.1vw, 2.05rem), 1.05, ancho 72 %): título del legajo en la carátula, máximo 28ch.
-- **Headline** (650, clamp(1.6rem, 3vw, 2.25rem), 1.12, ancho 78 %, -0.01em): título de cada papel; todos los h1 a h4 heredan ancho 78 % y peso 650 con text-wrap balance.
-- **Title** (600, 1rem, 1.3, ancho 92 %): nombre de un riesgo u objeto dentro de una fila.
-- **Body** (400, 1rem, 1.55, cifras tabulares): prosa; objetivo del papel a 62ch, entrada de la hoja a 60ch. Valor de campo a 0.9375rem / 1.5.
-- **Label** (650, 0.75rem, ancho 85 %): cabeceras de tabla, etiquetas de campo, fases del índice. Etiqueta de formulario de encabezado a 0.6875rem. Siempre en caja de oración, sin versalitas ni espaciado ancho.
-- **Marca** (560, 0.875rem, ancho 88 %): texto que acompaña una marca o una banda.
-- **ID** (JetBrains Mono 560 a 600, 0.8125rem, -0.01em): identificadores canónicos y referencias. Código a 0.8125rem / 1.6; listados a 0.75rem sobre renglón de 1.75rem.
+- **Display** (800, clamp(2.5rem, 7.4vw, 5.75rem), 0.95, ancho 62 por ciento): titular de Inicio, dos líneas como máximo.
+- **Headline** (750, clamp(2rem, 4.2vw, 3.25rem), 1, ancho 66 por ciento): h1 de cada Pagina; subtítulos de Inicio en clamp(2rem, 4vw, 3rem).
+- **Title** (700, clamp(1.4rem, 2.2vw, 1.75rem) a 1.125rem, 1.08 a 1.1, ancho 68 a 85 por ciento): título del panel lateral en clamp(1.6rem, 3vw, 2.1rem), enlaces de paso, subtítulos de sección (1.75, 1.5, 1.25 y 1.125 rem) y subtítulos fluidos clamp(1.5rem, 2.6vw, 2rem) y clamp(1.5rem, 3vw, 2.1rem).
+- **Body** (400, 1 rem, 1,55): prosa; 0.9375rem en celdas, valores y campos; 1.125rem en introducciones de página y clamp(1.125rem, 1.5vw, 1.25rem) en la descripción de Inicio, con máximo de 54 a 62ch.
+- **Label** (650 a 700, 0.75rem, 0,08em, versalitas, ancho 78 por ciento): clase global `.rotulo`, lámparas, encabezados apilados y celda "sin evaluar". También 0.8125rem y 0.875rem para notas y texto de tabla.
+- **Mono** (600 a 700, 0.8125rem y 0.9375rem; 0.75rem en listados): IDs canónicos de controles, riesgos y pruebas, números de nivel, código SQL.
+
+Rampa literal completa en uso: 0.75, 0.8125, 0.875, 0.9375, 1, 1.125, 1.25, 1.5 y 1.75 rem, más los clamp fluidos de títulos de página, panel, Inicio y subtítulos. Todos están registrados en el frontmatter.
 
 ### Named Rules
-**La Regla del Eje de Ancho.** El ancho comunica el registro: 62 % letra de papel, 72 a 78 % títulos, 85 a 88 % etiquetas y marcas, 92 % nombres en fila, 100 % prosa. No se usa peso ni tamaño extra para lo que el ancho ya resuelve.
+**The Rótulo Nunca Encima Rule.** La clase `.rotulo` (versalitas cortas con espaciado) acompaña etiquetas, columnas y valores; nunca se coloca encima de un título como antetítulo.
 
-**La Regla del ID Canónico.** Todo identificador del legajo va en JetBrains Mono y se escribe completo; es el idioma de las referencias cruzadas.
+**The Ancho Por Función Rule.** Condensado para placas, títulos, lámparas y rótulos; ancho normal para prosa; mono para identificadores y código. No se mezclan en una misma frase.
 
 ## Layout
 
-Escritorio: rejilla de dos columnas, índice de papeles fijo a la izquierda (15.5rem, alto completo, regla derecha doble) y el legajo en el resto. El legajo tiene un margen fluido (clamp(1rem, 3vw, 2.5rem)) con una regla roja de margen a la izquierda, dos reglas verdes a la derecha y el rayado contable cada 1.75rem detrás de todo.
+Una columna de contenido de hasta 78rem (`--ancho-contenido`), centrada, con márgenes laterales fluidos `clamp(1rem, 4vw, 3rem)`. El navbar es sticky de 60 px (3,75rem) con regla inferior de 2 px; el contenido de página arranca con padding vertical fluido y `scroll-padding-top` descuenta el navbar.
 
-Cada papel abre con una regla de tinta de 2px y un encabezado en tres columnas: letra, títulos con objetivo, formulario de cuatro casillas (Entidad, Papel, Preparado, Revisado). Entre papeles hay clamp(3.5rem, 8vw, 6.5rem). Las tablas usan celdas de 0.6rem por 0.85rem, filetes de 1px y cabecera en papel hondo; los campos de detalle se ordenan en rejilla de dos columnas con filete inferior.
+Pagina abre con h1 condensado, descripción de hasta 62ch y una regla de 2 px; el cuerpo es una rejilla con separación `clamp(2rem, 4vw, 3rem)`. Las tablas son regiones con regla superior de 2 px y filas separadas por reglas de 1 px en junta. Controles usa una lista lateral sticky de 21rem a todo el alto bajo el navbar (`100dvh` menos 3,75rem), con borde derecho de 2 px, y el detalle ocupa el resto. Inicio es una portada de dos columnas (mensaje y placa de créditos) seguida de una lista numerada de seis pasos con número, enlace y estado en filas separadas por reglas.
 
-Responsivo: la carátula pasa a una columna a 1180px; a 1100px el índice se convierte en franja horizontal fija arriba solo con letras y se pierden las reglas de margen; a 860px el formulario del papel baja bajo el título; a 760px las tablas se apilan como filas etiquetadas (etiqueta de 0.6875rem sobre cada valor); a 640px la hoja levantada ocupa toda la pantalla; a 520px el formulario del papel pasa a 2 por 2.
+Responsive: Controles apila y sustituye la lista lateral por un selector a 860 px; las tablas pasan a registros apilados con etiquetas generadas (`data-etiqueta`) a 760 px; el navbar cambia a menú móvil a 760 px; la portada de Inicio apila a 900 px y sus pasos a 640 px; el panel lateral ocupa 100vw a 640 px; Campo pasa a una columna a 560 px. No hay desplazamiento horizontal a 390 px; el ancho mínimo del cuerpo es 20rem.
+
+El ritmo vertical es de reglas, no de huecos: 0.35rem entre pulsadores, 0.7rem por 0.85rem en celdas, 1.75rem entre secciones, `clamp(4rem, 9vw, 7.5rem)` entre bloques de Inicio.
 
 ## Elevation & Depth
 
-Plano por defecto. La profundidad se expresa con reglas, con el papel claro sobre el papel y con el papel hondo en cabeceras. Hay exactamente una pila elevada: la hoja de referencia que se levanta desde la derecha sobre un velo de tinta al 22 %, con una segunda hoja de papel hondo girada -1.2° asomando debajo cuando el lector ya siguió una referencia.
+El sistema es plano por defecto. La profundidad se transmite con tonos de acero (`--panel`, `--panel-claro`, `--panel-hondo`), reglas de tinta y brillo interior en las piezas encendidas. La única elevación es la del panel lateral de detalle.
 
 ### Shadow Vocabulary
-- **Hoja levantada** (`box-shadow: 0 1px 0 rgb(21 34 26 / 0.06), 0 24px 48px -18px rgb(21 34 26 / 0.34), 0 6px 14px -6px rgb(21 34 26 / 0.12)`): solo la hoja de referencia abierta.
-- **Hoja de abajo** (`box-shadow: 0 1px 0 rgb(21 34 26 / 0.05), 0 6px 16px -10px rgb(21 34 26 / 0.3)`): solo la hoja previa de la pila, bajo la hoja levantada.
+- **Sombra de panel** (`box-shadow: 0 28px 56px -20px rgb(30 33 36 / 0.5), 0 8px 18px -8px rgb(30 33 36 / 0.28)`, `--sombra-panel`): solo el panel lateral, tintada hacia la tinta.
+- **Brillo interior** (`box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.34), inset 0 -0.5rem 0.7rem -0.45rem rgb(30 33 36 / 0.38)`, `--brillo-interior`): lámparas, puntos, celdas de madurez 3 y 4, pulsadores de estado pulsados. Es la lectura de "encendida".
+- **Presión interior** (`box-shadow: inset 0 2px 4px rgb(30 33 36 / 0.32)`, `--presion-interior`): pulsador mientras se presiona.
+- **Relieve de pulsador** (`box-shadow: inset 0 -2px 0 rgb(30 33 36 / 0.14)`, `--relieve-pulsador`): borde inferior de reposo de pulsadores y del punto del mapa de calor.
 
 ### Named Rules
-**La Regla de la Hoja Única.** Ninguna superficie tiene sombra salvo la hoja levantada y la que asoma debajo. Sin tarjetas, sin sombras de reposo, sin sombras desplazadas duras.
+**The Una Sombra Rule.** Ninguna sombra exterior salvo `--sombra-panel`. Todo lo demás es inset o regla.
+
+**The Sin Resplandor Rule.** Una lámpara brilla hacia adentro; nunca emite halo ni glow exterior.
 
 ## Shapes
 
-Esquinas rectas en todo (0px): formularios, botones, filtros, bloques, hojas, tablas. Las únicas curvas son trazos de lápiz dibujados a mano en SVG (círculo alrededor del nivel elegido y de la letra actual, trazo bajo la referencia) y el punto circular del mapa de calor (50 %), que es un punto trazado sobre una cuadrícula. El foco usa 2px de redondeo para que el anillo no corte el texto. Los bordes son de 1px; el 2px está reservado a la regla de tinta que abre papel, índice y cierre. El borde punteado de 1px indica algo pendiente de completar (botón Firmar revisión, nivel 0 de la trama).
+Esquinas casi rectas con radio único de 2 px (`--radio`) en lámparas, pulsadores, campos, números de paso y celdas. Los contenedores grandes (regiones de tabla, panel lateral, bloques de código, registros apilados) tienen esquinas rectas. El borde habitual es de 1 px en `--placa`; los bordes de 2 px (navbar, encabezados de Pagina, regla superior de tablas, borde del panel, menú desplegable, celda de madurez 4, número de paso) son siempre tinta, nunca de color. La placa de créditos lleva borde de 2 px y un filo interior de 1 px a 6 px de distancia, como una placa grabada. Foco visible: contorno de 2 px en `--placa` con 2 px de separación.
 
 ## Components
 
-### Buttons
-Herramientas de escritorio, no llamadas a la acción.
-- **Shape:** rectos (0px), borde de 1px.
-- **Botón de hoja** (papel claro, tinta, borde regla fuerte, 0.3rem por 0.6rem, 0.8125rem): Cerrar, Volver; variante solo icono con 0.4rem.
-- **Acción** (papel claro, tinta, borde tinta suave, 0.32rem por 0.7rem): acciones de la matriz como Restablecer y Descargar; deshabilitada al 45 % de opacidad.
-- **Pendiente** (sin fondo, azul, borde punteado regla fuerte, 0.15rem por 0.45rem): "Firmar revisión"; al firmar se reemplaza por iniciales en mono rojo con un sello que se estampa.
-- **Texto azul** (sin fondo, azul, borde transparente): Copiar en bloques de código.
-- **Hover / Focus:** en puntero fino el borde sube a tinta suave o azul; al presionar escala 0.96 a 0.97 en 140ms con ease-out; foco con anillo azul de 2px separado 2px.
+### Lámpara y PuntoLampara
+Ventana de esquinas casi rectas (2 px) con rótulo grabado en versalitas condensadas (0.75rem, 700, 0,08em). Apagada: fondo `--panel-claro`, borde `--junta`, texto `--remache`. Encendida: borde `--placa-suave`, fondo del tono (verde, ámbar, roja o blanca), brillo interior y animación `encender` de 180 ms (opacidad de 0,35 a 1 y brillo de 0,82 a 1). PuntoLampara es la versión de 0.75rem sin texto, con borde de 2 px en tinta al encenderse; siempre acompaña un texto vecino. BandaRiesgo envuelve una lámpara con el puntaje y la banda escritos ("Sin evaluar" si no hay puntaje).
 
-### Chips
-No hay chips ni insignias de color. Los filtros de la matriz son un control segmentado: casillas rectas dentro de un borde de regla fuerte, separadas por filetes; la activa se invierte a tinta con texto papel claro.
+### RampaMadurez
+Cinco intensidades fijas de lámpara blanca para los niveles 0 a 4, siempre con el número en mono: mezclas de `--lampara-blanca` con `--panel-hondo` al 28, 52 y 76 por ciento para los niveles 1 a 3, blanco pleno en el 4. El borde se oscurece por nivel (junta, remache, placa-suave, placa, y 2 px de placa en el 4); los niveles 3 y 4 añaden brillo interior. "Sin evaluar" es una celda de acero claro con rótulo.
 
-### Cards / Containers
-- **Corner Style:** recto (0px).
-- **Background:** papel claro para formularios, código y hoja; nada más se encaja.
-- **Shadow Strategy:** ninguna (ver La Regla de la Hoja Única).
-- **Border:** 1px regla fuerte; formulario de la carátula con 1px tinta suave.
-- **Internal Padding:** celdas de formulario 0.45rem por 0.75rem; código 0.85rem por 1rem.
+### Pulsador, SelectorNivel y BotoneraEstado
+Pulsador global `.pulsador`: borde de 1 px en tinta, 2 px de radio, fondo `--panel-claro`, texto 0.875rem a 600 y ancho 88 por ciento, alto mínimo 2.25rem (2.75rem con puntero grueso), relieve inferior. Hover (solo con puntero fino): `--panel-hondo`. Pulsado: `scale(0.97)` y presión interior, con transición de 140 ms en transform, sombra y color. Variantes: `data-principal`, `aria-pressed="true"` y `aria-checked="true"` pasan a fondo `--placa` y texto `--panel-claro` (hover `--placa-suave`); `data-compacto` baja a 1.875rem y 0.8125rem. Deshabilitado: borde junta, texto remache, sin relieve.
+SelectorNivel es una fila de pulsadores mono 0 a 4 teñidos con la intensidad de la rampa; el elegido lleva borde de 2 px y brillo interior. BotoneraEstado son pulsadores de 5.5rem que, al quedar pulsados, se encienden en verde, ámbar o roja con brillo interior.
 
-### Inputs / Fields
-- **Style:** campo de iniciales para firmar: 4.25rem, papel, borde regla fuerte, mono 0.8125rem en mayúsculas, placeholder grafito.
-- **Focus:** anillo azul global.
-- **Selector de nivel 0-4:** cinco números mono sin caja; el elegido se pone rojo y en negrita y un círculo de lápiz se dibuja a su alrededor en 300ms; el valor original queda tachado en grafito.
+### ComponenteTabular
+Región con regla superior de 2 px y regla inferior de 1 px en tinta. Encabezado en franja `--panel-hondo` con regla de 1 px; filas separadas por reglas de 1 px en junta; cabeceras de grupo en `--panel-claro` con título condensado de 1.125rem. Las filas son clicables y abren el panel lateral: hover (puntero fino) y foco interior las pasan a `--panel-claro`. A 760 px se apilan como registros: cada fila es un bloque con borde de 1 px, etiqueta generada en rótulo a 6.5rem, y la primera celda sobre `--panel-hondo`.
 
-### Navigation
-- **Índice de papeles:** columna fija con título condensado sobre regla de tinta de 2px, fases PHVA (Planificar, Hacer, Verificar, Actuar, Soporte) como etiquetas grafito, filas con letra del papel (800, ancho 62 %) y nombre a 0.875rem entre filetes. El papel actual se pone en tinta y peso 620 con un círculo rojo a lápiz alrededor de la letra; los papeles firmados muestran un sello rojo; las marcas de lectura usan un banderín azul. Pie con el estado de firmas.
-- **Móvil (1100px o menos):** franja horizontal fija con solo las letras, sin barra de desplazamiento visible.
+### Navbar
+Sticky de 60 px sobre `--panel-hondo` con regla inferior de 2 px. Marca a la izquierda en placa condensada (1.125rem, 800, ancho 66 por ciento, versalitas) con borde de 1 px. A la derecha, menús desplegables Herramientas y Material de apoyo: disparador de 0.9375rem a 600; abierto lleva borde de tinta y fondo `--panel-claro`; el menú es una caja de 17rem con borde de 2 px en `--panel`. La ruta activa lleva `aria-current`, fondo `--panel-claro`, peso 700, subrayado de 3 px y una lámpara pequeña. A 760 px los menús pasan a un panel móvil con botón.
 
-### Referencia cruzada (firma)
-ID en mono azul con nombre opcional en tinta suave. Un trazo de lápiz azul en SVG se dibuja debajo al pasar el puntero o al enfocar (220ms) y se queda dibujado y más grueso cuando la fila de origen está activa (320ms con retardo escalonado). Al tocarla, la hoja destino se levanta desde la derecha con resorte (0.46s, rebote 0.12) y el recorrido de migas en mono permite volver.
+### Panel lateral de detalle (HojaReferencia)
+`role="dialog"` anclado a la derecha, ancho `min(44rem, 100vw)`, fondo `--panel`, borde izquierdo de 2 px y `--sombra-panel`, sobre un velo `--velo`. Entra con resorte corto (0,4 s, rebote 0,1) y sale en 180 ms con `--ease-out`; atrapa Tab y devuelve el foco. La barra superior (`--panel-hondo`) muestra el recorrido como cadena de pasos mono unidos por trazos de 2 px (el paso actual con caja, los previos como enlaces subrayados que engrosan a 4 px al pasar). El encabezado del contenido lleva el tipo en 0.8125rem, el título condensado y una regla de 2 px. A 640 px ocupa todo el ancho.
 
-### Marca de cotejo
-Icono Phosphor en peso bold, rojo, girado -7° (parcial, 18°), con texto en tinta (cumple), tinta suave (parcial) o rojo (no cumple). Al aparecer se estampa: de 1.35 a 1 de escala en 260ms. Siempre forma más texto.
+### Ref (cinta de mímico)
+Botón sin caja con el ID en mono (0.8125rem, 600) y el nombre en 0.9375rem, subrayado por una barra de 2 px en `--placa-suave` que se enciende a 4 px y `--placa` al enfocar, al pasar el cursor o cuando la referencia está resaltada (160 ms). Al pulsar, `scale(0.97)`. Las listas de Ref se envuelven con 0.85rem de separación o se apilan.
 
-### Trama
-Cuadro de 0.95rem con borde rojo al 70 % y rayado diagonal a lápiz cuya densidad codifica el nivel: 0 borde punteado grafito, 1 rayado abierto, 2 rayado denso, 3 cruzado, 4 cruzado denso con fondo rojo al 20 %. Acompaña puntajes, bandas y prioridades en lugar de cualquier insignia rellena. El puntaje va en mono 650 con ancho mínimo de 4ch para alinear la palabra de banda.
+### BloqueCodigo, Campo y Rejilla
+BloqueCodigo: caja de 1 px en tinta sobre `--panel-claro`, barra de título en mono 0.75rem sobre `--panel-hondo` y cuerpo mono de 0.8125rem con interlineado 1,6; la variante listado baja a 0.75rem sin ajuste de línea y altura máxima de 32rem. Campo y Rejilla son una lista de definición (`dl`) de dos columnas con regla superior de 1 px en tinta y filas con regla de junta; etiqueta a 650 y valor a 0.9375rem; una columna a 560 px. El campo de texto `.control-texto` lleva borde de 1 px, radio 2 px, fondo `--panel-claro`, 0.9375rem y alto mínimo de 2.5rem.
 
-### Hoja de referencia
-Panel de 41rem fijo a 0.75rem del borde, papel claro con rayado, regla roja de margen a 2.6rem, barra en papel hondo con recorrido y botones, contenido con sangría de 3.4rem. Título con ID en mono encima del nombre como parte del mismo h2, y debajo el tipo y papel de origen en grafito.
+### Mapa de calor
+Plano cuadrado de 5 por 5 con borde de 2 px y celdas de baja intensidad: mezclas de lámpara con `--panel-claro` (verde 22, ámbar 40, roja 26 y 50 por ciento) más la inicial de la banda en la esquina y el valor en mono. Los puntos de riesgo son cuadros de 2rem con borde de 2 px y número; el enfocado se invierte a tinta.
+
+### Placa de créditos y lista de pasos de Inicio
+La placa de créditos es una caja de `--panel-claro` con borde de 2 px y filo interior, texto de 0.8125rem y el nombre del autor a 1rem condensado. La lista numerada de seis pasos usa un cuadro mono de 2.75rem con borde de 2 px, el enlace condensado de paso que engrosa su subrayado a 5 px al pasar el cursor, y a la derecha la lámpara de progreso con su texto. Los pasos entran con un escalonado de 45 ms y 240 ms de duración (opacidad y 8 px de desplazamiento), el único escalonado del sistema.
+
+### Movimiento
+Lámparas 160 a 200 ms, pulsadores 120 a 160 ms, panel 0,4 s con salida de 180 ms, entrada de la ficha de control 180 ms. Curva `cubic-bezier(0.23, 1, 0.32, 1)` (`--ease-out`). Con `prefers-reduced-motion`, animaciones y transiciones bajan a 1 ms y el desplazamiento suave se desactiva; el panel conserva solo opacidad.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** usar rojo solo para marcas de cotejo, sellos, círculos de selección a lápiz y excepciones (banda Crítico, escenario de riesgo); azul solo para referencias cruzadas, enlaces y foco; tinta verde negra para IDs y texto.
-- **Do** acompañar cada estado con forma y texto (marca + palabra, trama + puntaje + banda).
-- **Do** codificar bandas, prioridades y madurez con la Trama de cinco densidades.
-- **Do** abrir cada papel nuevo con regla de tinta de 2px, letra, título, formulario de cuatro casillas y leyenda de marcas al pie.
-- **Do** escribir todo ID canónico en JetBrains Mono y hacerlo referencia azul cuando lleve a otro papel.
-- **Do** usar el eje de ancho de Archivo para la jerarquía: condensada en formularios y títulos, normal en prosa.
-- **Do** marcar la selección invirtiendo a tinta sobre papel claro.
-- **Do** dar movimiento de papel con ease-out (cubic-bezier(0.23, 1, 0.32, 1)): presión a 0.97 en 140ms, trazos de 220 a 320ms, sellos de 260 a 280ms, hoja con resorte, y dejarlo instantáneo con movimiento reducido.
-- **Do** mantener tema claro único, elegido por la escena de uso.
-- **Do** mantener el código fuente sin comentarios de ningún tipo (CSS, TSX, SQL, HTML): los nombres se explican solos.
+- **Do** usar `--panel` y `--placa` para todo el chasis y reservar verde, ámbar, roja y blanca para lámparas encendidas con texto grabado.
+- **Do** mantener el radio en 2 px y los bordes en 1 px de tinta o junta; los de 2 px solo en tinta, en navbar, encabezados, reglas superiores y piezas firma.
+- **Do** componer con reglas, filas y regiones; separar con reglas de 1 px y encabezar con 2 px.
+- **Do** escribir IDs canónicos y números en JetBrains Mono, y títulos y placas con ancho condensado (62 a 78 por ciento).
+- **Do** acompañar toda lámpara, punto y celda teñida con texto o inicial (CUMPLE, PARCIAL, banda, número de nivel).
+- **Do** dar a cada pulsador `scale(0.97)` al presionar y a toda animación una duración de 120 a 200 ms (0,4 s solo el panel), con `--ease-out`.
+- **Do** probar contraste sobre el fondo real antes de tocar `--remache` o las lámparas.
 
 ### Don't:
-- **Don't** usar insignias, chips o etiquetas rellenas de color para bandas, estados o prioridades.
-- **Don't** poner rótulos tipo eyebrow o kicker encima de los títulos.
-- **Don't** usar rayas largas (em dash) en el texto visible.
-- **Don't** agregar tarjetas, esquinas redondeadas ni sombras fuera de la hoja levantada.
-- **Don't** agregar un tema oscuro, candados, neón ni la estética de panel GRC con barra lateral de tarjetas.
-- **Don't** usar azul para texto que no se puede seguir, ni rojo como color decorativo o de acento.
-- **Don't** introducir un tercer tono de acento ni un color de estado verde o ámbar.
+- **Don't** poner un rótulo (`.rotulo`) encima de un título.
+- **Don't** alinear tarjetas iguales en fila; la información va en tablas, listas y rejillas con reglas.
+- **Don't** usar bordes de color ni bordes mayores de 1 px en color; los de 2 px son de tinta.
+- **Don't** añadir sombras exteriores; la única es `--sombra-panel` del panel lateral. Sin resplandor en lámparas.
+- **Don't** usar azul ni ningún color fuera de las cuatro lámparas.
+- **Don't** usar rayado, trama ni degradados decorativos.
+- **Don't** señalar un estado solo con color: toda lámpara lleva texto.
+- **Don't** introducir barra lateral de navegación, insignias de color, candados ni neón, ni tema oscuro.
+
+### Desviaciones aceptadas del brief
+- Las lámparas de progreso de Inicio usan ámbar (En curso, Listos) y verde (Completa, Visto) porque el plan lo ordena; el texto las distingue de CUMPLE y PARCIAL.
+- La declaración de uso de IA es contenido firmado del autor y conserva sus menciones originales.
+- `--remache` (#454b50) y `--lampara-verde` (#2a8452) se oscurecieron respecto al plan por contraste AA medido.
+- Defecto de la construcción no canonizado: el selector de nivel resalta la opción sugerida con contorno discontinuo de 2 px y aplica anillos duros de 2 px y 4 px al nivel elegido mediante box-shadow; ambos contradicen las reglas de trama y de una sola sombra, y no deben copiarse a superficies nuevas.

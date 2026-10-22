@@ -1,442 +1,495 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T00:00:00Z",
-  "title": "Design System: Legajo de auditoría ISO 27002 · Confidencialidad DBA",
+  "generatedAt": "2026-10-22T00:00:00Z",
+  "title": "Design System: Confidencialidad en bases de datos Oracle, tablero anunciador",
   "extensions": {
     "colorMeta": {
-      "tinta": {
+      "panel": {
+        "role": "neutral",
+        "displayName": "Acero",
+        "canonical": "#cbd0cc",
+        "tonalRamp": [
+          "#242825",
+          "#404741",
+          "#5c655e",
+          "#77847a",
+          "#96a098",
+          "#b4bcb6",
+          "#d3d7d4",
+          "#f2f3f2"
+        ]
+      },
+      "panel-claro": {
+        "role": "neutral",
+        "displayName": "Acero claro",
+        "canonical": "#dde1de",
+        "tonalRamp": [
+          "#242925",
+          "#3f4841",
+          "#5b675e",
+          "#76867a",
+          "#95a198",
+          "#b4bcb6",
+          "#d2d8d4",
+          "#f1f3f2"
+        ]
+      },
+      "panel-hondo": {
+        "role": "neutral",
+        "displayName": "Acero hondo",
+        "canonical": "#b9bfbb",
+        "tonalRamp": [
+          "#252826",
+          "#404642",
+          "#5c655f",
+          "#78837c",
+          "#969f99",
+          "#b5bbb7",
+          "#d3d7d4",
+          "#f2f3f2"
+        ]
+      },
+      "placa": {
         "role": "primary",
-        "displayName": "Tinta verde negra",
-        "canonical": "oklch(23.7% 0.024 157)",
+        "displayName": "Tinta de placa",
+        "canonical": "#1e2124",
         "tonalRamp": [
-          "#040e07",
-          "#1a281f",
-          "#36443b",
-          "#536258",
-          "#728278",
-          "#93a399",
-          "#bbccc1",
-          "#e2f4e8"
+          "#23262a",
+          "#3d434a",
+          "#586169",
+          "#727e89",
+          "#929ba4",
+          "#b2b8be",
+          "#d1d5d9",
+          "#f1f2f3"
         ]
       },
-      "rojo": {
-        "role": "secondary",
-        "displayName": "Lápiz rojo",
-        "canonical": "oklch(49.6% 0.175 29)",
-        "tonalRamp": [
-          "#3a0000",
-          "#5f0000",
-          "#7c0203",
-          "#a13027",
-          "#c75347",
-          "#ed7667",
-          "#ff9f8e",
-          "#ffc6b4"
-        ]
-      },
-      "rojo-tenue": {
-        "role": "secondary",
-        "displayName": "Lavado de lápiz rojo",
-        "canonical": "rgb(176 38 30 / 0.09)"
-      },
-      "azul": {
-        "role": "secondary",
-        "displayName": "Lápiz azul",
-        "canonical": "oklch(42.0% 0.129 259)",
-        "tonalRamp": [
-          "#000040",
-          "#001b60",
-          "#0d3c82",
-          "#2d5ca5",
-          "#4c7dc9",
-          "#6d9fee",
-          "#94c8ff",
-          "#baf0ff"
-        ]
-      },
-      "azul-tenue": {
-        "role": "secondary",
-        "displayName": "Lavado de lápiz azul",
-        "canonical": "rgb(28 74 146 / 0.1)"
-      },
-      "papel": {
-        "role": "neutral",
-        "displayName": "Papel de columnas",
-        "canonical": "oklch(94.6% 0.017 137)",
-        "tonalRamp": [
-          "#080d06",
-          "#20261e",
-          "#3c4239",
-          "#596057",
-          "#798076",
-          "#9aa197",
-          "#c2cabf",
-          "#e9f1e6"
-        ]
-      },
-      "papel-claro": {
-        "role": "neutral",
-        "displayName": "Papel claro",
-        "canonical": "oklch(97.3% 0.011 137)",
-        "tonalRamp": [
-          "#090c08",
-          "#222520",
-          "#3d413c",
-          "#5b5f59",
-          "#7a7f79",
-          "#9ba09a",
-          "#c4c9c2",
-          "#ebf0e9"
-        ]
-      },
-      "papel-hondo": {
-        "role": "neutral",
-        "displayName": "Papel hondo",
-        "canonical": "oklch(90.8% 0.026 136)",
-        "tonalRamp": [
-          "#060e04",
-          "#1e271a",
-          "#394335",
-          "#576153",
-          "#768172",
-          "#97a292",
-          "#c0ccbb",
-          "#e7f3e2"
-        ]
-      },
-      "regla": {
-        "role": "neutral",
-        "displayName": "Regla contable",
-        "canonical": "oklch(84.3% 0.039 139)",
-        "tonalRamp": [
-          "#030f02",
-          "#1a2916",
-          "#354531",
-          "#53634e",
-          "#72836d",
-          "#92a58e",
-          "#bbceb6",
-          "#e2f5dd"
-        ]
-      },
-      "regla-fuerte": {
-        "role": "neutral",
-        "displayName": "Regla fuerte",
-        "canonical": "oklch(72.0% 0.057 140)",
-        "tonalRamp": [
-          "#001000",
-          "#132b0e",
-          "#2f472a",
-          "#4c6647",
-          "#6b8666",
-          "#8ca886",
-          "#b4d1ae",
-          "#dbf9d4"
-        ]
-      },
-      "tinta-suave": {
-        "role": "neutral",
+      "placa-suave": {
+        "role": "primary",
         "displayName": "Tinta suave",
-        "canonical": "oklch(38.1% 0.025 168)",
+        "canonical": "#3a3f43",
         "tonalRamp": [
-          "#020e09",
-          "#182822",
-          "#33443d",
-          "#51625b",
-          "#70827a",
-          "#90a49b",
-          "#b9cdc4",
-          "#e0f4eb"
+          "#232729",
+          "#3f4448",
+          "#5a6167",
+          "#757f87",
+          "#949ca2",
+          "#b3b9bd",
+          "#d2d5d8",
+          "#f1f2f3"
         ]
       },
-      "grafito": {
+      "remache": {
         "role": "neutral",
-        "displayName": "Grafito",
-        "canonical": "oklch(48.4% 0.018 160)",
+        "displayName": "Remache",
+        "canonical": "#454b50",
         "tonalRamp": [
-          "#050e09",
-          "#1c2721",
-          "#38433c",
-          "#55615a",
-          "#748179",
-          "#95a29a",
-          "#becbc3",
-          "#e5f3ea"
+          "#232729",
+          "#3e4448",
+          "#596168",
+          "#747f87",
+          "#939ba2",
+          "#b3b8bd",
+          "#d2d5d8",
+          "#f1f2f3"
+        ]
+      },
+      "junta": {
+        "role": "neutral",
+        "displayName": "Junta",
+        "canonical": "#a7aeaa",
+        "tonalRamp": [
+          "#252826",
+          "#414643",
+          "#5d6560",
+          "#78837d",
+          "#979f9a",
+          "#b5bbb8",
+          "#d3d7d5",
+          "#f2f3f2"
+        ]
+      },
+      "lampara-verde": {
+        "role": "secondary",
+        "displayName": "Lámpara verde",
+        "canonical": "#2a8452",
+        "tonalRamp": [
+          "#123a24",
+          "#216640",
+          "#2f925b",
+          "#3dbf76",
+          "#67cf95",
+          "#93ddb4",
+          "#bfebd3",
+          "#ecf9f2"
+        ]
+      },
+      "lampara-ambar": {
+        "role": "secondary",
+        "displayName": "Lámpara ámbar",
+        "canonical": "#e39b17",
+        "tonalRamp": [
+          "#452f07",
+          "#7a540c",
+          "#af7812",
+          "#e49c17",
+          "#edb349",
+          "#f2c97e",
+          "#f7dfb3",
+          "#fdf5e8"
+        ]
+      },
+      "lampara-roja": {
+        "role": "secondary",
+        "displayName": "Lámpara roja",
+        "canonical": "#c8372d",
+        "tonalRamp": [
+          "#3e110e",
+          "#6e1e19",
+          "#9e2b23",
+          "#cd382e",
+          "#da645b",
+          "#e5918b",
+          "#f0bebb",
+          "#faebea"
+        ]
+      },
+      "lampara-blanca": {
+        "role": "secondary",
+        "displayName": "Lámpara blanca",
+        "canonical": "#f5f2e8",
+        "tonalRamp": [
+          "#352e17",
+          "#5e5229",
+          "#87753b",
+          "#af984c",
+          "#c2b073",
+          "#d4c79c",
+          "#e6dec5",
+          "#f7f5ed"
         ]
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Letra de papel",
-        "purpose": "La letra S, A a J de cada papel, a la izquierda del título."
+      "titular-inicio": {
+        "displayName": "Display",
+        "purpose": "Titular de Inicio, ancho 62 por ciento."
       },
-      "headline-caratula": {
-        "displayName": "Título del legajo",
-        "purpose": "Título en la carátula, máximo 28ch."
+      "titulo-pagina": {
+        "displayName": "Headline",
+        "purpose": "h1 de cada Pagina, ancho 66 por ciento."
       },
-      "headline": {
-        "displayName": "Título de papel",
-        "purpose": "Título de cada papel; base de h1 a h4."
+      "subtitulo-inicio": {
+        "displayName": "Subtítulo de Inicio",
+        "purpose": "Encabezados de bloque de Inicio."
       },
-      "title": {
-        "displayName": "Nombre en fila",
-        "purpose": "Nombre de riesgo u objeto dentro de una fila de tabla."
+      "subtitulo-fluido": {
+        "displayName": "Subtítulo fluido",
+        "purpose": "Títulos de sección de hasta 2,1rem."
       },
-      "body": {
-        "displayName": "Prosa",
-        "purpose": "Texto corrido con cifras tabulares; objetivos a 62ch."
+      "subtitulo-fluido-menor": {
+        "displayName": "Subtítulo fluido menor",
+        "purpose": "Títulos de sección de hasta 2rem."
       },
-      "body-campo": {
-        "displayName": "Valor de campo",
-        "purpose": "Valores dentro de rejillas de campos de detalle."
+      "titulo-panel": {
+        "displayName": "Título del panel",
+        "purpose": "Título del panel lateral de detalle."
       },
-      "label": {
-        "displayName": "Etiqueta",
-        "purpose": "Cabeceras de tabla, etiquetas de campo, fases del índice; caja de oración."
+      "enlace-paso": {
+        "displayName": "Enlace de paso",
+        "purpose": "Enlace condensado de cada paso de Inicio."
       },
-      "label-formulario": {
-        "displayName": "Etiqueta de formulario",
-        "purpose": "Casillas del encabezado de papel y de la carátula."
+      "descripcion-inicio": {
+        "displayName": "Descripción de Inicio",
+        "purpose": "Prosa de portada, hasta 54ch."
       },
-      "marca": {
-        "displayName": "Texto de marca",
-        "purpose": "Palabra que acompaña una marca de cotejo o una banda."
+      "seccion-175": {
+        "displayName": "Sección 1.75rem",
+        "purpose": "Subtítulo del mapa de calor."
       },
-      "id": {
-        "displayName": "ID canónico",
-        "purpose": "R-CONF, T, A, PR y demás identificadores; idioma de las referencias."
+      "seccion-15": {
+        "displayName": "Sección 1.5rem",
+        "purpose": "Escalón intermedio de títulos."
       },
-      "codigo": {
+      "subtitulo-125": {
+        "displayName": "Subtítulo 1.25rem",
+        "purpose": "Subtítulos de sección."
+      },
+      "titulo-grupo-1125": {
+        "displayName": "Título de grupo",
+        "purpose": "Cabeceras de grupo de tabla."
+      },
+      "introduccion": {
+        "displayName": "Introducción",
+        "purpose": "Introducción de página, hasta 62ch."
+      },
+      "cuerpo": {
+        "displayName": "Cuerpo",
+        "purpose": "Prosa a ancho normal."
+      },
+      "cuerpo-menor": {
+        "displayName": "Cuerpo menor",
+        "purpose": "Celdas, valores y campos."
+      },
+      "texto-tabla": {
+        "displayName": "Texto de tabla",
+        "purpose": "Criterios y apoyo."
+      },
+      "nota": {
+        "displayName": "Nota",
+        "purpose": "Notas y créditos."
+      },
+      "rotulo": {
+        "displayName": "Rótulo",
+        "purpose": "Clase .rotulo; nunca encima de un título."
+      },
+      "pulsador": {
+        "displayName": "Pulsador",
+        "purpose": "Texto de pulsadores."
+      },
+      "id-mono": {
+        "displayName": "ID mono",
+        "purpose": "IDs canónicos."
+      },
+      "numero-mono": {
+        "displayName": "Número mono",
+        "purpose": "Números de nivel y conteos."
+      },
+      "codigo-bloque": {
         "displayName": "Código",
-        "purpose": "SQL y evidencias en bloques de código."
+        "purpose": "Cuerpo de BloqueCodigo."
+      },
+      "codigo-listado": {
+        "displayName": "Código listado",
+        "purpose": "Variante listado y barra de bloque."
       }
     },
     "shadows": [
       {
-        "name": "sombra-hoja",
-        "value": "0 1px 0 rgb(21 34 26 / 0.06), 0 24px 48px -18px rgb(21 34 26 / 0.34), 0 6px 14px -6px rgb(21 34 26 / 0.12)",
-        "purpose": "Solo la hoja de referencia levantada."
+        "name": "sombra-panel",
+        "value": "0 28px 56px -20px rgb(30 33 36 / 0.5), 0 8px 18px -8px rgb(30 33 36 / 0.28)",
+        "purpose": "Única elevación: panel lateral de detalle, tintada hacia la tinta."
       },
       {
-        "name": "sombra-baja",
-        "value": "0 1px 0 rgb(21 34 26 / 0.05), 0 6px 16px -10px rgb(21 34 26 / 0.3)",
-        "purpose": "Solo la hoja previa que asoma bajo la hoja levantada."
+        "name": "brillo-interior",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.34), inset 0 -0.5rem 0.7rem -0.45rem rgb(30 33 36 / 0.38)",
+        "purpose": "Lámparas encendidas, puntos, celdas de madurez 3 y 4."
       },
       {
-        "name": "velo",
-        "value": "rgb(21 34 26 / 0.22)",
-        "purpose": "Velo de tinta detrás de la hoja levantada."
+        "name": "presion-interior",
+        "value": "inset 0 2px 4px rgb(30 33 36 / 0.32)",
+        "purpose": "Pulsador mientras se presiona."
+      },
+      {
+        "name": "relieve-pulsador",
+        "value": "inset 0 -2px 0 rgb(30 33 36 / 0.14)",
+        "purpose": "Borde inferior de reposo de pulsadores."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "Curva de todo el sistema: presiones, trazos, sellos y salidas."
+        "purpose": "Curva única de todas las transiciones."
       },
       {
-        "name": "presion",
-        "value": "transform 140ms ease-out, scale 0.96 a 0.97",
-        "purpose": "Respuesta al presionar botones, referencias y filtros."
+        "name": "encender",
+        "value": "180ms",
+        "purpose": "Lámparas y puntos al encenderse, opacidad 0,35 a 1 y brillo 0,82 a 1."
       },
       {
-        "name": "trazo-referencia",
-        "value": "stroke-dashoffset 220ms ease-out; 320ms con retardo escalonado cuando la fila está activa",
-        "purpose": "Lápiz azul que se dibuja bajo una referencia."
+        "name": "pulsador",
+        "value": "140ms",
+        "purpose": "Transform, sombra y color de pulsadores y Ref; rango 120 a 160 ms."
       },
       {
-        "name": "circulo-lapiz",
-        "value": "stroke-dashoffset 300 a 320ms ease-out",
-        "purpose": "Círculo rojo alrededor del nivel elegido o de la letra del papel actual."
+        "name": "panel-entrada",
+        "value": "spring 0.4s, bounce 0.1",
+        "purpose": "Entrada del panel lateral de detalle."
       },
       {
-        "name": "estampar",
-        "value": "260ms ease-out, rotate(-16deg) scale(1.35) a rotate(-7deg) scale(1)",
-        "purpose": "Marca de cotejo que se estampa."
+        "name": "panel-salida",
+        "value": "180ms ease-out",
+        "purpose": "Salida del panel lateral de detalle."
       },
       {
-        "name": "sellar",
-        "value": "280ms ease-out, rotate(-22deg) scale(1.45) a rotate(-8deg) scale(1)",
-        "purpose": "Sello de firma de revisión."
-      },
-      {
-        "name": "hoja-resorte",
-        "value": "spring, duration 0.46s, bounce 0.12; entra desde translateX(48px) rotate(0.9deg)",
-        "purpose": "Hoja de referencia que se levanta."
-      },
-      {
-        "name": "hoja-salida",
-        "value": "180ms ease-out, translateX(32px) rotate(0.4deg)",
-        "purpose": "Salida de la hoja."
-      },
-      {
-        "name": "cambio-contenido",
-        "value": "220 a 240ms ease-out, desplazamiento de 6 a 20px",
-        "purpose": "Cambio de detalle en controles y hallazgos."
+        "name": "entrada-pasos",
+        "value": "240ms, escalonado 45ms",
+        "purpose": "Única entrada escalonada: recorrido de Inicio."
       },
       {
         "name": "movimiento-reducido",
-        "value": "1ms, solo opacidad",
-        "purpose": "Con prefers-reduced-motion todo es instantáneo."
+        "value": "1ms",
+        "purpose": "prefers-reduced-motion reduce animaciones y transiciones a casi instantáneas."
       }
     ],
     "breakpoints": [
       {
-        "name": "caratula",
-        "value": "1180px"
+        "name": "campo-una-columna",
+        "value": "560px"
       },
       {
-        "name": "indice-franja",
-        "value": "1100px"
-      },
-      {
-        "name": "encabezado-papel",
-        "value": "860px"
-      },
-      {
-        "name": "tabla-apilada",
-        "value": "760px"
-      },
-      {
-        "name": "hoja-completa",
+        "name": "panel-completo",
         "value": "640px"
       },
       {
-        "name": "formulario-2x2",
-        "value": "520px"
+        "name": "registros-y-menu-movil",
+        "value": "760px"
+      },
+      {
+        "name": "controles-apilado",
+        "value": "860px"
+      },
+      {
+        "name": "portada-apilada",
+        "value": "900px"
+      },
+      {
+        "name": "escala-dos-columnas",
+        "value": "1080px"
       }
     ]
   },
   "components": [
     {
-      "name": "Referencia cruzada",
+      "name": "Lámpara",
       "kind": "custom",
-      "refersTo": "ref",
-      "description": "ID en mono azul con trazo de lápiz que se dibuja debajo; lleva al papel destino.",
-      "html": "<button class=\"ds-ref\"><span class=\"ds-ref-codigo\">A8.13</span><span class=\"ds-ref-nombre\">Copia de seguridad</span><svg class=\"ds-ref-trazo\" viewBox=\"0 0 100 10\" preserveAspectRatio=\"none\"><path pathLength=\"1\" d=\"M1 6 C 30 3, 60 8, 99 5\"/></svg></button>",
-      "css": ".ds-ref { position: relative; display: inline-flex; align-items: baseline; gap: 0.5em; padding: 0.05em 0.1em 0.2em; border: 0; background: none; color: var(--azul, #1c4a92); cursor: pointer; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-ref:active { transform: scale(0.97); } .ds-ref:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; } .ds-ref-codigo { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8125rem; font-weight: 560; letter-spacing: -0.01em; } .ds-ref-nombre { font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; color: var(--tinta-suave, #364740); } .ds-ref-trazo { position: absolute; left: 0; right: 0; bottom: -0.05em; width: 100%; height: 0.45em; overflow: visible; } .ds-ref-trazo path { fill: none; stroke: var(--azul, #1c4a92); stroke-width: 1.6; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-ref:hover .ds-ref-trazo path, .ds-ref:focus-visible .ds-ref-trazo path { stroke-dashoffset: 0; } .ds-ref:hover .ds-ref-nombre { color: var(--tinta, #15221a); }"
+      "refersTo": "lampara-verde",
+      "description": "Ventana de anunciador: apagada en acero, encendida con color de estado, brillo interior y texto grabado.",
+      "html": "<span class=\"ds-lampara\">Sin evaluar</span> <span class=\"ds-lampara\" data-tono=\"verde\">Cumple</span> <span class=\"ds-lampara\" data-tono=\"ambar\">Parcial</span> <span class=\"ds-lampara\" data-tono=\"roja\">Crítico</span>",
+      "css": ".ds-lampara{display:inline-flex;align-items:center;min-height:1.5rem;padding:0.28rem 0.6rem;border:1px solid var(--junta);border-radius:2px;background:var(--panel-claro);color:var(--remache);font-size:0.75rem;font-weight:700;font-stretch:78%;letter-spacing:0.08em;line-height:1;text-transform:uppercase;white-space:nowrap}.ds-lampara[data-tono]{border-color:var(--placa-suave);box-shadow:var(--brillo-interior)}.ds-lampara[data-tono='verde']{background:var(--lampara-verde);color:var(--sobre-lampara)}.ds-lampara[data-tono='ambar']{background:var(--lampara-ambar);color:var(--placa)}.ds-lampara[data-tono='roja']{background:var(--lampara-roja);color:var(--sobre-lampara)}.ds-lampara[data-tono='blanca']{background:var(--lampara-blanca);color:var(--placa)}"
     },
     {
-      "name": "Botón de hoja",
+      "name": "Pulsador",
       "kind": "button",
-      "refersTo": "boton",
-      "description": "Herramienta recta de papel claro para Cerrar o Volver.",
-      "html": "<button class=\"ds-boton\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128 50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></svg><span>Cerrar</span></button>",
-      "css": ".ds-boton { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.6rem; border: 1px solid var(--regla-fuerte, #92ae8c); border-radius: 0; background: var(--papel-claro, #f3f8f1); color: var(--tinta, #15221a); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; cursor: pointer; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 140ms ease; } .ds-boton:hover { border-color: var(--tinta-suave, #364740); } .ds-boton:active { transform: scale(0.96); } .ds-boton:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; }"
+      "refersTo": "pulsador",
+      "description": "Pulsador de borde fino con relieve inferior y presión scale(0.97).",
+      "html": "<button class=\"ds-pulsador\">Exportar plan</button> <button class=\"ds-pulsador\" data-principal>Comenzar el diagnóstico</button>",
+      "css": ".ds-pulsador{display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;min-height:2.25rem;padding:0.35rem 0.85rem;border:1px solid var(--placa);border-radius:2px;background:var(--panel-claro);color:var(--placa);font-size:0.875rem;font-weight:600;font-stretch:88%;line-height:1.2;cursor:pointer;box-shadow:var(--relieve-pulsador);transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out),background-color 140ms var(--ease-out)}.ds-pulsador:hover{background:var(--panel-hondo)}.ds-pulsador:focus-visible{outline:2px solid var(--placa);outline-offset:2px}.ds-pulsador:active{transform:scale(0.97);box-shadow:var(--presion-interior)}.ds-pulsador[data-principal]{background:var(--placa);color:var(--panel-claro)}.ds-pulsador[data-principal]:hover{background:var(--placa-suave)}"
     },
     {
-      "name": "Acción de matriz",
-      "kind": "button",
-      "refersTo": "accion",
-      "description": "Acción de escritorio con borde de tinta suave: Restablecer, Descargar.",
-      "html": "<button class=\"ds-accion\">Descargar CSV</button>",
-      "css": ".ds-accion { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.32rem 0.7rem; border: 1px solid var(--tinta-suave, #364740); border-radius: 0; background: var(--papel-claro, #f3f8f1); color: var(--tinta, #15221a); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; cursor: pointer; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), opacity 140ms ease; } .ds-accion:active:not(:disabled) { transform: scale(0.97); } .ds-accion:disabled { opacity: 0.45; cursor: default; } .ds-accion:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; }"
+      "name": "Campo de texto",
+      "kind": "input",
+      "refersTo": "campo-texto",
+      "description": "Campo de borde de 1 px sobre acero claro.",
+      "html": "<input class=\"ds-campo\" placeholder=\"Organización evaluada\">",
+      "css": ".ds-campo{width:100%;min-height:2.5rem;padding:0.45rem 0.7rem;border:1px solid var(--placa);border-radius:2px;background:var(--panel-claro);color:var(--placa);font:inherit;font-size:0.9375rem;line-height:1.4}.ds-campo::placeholder{color:var(--remache);opacity:1}.ds-campo:focus-visible{outline:2px solid var(--placa);outline-offset:2px}"
     },
     {
-      "name": "Firmar revisión",
-      "kind": "button",
-      "refersTo": "boton-pendiente",
-      "description": "Casilla pendiente con borde punteado y texto azul en el formulario del papel.",
-      "html": "<button class=\"ds-pendiente\">Firmar revisión</button>",
-      "css": ".ds-pendiente { padding: 0.15rem 0.45rem; border: 1px dashed var(--regla-fuerte, #92ae8c); border-radius: 0; background: none; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; color: var(--azul, #1c4a92); cursor: pointer; white-space: nowrap; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 140ms ease; } .ds-pendiente:hover { border-color: var(--azul, #1c4a92); } .ds-pendiente:active { transform: scale(0.97); } .ds-pendiente:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; }"
-    },
-    {
-      "name": "Filtros segmentados",
+      "name": "Navbar",
       "kind": "nav",
-      "refersTo": "filtro",
-      "description": "Control segmentado recto; la opción activa se invierte a tinta.",
-      "html": "<div class=\"ds-filtros\"><button class=\"ds-filtro\" data-activo>Todas</button><button class=\"ds-filtro\">Cumple</button><button class=\"ds-filtro\">Parcial</button><button class=\"ds-filtro\">No cumple</button></div>",
-      "css": ".ds-filtros { display: inline-flex; border: 1px solid var(--regla-fuerte, #92ae8c); } .ds-filtro { padding: 0.3rem 0.65rem; border: 0; background: none; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; color: var(--tinta-suave, #364740); cursor: pointer; transition: background-color 140ms ease, color 140ms ease; } .ds-filtro + .ds-filtro { border-left: 1px solid var(--regla-fuerte, #92ae8c); } .ds-filtro:hover:not([data-activo]) { color: var(--tinta, #15221a); } .ds-filtro[data-activo] { background: var(--tinta, #15221a); color: var(--papel-claro, #f3f8f1); } .ds-filtro:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; }"
+      "refersTo": "navbar",
+      "description": "Barra sticky de 60 px con marca en placa y menús; la ruta activa va subrayada con su lámpara.",
+      "html": "<nav class=\"ds-barra\"><a class=\"ds-marca\" href=\"#\">Oracle DB</a><span class=\"ds-menus\"><button class=\"ds-disparador\">Herramientas</button><button class=\"ds-disparador\">Material de apoyo</button></span></nav>",
+      "css": ".ds-barra{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:3.75rem;padding:0 1rem;background:var(--panel-hondo);border-bottom:2px solid var(--placa)}.ds-marca{padding:0.3rem 0.7rem;border:1px solid var(--placa);border-radius:2px;background:var(--panel-claro);color:var(--placa);font-size:1.125rem;font-weight:800;font-stretch:66%;letter-spacing:0.04em;line-height:1;text-decoration:none;text-transform:uppercase}.ds-menus{display:flex;gap:0.35rem}.ds-disparador{min-height:2.5rem;padding:0.4rem 0.8rem;border:1px solid transparent;border-radius:2px;background:none;color:var(--placa);font:inherit;font-size:0.9375rem;font-weight:600;font-stretch:88%;cursor:pointer}.ds-disparador:hover{background:var(--panel-claro)}.ds-disparador:focus-visible{outline:2px solid var(--placa);outline-offset:2px}"
     },
     {
-      "name": "Encabezado de formulario",
-      "kind": "card",
-      "refersTo": "formulario-encabezado",
-      "description": "Cuatro casillas Entidad, Papel, Preparado, Revisado en cada papel.",
-      "html": "<dl class=\"ds-formulario\"><div><dt>Entidad</dt><dd class=\"ds-mono\">XEPDB1</dd></div><div><dt>Papel</dt><dd class=\"ds-mono\">S</dd></div><div><dt>Preparado</dt><dd><span class=\"ds-mono\">AOMG</span><span class=\"ds-fecha\">21/10/26</span></dd></div><div><dt>Revisado</dt><dd><span class=\"ds-fecha\">Pendiente</span></dd></div></dl>",
-      "css": ".ds-formulario { margin: 0; display: grid; grid-template-columns: repeat(4, auto); border: 1px solid var(--regla-fuerte, #92ae8c); background: var(--papel-claro, #f3f8f1); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; color: var(--tinta, #15221a); } .ds-formulario > div { display: grid; gap: 0.15rem; padding: 0.45rem 0.75rem 0.5rem; min-width: 5.5rem; } .ds-formulario > div + div { border-left: 1px solid var(--regla, #bfd2ba); } .ds-formulario dt { font-size: 0.6875rem; font-stretch: 85%; font-weight: 600; color: var(--grafito, #56625b); } .ds-formulario dd { margin: 0; font-size: 0.875rem; min-height: 1.6rem; display: flex; align-items: center; gap: 0.45rem; } .ds-mono { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8125rem; font-weight: 560; } .ds-fecha { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; color: var(--grafito, #56625b); }"
-    },
-    {
-      "name": "Trama y banda",
-      "kind": "chip",
-      "description": "Cuadro de rayado a lápiz cuya densidad codifica el nivel, con puntaje mono y palabra de banda; reemplaza cualquier insignia rellena.",
-      "html": "<span class=\"ds-banda\"><span class=\"ds-trama\" data-densidad=\"4\"></span><span class=\"ds-puntaje\">20</span><span class=\"ds-banda-nombre ds-critico\">Crítico</span></span> <span class=\"ds-banda\"><span class=\"ds-trama\" data-densidad=\"2\"></span><span class=\"ds-puntaje\">6</span><span class=\"ds-banda-nombre\">Medio</span></span> <span class=\"ds-banda\"><span class=\"ds-trama\" data-densidad=\"0\"></span><span class=\"ds-puntaje\">0</span><span class=\"ds-banda-nombre\">Inexistente</span></span>",
-      "css": ".ds-banda { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-trama { display: inline-block; width: 0.95rem; height: 0.95rem; border: 1px solid rgb(176 38 30 / 0.7); } .ds-trama[data-densidad='0'] { border-style: dashed; border-color: var(--grafito, #56625b); } .ds-trama[data-densidad='1'] { background-image: repeating-linear-gradient(135deg, rgb(176 38 30 / 0.6) 0 1px, transparent 1px 6px); } .ds-trama[data-densidad='2'] { background-image: repeating-linear-gradient(135deg, rgb(176 38 30 / 0.65) 0 1px, transparent 1px 3.5px); } .ds-trama[data-densidad='3'] { background-image: repeating-linear-gradient(135deg, rgb(176 38 30 / 0.65) 0 1px, transparent 1px 3.5px), repeating-linear-gradient(45deg, rgb(176 38 30 / 0.5) 0 1px, transparent 1px 4.5px); } .ds-trama[data-densidad='4'] { background-color: rgb(176 38 30 / 0.2); background-image: repeating-linear-gradient(135deg, rgb(176 38 30 / 0.75) 0 1px, transparent 1px 2.5px), repeating-linear-gradient(45deg, rgb(176 38 30 / 0.65) 0 1px, transparent 1px 2.5px); } .ds-puntaje { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.9375rem; font-weight: 650; color: var(--tinta, #15221a); min-width: 4ch; } .ds-banda-nombre { font-size: 0.8125rem; font-stretch: 88%; font-weight: 600; color: var(--tinta-suave, #364740); } .ds-critico { color: var(--rojo, #b0261e); }"
-    },
-    {
-      "name": "Marca de cotejo",
+      "name": "Ref, cinta de mímico",
       "kind": "custom",
-      "description": "Visto a lápiz rojo girado, estampado, siempre con texto.",
-      "html": "<span class=\"ds-marca\"><svg class=\"ds-marca-icono\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M232.49 80.49l-128 128a12 12 0 0 1-17 0l-56-56a12 12 0 1 1 17-17L96 183 215.51 63.51a12 12 0 0 1 17 17Z\"/></svg><span class=\"ds-marca-texto\">Cumple</span></span>",
-      "css": ".ds-marca { display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; color: var(--rojo, #b0261e); font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; } .ds-marca-icono { width: 1.15em; height: 1.15em; transform: rotate(-7deg); animation: ds-estampar 260ms cubic-bezier(0.23, 1, 0.32, 1) both; } .ds-marca-texto { font-size: 0.875rem; font-weight: 560; font-stretch: 88%; color: var(--tinta, #15221a); } @keyframes ds-estampar { from { opacity: 0; transform: rotate(-16deg) scale(1.35); } to { opacity: 1; transform: rotate(-7deg) scale(1); } } @media (prefers-reduced-motion: reduce) { .ds-marca-icono { animation-duration: 1ms; } }"
+      "refersTo": "id-mono",
+      "description": "ID mono con subrayado de 2 px que se enciende a 4 px al enfocar o pasar el cursor.",
+      "html": "<button class=\"ds-ref\"><span class=\"ds-codigo\">CTL-07</span><span class=\"ds-nombre\">Cifrado en reposo</span></button>",
+      "css": ".ds-ref{position:relative;display:inline-flex;align-items:baseline;gap:0.6em;padding:0.1em 0.05em 0.3em;border:0;background:none;color:var(--placa);cursor:pointer;text-align:left}.ds-ref::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--placa-suave);transition:height 160ms var(--ease-out),background-color 160ms var(--ease-out)}.ds-ref:hover::after,.ds-ref:focus-visible::after{height:4px;background:var(--placa)}.ds-ref:focus-visible{outline:none}.ds-codigo{font-family:var(--mono);font-size:0.8125rem;font-weight:600;letter-spacing:-0.01em}.ds-nombre{font-size:0.9375rem;color:var(--placa-suave)}"
+    },
+    {
+      "name": "Rampa de madurez",
+      "kind": "custom",
+      "refersTo": "celda-madurez-4",
+      "description": "Cinco intensidades de lámpara blanca con número en mono y borde que se oscurece por nivel.",
+      "html": "<span class=\"ds-celda\" data-nivel=\"1\"><b>1</b>Inicial</span> <span class=\"ds-celda\" data-nivel=\"2\"><b>2</b>Repetible</span> <span class=\"ds-celda\" data-nivel=\"3\"><b>3</b>Definido</span> <span class=\"ds-celda\" data-nivel=\"4\"><b>4</b>Optimizado</span>",
+      "css": ".ds-celda{display:inline-flex;align-items:baseline;gap:0.45rem;min-height:1.75rem;padding:0.25rem 0.65rem;border:1px solid var(--remache);border-radius:2px;background:var(--panel-hondo);color:var(--placa);font-size:0.8125rem;font-weight:600;white-space:nowrap}.ds-celda b{font-family:var(--mono);font-size:0.9375rem}.ds-celda[data-nivel='1']{background:color-mix(in srgb,var(--lampara-blanca) 28%,var(--panel-hondo))}.ds-celda[data-nivel='2']{border-color:var(--placa-suave);background:color-mix(in srgb,var(--lampara-blanca) 52%,var(--panel-hondo))}.ds-celda[data-nivel='3']{border-color:var(--placa);background:color-mix(in srgb,var(--lampara-blanca) 76%,var(--panel-hondo));box-shadow:var(--brillo-interior)}.ds-celda[data-nivel='4']{border:2px solid var(--placa);background:var(--lampara-blanca);box-shadow:var(--brillo-interior)}"
+    },
+    {
+      "name": "Componente tabular",
+      "kind": "custom",
+      "refersTo": "tabla-encabezado",
+      "description": "Región con franja de encabezado en acero hondo, reglas de 1 px y filas clicables.",
+      "html": "<div class=\"ds-marco\"><table class=\"ds-tabla\"><thead><tr><th>Control</th><th>Estado</th></tr></thead><tbody><tr><td>CTL-07 Cifrado en reposo</td><td><span class=\"ds-chip\">Parcial</span></td></tr><tr><td>CTL-11 Auditoría</td><td><span class=\"ds-chip\">Cumple</span></td></tr></tbody></table></div>",
+      "css": ".ds-marco{border-top:2px solid var(--placa);border-bottom:1px solid var(--placa)}.ds-tabla{width:100%;border-collapse:collapse;font-size:0.9375rem}.ds-tabla th{padding:0.65rem 0.85rem;background:var(--panel-hondo);border-bottom:1px solid var(--placa);text-align:left}.ds-tabla td{padding:0.7rem 0.85rem;text-align:left}.ds-tabla tbody tr{cursor:pointer}.ds-tabla tbody tr+tr td{border-top:1px solid var(--junta)}.ds-tabla tbody tr:hover{background:var(--panel-claro)}.ds-chip{padding:0.2rem 0.5rem;border:1px solid var(--placa);border-radius:2px;font-size:0.75rem;font-weight:700;font-stretch:78%;letter-spacing:0.08em;text-transform:uppercase}"
     },
     {
       "name": "Bloque de código",
-      "kind": "card",
+      "kind": "custom",
       "refersTo": "bloque-codigo",
-      "description": "Evidencia SQL en papel claro con barra en papel hondo y Copiar en azul.",
-      "html": "<figure class=\"ds-bloque\"><div class=\"ds-bloque-barra\"><span class=\"ds-bloque-titulo\">Evidencia observable</span><button class=\"ds-copiar\">Copiar</button></div><pre class=\"ds-pre\">SELECT encrypted, COUNT(*) FROM v$backup_piece GROUP BY encrypted;</pre></figure>",
-      "css": ".ds-bloque { margin: 0; border: 1px solid var(--regla-fuerte, #92ae8c); background: var(--papel-claro, #f3f8f1); } .ds-bloque-barra { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.3rem 0.4rem 0.3rem 0.75rem; border-bottom: 1px solid var(--regla, #bfd2ba); background: var(--papel-hondo, #d9e5d4); } .ds-bloque-titulo { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; color: var(--tinta-suave, #364740); } .ds-copiar { padding: 0.25rem 0.55rem; border: 1px solid transparent; background: none; font-family: 'Archivo Variable', 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; color: var(--azul, #1c4a92); cursor: pointer; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 140ms ease; } .ds-copiar:hover { border-color: var(--regla-fuerte, #92ae8c); } .ds-copiar:active { transform: scale(0.97); } .ds-copiar:focus-visible { outline: 2px solid var(--azul, #1c4a92); outline-offset: 2px; border-radius: 2px; } .ds-pre { margin: 0; padding: 0.85rem 1rem; font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8125rem; line-height: 1.6; color: var(--tinta, #15221a); white-space: pre-wrap; }"
+      "description": "Bloque con barra de título mono y cuerpo en JetBrains Mono.",
+      "html": "<figure class=\"ds-bloque\"><figcaption class=\"ds-barra-codigo\">consulta.sql</figcaption><pre class=\"ds-pre\">SELECT username FROM dba_users;</pre></figure>",
+      "css": ".ds-bloque{margin:0;border:1px solid var(--placa);background:var(--panel-claro)}.ds-barra-codigo{padding:0.35rem 0.85rem;border-bottom:1px solid var(--placa);background:var(--panel-hondo);font-family:var(--mono);font-size:0.75rem;font-weight:600;color:var(--placa-suave)}.ds-pre{margin:0;padding:0.85rem 1rem;font-family:var(--mono);font-size:0.8125rem;line-height:1.6;color:var(--placa);white-space:pre-wrap}"
+    },
+    {
+      "name": "Placa de créditos",
+      "kind": "custom",
+      "refersTo": "placa-creditos",
+      "description": "Placa de acero claro con borde de 2 px y filo interior, discreta en Inicio.",
+      "html": "<div class=\"ds-placa\"><strong>Autor del trabajo</strong><span>Curso de seguridad de bases de datos</span></div>",
+      "css": ".ds-placa{display:grid;gap:0.15rem;min-width:16rem;padding:0.85rem 1.1rem;border:2px solid var(--placa);outline:1px solid var(--placa);outline-offset:-6px;background:var(--panel-claro);font-size:0.8125rem;line-height:1.45;color:var(--placa-suave)}.ds-placa strong{font-size:1rem;font-weight:700;font-stretch:85%;color:var(--placa)}"
     }
   ],
   "narrative": {
-    "northStar": "El legajo de papeles de trabajo",
-    "overview": "El sistema es un legajo de auditoría impreso en papel de columnas verde pálido, con rayado contable, y anotado a mano con un lápiz bicolor. Cada sección es un papel con su letra (S, A a J), su encabezado de formulario (Entidad, Papel N.º, Preparado, Revisado) y su leyenda de marcas al pie. La tinta verde negra lleva el texto y los IDs; el lápiz rojo estampa marcas de cotejo y señala excepciones; el lápiz azul subraya referencias cruzadas que se pueden seguir hasta el papel destino.\n\nLa densidad es la de un papel de trabajo real: tablas con reglas finas, celdas compactas, etiquetas condensadas de formulario y cifras tabulares. La jerarquía no viene de cajas ni de color, sino del eje de ancho de Archivo (condensada en letras de papel, títulos y formularios; ancho normal en prosa) y de reglas de distinto grosor (2px tinta entre papeles, 1px regla fuerte en encabezados, 1px regla en filas).\n\nTema claro únicamente, elegido por la escena de uso: el profesor califica en una laptop con luz de día. El mundo rechaza el centro de cumplimiento GRC (barra lateral de tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón.",
+    "northStar": "Tablero anunciador de sala de control",
+    "overview": "Cada control es una ventana iluminada de un anunciador industrial, y la trazabilidad (riesgo, control, prueba, hallazgo) es el diagrama mímico que la enciende. La escena es una oficina con luz de día, de modo que el sistema es claro únicamente: acero pintado gris claro, placas grabadas en Archivo condensado y tinta casi negra. El chasis trabaja con dos tintas, `--panel` (gris acero) y `--placa` (tinta casi negra). El color no decora: existe solo como lámpara encendida (verde, ámbar, roja, blanca) y siempre lleva texto grabado encima.\n\nLa densidad es de instrumento, no de panel de marketing. Las páginas son listas, tablas y regiones separadas por reglas de 1 px y 2 px, con mucho aire en Inicio y compactas en las herramientas. Las esquinas son casi rectas (2 px) y las lámparas muestran brillo interior, nunca resplandor exterior. El único objeto elevado de todo el sistema es el panel lateral de detalle.\n\nEl sistema rechaza el centro de cumplimiento (barra lateral de navegación, tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón. La construcción confirma ambas negativas: la navegación es una barra superior con menús, los contenedores son regiones con regla y no tarjetas, y el único fondo oscuro es la tinta de un pulsador activo o de la opción seleccionada.",
     "keyCharacteristics": [
-      "Papel verde pálido con rayado contable cada renglón (1.75rem) y doble regla vertical de margen.",
-      "Dos tintas para el chasis (tinta y grafito); el color solo aparece como lápiz.",
-      "Esquinas rectas en todo; reglas finas en lugar de tarjetas.",
-      "Una sola superficie con sombra: la hoja que se levanta sobre la pila.",
-      "Marcas con forma y texto: el color nunca es la única señal.",
-      "Movimiento de papel: hojas que se levantan con peso, trazos que se dibujan, sellos que se estampan."
+      "Dos tintas de chasis (`--panel` y `--placa`); el color solo aparece como lámpara encendida con texto grabado.",
+      "Radio único de 2 px; reglas de 1 px y 2 px en tinta o junta, nunca de color.",
+      "Archivo Variable con eje de ancho: condensado (62 a 78 por ciento) en placas, títulos y rótulos; ancho normal en prosa.",
+      "JetBrains Mono para IDs canónicos, números y código.",
+      "Una sola sombra, la del panel lateral, tintada hacia la tinta.",
+      "Movimiento corto de instrumento: lámparas 160 a 200 ms, pulsadores 120 a 160 ms, panel 0,4 s."
     ],
     "rules": [
       {
-        "name": "La Regla del Lápiz Bicolor",
-        "body": "Rojo solo para marcas de cotejo y excepciones; azul solo para referencias cruzadas y lo que se sigue o se activa; tinta verde negra para IDs y texto. Un ID que no es enlace va en tinta o tinta suave, nunca en azul. La regla vertical roja de margen al 20 % y el rayado verde son impresión del papel, no lápiz: son material propio del mundo y están permitidos.",
+        "name": "The Lámpara Encendida Rule",
+        "body": "El color solo existe como lámpara encendida y siempre con texto grabado. Una lámpara apagada es acero claro con borde de junta y texto remache; no hay un cuarto estado de color.",
         "section": "colors"
       },
       {
-        "name": "La Regla de las Dos Tintas",
-        "body": "El chasis (texto, reglas, superficies, selección) se resuelve solo con verdes y tinta. Un estado seleccionado se marca invirtiendo a tinta sobre papel claro, nunca con un tono de acento.",
+        "name": "The Dos Tintas Rule",
+        "body": "El chasis (fondos, bordes, reglas, texto) usa únicamente la familia de `--panel` y la de `--placa`. Un tinte de lámpara mezclado con acero solo se admite en celdas de baja intensidad (mapa de calor, escala de madurez) con su texto o inicial al lado.",
         "section": "colors"
       },
       {
-        "name": "La Regla del Eje de Ancho",
-        "body": "El ancho comunica el registro: 62 % letra de papel, 72 a 78 % títulos, 85 a 88 % etiquetas y marcas, 92 % nombres en fila, 100 % prosa. No se usa peso ni tamaño extra para lo que el ancho ya resuelve.",
+        "name": "The Contraste Medido Rule",
+        "body": "Los tokens de texto sobre lámpara se ajustaron por medición AA, no por gusto: `--remache` y `--lampara-verde` son más oscuros que los valores que sugería el plan. No se aclaran sin medir de nuevo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rótulo Nunca Encima Rule",
+        "body": "La clase `.rotulo` (versalitas cortas con espaciado) acompaña etiquetas, columnas y valores; nunca se coloca encima de un título como antetítulo.",
         "section": "typography"
       },
       {
-        "name": "La Regla del ID Canónico",
-        "body": "Todo identificador del legajo va en JetBrains Mono y se escribe completo; es el idioma de las referencias cruzadas.",
+        "name": "The Ancho Por Función Rule",
+        "body": "Condensado para placas, títulos, lámparas y rótulos; ancho normal para prosa; mono para identificadores y código. No se mezclan en una misma frase.",
         "section": "typography"
       },
       {
-        "name": "La Regla de la Hoja Única",
-        "body": "Ninguna superficie tiene sombra salvo la hoja levantada y la que asoma debajo. Sin tarjetas, sin sombras de reposo, sin sombras desplazadas duras.",
+        "name": "The Una Sombra Rule",
+        "body": "Ninguna sombra exterior salvo `--sombra-panel`. Todo lo demás es inset o regla.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sin Resplandor Rule",
+        "body": "Una lámpara brilla hacia adentro; nunca emite halo ni glow exterior.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do usar rojo solo para marcas de cotejo, sellos, círculos de selección a lápiz y excepciones (banda Crítico, escenario de riesgo); azul solo para referencias cruzadas, enlaces y foco; tinta verde negra para IDs y texto.",
-      "Do acompañar cada estado con forma y texto (marca + palabra, trama + puntaje + banda).",
-      "Do codificar bandas, prioridades y madurez con la Trama de cinco densidades.",
-      "Do abrir cada papel nuevo con regla de tinta de 2px, letra, título, formulario de cuatro casillas y leyenda de marcas al pie.",
-      "Do escribir todo ID canónico en JetBrains Mono y hacerlo referencia azul cuando lleve a otro papel.",
-      "Do usar el eje de ancho de Archivo para la jerarquía: condensada en formularios y títulos, normal en prosa.",
-      "Do marcar la selección invirtiendo a tinta sobre papel claro.",
-      "Do dar movimiento de papel con ease-out (cubic-bezier(0.23, 1, 0.32, 1)): presión a 0.97 en 140ms, trazos de 220 a 320ms, sellos de 260 a 280ms, hoja con resorte, y dejarlo instantáneo con movimiento reducido.",
-      "Do mantener tema claro único, elegido por la escena de uso.",
-      "Do mantener el código fuente sin comentarios de ningún tipo (CSS, TSX, SQL, HTML): los nombres se explican solos."
+      "**Do** usar `--panel` y `--placa` para todo el chasis y reservar verde, ámbar, roja y blanca para lámparas encendidas con texto grabado.",
+      "**Do** mantener el radio en 2 px y los bordes en 1 px de tinta o junta; los de 2 px solo en tinta, en navbar, encabezados, reglas superiores y piezas firma.",
+      "**Do** componer con reglas, filas y regiones; separar con reglas de 1 px y encabezar con 2 px.",
+      "**Do** escribir IDs canónicos y números en JetBrains Mono, y títulos y placas con ancho condensado (62 a 78 por ciento).",
+      "**Do** acompañar toda lámpara, punto y celda teñida con texto o inicial (CUMPLE, PARCIAL, banda, número de nivel).",
+      "**Do** dar a cada pulsador `scale(0.97)` al presionar y a toda animación una duración de 120 a 200 ms (0,4 s solo el panel), con `--ease-out`.",
+      "**Do** probar contraste sobre el fondo real antes de tocar `--remache` o las lámparas."
     ],
     "donts": [
-      "Don't usar insignias, chips o etiquetas rellenas de color para bandas, estados o prioridades.",
-      "Don't poner rótulos tipo eyebrow o kicker encima de los títulos.",
-      "Don't usar rayas largas (em dash) en el texto visible.",
-      "Don't agregar tarjetas, esquinas redondeadas ni sombras fuera de la hoja levantada.",
-      "Don't agregar un tema oscuro, candados, neón ni la estética de panel GRC con barra lateral de tarjetas.",
-      "Don't usar azul para texto que no se puede seguir, ni rojo como color decorativo o de acento.",
-      "Don't introducir un tercer tono de acento ni un color de estado verde o ámbar."
+      "**Don't** poner un rótulo (`.rotulo`) encima de un título.",
+      "**Don't** alinear tarjetas iguales en fila; la información va en tablas, listas y rejillas con reglas.",
+      "**Don't** usar bordes de color ni bordes mayores de 1 px en color; los de 2 px son de tinta.",
+      "**Don't** añadir sombras exteriores; la única es `--sombra-panel` del panel lateral. Sin resplandor en lámparas.",
+      "**Don't** usar azul ni ningún color fuera de las cuatro lámparas.",
+      "**Don't** usar rayado, trama ni degradados decorativos.",
+      "**Don't** señalar un estado solo con color: toda lámpara lleva texto.",
+      "**Don't** introducir barra lateral de navegación, insignias de color, candados ni neón, ni tema oscuro."
     ]
   }
 }
