@@ -263,3 +263,7 @@ textarea.control-texto {
     transition-duration: 1ms !important;
   }
 }
+
+a.pulsador {
+  text-decoration: none;
+}

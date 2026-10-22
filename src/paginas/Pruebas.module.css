@@ -1,0 +1,134 @@
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prueba {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  line-height: 1.25;
+}
+
+.tipo {
+  font-size: 0.8125rem;
+  color: var(--placa-suave);
+}
+
+.texto {
+  display: block;
+  max-width: 30rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.vacio {
+  font-size: 0.875rem;
+  color: var(--remache);
+}
+
+.extremo {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.subtitulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.85rem;
+  font-size: 1.5rem;
+}
+
+.paso {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-stretch: 78%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--remache);
+}
+
+.explicacion {
+  max-width: 68ch;
+  font-size: 0.9375rem;
+}
+
+.desplegable summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.desplegable summary::-webkit-details-marker {
+  display: none;
+}
+
+.desplegable[open] summary {
+  margin-bottom: 0.75rem;
+}
+
+.caret {
+  transition: transform 160ms var(--ease-out);
+}
+
+.desplegable[open] .caret {
+  transform: rotate(90deg);
+}
+
+.progreso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+}
+
+.cuenta {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.aviso {
+  flex: 1 1 18rem;
+  font-size: 0.9375rem;
+  color: var(--placa-suave);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1.5rem;
+}
+
+.grupoFiltro {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.selector {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.visibles {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-bottom: 0.55rem;
+}

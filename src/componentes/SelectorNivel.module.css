@@ -48,6 +48,10 @@
 
 .opcion[data-nivel='sin'][aria-checked='true'] {
   background: var(--panel-claro);
+  border-width: 1px;
+  padding: 0.35rem 0.7rem;
+  box-shadow: inset 0 0 0 1px var(--placa);
+  font-weight: 700;
 }
 
 .opcion[data-sugerido]:not([aria-checked='true']) {

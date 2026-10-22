@@ -30,7 +30,7 @@ export function BotoneraEstado<T extends ValorLampara>({ etiqueta, opciones, val
               aria-pressed={activa}
               onClick={() => alCambiar(activa ? null : opcion)}
             >
-              <PuntoLampara tono={activa ? tono : 'apagada'} />
+              <PuntoLampara tono={activa ? 'blanca' : 'apagada'} />
               {opcion}
             </button>
           )

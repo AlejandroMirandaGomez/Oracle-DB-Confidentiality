@@ -1,0 +1,24 @@
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tarea {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 46rem;
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  line-height: 1.25;
+}
+
+.descripcion {
+  font-size: 0.875rem;
+  color: var(--placa-suave);
+}

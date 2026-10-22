@@ -1,0 +1,260 @@
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  font-stretch: 90%;
+  line-height: 1.25;
+}
+
+.escala {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.valor {
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.mapa {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--placa);
+}
+
+.cabezaMapa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.subtitulo {
+  font-size: 1.75rem;
+}
+
+.conmutador {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.composicion {
+  display: grid;
+  grid-template-columns: minmax(18rem, 28rem) minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.figura {
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: 1.25rem 1.25rem minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 0.35rem;
+}
+
+.ejeY {
+  grid-row: 1;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  align-self: center;
+  justify-self: center;
+}
+
+.etiquetasY {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: end;
+}
+
+.etiquetasX {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.etiquetasY span,
+.etiquetasX span {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--remache);
+}
+
+.ejeX {
+  grid-column: 3;
+  justify-self: center;
+}
+
+.plano {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  aspect-ratio: 1;
+  border: 2px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.celda {
+  display: grid;
+  place-items: end start;
+  padding: 0.2rem 0.3rem;
+  border-right: 1px solid var(--panel-claro);
+  border-bottom: 1px solid var(--panel-claro);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--placa-suave);
+}
+
+.celda[data-banda='Bajo'] {
+  background: color-mix(in srgb, var(--lampara-verde) 22%, var(--panel-claro));
+}
+
+.celda[data-banda='Medio'] {
+  background: color-mix(in srgb, var(--lampara-ambar) 40%, var(--panel-claro));
+}
+
+.celda[data-banda='Alto'] {
+  background: color-mix(in srgb, var(--lampara-roja) 26%, var(--panel-claro));
+}
+
+.celda[data-banda='Crítico'] {
+  background: color-mix(in srgb, var(--lampara-roja) 50%, var(--panel-claro));
+  color: var(--placa);
+}
+
+.punto {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--placa);
+  border-radius: var(--radio);
+  background: var(--panel-claro);
+  box-shadow: var(--relieve-pulsador);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--placa);
+  cursor: pointer;
+  transition:
+    background-color 140ms var(--ease-out),
+    color 140ms var(--ease-out),
+    scale 140ms var(--ease-out);
+}
+
+.punto:active {
+  scale: 0.97;
+}
+
+.punto[data-enfocado] {
+  background: var(--placa);
+  color: var(--panel-claro);
+  z-index: 2;
+}
+
+.leyenda {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 44ch;
+  font-size: 0.8125rem;
+  color: var(--placa-suave);
+}
+
+.aviso {
+  font-weight: 600;
+}
+
+.escalas {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tablaEscala {
+  width: 100%;
+  font-size: 0.875rem;
+  border-top: 2px solid var(--placa);
+  border-bottom: 1px solid var(--placa);
+}
+
+.tablaEscala caption {
+  padding: 0 0 0.4rem;
+  text-align: left;
+}
+
+.tablaEscala th,
+.tablaEscala td {
+  padding: 0.4rem 0.6rem;
+  border-top: 1px solid var(--junta);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tablaEscala tr:first-child th,
+.tablaEscala tr:first-child td {
+  border-top: 0;
+}
+
+.tablaEscala th {
+  width: 2rem;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.nombreEscala {
+  width: 7.5rem;
+  font-weight: 600;
+}
+
+.bandas {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.listaBandas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.listaBandas li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 960px) {
+  .composicion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .figura {
+    max-width: 30rem;
+  }
+}

@@ -15,36 +15,31 @@ export function SincronizarReferencia() {
   const { pila, abrirReferencia, cerrarHoja } = useEvaluacion()
   const indice = useIndice()
   const { pathname } = useLocation()
-  const aperturaInicial = useRef(true)
-  const primeraSincronizacion = useRef(true)
   const rutaPrevia = useRef(pathname)
-  const fijarActual = useRef(fijarParametros)
+  const ultimo = useRef<{ referencia: string | null; tope: string | null }>({ referencia: null, tope: null })
+  const tope = pila.at(-1) ?? null
+  const referencia = parametros.get('ref')
 
   useEffect(() => {
-    fijarActual.current = fijarParametros
-  })
-
-  useEffect(() => {
-    if (!aperturaInicial.current) return
-    aperturaInicial.current = false
-    const referencia = parametros.get('ref')
-    if (referencia && indice.buscar(referencia)) abrirReferencia(referencia)
-    else if (referencia) fijarParametros((previos) => conReferencia(previos, undefined), { replace: true })
-  }, [parametros, indice, abrirReferencia, fijarParametros])
-
-  useEffect(() => {
-    if (primeraSincronizacion.current) {
-      primeraSincronizacion.current = false
+    const previo = ultimo.current
+    ultimo.current = { referencia, tope }
+    if (referencia !== previo.referencia) {
+      if (referencia === tope) return
+      if (referencia && indice.buscar(referencia)) abrirReferencia(referencia)
+      else if (referencia) fijarParametros((previos) => conReferencia(previos, undefined), { replace: true })
+      else cerrarHoja()
       return
     }
-    fijarActual.current((previos) => conReferencia(previos, pila.at(-1)), { replace: true })
-  }, [pila])
+    if (tope !== previo.tope && tope !== referencia) {
+      fijarParametros((previos) => conReferencia(previos, tope ?? undefined), { replace: true })
+    }
+  }, [referencia, tope, indice, abrirReferencia, cerrarHoja, fijarParametros])
 
   useEffect(() => {
     if (rutaPrevia.current === pathname) return
     rutaPrevia.current = pathname
-    cerrarHoja()
-  }, [pathname, cerrarHoja])
+    if (referencia === null) cerrarHoja()
+  }, [pathname, referencia, cerrarHoja])
 
   return null
 }

@@ -121,7 +121,6 @@ export function contarEvidencias(respuestas: RespuestasEvidencia): number {
 
 export function hayDatosDeEvaluacion(evaluacion: Evaluacion): boolean {
   return (
-    evaluacion.organizacion.trim() !== '' ||
     Object.keys(evaluacion.niveles).length > 0 ||
     contarEvidencias(evaluacion.respuestasEvidencia) > 0 ||
     Object.keys(evaluacion.respuestasPruebas).length > 0
