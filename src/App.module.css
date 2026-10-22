@@ -1,0 +1,33 @@
+.escritorio {
+  display: grid;
+  grid-template-columns: var(--ancho-indice) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.legajo {
+  min-width: 0;
+  padding: 0 var(--margen) clamp(3rem, 8vw, 6rem);
+  background-image: linear-gradient(to right, transparent calc(var(--margen) - 0.9rem), rgb(176 38 30 / 0.2) calc(var(--margen) - 0.9rem), rgb(176 38 30 / 0.2) calc(var(--margen) - 0.9rem + 1px), transparent calc(var(--margen) - 0.9rem + 1px)),
+    linear-gradient(to left, transparent calc(var(--margen) - 0.9rem), rgb(146 174 140 / 0.45) calc(var(--margen) - 0.9rem), rgb(146 174 140 / 0.45) calc(var(--margen) - 0.9rem + 1px), transparent calc(var(--margen) - 0.9rem + 1px), transparent calc(var(--margen) - 0.6rem), rgb(146 174 140 / 0.45) calc(var(--margen) - 0.6rem), rgb(146 174 140 / 0.45) calc(var(--margen) - 0.6rem + 1px), transparent calc(var(--margen) - 0.6rem + 1px)),
+    var(--rayado);
+}
+
+.cierre {
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--tinta);
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: var(--grafito);
+}
+
+@media (max-width: 1100px) {
+  .escritorio {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .legajo {
+    background-image: var(--rayado);
+  }
+}
