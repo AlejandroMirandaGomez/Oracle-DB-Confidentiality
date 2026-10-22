@@ -1,5 +1,5 @@
-import { DownloadSimpleIcon } from '@phosphor-icons/react'
-import { useEffect } from 'react'
+import { XIcon } from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { ComponenteTabular, type ColumnaTabular } from '../componentes/ComponenteTabular'
@@ -22,6 +22,8 @@ const columnas: ColumnaTabular<Hallazgo>[] = [
 
 export function Hallazgos() {
   const { matrizCompleta, progresoMatriz, bateriaCompleta, hallazgos, organizacion, abrirReferencia, marcarPasoVisto } = useEvaluacion()
+
+  const [avisoVisible, setAvisoVisible] = useState(true)
 
   useEffect(() => marcarPasoVisto('hallazgos'), [marcarPasoVisto])
 
@@ -66,24 +68,24 @@ export function Hallazgos() {
         <h2 id="titulo-plan" className={estilos.plan}>
           Plan de acción de {nombre}
         </h2>
-        <div className={estilos.acciones}>
-          <button type="button" className="pulsador" onClick={() => exportar('csv')} disabled={hallazgos.length === 0}>
-            <DownloadSimpleIcon aria-hidden="true" />
-            Exportar plan de acción (CSV)
-          </button>
-          <button type="button" className="pulsador" onClick={() => exportar('md')} disabled={hallazgos.length === 0}>
-            <DownloadSimpleIcon aria-hidden="true" />
-            Exportar plan de acción (Markdown)
-          </button>
-        </div>
-        <ArchivoEvaluacion />
+        <ArchivoEvaluacion
+          acciones={[
+            { etiqueta: 'Exportar plan de acción (CSV)', alActivar: () => exportar('csv'), deshabilitada: hallazgos.length === 0 },
+            { etiqueta: 'Exportar plan de acción (Markdown)', alActivar: () => exportar('md'), deshabilitada: hallazgos.length === 0 },
+          ]}
+        />
       </section>
 
-      {!bateriaCompleta && (
-        <p className={estilos.aviso}>
-          Complete la batería de pruebas para obtener hallazgos más precisos.{' '}
-          <Link to="/pruebas">Ir a la batería de pruebas</Link>
-        </p>
+      {!bateriaCompleta && avisoVisible && (
+        <div className={estilos.aviso} role="status">
+          <p>
+            Complete la batería de pruebas para obtener hallazgos más precisos.{' '}
+            <Link to="/pruebas">Ir a la batería de pruebas</Link>
+          </p>
+          <button type="button" className={estilos.cerrarAviso} aria-label="Cerrar advertencia" onClick={() => setAvisoVisible(false)}>
+            <XIcon weight="bold" aria-hidden="true" />
+          </button>
+        </div>
       )}
 
       <LeyendaLamparas tipo="hallazgos" />

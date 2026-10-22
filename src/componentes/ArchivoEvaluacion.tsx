@@ -1,5 +1,5 @@
-import { DownloadSimpleIcon, UploadSimpleIcon } from '@phosphor-icons/react'
-import { useRef, useState, type ChangeEvent } from 'react'
+import { CaretDownIcon, DownloadSimpleIcon } from '@phosphor-icons/react'
+import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import type { ResumenImportacion } from '../estado/archivoEvaluacion'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import estilos from './ArchivoEvaluacion.module.css'
@@ -15,10 +15,45 @@ function describirResumen(resumen: ResumenImportacion): string {
   return resumen.ignorados > 0 ? `${partes}. Se ignoraron ${resumen.ignorados} elementos que esta aplicación no reconoce` : partes
 }
 
-export function ArchivoEvaluacion() {
+export type AccionArchivo = {
+  etiqueta: string
+  alActivar: () => void
+  deshabilitada?: boolean
+}
+
+export function ArchivoEvaluacion({ acciones = [] }: { acciones?: AccionArchivo[] }) {
   const { exportarEvaluacion, importarEvaluacion, hayDatos } = useEvaluacion()
   const [estado, setEstado] = useState<Estado>({ tipo: 'reposo' })
+  const [menuAbierto, setMenuAbierto] = useState(false)
   const entrada = useRef<HTMLInputElement>(null)
+  const contenedorMenu = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!menuAbierto) return
+    const alPulsar = (evento: PointerEvent) => {
+      if (!contenedorMenu.current?.contains(evento.target as Node)) setMenuAbierto(false)
+    }
+    const alTeclear = (evento: KeyboardEvent) => {
+      if (evento.key === 'Escape') setMenuAbierto(false)
+    }
+    document.addEventListener('pointerdown', alPulsar)
+    document.addEventListener('keydown', alTeclear)
+    return () => {
+      document.removeEventListener('pointerdown', alPulsar)
+      document.removeEventListener('keydown', alTeclear)
+    }
+  }, [menuAbierto])
+
+  const elegirOpcion = (accion: () => void) => {
+    setMenuAbierto(false)
+    accion()
+  }
+
+  const opciones: AccionArchivo[] = [
+    ...acciones,
+    { etiqueta: 'Exportar evaluación', alActivar: exportarEvaluacion },
+    { etiqueta: 'Importar evaluación', alActivar: () => entrada.current?.click() },
+  ]
 
   async function alElegir(evento: ChangeEvent<HTMLInputElement>) {
     const archivo = evento.target.files?.[0]
@@ -39,15 +74,19 @@ export function ArchivoEvaluacion() {
 
   return (
     <div className={estilos.archivo}>
-      <div className={estilos.botones}>
-        <button type="button" className="pulsador" onClick={exportarEvaluacion}>
+      <div className={estilos.menu} ref={contenedorMenu}>
+        <button type="button" className="pulsador" aria-expanded={menuAbierto} aria-controls="menu-archivo" onClick={() => setMenuAbierto((abierto) => !abierto)}>
           <DownloadSimpleIcon aria-hidden="true" />
-          Exportar evaluación
+          Exportar e importar
+          <CaretDownIcon weight="bold" aria-hidden="true" />
         </button>
-        <button type="button" className="pulsador" onClick={() => entrada.current?.click()}>
-          <UploadSimpleIcon aria-hidden="true" />
-          Importar evaluación
-        </button>
+        <div id="menu-archivo" className={estilos.opciones} hidden={!menuAbierto}>
+          {opciones.map((opcion) => (
+            <button key={opcion.etiqueta} type="button" className={estilos.opcion} disabled={opcion.deshabilitada} onClick={() => elegirOpcion(opcion.alActivar)}>
+              {opcion.etiqueta}
+            </button>
+          ))}
+        </div>
         <input ref={entrada} className="solo-lectores" type="file" accept="application/json,.json" tabIndex={-1} aria-hidden="true" onChange={alElegir} />
       </div>
       <div className={estilos.mensaje} aria-live="polite">

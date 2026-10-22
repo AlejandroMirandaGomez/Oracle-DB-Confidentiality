@@ -1,4 +1,4 @@
-import { DownloadSimpleIcon, EraserIcon } from '@phosphor-icons/react'
+import { EraserIcon } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
@@ -46,7 +46,14 @@ export function Matriz() {
       introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para documentar sus evidencias con Sí, Parcial o No y confirme un nivel de madurez de 0 a 4. Pase el cursor sobre un nivel para leer qué significa en el control de esa fila. La matriz arranca sin evaluar."
     >
       <section className={estilos.organizacion} aria-label="Organización y archivo de la evaluación">
-        <ArchivoEvaluacion />
+        <ArchivoEvaluacion
+          acciones={[
+            {
+              etiqueta: 'Exportar matriz (CSV)',
+              alActivar: () => descargarArchivo(nombreArchivoMatriz(organizacion), matrizComoCsv(organizacion, nivelDe, respuestaEvidencia), 'text/csv'),
+            },
+          ]}
+        />
       </section>
 
       <div className={estilos.barra}>
@@ -73,14 +80,6 @@ export function Matriz() {
               </button>
             ))}
           </div>
-          <button
-            type="button"
-            className="pulsador"
-            onClick={() => descargarArchivo(nombreArchivoMatriz(organizacion), matrizComoCsv(organizacion, nivelDe, respuestaEvidencia), 'text/csv')}
-          >
-            <DownloadSimpleIcon aria-hidden="true" />
-            Exportar CSV
-          </button>
           <BotonConfirmacion
             etiqueta="Limpiar matriz"
             titulo="¿Limpiar la matriz?"
