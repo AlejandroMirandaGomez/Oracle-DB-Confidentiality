@@ -451,5 +451,3 @@ export const controles: Control[] = [
     pruebas: ['PR-13'],
   },
 ]
-
-export const controlesPrincipales = controles.filter((control) => !control.complementario)

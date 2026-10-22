@@ -43,8 +43,6 @@ const respuestasDePrueba: RespuestaPrueba[] = ['Conforme', 'Parcial', 'No confor
 const largoMaximoOrganizacion = 120
 const largoMaximoNota = 2000
 
-export const evaluacionVacia: Evaluacion = { organizacion: '', niveles: {}, respuestasEvidencia: {}, respuestasPruebas: {} }
-
 const evidenciasPorFila = new Map(matriz.map((fila) => [fila.id, new Set(fila.evidenciasRequeridas.map((evidencia) => evidencia.id))]))
 const idsDePruebas = new Set(pruebas.map((prueba) => prueba.id))
 
