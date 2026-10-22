@@ -1,0 +1,72 @@
+.composicion {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.contenido {
+  position: sticky;
+  top: 1.5rem;
+}
+
+.contenido ol {
+  list-style: none;
+  border-top: 1px solid var(--tinta);
+  counter-reset: seccion;
+}
+
+.contenido li {
+  border-bottom: 1px solid var(--regla);
+}
+
+.contenido a {
+  display: block;
+  padding: 0.5rem 0 0.55rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--tinta-suave);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contenido a:hover {
+    color: var(--azul);
+  }
+}
+
+.texto {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 70ch;
+}
+
+.seccion {
+  display: grid;
+  gap: 0.9rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.titulo {
+  font-size: 1.45rem;
+  font-stretch: 82%;
+  padding-bottom: 0.15rem;
+}
+
+.parrafo {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--tinta);
+  hyphens: auto;
+}
+
+@media (max-width: 860px) {
+  .composicion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contenido {
+    position: static;
+  }
+}

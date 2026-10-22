@@ -1,0 +1,130 @@
+.composicion {
+  display: grid;
+  grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  align-items: start;
+}
+
+.indice {
+  position: sticky;
+  top: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.grupo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.grupoTitulo {
+  font-size: 0.8125rem;
+  font-stretch: 85%;
+  font-weight: 650;
+  color: var(--tinta-suave);
+}
+
+.lista {
+  list-style: none;
+  border-top: 1px solid var(--tinta);
+}
+
+.opcion {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 0.55rem 0.5rem 0.6rem 0.35rem;
+  border: 0;
+  border-bottom: 1px solid var(--regla);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+
+.opcion[aria-current] {
+  background: var(--tinta);
+  color: var(--papel-claro);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .opcion:not([aria-current]):hover {
+    background: var(--papel-claro);
+  }
+}
+
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+.opcion[aria-current] .id {
+  color: var(--papel-claro);
+}
+
+.nombre {
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.propiedades {
+  display: inline-flex;
+  gap: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+}
+
+.propiedades > span {
+  width: 1.05rem;
+  text-align: center;
+  color: var(--regla-fuerte);
+}
+
+.propiedades > span[data-marcada] {
+  color: currentColor;
+  font-weight: 700;
+}
+
+.opcion[aria-current] .propiedades > span {
+  color: rgb(243 248 241 / 0.35);
+}
+
+.opcion[aria-current] .propiedades > span[data-marcada] {
+  color: var(--papel-claro);
+}
+
+.detalle {
+  min-width: 0;
+}
+
+.titulo {
+  display: grid;
+  gap: 0.35rem;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.tituloId {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 900px) {
+  .composicion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .indice {
+    position: static;
+    max-height: 22rem;
+  }
+}

@@ -1,0 +1,17 @@
+.lista {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  max-width: 78ch;
+}
+
+.referencia {
+  padding-left: 2.25rem;
+  text-indent: -2.25rem;
+  line-height: 1.6;
+}
+
+.enlace {
+  word-break: break-all;
+  font-size: 0.9375rem;
+}

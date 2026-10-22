@@ -1,0 +1,261 @@
+.ejecucion {
+  display: grid;
+  gap: 1rem;
+  max-width: 64rem;
+  margin-bottom: 2rem;
+}
+
+.ficha {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--regla-fuerte);
+  background: var(--papel-claro);
+  justify-self: start;
+}
+
+.ficha > div {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.55rem 1rem 0.6rem;
+}
+
+.ficha > div + div {
+  border-left: 1px solid var(--regla);
+}
+
+.ficha dt {
+  font-size: 0.75rem;
+  font-stretch: 85%;
+  font-weight: 650;
+  color: var(--grafito);
+}
+
+.ficha dd {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.conteo {
+  display: flex;
+  gap: 0.9rem;
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.conteo > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metodo {
+  max-width: 76ch;
+  color: var(--tinta-suave);
+}
+
+.metodo code {
+  color: var(--tinta);
+}
+
+.extremos {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.desplegable summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: var(--azul);
+  cursor: pointer;
+  list-style: none;
+}
+
+.desplegable summary::-webkit-details-marker {
+  display: none;
+}
+
+.caret {
+  transition: transform 180ms var(--ease-out);
+}
+
+.desplegable[open] .caret {
+  transform: rotate(90deg);
+}
+
+.desplegable[open] summary {
+  margin-bottom: 0.6rem;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding-bottom: 0.75rem;
+}
+
+.grupoFiltro {
+  display: inline-flex;
+  border: 1px solid var(--regla-fuerte);
+}
+
+.filtro {
+  padding: 0.3rem 0.65rem;
+  border: 0;
+  background: none;
+  font-size: 0.8125rem;
+  color: var(--tinta-suave);
+  cursor: pointer;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.filtro + .filtro {
+  border-left: 1px solid var(--regla-fuerte);
+}
+
+.filtro[data-activo] {
+  background: var(--tinta);
+  color: var(--papel-claro);
+}
+
+.selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--grafito);
+}
+
+.selector select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--regla-fuerte);
+  background: var(--papel-claro);
+  font: inherit;
+  color: var(--tinta);
+}
+
+.cuenta {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--grafito);
+}
+
+.lista {
+  list-style: none;
+  border-top: 1px solid var(--tinta);
+}
+
+.prueba {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.9fr) minmax(0, 2fr) minmax(9rem, auto);
+  gap: 1rem 1.75rem;
+  padding: 1rem 0 1.1rem;
+  border-bottom: 1px solid var(--regla);
+}
+
+.cabeza {
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out);
+}
+
+.cabeza:active {
+  transform: scale(0.985);
+}
+
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: var(--tinta-suave);
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 620;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cabeza:hover .nombre {
+    text-decoration-color: var(--tinta-suave);
+  }
+}
+
+.tipo {
+  font-size: 0.8125rem;
+  color: var(--grafito);
+}
+
+.comparacion {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+.comparacion p {
+  display: grid;
+  gap: 0.2rem;
+  align-content: start;
+}
+
+.comparacion p + p {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--regla);
+  color: var(--tinta);
+}
+
+.rotulo {
+  font-size: 0.75rem;
+  font-stretch: 85%;
+  font-weight: 650;
+  color: var(--grafito);
+}
+
+.cierre {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  justify-items: start;
+}
+
+.vacio {
+  padding: 1.5rem 0;
+  color: var(--grafito);
+}
+
+@media (max-width: 1000px) {
+  .prueba {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .comparacion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .comparacion p + p {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .ficha > div + div {
+    border-left: 0;
+  }
+}
