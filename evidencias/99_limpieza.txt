@@ -1,0 +1,52 @@
+
+99 | Eliminación del entorno de prueba LEGAJO_* en XEPDB1
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:34 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+
+No auditoría terminada correctamente.
+
+
+Política de auditoría borrada.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Usuario borrado.
+
+
+Usuario borrado.
+
+
+Usuario borrado.
+
+
+Usuario borrado.
+
+
+Usuario borrado.
+
+
+Rol borrado.
+
+
+Perfil borrado.
+
+Objetos LEGAJO restantes (se espera 0 en cada fila)
+
+TIPO                    RESTANTES
+---------------------- ----------
+usuarios                        0
+roles                           0
+perfiles                        0
+politicas de auditoria          0
+politicas de redaccion          0
+politicas vpd                   0
+
+6 filas seleccionadas.

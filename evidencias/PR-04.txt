@@ -1,0 +1,35 @@
+
+PR-04 | Privilegios de sistema y ANY en cuentas no administradas por Oracle | A5.18 A8.2
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:18 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Privilegios de sistema otorgados directamente a cuentas de la organización (se espera ninguno con ANY)
+
+GRANTEE                    PRIVILEGE                      ADM
+-------------------------- ------------------------------ ---
+CLOUDCR_STRESS             CREATE SESSION                 NO
+CLOUDCR_STRESS             CREATE TABLE                   NO
+LEGAJO_BLOQUEO             CREATE SESSION                 NO
+LEGAJO_LECTOR              CREATE SESSION                 NO
+LEGAJO_SOPORTE             CREATE SESSION                 NO
+MONITOR_USER               CREATE SESSION                 NO
+
+6 filas seleccionadas.
+
+Roles otorgados a cuentas de la organización
+
+GRANTEE                    GRANTED_ROLE                 ADM DEF
+-------------------------- ---------------------------- --- ---
+CLOUDCR_STRESS             SELECT_CATALOG_ROLE          NO  YES
+LEGAJO_LECTOR              LEGAJO_ROL_LECTURA           NO  YES
+LEGAJO_SOPORTE             LEGAJO_ROL_LECTURA           NO  YES
+MONITOR_USER               SELECT_CATALOG_ROLE          NO  YES
+PDBADMIN                   PDB_DBA                      YES YES
+
+5 filas seleccionadas.
+
+Privilegios ANY alcanzables mediante roles por cuentas de la organización
+
+ninguna fila seleccionada

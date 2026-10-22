@@ -1,0 +1,132 @@
+{
+    "inicio":  "2026-10-21T18:29:17-06:00",
+    "fin":  "2026-10-21T18:29:35-06:00",
+    "instancia":  "Oracle Database 21c Express Edition, PDB XEPDB1",
+    "evidencias":  [
+                       {
+                           "id":  "00_preparacion",
+                           "archivo":  "evidencias/00_preparacion.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-01",
+                           "archivo":  "evidencias/PR-01.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-02",
+                           "archivo":  "evidencias/PR-02.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-03",
+                           "archivo":  "evidencias/PR-03.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-04",
+                           "archivo":  "evidencias/PR-04.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-05",
+                           "archivo":  "evidencias/PR-05.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-06",
+                           "archivo":  "evidencias/PR-06.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-07",
+                           "archivo":  "evidencias/PR-07.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-08",
+                           "archivo":  "evidencias/PR-08.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-09",
+                           "archivo":  "evidencias/PR-09.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-10",
+                           "archivo":  "evidencias/PR-10.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-11",
+                           "archivo":  "evidencias/PR-11.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-12",
+                           "archivo":  "evidencias/PR-12.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-13",
+                           "archivo":  "evidencias/PR-13.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-14",
+                           "archivo":  "evidencias/PR-14.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-15",
+                           "archivo":  "evidencias/PR-15.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-16",
+                           "archivo":  "evidencias/PR-16.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-17",
+                           "archivo":  "evidencias/PR-17.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-18",
+                           "archivo":  "evidencias/PR-18.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-19",
+                           "archivo":  "evidencias/PR-19.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-20",
+                           "archivo":  "evidencias/PR-20.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-21",
+                           "archivo":  "evidencias/PR-21.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-22",
+                           "archivo":  "evidencias/PR-22.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "PR-23",
+                           "archivo":  "evidencias/PR-23.txt",
+                           "codigoSalida":  0
+                       },
+                       {
+                           "id":  "99_limpieza",
+                           "archivo":  "evidencias/99_limpieza.txt",
+                           "codigoSalida":  0
+                       }
+                   ]
+}

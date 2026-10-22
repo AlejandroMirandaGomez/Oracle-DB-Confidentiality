@@ -1,0 +1,50 @@
+
+PR-16 | Protección y retención del rastro de auditoría | A5.33
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:25 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Auditoría de operaciones de SYS
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+audit_sys_operations               TRUE
+audit_trail                        DB
+
+2 filas seleccionadas.
+
+Cuenta propietaria del rastro unificado
+
+USERNAME               ACCOUNT_STATUS     AUTENTIC
+---------------------- ------------------ ----------
+AUDSYS                 LOCKED             NONE
+
+1 fila seleccionada.
+
+Titulares de roles de administración y lectura de auditoría
+
+GRANTEE                    GRANTED_ROLE
+-------------------------- ----------------------------
+SYS                        AUDIT_ADMIN
+SYS                        AUDIT_VIEWER
+
+2 filas seleccionadas.
+
+Intento de borrar registros de auditoría como SYSDBA (se espera ORA-46385)
+DELETE FROM audsys.aud$unified WHERE 1 = 0
+                   *
+ERROR en línea 1:
+ORA-46385: Las operaciones de DML y de DDL no están permitidas en la tabla "AUDSYS"."AUD$UNIFIED".
+
+
+
+Rollback terminado.
+
+Marcas de archivo para purga controlada (se espera al menos una fila)
+
+ninguna fila seleccionada
+
+Trabajos de purga programados (se espera al menos una fila)
+
+ninguna fila seleccionada

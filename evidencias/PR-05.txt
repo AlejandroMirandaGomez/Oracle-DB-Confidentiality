@@ -1,0 +1,43 @@
+
+PR-05 | Canales de extracción de datos otorgados a PUBLIC | A8.12 A8.3
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:18 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Paquetes de red y de archivos ejecutables por cualquier usuario (se espera ninguna fila)
+
+GRANTEE                    TABLE_NAME       PRIVILEGE
+-------------------------- ---------------- ------------------------------
+PUBLIC                     DBMS_LDAP        EXECUTE
+PUBLIC                     HTTPURITYPE      EXECUTE
+PUBLIC                     UTL_FILE         EXECUTE
+PUBLIC                     UTL_HTTP         EXECUTE
+PUBLIC                     UTL_INADDR       EXECUTE
+PUBLIC                     UTL_SMTP         EXECUTE
+PUBLIC                     UTL_TCP          EXECUTE
+
+7 filas seleccionadas.
+
+Objetos de la organización con privilegios otorgados a PUBLIC (se espera ninguna fila)
+
+ninguna fila seleccionada
+
+Titulares de roles de exportación masiva
+
+GRANTEE                    GRANTED_ROLE
+-------------------------- ----------------------------
+DBA                        DATAPUMP_EXP_FULL_DATABASE
+GSMADMIN_INTERNAL          DATAPUMP_EXP_FULL_DATABASE
+GSMUSER_ROLE               DATAPUMP_EXP_FULL_DATABASE
+SYS                        DATAPUMP_EXP_FULL_DATABASE
+DATAPUMP_EXP_FULL_DATABASE EXP_FULL_DATABASE
+DATAPUMP_IMP_FULL_DATABASE EXP_FULL_DATABASE
+DBA                        EXP_FULL_DATABASE
+SYS                        EXP_FULL_DATABASE
+
+8 filas seleccionadas.
+
+Privilegios sobre directorios otorgados a cuentas de la organización
+
+ninguna fila seleccionada

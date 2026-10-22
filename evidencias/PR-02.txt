@@ -1,0 +1,40 @@
+
+PR-02 | Ciclo de vida de identidades: cuentas mantenidas por Oracle y cuentas nominales | A5.16
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:18 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Cuentas mantenidas por Oracle abiertas y con autenticación (solo deberían figurar SYS y SYSTEM)
+
+USERNAME               ACCOUNT_STATUS     AUTENTIC
+---------------------- ------------------ ----------
+SYS                    OPEN               PASSWORD
+SYSTEM                 OPEN               PASSWORD
+
+2 filas seleccionadas.
+
+Cuentas mantenidas por Oracle por estado
+
+ACCOUNT_STATUS     AUTENTIC      CUENTAS
+------------------ ---------- ----------
+LOCKED             NONE               33
+OPEN               PASSWORD            2
+OPEN               NONE                1
+
+3 filas seleccionadas.
+
+Identidades creadas por la organización
+
+USERNAME               ACCOUNT_STATUS     AUTENTIC   PROFILE                CREATED          ULTIMO_ACCESO
+---------------------- ------------------ ---------- ---------------------- ---------------- ----------------
+CLOUDCR_STRESS         OPEN               PASSWORD   DEFAULT                2026-08-24 00:02
+LEGAJO_APP             OPEN               NONE       DEFAULT                2026-10-21 18:29
+LEGAJO_BLOQUEO         OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO   2026-10-21 18:29
+LEGAJO_DEV             OPEN               NONE       DEFAULT                2026-10-21 18:29
+LEGAJO_LECTOR          OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO   2026-10-21 18:29
+LEGAJO_SOPORTE         OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO   2026-10-21 18:29
+MONITOR_USER           OPEN               PASSWORD   DEFAULT                2026-08-24 00:02 2026-08-24 00:07
+PDBADMIN               OPEN               PASSWORD   DEFAULT                2026-08-23 23:55
+
+8 filas seleccionadas.

@@ -1,0 +1,26 @@
+
+PR-19 | Cifrado de la conexión de red al servicio XEPDB1 | A8.20
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:31 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo tcp
+Servicios negociados en esta sesión TCP (se espera una línea de cifrado AES y una de integridad SHA)
+
+NETWORK_SERVICE_BANNER
+------------------------------------------------------------------------------------------
+Windows NT TCP/IP NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Authentication service for 64-bit Windows: Version 21.0.1.0.0 - Production
+NTS Authentication service adapter for 64-bit Windows: Version 2.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+5 filas seleccionadas.
+
+Sesiones TCP actuales sin adaptador de cifrado
+
+SESIONES_TCP_SIN_CIFRADO
+------------------------
+                       1
+
+1 fila seleccionada.

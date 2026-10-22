@@ -1,0 +1,31 @@
+
+PR-23 | Revisión de derechos: cuentas abiertas sin uso reciente | A5.18
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:34 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Cuentas abiertas de la organización con su último inicio de sesión
+
+USERNAME               ACCOUNT_STATUS     PROFILE                CREATED          ULTIMO_ACCESO    REVISION
+---------------------- ------------------ ---------------------- ---------------- ---------------- ------------------
+CLOUDCR_STRESS         OPEN               DEFAULT                2026-08-24 00:02                  NUNCA USADA
+LEGAJO_APP             OPEN               DEFAULT                2026-10-21 18:29                  NUNCA USADA
+LEGAJO_DEV             OPEN               DEFAULT                2026-10-21 18:29                  NUNCA USADA
+LEGAJO_LECTOR          OPEN               LEGAJO_PERFIL_SEGURO   2026-10-21 18:29 2026-10-21 18:29 EN USO
+LEGAJO_SOPORTE         OPEN               LEGAJO_PERFIL_SEGURO   2026-10-21 18:29 2026-10-21 18:29 EN USO
+MONITOR_USER           OPEN               DEFAULT                2026-08-24 00:02 2026-08-24 00:07 EN USO
+PDBADMIN               OPEN               DEFAULT                2026-08-23 23:55                  NUNCA USADA
+
+7 filas seleccionadas.
+
+Bloqueo automático por inactividad configurado en cada perfil
+
+PROFILE                LIMIT
+---------------------- --------------------------------
+DEFAULT                365
+LEGAJO_PERFIL_SEGURO   90
+ORA_CIS_PROFILE        120
+ORA_STIG_PROFILE       35
+
+4 filas seleccionadas.

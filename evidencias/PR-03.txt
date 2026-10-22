@@ -1,0 +1,43 @@
+
+PR-03 | Titulares de privilegios administrativos | A8.2
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:18 -06:00 | Contenedor CDB$ROOT | Sesión SYS | Protocolo local
+Titulares de los roles DBA y PDB_DBA en todos los contenedores
+
+    CON_ID GRANTEE                    GRANTED_ROLE                 ADM
+---------- -------------------------- ---------------------------- ---
+         1 SYS                        DBA                          YES
+         1 SYS                        PDB_DBA                      YES
+         1 SYSTEM                     DBA                          NO
+         3 PDBADMIN                   PDB_DBA                      YES
+         3 SYS                        PDB_DBA                      YES
+         3 SYS                        DBA                          YES
+         3 SYSTEM                     DBA                          NO
+         4 ADMIN                      DBA                          YES
+         4 PDBADMIN                   PDB_DBA                      YES
+         4 SYS                        PDB_DBA                      YES
+         4 SYS                        DBA                          YES
+         4 SYSTEM                     DBA                          NO
+
+12 filas seleccionadas.
+
+Usuarios en el archivo de contraseñas (SYSDBA, SYSOPER, SYSBACKUP, SYSKM)
+
+USERNAME               SYSDB SYSOP SYSBA SYSKM ACCOUNT_STATUS
+---------------------- ----- ----- ----- ----- ------------------
+SYS                    TRUE  TRUE  FALSE FALSE OPEN
+
+1 fila seleccionada.
+
+Parámetros relacionados con el acceso privilegiado
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+audit_sys_operations               TRUE
+os_authent_prefix                  OPS$
+remote_login_passwordfile          EXCLUSIVE
+
+3 filas seleccionadas.

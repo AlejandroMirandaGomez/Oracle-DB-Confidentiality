@@ -1,0 +1,42 @@
+
+PR-11 | Redacción dinámica de columnas confidenciales | A8.11
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Columnas protegidas por la política de redacción
+
+OBJECT_OWNER OBJECT_NAME      COLUMN_NAME  FUNCTION_TYPE
+------------ ---------------- ------------ ----------------------
+LEGAJO_APP   CLIENTES         CEDULA       PARTIAL REDACTION
+LEGAJO_APP   CLIENTES         CORREO       REGEXP REDACTION
+LEGAJO_APP   CLIENTES         SALARIO      FULL REDACTION
+
+3 filas seleccionadas.
+
+Valores almacenados (sesión SYSDBA, exenta de redacción)
+
+ID_CLIENTE CEDULA       CORREO                            SALARIO SUCURSAL
+---------- ------------ ------------------------------ ---------- ----------
+         2 2-0000-1187  esteban.solano@correo.test         732900 HEREDIA
+         4 4-0000-1530  andres.jimenez@correo.test        1562750 HEREDIA
+         7 4-0000-0861  valeria.campos@correo.test        1307200 HEREDIA
+        10 5-0000-0657  ricardo.monge@correo.test          877350 HEREDIA
+
+4 filas seleccionadas.
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión LEGAJO_SOPORTE | Protocolo tcp
+Mismas filas consultadas por LEGAJO_SOPORTE
+
+ID_CLIENTE CEDULA       CORREO                            SALARIO SUCURSAL
+---------- ------------ ------------------------------ ---------- ----------
+         2 *-****-1187  xxxx@correo.test                        0 HEREDIA
+         4 *-****-1530  xxxx@correo.test                        0 HEREDIA
+         7 *-****-0861  xxxx@correo.test                        0 HEREDIA
+        10 *-****-0657  xxxx@correo.test                        0 HEREDIA
+
+4 filas seleccionadas.

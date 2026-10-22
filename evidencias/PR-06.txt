@@ -1,0 +1,45 @@
+
+PR-06 | Parámetros de contraseña del perfil DEFAULT y del perfil seguro | A8.5
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:20 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Límites de contraseña de DEFAULT frente a LEGAJO_PERFIL_SEGURO
+
+RESOURCE_NAME              LIMIT_DEFAULT                  LIMIT_SEGURO
+-------------------------- ------------------------------ ------------------------------
+FAILED_LOGIN_ATTEMPTS      10                             3
+INACTIVE_ACCOUNT_TIME      365                            90
+PASSWORD_GRACE_TIME        7                              5
+PASSWORD_LIFE_TIME         180                            90
+PASSWORD_LOCK_TIME         1                              ,0416
+PASSWORD_REUSE_MAX         UNLIMITED                      12
+PASSWORD_REUSE_TIME        UNLIMITED                      365
+PASSWORD_ROLLOVER_TIME     0                              DEFAULT
+PASSWORD_VERIFY_FUNCTION   NULL                           ORA12C_STRONG_VERIFY_FUNCTION
+
+9 filas seleccionadas.
+
+Perfil asignado a cada cuenta de la organización
+
+USERNAME               PROFILE                ACCOUNT_STATUS
+---------------------- ---------------------- ------------------
+CLOUDCR_STRESS         DEFAULT                OPEN
+LEGAJO_APP             DEFAULT                OPEN
+LEGAJO_DEV             DEFAULT                OPEN
+MONITOR_USER           DEFAULT                OPEN
+PDBADMIN               DEFAULT                OPEN
+LEGAJO_BLOQUEO         LEGAJO_PERFIL_SEGURO   OPEN
+LEGAJO_LECTOR          LEGAJO_PERFIL_SEGURO   OPEN
+LEGAJO_SOPORTE         LEGAJO_PERFIL_SEGURO   OPEN
+
+8 filas seleccionadas.
+
+Límite global de intentos fallidos por conexión
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+sec_max_failed_login_attempts      3
+
+1 fila seleccionada.

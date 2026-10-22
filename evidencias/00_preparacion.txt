@@ -1,0 +1,161 @@
+
+00 | Preparación del entorno de prueba LEGAJO_* en XEPDB1
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:17 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+
+Perfil creado.
+
+
+Usuario creado.
+
+
+Usuario creado.
+
+
+Usuario creado.
+
+
+Usuario creado.
+
+
+Usuario creado.
+
+
+Concesión terminada correctamente.
+
+
+Tabla creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+Confirmación terminada.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Tabla creada.
+
+
+1 fila creada.
+
+
+1 fila creada.
+
+
+Confirmación terminada.
+
+
+Tabla creada.
+
+
+Rol creado.
+
+
+Concesión terminada correctamente.
+
+
+Concesión terminada correctamente.
+
+
+Función creada.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Política de auditoría creada.
+
+
+Auditoría terminada correctamente.
+
+
+Tabla creada.
+
+
+Comentario creado.
+
+
+Objetos creados en el entorno de prueba
+
+USERNAME               ACCOUNT_STATUS     AUTENTIC   PROFILE
+---------------------- ------------------ ---------- ----------------------
+LEGAJO_APP             OPEN               NONE       DEFAULT
+LEGAJO_BLOQUEO         OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO
+LEGAJO_DEV             OPEN               NONE       DEFAULT
+LEGAJO_LECTOR          OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO
+LEGAJO_SOPORTE         OPEN               PASSWORD   LEGAJO_PERFIL_SEGURO
+
+5 filas seleccionadas.
+
+
+OWNER        OBJECT_NAME      OBJECT_TYPE
+------------ ---------------- ------------
+LEGAJO_APP   ASIGNACION       TABLE
+LEGAJO_APP   CLIENTES         TABLE
+LEGAJO_APP   FN_VPD_SUCURSAL  FUNCTION
+LEGAJO_APP   SYS_C008236      INDEX
+LEGAJO_APP   SYS_C008238      INDEX
+LEGAJO_APP   TMP_EXTRACCION   TABLE
+LEGAJO_DEV   CLIENTES_DEV     TABLE
+
+7 filas seleccionadas.

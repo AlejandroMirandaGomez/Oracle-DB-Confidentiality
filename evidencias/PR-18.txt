@@ -1,0 +1,42 @@
+PR-18 | Validación de la restauración desde los respaldos | A8.13
+Ejecutado 2026-10-21 18:29:26 -06:00 | Herramienta RMAN
+
+Recovery Manager : Release 21.0.0.0.0 - Production on Mié Oct 21 18:29:26 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+conectado a la base de datos de destino: XE (DBID=3123206501)
+
+RMAN> SHOW ENCRYPTION FOR DATABASE;
+2> LIST BACKUP OF TABLESPACE XEPDB1:USERS SUMMARY;
+3> RESTORE TABLESPACE XEPDB1:USERS VALIDATE;
+4> EXIT;
+se utiliza el archivo de control de la base de datos destino en lugar del catálogo de recuperación
+Los parámetros de configuración de RMAN para la base de datos con db_unique_name XE son:
+CONFIGURE ENCRYPTION FOR DATABASE OFF; # default
+
+
+Lista de Copias de Seguridad
+===============
+Clave     TY LV S Tipo de Dispositivo Hora de Finalización Número de Parte Número de Copia Comprimido Etiqueta
+------- -- -- - ----------- -------------------- ------- ------- ---------- ---
+31      B  0  A DISK        11/10/26             1       1       NO         EST003_T1_261011181451
+63      B  F  A DISK        14/10/26             1       1       NO         TAG20261014T222927
+77      B  F  A DISK        15/10/26             1       1       NO         TAG20261015T015952
+89      B  F  A DISK        15/10/26             1       1       NO         TAG20261015T020430
+95      B  F  A DISK        15/10/26             1       1       NO         TAG20261015T020651
+110     B  F  A DISK        15/10/26             1       1       NO         TAG20261015T021047
+
+Empezando restore a las 21/10/26
+canal asignado: ORA_DISK_1
+canal ORA_DISK_1: SID=867 tipo de dispositivo=DISK
+
+canal ORA_DISK_1: iniciando validación del juego de copias de seguridad del archivo de datos
+canal ORA_DISK_1: leyendo desde la parte de copia de seguridad D:\RESPALDOS\XE\3P54TEIS_121_1_1
+canal ORA_DISK_1: manejador de parte=D:\RESPALDOS\XE\3P54TEIS_121_1_1 etiqueta=TAG20261015T021047
+canal ORA_DISK_1: parte 1 de la copia de seguridad restaurada
+canal ORA_DISK_1: validación terminada, tiempo transcurrido: 00:00:03
+Se ha finalizado restore a las 21/10/26
+
+Recovery Manager terminado.

@@ -1,0 +1,44 @@
+
+PR-21 | Eliminación segura y residuos en la papelera | A8.10
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:31 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+recyclebin                         on
+
+1 fila seleccionada.
+
+Paso 1. Borrado sin PURGE de una tabla con cédulas y salarios
+
+Tabla borrada.
+
+
+OWNER        ORIGINAL_NAME      TYPE     DROPTIME
+------------ ------------------ -------- -------------------
+LEGAJO_APP   TMP_EXTRACCION     TABLE    2026-10-21:18:29:31
+
+1 fila seleccionada.
+
+Paso 2. Los datos borrados siguen siendo legibles desde la papelera
+Filas legibles en BIN$VyGOYnerRYOFSkaBI8qzbg==$0: 12
+
+Procedimiento PL/SQL terminado correctamente.
+
+Paso 3. Purga definitiva del objeto
+
+Tabla depurada.
+
+
+OBJETOS_EN_PAPELERA
+-------------------
+                  0
+
+1 fila seleccionada.
+
+Paso 4. Objetos de la organización que permanecen en la papelera de XEPDB1
+
+ninguna fila seleccionada

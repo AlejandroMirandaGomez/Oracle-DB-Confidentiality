@@ -1,0 +1,28 @@
+
+PR-08 | Versiones de verificador de contraseña | A5.17 A8.5
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:23 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Verificadores almacenados por cuenta con contraseña (se espera solo 12C)
+
+USERNAME               VERIFICADORES  ACCOUNT_STATUS
+---------------------- -------------- ------------------
+CLOUDCR_STRESS         11G 12C        OPEN
+LEGAJO_LECTOR          11G 12C        OPEN
+LEGAJO_SOPORTE         11G 12C        OPEN
+MONITOR_USER           11G 12C        OPEN
+PDBADMIN               11G 12C        OPEN
+SYS                    11G 12C        OPEN
+SYSTEM                 11G 12C        OPEN
+
+7 filas seleccionadas.
+
+Cuentas abiertas que conservan el verificador 11G
+
+CUENTAS_CON_11G
+---------------
+              7
+
+1 fila seleccionada.

@@ -1,0 +1,30 @@
+
+PR-22 | Nivel de parches del motor | A8.8
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:31 -06:00 | Contenedor CDB$ROOT | Sesión SYS | Protocolo local
+
+INSTANCE_NAME    VERSION_FULL STARTUP_TIME
+---------------- ------------ ----------------
+xe               21.3.0.0.0   2026-10-20 13:40
+
+1 fila seleccionada.
+
+
+BANNER_FULL
+----------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+1 fila seleccionada.
+
+Parches SQL aplicados en cada contenedor (se espera la RU vigente)
+
+ninguna fila seleccionada
+
+
+----- opatch lspatches
+No hay parches temporales instalados en este directorio raíz de Oracle "C:\app\Ale\product\21c\dbhomeXE".

@@ -1,0 +1,29 @@
+
+PR-13 | Copia para desarrollo con enmascaramiento estático | A8.11 A8.31
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:25 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Valores reales que sobreviven en la copia de desarrollo (se espera 0 en cada columna)
+
+CEDULAS_REALES NOMBRES_REALES CORREOS_REALES SALARIOS_IDENTICOS
+-------------- -------------- -------------- ------------------
+             0              0              0                  0
+
+1 fila seleccionada.
+
+Muestra de la copia de desarrollo
+
+ID_CLIENTE CEDULA       NOMBRE                       CORREO                            SALARIO SUCURSAL
+---------- ------------ ---------------------------- ------------------------------ ---------- ----------
+         1 9-0000-4389  Cliente de prueba 1          cliente1@pruebas.test             1072000 SAN JOSE
+         2 9-0000-5194  Cliente de prueba 2          cliente2@pruebas.test              709000 HEREDIA
+         3 9-0000-6909  Cliente de prueba 3          cliente3@pruebas.test              968000 CARTAGO
+         4 9-0000-1684  Cliente de prueba 4          cliente4@pruebas.test             1767000 HEREDIA
+
+4 filas seleccionadas.
+
+Privilegios otorgados sobre la copia (se espera ninguna fila)
+
+ninguna fila seleccionada

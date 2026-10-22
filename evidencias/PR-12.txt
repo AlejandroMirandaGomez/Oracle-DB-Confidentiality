@@ -1,0 +1,48 @@
+
+PR-12 | Inventario y etiquetas de clasificación de datos | A5.12
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Etiquetas de clasificación del esquema de prueba
+
+TABLE_NAME       COLUMN_NAME  COMMENTS
+---------------- ------------ ----------------------------------------------------------------------
+CLIENTES         CEDULA       CLASIF=CONFIDENCIAL;TIPO=IDENTIFICADOR_PERSONAL;LEY_8968=ACCESO_RESTRI
+                              NGIDO
+
+CLIENTES         CORREO       CLASIF=CONFIDENCIAL;TIPO=DATO_DE_CONTACTO
+CLIENTES         ID_CLIENTE   CLASIF=INTERNO;TIPO=CLAVE_TECNICA
+CLIENTES         NOMBRE       CLASIF=INTERNO;TIPO=DATO_PERSONAL
+CLIENTES         SALARIO      CLASIF=CONFIDENCIAL;TIPO=DATO_FINANCIERO;LEY_8968=ACCESO_RESTRINGIDO
+CLIENTES         SUCURSAL     CLASIF=INTERNO;TIPO=DATO_OPERATIVO
+
+6 filas seleccionadas.
+
+
+TABLE_NAME       COMMENTS
+---------------- ----------------------------------------------------------------------
+ASIGNACION
+CLIENTES         CLASIF=CONFIDENCIAL;CONTENIDO=DATOS_PERSONALES;NORMA=LEY_8968;PROPIETA
+                 RIO=GERENCIA_CLIENTES
+
+TMP_EXTRACCION
+CLIENTES_DEV     CLASIF=INTERNO;ORIGEN=LEGAJO_APP.CLIENTES;ENMASCARADO=ESTATICO
+
+4 filas seleccionadas.
+
+Columnas con etiqueta CLASIF= por esquema de la organización
+
+ESQUEMA          COLUMNAS_TOTALES COLUMNAS_CLASIFICADAS
+---------------- ---------------- ---------------------
+CLOUDCR_STRESS                  0                     0
+LEGAJO_APP                     11                     6
+LEGAJO_BLOQUEO                  0                     0
+LEGAJO_DEV                      6                     0
+LEGAJO_LECTOR                   0                     0
+LEGAJO_SOPORTE                  0                     0
+MONITOR_USER                    0                     0
+PDBADMIN                        0                     0
+
+8 filas seleccionadas.

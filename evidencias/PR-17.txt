@@ -1,0 +1,58 @@
+
+PR-17 | Respaldos recientes y cifrados | A8.13
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:26 -06:00 | Contenedor CDB$ROOT | Sesión SYS | Protocolo local
+Trabajos de respaldo de los últimos 14 días
+
+SESSION_KEY INPUT_TYPE    STATUS           START_TIME       END_TIME         TAMANO
+----------- ------------- ---------------- ---------------- ---------------- ----------
+         63 DB INCR       COMPLETED        2026-10-11 18:06 2026-10-11 18:06     1.43G
+         73 DB INCR       COMPLETED        2026-10-11 18:14 2026-10-11 18:15     5.40G
+        108 ARCHIVELOG    COMPLETED        2026-10-11 20:00 2026-10-11 20:00    98.96M
+        114 ARCHIVELOG    COMPLETED        2026-10-12 00:00 2026-10-12 00:00    85.90M
+        120 ARCHIVELOG    COMPLETED        2026-10-12 04:00 2026-10-12 04:00    31.90M
+        126 ARCHIVELOG    COMPLETED        2026-10-12 08:00 2026-10-12 08:00    31.27M
+        132 ARCHIVELOG    COMPLETED        2026-10-12 12:00 2026-10-12 12:00    30.80M
+        138 ARCHIVELOG    COMPLETED        2026-10-14 20:00 2026-10-14 20:00   302.39M
+        144 DB FULL       FAILED           2026-10-14 21:44 2026-10-14 21:44     4.28G
+        152 DB FULL       COMPLETED        2026-10-14 22:28 2026-10-14 22:30     4.73G
+        160 DATAFILE FULL COMPLETED        2026-10-14 23:23 2026-10-14 23:23    20.16M
+        189 ARCHIVELOG    COMPLETED        2026-10-15 01:55 2026-10-15 01:55     0.00K
+        202 DB FULL       COMPLETED        2026-10-15 01:59 2026-10-15 02:01     4.82G
+        214 DB FULL       COMPLETED        2026-10-15 02:04 2026-10-15 02:05     4.83G
+        220 DB FULL       COMPLETED        2026-10-15 02:06 2026-10-15 02:07     0.00K
+        230 DB FULL       FAILED           2026-10-15 02:09 2026-10-15 02:09     1.29G
+        234 DB FULL       COMPLETED        2026-10-15 02:10 2026-10-15 02:12     4.83G
+
+17 filas seleccionadas.
+
+Días desde el último respaldo completo exitoso de la base
+
+DIAS_DESDE_ULTIMO_FULL
+----------------------
+                   6,7
+
+1 fila seleccionada.
+
+Piezas de respaldo según cifrado (se espera ENCRYPTED = YES)
+
+ENC     PIEZAS
+--- ----------
+NO         101
+
+1 fila seleccionada.
+
+Configuración persistente de RMAN
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+CHANNEL                            DEVICE TYPE DISK FORMAT   'D:\Respaldos\XE\%U'
+CONTROLFILE AUTOBACKUP             ON
+CONTROLFILE AUTOBACKUP FORMAT FOR  DISK TO 'D:\Respaldos\XE\%F'
+DEVICE TYPE
+
+
+3 filas seleccionadas.

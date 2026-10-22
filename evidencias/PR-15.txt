@@ -1,0 +1,79 @@
+
+PR-15 | Registro de eventos con auditoría unificada | A8.15
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:25 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Modo de auditoría unificada (FALSE indica modo mixto)
+
+PARAMETER                                                        VALUE
+---------------------------------------------------------------- ------------------------------------------------
+Unified Auditing                                                 FALSE
+
+1 fila seleccionada.
+
+Políticas de auditoría habilitadas
+
+POLICY_NAME              ENABLED_OP ENTITY_NAM SUC FAI
+------------------------ ---------- ---------- --- ---
+LEGAJO_AUD_CLIENTES      BY USER    ALL USERS  YES YES
+ORA_LOGON_FAILURES       BY USER    ALL USERS  NO  YES
+ORA_SECURECONFIG         BY USER    ALL USERS  YES YES
+
+3 filas seleccionadas.
+
+
+Procedimiento PL/SQL terminado correctamente.
+
+Inicios de sesión fallidos de LEGAJO_BLOQUEO registrados (generados en PR-07)
+
+EVENT_TIMESTAMP      DBUSERNAME       ACTION_NAME  RET_CODE UNIFIED_AUDIT_POLICIES
+-------------------- ---------------- ------------ -------- --------------------------
+2026-10-21 18:27:27  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:27:28  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:27:29  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:27:29  LEGAJO_BLOQUEO   LOGON           28000 ORA_LOGON_FAILURES
+2026-10-21 18:29:21  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:29:22  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:29:23  LEGAJO_BLOQUEO   LOGON            1017 ORA_LOGON_FAILURES
+2026-10-21 18:29:23  LEGAJO_BLOQUEO   LOGON           28000 ORA_LOGON_FAILURES
+
+8 filas seleccionadas.
+
+Accesos a LEGAJO_APP.CLIENTES registrados por la política LEGAJO_AUD_CLIENTES
+
+EVENT_TIMESTAMP      DBUSERNAME       ACTION_NAME  RET_CODE OBJECT_NAME
+-------------------- ---------------- ------------ -------- ----------------
+2026-10-21 18:27:20  SYS              CREATE TABLE        0 CLIENTES
+2026-10-21 18:27:22  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:22  SYS              GRANT               0 CLIENTES
+2026-10-21 18:27:23  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:30  LEGAJO_LECTOR    SELECT              0 CLIENTES
+2026-10-21 18:27:30  LEGAJO_LECTOR    DELETE           2004 CLIENTES
+2026-10-21 18:27:30  LEGAJO_LECTOR    UPDATE           2004 CLIENTES
+2026-10-21 18:27:30  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:30  LEGAJO_SOPORTE   SELECT              0 CLIENTES
+2026-10-21 18:27:30  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:31  LEGAJO_SOPORTE   SELECT              0 CLIENTES
+2026-10-21 18:27:34  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:34  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:34  SYS              SELECT              0 CLIENTES
+2026-10-21 18:27:34  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:17  SYS              CREATE TABLE        0 CLIENTES
+2026-10-21 18:29:17  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:17  SYS              GRANT               0 CLIENTES
+2026-10-21 18:29:17  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:24  LEGAJO_LECTOR    SELECT              0 CLIENTES
+2026-10-21 18:29:24  LEGAJO_LECTOR    DELETE           2004 CLIENTES
+2026-10-21 18:29:24  LEGAJO_LECTOR    UPDATE           2004 CLIENTES
+2026-10-21 18:29:24  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:24  LEGAJO_SOPORTE   SELECT              0 CLIENTES
+2026-10-21 18:29:24  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:24  LEGAJO_SOPORTE   SELECT              0 CLIENTES
+2026-10-21 18:29:25  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:25  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:25  SYS              SELECT              0 CLIENTES
+2026-10-21 18:29:25  SYS              SELECT              0 CLIENTES
+
+30 filas seleccionadas.

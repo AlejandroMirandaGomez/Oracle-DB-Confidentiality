@@ -1,0 +1,36 @@
+
+PR-10 | Restricción de filas con Virtual Private Database | A8.3
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Política VPD registrada
+
+OBJECT_OWNER OBJECT_NAME      POLICY_NAME              SEL UPD DEL ENA
+------------ ---------------- ------------------------ --- --- --- ---
+LEGAJO_APP   CLIENTES         LEGAJO_VPD_SUCURSAL      YES YES YES YES
+
+1 fila seleccionada.
+
+Filas por sucursal vistas por una sesión exenta (SYSDBA)
+
+SUCURSAL        FILAS
+---------- ----------
+CARTAGO             4
+HEREDIA             4
+SAN JOSE            4
+
+3 filas seleccionadas.
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión LEGAJO_SOPORTE | Protocolo tcp
+Filas por sucursal vistas por LEGAJO_SOPORTE (asignado a HEREDIA)
+
+SUCURSAL        FILAS
+---------- ----------
+HEREDIA             4
+
+1 fila seleccionada.

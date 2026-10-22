@@ -1,0 +1,54 @@
+
+PR-14 | Cifrado de datos en reposo con TDE | A8.24 A8.12
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:25 -06:00 | Contenedor CDB$ROOT | Sesión SYS | Protocolo local
+Estado del almacén de claves por contenedor (se espera OPEN)
+
+    CON_ID WRL_TYPE             WRL_PARAMETER                                STATUS           WALLET_TYP KEYSTORE
+---------- -------------------- -------------------------------------------- ---------------- ---------- --------
+         1 FILE                 C:\APP\ALE\PRODUCT\21C\ADMIN\XE\WALLET       NOT_AVAILABLE    UNKNOWN    NONE
+         2 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED
+         3 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED
+         4 FILE                                                              NOT_AVAILABLE    UNKNOWN    UNITED
+
+4 filas seleccionadas.
+
+Parámetros de configuración de TDE
+
+NAME                               VALUE
+---------------------------------- ------------------------------------------------
+encrypt_new_tablespaces            CLOUD_ONLY
+tde_configuration
+wallet_root
+
+3 filas seleccionadas.
+
+Tablespaces cifrados por contenedor
+
+    CON_ID TABLESPACE_NAME      ENC
+---------- -------------------- ---
+         1 SYSAUX               NO
+         1 SYSTEM               NO
+         1 TEMP                 NO
+         1 UNDOTBS1             NO
+         1 USERS                NO
+         3 CLOUDCR_STRESS_TS    NO
+         3 SYSAUX               NO
+         3 SYSTEM               NO
+         3 TEMP                 NO
+         3 UNDOTBS1             NO
+         3 USERS                NO
+
+11 filas seleccionadas.
+
+Disponibilidad de la opción en esta edición
+
+PARAMETER                                                        VALUE
+---------------------------------------------------------------- ------------------------------------------------
+Transparent Data Encryption                                      TRUE
+Backup Encryption                                                TRUE
+
+2 filas seleccionadas.

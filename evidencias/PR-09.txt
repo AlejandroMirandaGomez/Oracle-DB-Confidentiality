@@ -1,0 +1,53 @@
+
+PR-09 | Mínimo privilegio con rol de solo lectura | A5.15 A8.3
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:24 -06:00 | Contenedor XEPDB1 | Sesión LEGAJO_LECTOR | Protocolo tcp
+Privilegios y roles activos de la sesión
+
+PRIVILEGE
+------------------------------
+CREATE SESSION
+
+1 fila seleccionada.
+
+
+ROLE
+--------------------------
+LEGAJO_ROL_LECTURA
+
+1 fila seleccionada.
+
+Lectura permitida por el rol LEGAJO_ROL_LECTURA
+
+FILAS_VISIBLES
+--------------
+             4
+
+1 fila seleccionada.
+
+Intento de borrado (se espera ORA-01031)
+DELETE FROM legajo_app.clientes WHERE id_cliente = 1
+                       *
+ERROR en línea 1:
+ORA-01031: privilegios insuficientes
+
+
+Intento de modificación (se espera ORA-01031)
+UPDATE legajo_app.clientes SET salario = 0 WHERE id_cliente = 1
+                  *
+ERROR en línea 1:
+ORA-01031: privilegios insuficientes
+
+
+Intento de leer una tabla sin privilegio (se espera ORA-00942)
+SELECT * FROM legajo_app.asignacion
+                         *
+ERROR en línea 1:
+ORA-00942: la tabla o vista no existe
+
+
+
+Rollback terminado.

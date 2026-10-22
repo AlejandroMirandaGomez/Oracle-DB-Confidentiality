@@ -1,0 +1,33 @@
+
+PR-07 | Bloqueo de la cuenta tras intentos fallidos | A8.5
+
+Cuatro intentos con contraseña incorrecta sobre LEGAJO_BLOQUEO (perfil con FAILED_LOGIN_ATTEMPTS 3)
+ERROR:
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+
+Advertencia: ¡Ya no está conectado a ORACLE!
+ERROR:
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+
+ERROR:
+ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+
+Intento con la contraseña correcta después del bloqueo (se espera ORA-28000)
+ERROR:
+ORA-28000: La cuenta está bloqueada.
+
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:23 -06:00 | Contenedor XEPDB1 | Sesión SYS | Protocolo local
+Estado de la cuenta después de la prueba
+
+USERNAME               ACCOUNT_STATUS     LOCK_DATE        PROFILE
+---------------------- ------------------ ---------------- ----------------------
+LEGAJO_BLOQUEO         LOCKED(TIMED)      2026-10-21 18:29 LEGAJO_PERFIL_SEGURO
+
+1 fila seleccionada.

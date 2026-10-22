@@ -1,0 +1,10 @@
+
+PR-01 | Cuentas con contraseña por defecto | A5.17
+
+
+CONTEXTO
+------------------------------------------------------------------------------------------------------------------------
+Ejecutado 2026-10-21 18:29:17 -06:00 | Contenedor CDB$ROOT | Sesión SYS | Protocolo local
+Cuentas con contraseña por defecto en todos los contenedores (se espera ninguna fila)
+
+ninguna fila seleccionada
