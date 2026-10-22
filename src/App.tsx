@@ -1,48 +1,45 @@
-import { Caratula } from './componentes/Caratula'
-import { HojaReferencia } from './componentes/HojaReferencia'
-import { IndicePapeles } from './componentes/IndicePapeles'
-import { legajo } from './data/legajo'
-import { LegajoProvider } from './estado/LegajoProvider'
+import { useEffect, useMemo } from 'react'
+import { Outlet, useLocation } from 'react-router'
 import estilos from './App.module.css'
-import { CedulaSumaria } from './papeles/CedulaSumaria'
-import { PapelControles } from './papeles/PapelControles'
-import { PapelHallazgos } from './papeles/PapelHallazgos'
-import { PapelMarcoTeorico } from './papeles/PapelMarcoTeorico'
-import { PapelMatriz } from './papeles/PapelMatriz'
-import { PapelObservables } from './papeles/PapelObservables'
-import { PapelPruebas } from './papeles/PapelPruebas'
-import { PapelReferencias } from './papeles/PapelReferencias'
-import { PapelRiesgos } from './papeles/PapelRiesgos'
-import { PapelTareas } from './papeles/PapelTareas'
-import { PapelUsoIA } from './papeles/PapelUsoIA'
+import { HojaReferencia } from './componentes/HojaReferencia'
+import { Navbar } from './componentes/Navbar'
+import { SincronizarReferencia } from './componentes/SincronizarReferencia'
+import { useEvaluacion } from './estado/contextoEvaluacion'
+import { EvaluacionProvider } from './estado/EvaluacionProvider'
+import { ContextoIndice } from './estado/fuente'
+import { crearIndiceCatalogo, indiceEjemplo } from './estado/indice'
+
+function Cascaron() {
+  const { hallazgos } = useEvaluacion()
+  const { pathname } = useLocation()
+  const indiceCatalogo = useMemo(() => crearIndiceCatalogo(hallazgos), [hallazgos])
+  const indice = pathname.startsWith('/ejemplos/xepdb1') ? indiceEjemplo : indiceCatalogo
+  const clavePagina = pathname.startsWith('/controles') ? '/controles' : pathname
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+    document.getElementById('contenido')?.focus({ preventScroll: true })
+  }, [clavePagina])
+
+  return (
+    <ContextoIndice.Provider value={indice}>
+      <button type="button" className={estilos.salto} onClick={() => document.getElementById('contenido')?.focus()}>
+        Saltar al contenido
+      </button>
+      <Navbar />
+      <main id="contenido" tabIndex={-1} className={estilos.principal}>
+        <Outlet />
+      </main>
+      <HojaReferencia />
+      <SincronizarReferencia />
+    </ContextoIndice.Provider>
+  )
+}
 
 export default function App() {
   return (
-    <LegajoProvider>
-      <div className={estilos.escritorio}>
-        <IndicePapeles />
-        <main className={estilos.legajo}>
-          <Caratula />
-          <CedulaSumaria />
-          <PapelRiesgos />
-          <PapelTareas />
-          <PapelControles />
-          <PapelObservables />
-          <PapelMatriz />
-          <PapelPruebas />
-          <PapelHallazgos />
-          <PapelMarcoTeorico />
-          <PapelUsoIA />
-          <PapelReferencias />
-          <footer className={estilos.cierre}>
-            <p>
-              Fin del legajo. {legajo.autor}, {legajo.curso}, {legajo.universidad}, {legajo.periodo}.
-            </p>
-            <p>Los datos de clientes del esquema de prueba son sintéticos y se eliminaron de la instancia al terminar la batería.</p>
-          </footer>
-        </main>
-      </div>
-      <HojaReferencia />
-    </LegajoProvider>
+    <EvaluacionProvider>
+      <Cascaron />
+    </EvaluacionProvider>
   )
 }
