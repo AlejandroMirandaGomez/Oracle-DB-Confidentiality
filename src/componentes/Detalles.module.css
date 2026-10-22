@@ -49,6 +49,11 @@
   font-weight: 600;
 }
 
+.estadoPropiedad {
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
 .bloque {
   margin-block: 1.25rem;
 }

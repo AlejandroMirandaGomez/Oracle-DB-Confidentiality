@@ -54,7 +54,9 @@ export function Matriz() {
             <RampaMadurez nivel={nivel.nivel} />
             <span className={estilos.escalonNombre}>{nivel.nombre}</span>
             <span className={estilos.escalonTexto}>{nivel.descripcion}</span>
-            <LamparaEstado valor={estadoDeNivel(nivel.nivel)} />
+            <span className={estilos.escalonEstado}>
+              <LamparaEstado valor={estadoDeNivel(nivel.nivel)} />
+            </span>
           </div>
         ))}
       </section>

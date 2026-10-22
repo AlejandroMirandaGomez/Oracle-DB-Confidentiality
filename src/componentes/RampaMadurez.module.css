@@ -25,20 +25,28 @@
   text-transform: uppercase;
 }
 
+.celda[data-nivel='0'] {
+  border-color: var(--junta);
+}
+
 .celda[data-nivel='1'] {
+  border-color: var(--remache);
   background: color-mix(in srgb, var(--lampara-blanca) 28%, var(--panel-hondo));
 }
 
 .celda[data-nivel='2'] {
+  border-color: var(--placa-suave);
   background: color-mix(in srgb, var(--lampara-blanca) 52%, var(--panel-hondo));
 }
 
 .celda[data-nivel='3'] {
+  border-color: var(--placa);
   background: color-mix(in srgb, var(--lampara-blanca) 76%, var(--panel-hondo));
   box-shadow: var(--brillo-interior);
 }
 
 .celda[data-nivel='4'] {
+  border: 2px solid var(--placa);
   background: var(--lampara-blanca);
   box-shadow: var(--brillo-interior);
 }

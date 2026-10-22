@@ -24,23 +24,9 @@
   font-size: 1.25rem;
 }
 
-.numero {
-  display: inline-grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid var(--placa);
-  border-radius: var(--radio);
-  background: var(--panel-hondo);
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 700;
-}
-
 .contenidoPaso {
   display: grid;
   gap: 0.75rem;
-  padding-left: 2.35rem;
   font-size: 0.9375rem;
   min-width: 0;
 }
@@ -58,10 +44,4 @@
 
 .bloque {
   margin-block: 1.25rem;
-}
-
-@media (max-width: 560px) {
-  .contenidoPaso {
-    padding-left: 0;
-  }
 }

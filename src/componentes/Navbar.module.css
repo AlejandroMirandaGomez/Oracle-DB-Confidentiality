@@ -130,6 +130,12 @@
   font-weight: 700;
 }
 
+.enlace[aria-current='page'] .textoEnlace > span:first-child {
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.25em;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .enlace:hover {
     background: var(--panel-claro);

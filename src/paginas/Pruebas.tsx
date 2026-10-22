@@ -69,7 +69,6 @@ export function Pruebas() {
     >
       <section className={estilos.extremo} aria-labelledby="paso-preparar">
         <h2 id="paso-preparar" className={estilos.subtitulo}>
-          <span className={estilos.paso}>Paso inicial</span>
           {preparacion.titulo}
         </h2>
         <p className={estilos.explicacion}>
@@ -139,7 +138,6 @@ export function Pruebas() {
 
       <section className={estilos.extremo} aria-labelledby="paso-eliminar">
         <h2 id="paso-eliminar" className={estilos.subtitulo}>
-          <span className={estilos.paso}>Paso final</span>
           {limpieza.titulo}
         </h2>
         <p className={estilos.explicacion}>{limpieza.descripcion}</p>

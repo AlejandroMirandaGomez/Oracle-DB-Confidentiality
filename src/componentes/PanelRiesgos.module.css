@@ -114,6 +114,7 @@
 }
 
 .celda {
+  position: relative;
   display: grid;
   place-items: end start;
   padding: 0.2rem 0.3rem;
@@ -123,6 +124,28 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--placa-suave);
+}
+
+.letraBanda {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--placa);
+}
+
+.chipBanda {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid var(--placa);
+  border-radius: var(--radio);
+  background: var(--panel-claro);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .celda[data-banda='Bajo'] {

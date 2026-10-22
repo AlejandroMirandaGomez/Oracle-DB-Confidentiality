@@ -13,14 +13,13 @@ import { SelectorNivel } from './SelectorNivel'
 
 const opcionesEvidencia = ['Sí', 'Parcial', 'No'] as const
 
-function Evidencia({ filaId, evidencia, posicion }: { filaId: string; evidencia: EvidenciaRequerida; posicion: number }) {
+function Evidencia({ filaId, evidencia }: { filaId: string; evidencia: EvidenciaRequerida }) {
   const { respuestaEvidencia, fijarRespuestaEvidencia } = useEvaluacion()
   const registro = respuestaEvidencia(filaId, evidencia.id)
   return (
     <li className={estilos.evidencia}>
       <header className={estilos.cabeza}>
         <h4 className={estilos.titulo}>
-          <span className={estilos.numero}>{posicion}</span>
           <span className={estilos.id}>{evidencia.id}</span>
           <span>{evidencia.titulo}</span>
         </h4>
@@ -79,8 +78,8 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
           </p>
         </div>
         <ol className={estilos.evidencias}>
-          {fila.evidenciasRequeridas.map((evidencia, posicion) => (
-            <Evidencia key={evidencia.id} filaId={fila.id} evidencia={evidencia} posicion={posicion + 1} />
+          {fila.evidenciasRequeridas.map((evidencia) => (
+            <Evidencia key={evidencia.id} filaId={fila.id} evidencia={evidencia} />
           ))}
         </ol>
       </section>

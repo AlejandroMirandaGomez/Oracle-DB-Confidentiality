@@ -19,7 +19,7 @@ export function HojaReferencia() {
   const actual = pila.at(-1)
   const entidad = actual ? indice.buscar(actual) : undefined
   const abierta = entidad !== undefined
-  const hoja = useRef<HTMLElement>(null)
+  const hoja = useRef<HTMLDivElement>(null)
   const titulo = useRef<HTMLHeadingElement>(null)
   const desplazable = useRef<HTMLDivElement>(null)
   const focoPrevio = useRef<HTMLElement | null>(null)
@@ -80,7 +80,7 @@ export function HojaReferencia() {
             onClick={cerrarHoja}
             aria-hidden="true"
           />
-          <motion.aside
+          <motion.div
             key="hoja"
             ref={hoja}
             className={estilos.hoja}
@@ -134,11 +134,12 @@ export function HojaReferencia() {
                   exit={reducir ? { opacity: 0, transition: salida } : { opacity: 0, transform: `translateX(${-16 * direccion}px)`, transition: salida }}
                 >
                   <header className={estilos.encabezado}>
-                    <p className={estilos.tipo}>{nombreTipo[entidad.tipo]}</p>
                     <h2 id="hoja-titulo" ref={titulo} tabIndex={-1} className={estilos.titulo}>
-                      <span className={estilos.id}>{actual}</span>
-                      <span>{indice.tituloDe(entidad)}</span>
+                      {indice.tituloDe(entidad)}
                     </h2>
+                    <p className={estilos.tipo}>
+                      {nombreTipo[entidad.tipo]} <span className={estilos.id}>{actual}</span>
+                    </p>
                   </header>
                   <DentroDeHoja.Provider value={true}>
                     <Detalle entidad={entidad} />
@@ -146,7 +147,7 @@ export function HojaReferencia() {
                 </motion.article>
               </AnimatePresence>
             </div>
-          </motion.aside>
+          </motion.div>
         </>
       )}
     </AnimatePresence>

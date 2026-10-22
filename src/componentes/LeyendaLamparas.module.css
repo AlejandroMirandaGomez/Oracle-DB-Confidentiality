@@ -27,12 +27,3 @@
   color: var(--placa-suave);
 }
 
-.rampa {
-  display: inline-flex;
-  gap: 0.2rem;
-}
-
-.rampa > span {
-  min-height: 1.5rem;
-  padding: 0.15rem 0.5rem;
-}

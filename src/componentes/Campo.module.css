@@ -1,5 +1,6 @@
 .rejilla {
   display: grid;
+  margin: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   border-top: 1px solid var(--placa);
 }
@@ -26,6 +27,7 @@
 }
 
 .valor {
+  margin: 0;
   font-size: 0.9375rem;
   line-height: 1.5;
   min-width: 0;

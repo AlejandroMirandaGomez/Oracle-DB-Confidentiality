@@ -138,6 +138,7 @@ export function PanelRiesgos({ nivelTitulo = 2 }: { nivelTitulo?: 2 | 3 }) {
                     const banda = bandaDeRiesgo(impacto * probabilidad)
                     return (
                       <span key={`${impacto}-${probabilidad}`} className={estilos.celda} data-banda={banda} aria-hidden="true">
+                        <span className={estilos.letraBanda}>{banda.charAt(0)}</span>
                         {impacto * probabilidad}
                       </span>
                     )
@@ -213,18 +214,19 @@ export function PanelRiesgos({ nivelTitulo = 2 }: { nivelTitulo?: 2 | 3 }) {
             <div className={estilos.bandas}>
               <p className="rotulo">Bandas por puntaje I × P</p>
               <ul className={estilos.listaBandas}>
-                <li>
-                  <LamparaEstado valor="Bajo" /> 1 a 4
-                </li>
-                <li>
-                  <LamparaEstado valor="Medio" /> 5 a 9
-                </li>
-                <li>
-                  <LamparaEstado valor="Alto" /> 10 a 14
-                </li>
-                <li>
-                  <LamparaEstado valor="Crítico" /> 15 a 25
-                </li>
+                {(
+                  [
+                    ['Bajo', '1 a 4'],
+                    ['Medio', '5 a 9'],
+                    ['Alto', '10 a 14'],
+                    ['Crítico', '15 a 25'],
+                  ] as const
+                ).map(([banda, rango]) => (
+                  <li key={banda}>
+                    <span className={estilos.chipBanda}>{banda.charAt(0)}</span>
+                    <LamparaEstado valor={banda} /> {rango}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

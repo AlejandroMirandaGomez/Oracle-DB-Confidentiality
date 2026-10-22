@@ -33,10 +33,10 @@ export function Hallazgos() {
         introduccion="Los hallazgos se generan a partir de la matriz de evaluación. Complete las 18 filas para desbloquearlos."
       >
         <section className={estilos.bloqueo} aria-labelledby="titulo-bloqueo">
-          <LamparaEstado valor="Sin evaluar" texto="Bloqueado" />
           <h2 id="titulo-bloqueo" className={estilos.subtitulo}>
             Faltan {faltan} de {progresoMatriz.total} filas por evaluar
           </h2>
+          <LamparaEstado valor="Sin evaluar" texto="Bloqueado" />
           <p className={estilos.explicacion}>
             Asigne un nivel de madurez a cada fila de la matriz. Cuando todas tengan nivel, aquí aparecerá el plan de acción con la remediación de cada control que no alcance el nivel 3.
           </p>

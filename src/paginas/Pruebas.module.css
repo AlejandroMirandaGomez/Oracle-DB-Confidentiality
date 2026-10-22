@@ -50,15 +50,6 @@
   font-size: 1.5rem;
 }
 
-.paso {
-  font-size: 0.75rem;
-  font-weight: 700;
-  font-stretch: 78%;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--remache);
-}
-
 .explicacion {
   max-width: 68ch;
   font-size: 0.9375rem;

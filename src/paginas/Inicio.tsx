@@ -81,14 +81,14 @@ export function Inicio() {
           </div>
         </div>
 
-        <aside className={estilos.placa} aria-label="Créditos">
+        <div className={estilos.placa} role="group" aria-label="Créditos">
           <p className={estilos.placaAutor}>{proyecto.autor}</p>
           <p>{proyecto.universidad}</p>
           <p>{proyecto.escuela}</p>
           <p>{proyecto.curso}</p>
           <p>{proyecto.profesor}</p>
           <p>{proyecto.periodo}</p>
-        </aside>
+        </div>
       </section>
 
       <section className={estilos.bloque} aria-labelledby="titulo-herramientas">

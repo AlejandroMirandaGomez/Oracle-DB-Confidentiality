@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useContext, type ReactNode } from 'react'
 import type { Control, HallazgoEjemplo, Riesgo, Tarea, Hallazgo, Prioridad } from '../data/tipos'
 import { valorarRiesgo } from '../estado/calculos'
 import type { Entidad } from '../estado/indice'
@@ -7,6 +7,7 @@ import { useNivelDe } from '../estado/useNivelDe'
 import { BandaRiesgo } from './BandaRiesgo'
 import { BloqueCodigo } from './BloqueCodigo'
 import { Campo, Rejilla } from './Campo'
+import { DentroDeHoja } from './contextoHoja'
 import { DetalleFila, DetalleFilaEjemplo } from './DetalleFila'
 import { DetallePrueba } from './DetallePrueba'
 import estilos from './Detalles.module.css'
@@ -14,6 +15,16 @@ import { LamparaEstado, PuntoLampara } from './Lampara'
 import { ListaRefs } from './Ref'
 
 const DetallePruebaEjemplo = lazy(() => import('./DetallePruebaEjemplo').then((modulo) => ({ default: modulo.DetallePruebaEjemplo })))
+
+function Subtitulo({ id, children }: { id: string; children: ReactNode }) {
+  const enHoja = useContext(DentroDeHoja)
+  const Etiqueta = enHoja ? 'h3' : 'h2'
+  return (
+    <Etiqueta id={id} className={estilos.subtitulo}>
+      {children}
+    </Etiqueta>
+  )
+}
 
 export function Detalle({ entidad }: { entidad: Entidad }) {
   switch (entidad.tipo) {
@@ -143,7 +154,7 @@ function DetalleControl({ control }: { control: Control }) {
                 <li key={propiedad} data-marcada={marcada || undefined}>
                   <PuntoLampara tono={marcada ? 'blanca' : 'apagada'} />
                   {nombrePropiedad[propiedad]}
-                  {!marcada && <span className="solo-lectores"> (no marcada)</span>}
+                  <span className={estilos.estadoPropiedad}>{marcada ? 'marcada' : 'no marcada'}</span>
                 </li>
               )
             })}
@@ -165,9 +176,7 @@ function DetalleControl({ control }: { control: Control }) {
       </div>
       {observable && (
         <section className={estilos.auditor} aria-labelledby={`auditor-${control.id}`}>
-          <h3 id={`auditor-${control.id}`} className={estilos.subtitulo}>
-            Lo que verifica un auditor externo
-          </h3>
+          <Subtitulo id={`auditor-${control.id}`}>Lo que verifica un auditor externo</Subtitulo>
           <p className={estilos.enunciado}>{observable.enunciado}</p>
           <BloqueCodigo codigo={observable.consulta} titulo={`Consulta ${observable.id}`} />
           <Rejilla>

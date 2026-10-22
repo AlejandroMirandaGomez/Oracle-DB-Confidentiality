@@ -1,6 +1,5 @@
 import { LamparaEstado } from './Lampara'
 import type { ValorLampara } from './tonosLampara'
-import { RampaMadurez } from './RampaMadurez'
 import estilos from './LeyendaLamparas.module.css'
 
 type Tipo = 'matriz' | 'bateria' | 'hallazgos'
@@ -39,16 +38,6 @@ export function LeyendaLamparas({ tipo }: { tipo: Tipo }) {
             <dd>{entrada.significado}</dd>
           </div>
         ))}
-        {tipo === 'matriz' && (
-          <div className={estilos.entrada}>
-            <dt className={estilos.rampa}>
-              {([0, 1, 2, 3, 4] as const).map((nivel) => (
-                <RampaMadurez key={nivel} nivel={nivel} />
-              ))}
-            </dt>
-            <dd>Madurez de 0 a 4, de apagada a plena</dd>
-          </div>
-        )}
       </dl>
     </section>
   )

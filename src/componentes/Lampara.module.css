@@ -45,15 +45,15 @@
 .punto {
   display: inline-block;
   flex: none;
-  width: 0.625rem;
-  height: 0.625rem;
-  border: 1px solid var(--remache);
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--junta);
   border-radius: var(--radio);
   background: var(--panel-hondo);
 }
 
 .punto:not([data-tono='apagada']) {
-  border-color: var(--placa-suave);
+  border: 2px solid var(--placa);
   box-shadow: var(--brillo-interior);
   animation: encender 180ms var(--ease-out) both;
 }

@@ -10,13 +10,10 @@ import { ListaRefs } from './Ref'
 
 const opcionesPrueba = ['Conforme', 'Parcial', 'No conforme'] as const
 
-function Paso({ numero, titulo, children }: { numero: number; titulo: string; children: ReactNode }) {
+function Paso({ titulo, children }: { titulo: string; children: ReactNode }) {
   return (
     <li className={estilos.paso}>
-      <h3 className={estilos.tituloPaso}>
-        <span className={estilos.numero}>{numero}</span>
-        {titulo}
-      </h3>
+      <h3 className={estilos.tituloPaso}>{titulo}</h3>
       <div className={estilos.contenidoPaso}>{children}</div>
     </li>
   )
@@ -36,20 +33,20 @@ export function DetallePrueba({ prueba }: { prueba: Prueba }) {
         </Campo>
       </Rejilla>
       <ol className={estilos.pasos}>
-        <Paso numero={1} titulo="Procedimiento">
+        <Paso titulo="Procedimiento">
           <ol className={estilos.procedimiento}>
             {prueba.procedimiento.map((paso) => (
               <li key={paso}>{paso}</li>
             ))}
           </ol>
         </Paso>
-        <Paso numero={2} titulo="Ejecución">
+        <Paso titulo="Ejecución">
           <BloqueCodigo codigo={prueba.sql} titulo={prueba.lenguaje} />
         </Paso>
-        <Paso numero={3} titulo="Resultado esperado">
+        <Paso titulo="Resultado esperado">
           <p>{prueba.resultadoEsperado}</p>
         </Paso>
-        <Paso numero={4} titulo="Resultado observado">
+        <Paso titulo="Resultado observado">
           <div className={estilos.veredicto}>
             <LamparaEstado valor={registro.respuesta ?? 'Sin documentar'} />
           </div>
