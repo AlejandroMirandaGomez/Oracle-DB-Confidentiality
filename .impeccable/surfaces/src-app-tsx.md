@@ -26,6 +26,12 @@ Tablero anunciador de sala de control, fijado por el autor. Momento memorable: a
 
 - Inicio: el recorrido de seis pasos puede ser una fila de ventanas de anunciador o una lista vertical; se decide al construir esa página.
 
+## Accepted deviations
+
+- Progreso en Inicio: las lámparas de los pasos usan ámbar (En curso, Listos) y verde (Completa, Visto) porque el plan lo ordena textualmente ("apagada si no se empezó, ámbar en curso, verde completa"). El texto de cada lámpara las distingue de CUMPLE y PARCIAL. El estado "Listos" de Hallazgos desbloqueados es una extensión de esa regla.
+- Declaración de uso de IA: el contenido de `src/data/catalogo/usoIA.ts` es la declaración firmada del autor y se copia tal cual salvo la ruta local; por eso conserva menciones del trabajo original.
+- Tokens ajustados por contraste AA medido: `--remache` #454b50 (el plan sugería #5b6166, 4,01:1 sobre `--panel`) y `--lampara-verde` #2a8452 (el plan decía #2e8b57, 4,25:1 con texto blanco).
+
 ## Direction contract
 
 THESIS: La aplicación es un tablero anunciador de sala de control: cada control es una ventana que se enciende según la evidencia que la organización documenta, y la trazabilidad es el diagrama mímico que la recorre. Rechaza el centro de cumplimiento (sidebar, tarjetas, insignias de color) y el sitio cyber oscuro con candados y neón.

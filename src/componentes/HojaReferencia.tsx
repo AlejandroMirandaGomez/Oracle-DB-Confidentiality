@@ -137,9 +137,7 @@ export function HojaReferencia() {
                     <h2 id="hoja-titulo" ref={titulo} tabIndex={-1} className={estilos.titulo}>
                       {indice.tituloDe(entidad)}
                     </h2>
-                    <p className={estilos.tipo}>
-                      {nombreTipo[entidad.tipo]} <span className={estilos.id}>{actual}</span>
-                    </p>
+                    <p className={estilos.tipo}>{nombreTipo[entidad.tipo]}</p>
                   </header>
                   <DentroDeHoja.Provider value={true}>
                     <Detalle entidad={entidad} />

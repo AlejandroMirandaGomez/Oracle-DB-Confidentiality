@@ -122,14 +122,6 @@
   outline: none;
 }
 
-.id {
-  margin-left: 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--placa-suave);
-}
-
 @media (max-width: 640px) {
   .hoja {
     width: 100vw;
