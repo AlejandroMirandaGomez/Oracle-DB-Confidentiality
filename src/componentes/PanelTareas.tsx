@@ -25,7 +25,7 @@ const columnas: ColumnaTabular<Tarea>[] = [
     ),
   },
   { clave: 'frecuencia', encabezado: 'Frecuencia', celda: (tarea) => tarea.frecuencia },
-  { clave: 'controles', encabezado: 'Controles', celda: (tarea) => <ListaRefs ids={tarea.controles} /> },
+  { clave: 'controles', encabezado: 'Controles observables', celda: (tarea) => <ListaRefs ids={tarea.controles} /> },
 ]
 
 export function PanelTareas() {

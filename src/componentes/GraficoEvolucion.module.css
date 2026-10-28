@@ -1,0 +1,69 @@
+.escalaHorizontal {
+  max-width: 100%;
+  overflow-x: auto;
+  border-top: 1px solid var(--junta);
+  border-bottom: 1px solid var(--placa);
+}
+
+.grafico {
+  display: block;
+  width: 100%;
+  min-width: 38rem;
+  background: var(--panel-claro);
+}
+
+.lineaGuia {
+  stroke: var(--junta);
+  stroke-width: 1;
+}
+
+.rotuloEje {
+  fill: var(--placa-suave);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.valorPunto {
+  fill: var(--placa);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.trayectoria {
+  fill: none;
+  stroke: var(--placa);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.punto {
+  stroke: var(--placa);
+  stroke-width: 2;
+}
+
+.punto[data-salud='Verde'] {
+  fill: var(--lampara-verde);
+}
+
+.punto[data-salud='Amarillo'] {
+  fill: var(--lampara-ambar);
+}
+
+.punto[data-salud='Rojo'] {
+  fill: var(--lampara-roja);
+}
+
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+.leyenda > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

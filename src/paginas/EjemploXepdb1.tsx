@@ -26,7 +26,7 @@ const secciones = [
   { id: 'cedula', titulo: 'Cédula de trazabilidad' },
   { id: 'riesgos', titulo: 'Riesgos' },
   { id: 'tareas', titulo: 'Tareas' },
-  { id: 'controles', titulo: 'Controles' },
+  { id: 'controles', titulo: 'Controles observables' },
   { id: 'matriz', titulo: 'Matriz' },
   { id: 'bateria', titulo: 'Batería de pruebas' },
   { id: 'hallazgos', titulo: 'Hallazgos' },
@@ -34,7 +34,7 @@ const secciones = [
 
 const columnasControles = (observableDe: ReturnType<typeof useIndice>['observableDeControl']): ColumnaTabular<Control>[] => [
   { clave: 'id', encabezado: 'ID', celda: (control) => <span className={estilos.id}>{control.id}</span> },
-  { clave: 'control', encabezado: 'Control', celda: (control) => <span className={estilos.nombre}>{control.nombre}</span> },
+  { clave: 'control', encabezado: 'Control observable', celda: (control) => <span className={estilos.nombre}>{control.nombre}</span> },
   {
     clave: 'observable',
     encabezado: 'Lo que verifica el auditor',
@@ -52,7 +52,7 @@ const columnasControles = (observableDe: ReturnType<typeof useIndice>['observabl
 
 const columnasMatriz: ColumnaTabular<FilaMatrizEjemplo>[] = [
   { clave: 'id', encabezado: 'Fila', celda: (fila) => <span className={estilos.id}>{fila.id}</span> },
-  { clave: 'control', encabezado: 'Control', celda: (fila) => <ListaRefs ids={[fila.control]} /> },
+  { clave: 'control', encabezado: 'Control observable', celda: (fila) => <ListaRefs ids={[fila.control]} /> },
   { clave: 'riesgo', encabezado: 'Riesgo', celda: (fila) => <ListaRefs ids={[fila.riesgo]} /> },
   { clave: 'criterio', encabezado: 'Criterio', celda: (fila) => <span className={estilos.texto}>{fila.criterio}</span> },
   { clave: 'nivel', encabezado: 'Nivel 0-4', celda: (fila) => <RampaMadurez nivel={fila.nivel} control={fila.control} /> },
@@ -77,13 +77,13 @@ const columnasPruebas: ColumnaTabular<PruebaEjemplo>[] = [
   { clave: 'esperado', encabezado: 'Esperado', celda: (prueba) => <span className={estilos.texto}>{prueba.resultadoEsperado}</span> },
   { clave: 'obtenido', encabezado: 'Obtenido', celda: (prueba) => <span className={estilos.texto}>{prueba.resultadoObtenido}</span> },
   { clave: 'veredicto', encabezado: 'Veredicto', celda: (prueba) => <LamparaEstado valor={prueba.veredicto} /> },
-  { clave: 'controles', encabezado: 'Controles', celda: (prueba) => <ListaRefs ids={prueba.controles} /> },
+  { clave: 'controles', encabezado: 'Controles observables', celda: (prueba) => <ListaRefs ids={prueba.controles} /> },
 ]
 
 const columnasHallazgos: ColumnaTabular<HallazgoEjemplo>[] = [
   { clave: 'id', encabezado: 'ID', celda: (hallazgo) => <span className={estilos.id}>{hallazgo.id}</span> },
   { clave: 'hallazgo', encabezado: 'Hallazgo', celda: (hallazgo) => <span className={estilos.nombre}>{hallazgo.titulo}</span> },
-  { clave: 'control', encabezado: 'Controles', celda: (hallazgo) => <ListaRefs ids={hallazgo.controles} /> },
+  { clave: 'control', encabezado: 'Controles observables', celda: (hallazgo) => <ListaRefs ids={hallazgo.controles} /> },
   { clave: 'riesgo', encabezado: 'Riesgo', celda: (hallazgo) => <ListaRefs ids={hallazgo.riesgos} /> },
   { clave: 'prioridad', encabezado: 'Prioridad', celda: (hallazgo) => <LamparaEstado valor={hallazgo.prioridad} /> },
 ]
@@ -176,10 +176,10 @@ export function EjemploXepdb1() {
 
       <section id="ejemplo-controles" className={estilos.seccion} aria-labelledby="titulo-controles">
         <h2 id="titulo-controles" className={estilos.subtitulo}>
-          Controles con su observable y veredicto
+          Controles observables y veredictos
         </h2>
         <ComponenteTabular
-          etiqueta="Controles ISO/IEC 27001:2022 con el veredicto de su observable"
+          etiqueta="Controles observables ISO/IEC 27001:2022 con su veredicto"
           columnas={columnasControles(indice.observableDeControl)}
           filas={indice.controles}
           idDe={(control) => control.id}

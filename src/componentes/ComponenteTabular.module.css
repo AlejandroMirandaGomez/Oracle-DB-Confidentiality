@@ -29,8 +29,11 @@
 }
 
 .fila {
-  cursor: pointer;
   transition: background-color 140ms var(--ease-out);
+}
+
+.fila[data-interactivo] {
+  cursor: pointer;
 }
 
 .fila + .fila .celda {
@@ -42,7 +45,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .fila:hover {
+  .fila[data-interactivo]:hover {
     background: var(--panel-claro);
   }
 }
@@ -56,6 +59,7 @@
   text-align: left;
   vertical-align: top;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .abrir {

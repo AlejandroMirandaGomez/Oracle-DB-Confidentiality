@@ -15,7 +15,7 @@ import estilos from './Hallazgos.module.css'
 const columnas: ColumnaTabular<Hallazgo>[] = [
   { clave: 'id', encabezado: 'ID', celda: (hallazgo) => <span className={estilos.id}>{hallazgo.id}</span> },
   { clave: 'hallazgo', encabezado: 'Hallazgo', celda: (hallazgo) => <span className={estilos.titulo}>{hallazgo.titulo}</span> },
-  { clave: 'control', encabezado: 'Control', celda: (hallazgo) => <ListaRefs ids={hallazgo.controles} /> },
+  { clave: 'control', encabezado: 'Control observable', celda: (hallazgo) => <ListaRefs ids={hallazgo.controles} /> },
   { clave: 'riesgo', encabezado: 'Riesgo', celda: (hallazgo) => <ListaRefs ids={hallazgo.riesgos} /> },
   { clave: 'prioridad', encabezado: 'Prioridad', celda: (hallazgo) => <LamparaEstado valor={hallazgo.prioridad} /> },
 ]

@@ -61,6 +61,7 @@ export function Matriz() {
           <span className={estilos.progreso}>
             {progresoMatriz.hechas} de {progresoMatriz.total} filas evaluadas
           </span>
+          {progresoMatriz.hechas < progresoMatriz.total && <span>Complete la matriz para habilitar Guardar evaluación.</span>}
           <span className={estilos.conteo}>
             <LamparaEstado valor="Cumple" /> {conteo.Cumple}
           </span>
@@ -96,10 +97,10 @@ export function Matriz() {
 
       <div className={estilos.marco}>
         <table className={estilos.tabla}>
-          <caption className="solo-lectores">Matriz de evaluación: tarea, riesgo, control, criterio 0 a 4, evidencias y estado</caption>
+          <caption className="solo-lectores">Matriz de evaluación: tarea, riesgo, control, madurez 0 a 4, evidencias y estado</caption>
           <thead>
             <tr>
-              {['Fila', 'Tarea', 'Riesgo', 'Control', 'Criterio 0-4', 'Evidencia', 'Estado'].map((encabezado) => (
+              {['Fila', 'Tarea', 'Riesgo', 'Control observable', 'Madurez 0-4', 'Evidencia', 'Estado'].map((encabezado) => (
                 <th key={encabezado} scope="col" className="rotulo">
                   {encabezado}
                 </th>
@@ -122,13 +123,13 @@ export function Matriz() {
                   <td data-etiqueta="Riesgo">
                     <Ref id={fila.riesgo} />
                   </td>
-                  <td data-etiqueta="Control">
+                  <td data-etiqueta="Control observable">
                     <div className={estilos.control}>
                       <Ref id={fila.control} />
                       <span className={estilos.controlNombre}>{indice.buscarControl(fila.control)?.nombre}</span>
                     </div>
                   </td>
-                  <td data-etiqueta="Criterio 0-4">
+                  <td data-etiqueta="Madurez 0-4">
                     <div className={estilos.nivel}>
                       <SelectorNivel nivel={nivel} control={fila.control} sugerido={sugerido} etiqueta={`Nivel de madurez de ${fila.id}`} alCambiar={(valor) => fijarNivel(fila.id, valor)} />
                       <span className={estilos.criterio}>{fila.criterio}</span>

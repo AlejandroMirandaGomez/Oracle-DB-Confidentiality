@@ -1,6 +1,7 @@
 import { estadoDeNivel } from '../data/catalogo/escalas'
 import type { EvidenciaRequerida, FilaMatriz, FilaMatrizEjemplo, RespuestaEvidencia } from '../data/tipos'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
+import { useInstantanea } from '../estado/instantanea'
 import { nivelSugerido } from '../estado/nivelSugerido'
 import { BloqueCodigo } from './BloqueCodigo'
 import { BotoneraEstado } from './BotoneraEstado'
@@ -50,7 +51,9 @@ function Evidencia({ filaId, evidencia }: { filaId: string; evidencia: Evidencia
 }
 
 export function DetalleFila({ fila }: { fila: FilaMatriz }) {
+  const instantanea = useInstantanea()
   const { nivelDe, fijarNivel, respuestaEvidencia, progresoEvidencias } = useEvaluacion()
+  if (instantanea) return <DetalleFilaGuardada fila={fila} evaluacion={instantanea} />
   const nivel = nivelDe(fila.id)
   const progreso = progresoEvidencias(fila.id)
   const sugerido = nivelSugerido(fila.evidenciasRequeridas.map((evidencia) => respuestaEvidencia(fila.id, evidencia.id).respuesta))
@@ -63,7 +66,7 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
         <Campo etiqueta="Riesgo">
           <ListaRefs ids={[fila.riesgo]} conNombre />
         </Campo>
-        <Campo etiqueta="Control" ancho>
+        <Campo etiqueta="Control observable" ancho>
           <ListaRefs ids={[fila.control]} conNombre />
         </Campo>
       </Rejilla>
@@ -114,6 +117,47 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
   )
 }
 
+function DetalleFilaGuardada({ fila, evaluacion }: { fila: FilaMatriz; evaluacion: NonNullable<ReturnType<typeof useInstantanea>> }) {
+  const nivel = evaluacion.niveles[fila.id] ?? null
+  return (
+    <>
+      <Rejilla>
+        <Campo etiqueta="Tarea"><ListaRefs ids={[fila.tarea]} conNombre /></Campo>
+        <Campo etiqueta="Riesgo"><ListaRefs ids={[fila.riesgo]} conNombre /></Campo>
+        <Campo etiqueta="Control observable" ancho><ListaRefs ids={[fila.control]} conNombre /></Campo>
+        <Campo etiqueta="Criterio" ancho>{fila.criterio}</Campo>
+        <Campo etiqueta="Nivel guardado" ancho>
+          <div className={estilos.confirmacion}>
+            <RampaMadurez nivel={nivel} control={fila.control} conNombre />
+            <LamparaEstado valor={estadoDeNivel(nivel)} />
+          </div>
+          <DescripcionNivel control={fila.control} nivel={nivel} />
+        </Campo>
+      </Rejilla>
+      <section className={estilos.seccion} aria-labelledby={`evidencias-${fila.id}`}>
+        <h3 id={`evidencias-${fila.id}`} className={estilos.subtitulo}>Evidencias guardadas</h3>
+        <ol className={estilos.evidencias}>
+          {fila.evidenciasRequeridas.map((evidencia) => {
+            const registro = evaluacion.respuestasEvidencia[fila.id]?.[evidencia.id]
+            return (
+              <li key={evidencia.id} className={estilos.evidencia}>
+                <header className={estilos.cabeza}>
+                  <h4 className={estilos.titulo}><span className={estilos.id}>{evidencia.id}</span><span>{evidencia.titulo}</span></h4>
+                  <LamparaEstado valor={registro?.respuesta ?? 'Sin documentar'} />
+                </header>
+                <p>{registro?.nota || 'Sin observación documentada.'}</p>
+                <p className="rotulo">Resultado esperado</p>
+                <p>{evidencia.esperado}</p>
+              </li>
+            )
+          })}
+        </ol>
+      </section>
+      <Rejilla><Campo etiqueta="Pruebas de la batería" ancho><ListaRefs ids={fila.pruebas} conNombre /></Campo></Rejilla>
+    </>
+  )
+}
+
 export function DetalleFilaEjemplo({ fila }: { fila: FilaMatrizEjemplo }) {
   return (
     <>
@@ -124,7 +168,7 @@ export function DetalleFilaEjemplo({ fila }: { fila: FilaMatrizEjemplo }) {
         <Campo etiqueta="Riesgo">
           <ListaRefs ids={[fila.riesgo]} conNombre />
         </Campo>
-        <Campo etiqueta="Control" ancho>
+        <Campo etiqueta="Control observable" ancho>
           <ListaRefs ids={[fila.control]} conNombre />
         </Campo>
         <Campo etiqueta="Nivel de madurez" ancho>

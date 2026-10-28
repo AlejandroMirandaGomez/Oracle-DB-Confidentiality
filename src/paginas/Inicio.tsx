@@ -45,7 +45,7 @@ export function Inicio() {
   const pasos: Paso[] = [
     { ruta: '/riesgos', nombre: 'Riesgos', frase: 'Entienda los cinco riesgos de confidencialidad y cómo se valoran.', estado: lectura('riesgos') },
     { ruta: '/tareas', nombre: 'Tareas', frase: 'Conozca las 13 tareas críticas del DBA por fase del ciclo PHVA.', estado: lectura('tareas') },
-    { ruta: '/controles', nombre: 'Controles', frase: 'Elija los controles ISO/IEC 27001:2022 que mitigan cada riesgo.', estado: lectura('controles') },
+    { ruta: '/controles', nombre: 'Controles observables', frase: 'Elija los controles ISO/IEC 27001:2022 que mitigan cada riesgo.', estado: lectura('controles') },
     {
       ruta: '/matriz',
       nombre: 'Matriz',

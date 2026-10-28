@@ -15,6 +15,7 @@ import type {
   Hallazgo,
   HallazgoEjemplo,
   NivelEvaluado,
+  Niveles,
   ObservableEjemplo,
   Prueba,
   PruebaEjemplo,
@@ -149,7 +150,7 @@ function armarIndice(fuente: Fuente): Indice {
   }
 }
 
-export function crearIndiceCatalogo(hallazgos: Hallazgo[]): Indice {
+export function crearIndiceCatalogo(hallazgos: Hallazgo[], niveles?: Niveles): Indice {
   return armarIndice({
     modo: 'catalogo',
     entidades: [
@@ -163,7 +164,7 @@ export function crearIndiceCatalogo(hallazgos: Hallazgo[]): Indice {
     filas: matriz,
     hallazgos,
     observables: [],
-    nivelFijoDe: null,
+    nivelFijoDe: niveles ? (filaId) => niveles[filaId] ?? null : null,
   })
 }
 

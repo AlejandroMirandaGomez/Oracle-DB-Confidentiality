@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type { Prueba, RespuestaPrueba } from '../data/tipos'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
+import { useInstantanea } from '../estado/instantanea'
 import { BloqueCodigo } from './BloqueCodigo'
 import { BotoneraEstado } from './BotoneraEstado'
 import { Campo, Rejilla } from './Campo'
@@ -20,15 +21,16 @@ function Paso({ titulo, children }: { titulo: string; children: ReactNode }) {
 }
 
 export function DetallePrueba({ prueba }: { prueba: Prueba }) {
+  const instantanea = useInstantanea()
   const { respuestaPrueba, fijarRespuestaPrueba } = useEvaluacion()
-  const registro = respuestaPrueba(prueba.id)
+  const registro = instantanea ? instantanea.respuestasPruebas[prueba.id] ?? { respuesta: null, nota: '' } : respuestaPrueba(prueba.id)
   return (
     <>
       <p className={estilos.entrada}>{prueba.objetivo}</p>
       <Rejilla>
         <Campo etiqueta="Tipo">{prueba.tipo}</Campo>
         <Campo etiqueta="Herramienta">{prueba.herramienta}</Campo>
-        <Campo etiqueta="Controles que respalda" ancho>
+        <Campo etiqueta="Controles observables que respalda" ancho>
           <ListaRefs ids={prueba.controles} conNombre />
         </Campo>
       </Rejilla>
@@ -50,7 +52,7 @@ export function DetallePrueba({ prueba }: { prueba: Prueba }) {
           <div className={estilos.veredicto}>
             <LamparaEstado valor={registro.respuesta ?? 'Sin documentar'} />
           </div>
-          <BotoneraEstado<RespuestaPrueba>
+          {instantanea ? <p>{registro.nota || 'Sin observación documentada.'}</p> : <BotoneraEstado<RespuestaPrueba>
             etiqueta={`Resultado de ${prueba.id}`}
             opciones={opcionesPrueba}
             valor={registro.respuesta}
@@ -58,7 +60,7 @@ export function DetallePrueba({ prueba }: { prueba: Prueba }) {
             nota={registro.nota}
             alCambiarNota={(nota) => fijarRespuestaPrueba(prueba.id, { nota })}
             etiquetaNota="Resultado observado"
-          />
+          />}
         </Paso>
       </ol>
     </>

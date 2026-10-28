@@ -104,6 +104,54 @@
   gap: 0.35rem;
 }
 
+.evolucion {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.cabeceraEvolucion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--placa);
+}
+
+.cabeceraEvolucion > div {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.cabeceraEvolucion h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.cabeceraEvolucion p,
+.notaEvolucion {
+  max-width: 70ch;
+  color: var(--placa-suave);
+  font-size: 0.9375rem;
+}
+
+.cabeceraEvolucion a {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.graficoVacio {
+  padding: 1.25rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.notaEvolucion strong {
+  color: var(--placa);
+  font-family: var(--mono);
+}
+
 .articulo {
   min-width: 0;
   animation: entrar 180ms var(--ease-out) both;

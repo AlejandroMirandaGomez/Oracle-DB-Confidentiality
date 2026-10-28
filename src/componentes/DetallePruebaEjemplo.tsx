@@ -27,7 +27,7 @@ export function DetallePruebaEjemplo({ prueba }: { prueba: PruebaEjemplo }) {
         <Campo etiqueta="Veredicto">
           <LamparaEstado valor={prueba.veredicto} />
         </Campo>
-        <Campo etiqueta="Controles">
+        <Campo etiqueta="Controles observables">
           <ListaRefs ids={prueba.controles} />
         </Campo>
       </Rejilla>

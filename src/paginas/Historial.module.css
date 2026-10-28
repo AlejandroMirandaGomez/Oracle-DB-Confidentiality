@@ -1,0 +1,87 @@
+.organizacion {
+  font-size: 1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.demostracion {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--placa-suave);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.fecha,
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.salud {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.nota {
+  max-width: 68ch;
+  color: var(--remache);
+  font-size: 0.875rem;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.anclas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.resumen {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.resumen p:nth-child(2) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.seccion {
+  display: grid;
+  gap: 1rem;
+  scroll-margin-top: calc(var(--alto-navbar) + 1.25rem);
+}
+
+.seccion h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-stretch: 72%;
+}
+
+.evidencias {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 36rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.notaEvidencia {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

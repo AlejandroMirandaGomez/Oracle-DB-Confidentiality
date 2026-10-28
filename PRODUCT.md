@@ -41,7 +41,7 @@ Contenido obligatorio del artefacto:
 2. Tabla de al menos 12 tareas críticas del DBA: gestión de usuarios, privilegios, autenticación, cifrado TDE, enmascaramiento, backup, auditoría, parcheo, listener, eliminación segura, logs, clones DEV/TEST.
 3. Mapeo a los controles A5.12, A5.15, A5.16, A5.17, A5.18, A5.33, A8.2, A8.3, A8.5, A8.10, A8.11, A8.12, A8.13, A8.15 y A8.20, con implementación sugerida y evidencia observable.
 4. Lista de 15 controles observables por un auditor externo.
-5. Matriz de evaluación: Tarea | Riesgo | Control | Criterio 0-4 | Evidencia | Estado (Cumple / No cumple / Parcial).
+5. Matriz de evaluación: Tarea | Riesgo | Control | Madurez 0-4 | Evidencia | Estado (Cumple / No cumple / Parcial).
 6. Batería de pruebas: ID, Tipo, Procedimiento, Resultado esperado, Herramienta, con scripts de verificación.
 
 Capacidades de la herramienta:
@@ -49,6 +49,8 @@ Capacidades de la herramienta:
 - Batería de 23 pruebas con SQL para copiar y resultado observado documentado por la persona.
 - Hallazgos que se desbloquean al completar la matriz y se refinan al completar la batería.
 - Nombre opcional de la organización evaluada, exportación de la evaluación en `.json` y exportación de la matriz y del plan de acción.
+- Historial local de evaluaciones guardadas al completar la matriz, con detalle de solo lectura y gráficas de salud y de puntuación de los controles en el tiempo. La ficha de cada control también muestra su propia evolución para la organización de la sesión. La puntuación de cada control está entre 0 y 1 y combina su nivel de madurez de 0 a 4 con las evidencias documentadas.
+- Un navegador sin sesión previa inicia como Cliente y carga cinco evaluaciones simuladas, identificadas como demostración y eliminables de forma permanente en ese navegador. El historial admite guardados adicionales y muestra controles que mejoran y otros que retroceden. El cierre de sesión explícito se conserva al recargar.
 
 Restricciones:
 - La escala de madurez es 0-4.

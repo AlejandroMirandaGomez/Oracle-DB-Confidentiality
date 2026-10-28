@@ -20,7 +20,8 @@ type Props<T> = {
   filas: T[]
   idDe: (fila: T) => string
   nombreDe: (fila: T) => string
-  alSeleccionar: (id: string) => void
+  etiquetaAbrir?: (fila: T) => string
+  alSeleccionar?: (id: string) => void
   grupos?: GrupoTabular[]
   grupoDe?: (fila: T) => string
   vacio: string
@@ -28,10 +29,11 @@ type Props<T> = {
 
 const selectorInteractivo = 'button, a, input, select, textarea, label, summary'
 
-export function ComponenteTabular<T>({ etiqueta, columnas, filas, idDe, nombreDe, alSeleccionar, grupos, grupoDe, vacio }: Props<T>) {
+export function ComponenteTabular<T>({ etiqueta, columnas, filas, idDe, nombreDe, etiquetaAbrir, alSeleccionar, grupos, grupoDe, vacio }: Props<T>) {
   if (filas.length === 0) return <p className={estilos.vacio}>{vacio}</p>
 
   function alHacerClic(evento: MouseEvent<HTMLTableRowElement>, id: string) {
+    if (!alSeleccionar) return
     const interactivo = (evento.target as HTMLElement).closest(selectorInteractivo)
     if (interactivo && !interactivo.hasAttribute('data-primario')) return
     alSeleccionar(id)
@@ -40,15 +42,17 @@ export function ComponenteTabular<T>({ etiqueta, columnas, filas, idDe, nombreDe
   function pintarFila(fila: T) {
     const id = idDe(fila)
     return (
-      <tr key={id} className={estilos.fila} onClick={(evento) => alHacerClic(evento, id)}>
+      <tr key={id} className={estilos.fila} data-interactivo={alSeleccionar ? '' : undefined} onClick={alSeleccionar ? (evento) => alHacerClic(evento, id) : undefined}>
         {columnas.map((columna, posicion) => {
           const contenido = columna.celda(fila)
           if (posicion === 0) {
             return (
               <th key={columna.clave} scope="row" className={estilos.celda} data-alineacion={columna.alineacion} data-primera="">
-                <button type="button" className={estilos.abrir} data-primario="" aria-label={`Abrir ${id}: ${nombreDe(fila)}`}>
-                  {contenido}
-                </button>
+                {alSeleccionar ? (
+                  <button type="button" className={estilos.abrir} data-primario="" aria-label={etiquetaAbrir?.(fila) ?? `Abrir ${id}: ${nombreDe(fila)}`}>
+                    {contenido}
+                  </button>
+                ) : contenido}
               </th>
             )
           }

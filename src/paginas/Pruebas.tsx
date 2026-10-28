@@ -59,7 +59,7 @@ export function Pruebas() {
       },
     },
     { clave: 'resultado', encabezado: 'Resultado', celda: (prueba) => <LamparaEstado valor={respuestaPrueba(prueba.id).respuesta ?? 'Sin documentar'} /> },
-    { clave: 'controles', encabezado: 'Controles', celda: (prueba) => <ListaRefs ids={prueba.controles} /> },
+    { clave: 'controles', encabezado: 'Controles observables', celda: (prueba) => <ListaRefs ids={prueba.controles} /> },
   ]
 
   return (

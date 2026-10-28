@@ -7,13 +7,21 @@ import { SincronizarReferencia } from './componentes/SincronizarReferencia'
 import { useEvaluacion } from './estado/contextoEvaluacion'
 import { EvaluacionProvider } from './estado/EvaluacionProvider'
 import { ContextoIndice } from './estado/fuente'
+import { generarHallazgos } from './estado/hallazgos'
 import { crearIndiceCatalogo, indiceEjemplo } from './estado/indice'
+import { ContextoInstantanea } from './estado/instantanea'
 
 function Cascaron() {
-  const { hallazgos } = useEvaluacion()
+  const { hallazgos, historial } = useEvaluacion()
   const { pathname } = useLocation()
+  const idGuardado = pathname.match(/^\/historial\/([^/]+)$/)?.[1]
+  const instantanea = historial.find((registro) => registro.id === idGuardado)?.evaluacion ?? null
   const indiceCatalogo = useMemo(() => crearIndiceCatalogo(hallazgos), [hallazgos])
-  const indice = pathname.startsWith('/ejemplos/xepdb1') ? indiceEjemplo : indiceCatalogo
+  const indiceGuardado = useMemo(
+    () => instantanea ? crearIndiceCatalogo(generarHallazgos(instantanea.niveles, instantanea.respuestasEvidencia, instantanea.respuestasPruebas), instantanea.niveles) : null,
+    [instantanea],
+  )
+  const indice = pathname.startsWith('/ejemplos/xepdb1') ? indiceEjemplo : indiceGuardado ?? indiceCatalogo
   const clavePagina = pathname.startsWith('/controles') ? '/controles' : pathname
 
   useEffect(() => {
@@ -22,6 +30,7 @@ function Cascaron() {
   }, [clavePagina])
 
   return (
+    <ContextoInstantanea.Provider value={instantanea}>
     <ContextoIndice.Provider value={indice}>
       <button type="button" className={estilos.salto} onClick={() => document.getElementById('contenido')?.focus()}>
         Saltar al contenido
@@ -33,6 +42,7 @@ function Cascaron() {
       <HojaReferencia />
       <SincronizarReferencia />
     </ContextoIndice.Provider>
+    </ContextoInstantanea.Provider>
   )
 }
 

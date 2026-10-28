@@ -1,6 +1,6 @@
 import { useRef, type KeyboardEvent } from "react";
 import { nivelesMadurez } from "../data/catalogo/escalas";
-import type { NivelEvaluado } from "../data/tipos";
+import type { Nivel, NivelEvaluado } from "../data/tipos";
 import { PistaNivel } from "./PistaNivel";
 import { RampaMadurez } from "./RampaMadurez";
 import estilos from "./SelectorNivel.module.css";
@@ -13,7 +13,7 @@ type Props = {
   alCambiar?: (nivel: NivelEvaluado) => void;
 };
 
-const opciones: NivelEvaluado[] = [0, 1, 2, 3, 4];
+const opciones: Nivel[] = [0, 1, 2, 3, 4];
 
 export function SelectorNivel({
   nivel,
@@ -35,7 +35,7 @@ export function SelectorNivel({
           : 0;
     if (hacia === 0 || !alCambiar) return;
     evento.preventDefault();
-    const actual = opciones.indexOf(nivel);
+    const actual = nivel === null ? -1 : opciones.indexOf(nivel);
     const posicion =
       actual === -1
         ? hacia > 0

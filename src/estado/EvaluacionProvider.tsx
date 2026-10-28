@@ -20,17 +20,23 @@ import {
   validarArchivo,
   type Evaluacion,
 } from './archivoEvaluacion'
-import { borrarAlmacen, guardarAlmacen, leerAlmacen } from './almacen'
+import { guardarAlmacen, leerAlmacen } from './almacen'
 import { ContextoEvaluacion, type Progreso, type ResultadoImportacion, type ValorEvaluacion } from './contextoEvaluacion'
 import { generarHallazgos } from './hallazgos'
+import { escribirHistorial, inicializarHistorialCliente, leerHistorial } from './historial'
 
 const registroVacioEvidencia: RegistroEvidencia = { respuesta: null, nota: '' }
 const registroVacioPrueba: RegistroPrueba = { respuesta: null, nota: '' }
 
 const totalDeEvidencias = new Map(matriz.map((fila) => [fila.id, fila.evidenciasRequeridas.length]))
 
+function nombreDeSesion(nombre: unknown): string {
+  const limpio = sanearOrganizacion(nombre).trim()
+  return limpio.toLocaleLowerCase('es') === 'cliente' ? 'Cliente' : limpio
+}
+
 export function EvaluacionProvider({ children }: { children: ReactNode }) {
-  const [organizacion, setOrganizacion] = useState(() => sanearOrganizacion(leerAlmacen<unknown>('organizacion', '')))
+  const [organizacion, setOrganizacion] = useState(() => nombreDeSesion(leerAlmacen<unknown>('organizacion', 'Cliente')))
   const [niveles, setNiveles] = useState<Niveles>(() => sanearNiveles(leerAlmacen<unknown>('niveles', {})))
   const [respuestasEvidencia, setRespuestasEvidencia] = useState<RespuestasEvidencia>(() =>
     sanearRespuestasEvidencia(leerAlmacen<unknown>('evidencias', {})),
@@ -39,19 +45,27 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
     sanearRespuestasPruebas(leerAlmacen<unknown>('pruebas', {})),
   )
   const [pasosVistos, setPasosVistos] = useState<string[]>(() => leerAlmacen<string[]>('pasos-vistos', []))
+  const [historial, setHistorial] = useState(() => {
+    const guardados = leerHistorial()
+    return organizacion === 'Cliente' ? inicializarHistorialCliente(guardados) : guardados
+  })
   const [pila, setPila] = useState<string[]>([])
   const [direccion, setDireccion] = useState<1 | -1>(1)
 
-  useEffect(() => {
-    if (organizacion === '') borrarAlmacen('organizacion')
-    else guardarAlmacen('organizacion', organizacion)
-  }, [organizacion])
+  useEffect(() => guardarAlmacen('organizacion', organizacion), [organizacion])
   useEffect(() => guardarAlmacen('niveles', niveles), [niveles])
   useEffect(() => guardarAlmacen('evidencias', respuestasEvidencia), [respuestasEvidencia])
   useEffect(() => guardarAlmacen('pruebas', respuestasPruebas), [respuestasPruebas])
   useEffect(() => guardarAlmacen('pasos-vistos', pasosVistos), [pasosVistos])
 
-  const fijarOrganizacion = useCallback((nombre: string) => setOrganizacion(sanearOrganizacion(nombre)), [])
+  const fijarOrganizacion = useCallback((nombre: string) => {
+    const siguiente = nombreDeSesion(nombre)
+    setOrganizacion(siguiente)
+    if (siguiente === 'Cliente') {
+      const inicializado = inicializarHistorialCliente(historial)
+      if (inicializado !== historial) setHistorial(inicializado)
+    }
+  }, [historial])
 
   const nivelDe = useCallback((filaId: string): NivelEvaluado => niveles[filaId] ?? null, [niveles])
 
@@ -139,13 +153,13 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       ok: true,
       resumen,
       aplicar: () => {
-        setOrganizacion(evaluacion.organizacion)
+        fijarOrganizacion(evaluacion.organizacion)
         setNiveles(evaluacion.niveles)
         setRespuestasEvidencia(evaluacion.respuestasEvidencia)
         setRespuestasPruebas(evaluacion.respuestasPruebas)
       },
     }
-  }, [])
+  }, [fijarOrganizacion])
 
   const hayDatos = useMemo(() => hayDatosDeEvaluacion(evaluacionActual), [evaluacionActual])
 
@@ -159,6 +173,32 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
   )
   const matrizCompleta = progresoMatriz.hechas === progresoMatriz.total
   const bateriaCompleta = progresoBateria.hechas === progresoBateria.total
+
+  const guardarEvaluacion = useCallback(() => {
+    if (!matrizCompleta) return { ok: false as const, mensaje: 'Complete las 18 filas de la matriz antes de guardar la evaluación.' }
+    const registro = { id: crypto.randomUUID(), fechaGuardado: new Date().toISOString(), evaluacion: evaluacionActual }
+    const siguientes = [registro, ...historial]
+    const resultado = escribirHistorial(siguientes)
+    if (resultado.ok) setHistorial(siguientes)
+    return resultado
+  }, [matrizCompleta, evaluacionActual, historial])
+
+  const restaurarEvaluacion = useCallback((id: string) => {
+    const registro = historial.find((item) => item.id === id)
+    if (!registro) return false
+    fijarOrganizacion(registro.evaluacion.organizacion)
+    setNiveles(registro.evaluacion.niveles)
+    setRespuestasEvidencia(registro.evaluacion.respuestasEvidencia)
+    setRespuestasPruebas(registro.evaluacion.respuestasPruebas)
+    return true
+  }, [historial, fijarOrganizacion])
+
+  const eliminarEvaluacion = useCallback((id: string) => {
+    const siguientes = historial.filter((item) => item.id !== id)
+    const resultado = escribirHistorial(siguientes)
+    if (resultado.ok) setHistorial(siguientes)
+    return resultado
+  }, [historial])
 
   const progresoEvidencias = useCallback(
     (filaId: string): Progreso => {
@@ -213,6 +253,10 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       limpiarAvance,
       exportarEvaluacion,
       importarEvaluacion,
+      historial,
+      guardarEvaluacion,
+      restaurarEvaluacion,
+      eliminarEvaluacion,
       hayDatos,
       matrizCompleta,
       bateriaCompleta,
@@ -243,6 +287,10 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
       limpiarAvance,
       exportarEvaluacion,
       importarEvaluacion,
+      historial,
+      guardarEvaluacion,
+      restaurarEvaluacion,
+      eliminarEvaluacion,
       hayDatos,
       matrizCompleta,
       bateriaCompleta,

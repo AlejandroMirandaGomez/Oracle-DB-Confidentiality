@@ -15,17 +15,18 @@ La aplicación usa rutas por hash, así que cualquier ruta se puede recargar sin
 | `#/` | Inicio: organización evaluada opcional, recorrido de seis pasos con su avance y material de apoyo |
 | `#/riesgos` | Tabla de los cinco riesgos de confidencialidad, mapa de calor y escalas |
 | `#/tareas` | Las 13 tareas críticas del DBA por fase PHVA |
-| `#/controles` y `#/controles/:id` | Controles ISO/IEC 27001:2022 con su implementación en Oracle, lo que verifica un auditor externo, el texto de la norma ISO/IEC 27002:2022 y su mapeo a COBIT 4.1 |
+| `#/controles` y `#/controles/:id` | Controles observables ISO/IEC 27001:2022 con gráfica de evolución de su puntuación, implementación en Oracle, verificación de un auditor externo, texto de ISO/IEC 27002:2022 y mapeo a COBIT 4.1 |
 | `#/matriz` | Matriz de evaluación de 18 filas, con evidencias requeridas y nivel de madurez de 0 a 4 |
 | `#/pruebas` | Batería de 23 pruebas técnicas, con entorno de prueba y SQL para copiar |
 | `#/hallazgos` | Hallazgos y plan de acción, desbloqueados al completar la matriz |
+| `#/historial` y `#/historial/:id` | Evaluaciones guardadas con fecha, salud, detalle de solo lectura y gráficas de evolución |
 | `#/marco-teorico` | Marco teórico y referencias APA 7 |
 | `#/uso-ia` | Declaración del uso de IA |
 | `#/ejemplos` y `#/ejemplos/xepdb1` | Lista de ejemplos y el ejemplo XEPDB1 de solo lectura |
 
 Cualquier referencia (riesgo, tarea, control, fila, prueba o hallazgo) abre un panel de detalle a la derecha. El enlace profundo viaja en el hash, por ejemplo `#/riesgos?ref=R-CONF-01`.
 
-## Contenido de los controles y madurez
+## Contenido de los controles observables y madurez
 
 - `src/data/catalogo/controles.ts` reúne la información del DBA por control y la une con `src/data/catalogo/norma.ts`, que guarda el texto de ISO/IEC 27002:2022 (descripción, guía, otra información, concepto de ciberseguridad, dominio y páginas de origen).
 - `src/data/catalogo/madurez.ts` guarda el objetivo de COBIT 4.1 de cada control y cinco modelos de madurez (PO2, AI3, AI7, DS5 y DS11) con un texto por nivel de 0 a 4. El nivel 1 lleva los dos textos de origen, COBIT 1 y COBIT 2.
@@ -34,6 +35,9 @@ Cualquier referencia (riesgo, tarea, control, fila, prueba o hallazgo) abre un p
 ## Cómo se guarda la evaluación
 
 - El avance se guarda solo en el `localStorage` del navegador, con el prefijo `confidencialidad-oracle:`. No hay servidor ni cuentas.
+- El botón **Guardar evaluación**, junto al menú de usuario, se habilita al completar las 18 filas de la matriz. Crea una instantánea independiente del avance actual. En **Herramientas → Historial** se pueden revisar las instantáneas, exportarlas como JSON, restaurarlas o eliminarlas. El historial permanece en el mismo navegador aunque se limpie el avance actual.
+- En un navegador sin sesión previa, la aplicación inicia como **Cliente** y carga cinco evaluaciones simuladas, separadas en el tiempo, para mostrar mejoras de salud y mejoras o retrocesos de controles. Se identifican como **Demostración** en el historial. Se pueden eliminar o añadir nuevas evaluaciones; los guardados eliminados no reaparecen al iniciar sesión de nuevo. Si se cierra sesión, esa decisión se conserva al recargar y el formulario propone Cliente para volver a entrar.
+- Cada control de la matriz tiene una puntuación calculada entre 0 y 1: `(nivel de madurez / 4) × promedio de evidencias`. Cada evidencia vale 1 si responde Sí, 0,5 si responde Parcial y 0 si responde No o queda sin responder. La salud es el promedio de las 18 puntuaciones: roja por debajo de 0,50, amarilla desde 0,50 y verde desde 0,75. Las gráficas del historial muestran la evolución de la salud y de cada control para una organización a la vez; la ficha de cada control muestra su propia gráfica para la organización de la sesión.
 - La evaluación también se puede **exportar e importar** como archivo `.json` (formato `evaluacion-confidencialidad-oracle`, versión 1) desde el Inicio, la Matriz y los Hallazgos. El archivo incluye el nombre de la organización, los niveles y las respuestas de evidencias y de pruebas. No incluye la declaración del uso de IA ni su firma.
 - El nombre de la organización es opcional y aparece en los hallazgos, en el CSV de la matriz, en el plan de acción y en el archivo de la evaluación.
 - Los hallazgos se generan con una función pura (`src/estado/hallazgos.ts`) a partir de los niveles, las evidencias y las pruebas, y mejoran cuando la batería está completa.

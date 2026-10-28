@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router'
 import { proyecto } from '../data/catalogo/proyecto'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import { PuntoLampara } from './Lampara'
+import { BotonGuardarEvaluacion } from './BotonGuardarEvaluacion'
 import { MenuUsuario } from './MenuUsuario'
 import estilos from './Navbar.module.css'
 
@@ -18,10 +19,11 @@ const grupos: Grupo[] = [
     enlaces: [
       { ruta: '/riesgos', nombre: 'Riesgos' },
       { ruta: '/tareas', nombre: 'Tareas del DBA' },
-      { ruta: '/controles', nombre: 'Controles' },
+      { ruta: '/controles', nombre: 'Controles observables' },
       { ruta: '/matriz', nombre: 'Matriz de evaluación' },
       { ruta: '/pruebas', nombre: 'Batería de pruebas' },
       { ruta: '/hallazgos', nombre: 'Hallazgos', bloqueable: true },
+      { ruta: '/historial', nombre: 'Historial' },
     ],
   },
   {
@@ -90,8 +92,9 @@ export function Navbar() {
   return (
     <header ref={contenedor} className={estilos.barra}>
       <div className={estilos.contenido}>
-        <NavLink to="/" end className={`${estilos.marca}`}>
-          {proyecto.nombreCorto}
+        <NavLink to="/" end className={`${estilos.marca}`} aria-label={proyecto.nombreCorto}>
+          <span className={estilos.marcaCompleta}>{proyecto.nombreCorto}</span>
+          <span className={estilos.marcaCompacta} aria-hidden="true">CONF. ORACLE</span>
         </NavLink>
 
         <div className={estilos.acciones}>
@@ -140,6 +143,7 @@ export function Navbar() {
             <span className={estilos.textoBoton}>Menú</span>
           </button>
 
+          <BotonGuardarEvaluacion />
           <MenuUsuario
             abierto={abierto === 'usuario'}
             alAlternar={() => setAbierto(abierto === 'usuario' ? null : 'usuario')}

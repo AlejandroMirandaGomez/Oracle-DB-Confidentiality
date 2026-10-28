@@ -1,37 +1,51 @@
 import { useEffect } from 'react'
 import { Link, NavLink, useNavigate, useParams } from 'react-router'
 import { Detalle } from '../componentes/Detalles'
+import { GraficoEvolucion, LeyendaPuntuacion, type PuntoEvolucion } from '../componentes/GraficoEvolucion'
 import { Pagina } from '../componentes/Pagina'
 import { controles } from '../data/catalogo/controles'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
+import { formatoPuntuacion, puntuacionesControles } from '../estado/puntuaciones'
 import estilos from './Controles.module.css'
 
 const grupos = [
-  { titulo: 'Controles', complementario: false },
-  { titulo: 'Controles complementarios', complementario: true },
+  { titulo: 'Controles observables', complementario: false },
+  { titulo: 'Controles observables complementarios', complementario: true },
 ]
 
 export function Controles() {
   const { id } = useParams()
   const navegar = useNavigate()
-  const { marcarPasoVisto } = useEvaluacion()
+  const { marcarPasoVisto, historial, organizacion } = useEvaluacion()
   const control = id === undefined ? controles[0] : controles.find((item) => item.id === id)
 
   useEffect(() => marcarPasoVisto('controles'), [marcarPasoVisto])
 
   if (!control) {
     return (
-      <Pagina titulo="Control no encontrado" introduccion={`El control ${id ?? ''} no forma parte de la selección de esta aplicación.`}>
+      <Pagina titulo="Control observable no encontrado" introduccion={`El control ${id ?? ''} no forma parte de la selección de esta aplicación.`}>
         <p>
-          <Link to="/controles">Ver la lista de controles</Link>
+          <Link to="/controles">Ver los controles observables</Link>
         </p>
       </Pagina>
     )
   }
 
+  const claveOrganizacion = organizacion.trim().toLocaleLowerCase('es')
+  const registros = historial
+    .filter((registro) => registro.evaluacion.organizacion.trim().toLocaleLowerCase('es') === claveOrganizacion)
+    .sort((a, b) => Date.parse(a.fechaGuardado) - Date.parse(b.fechaGuardado))
+  const puntos: PuntoEvolucion[] = registros.flatMap((registro) => {
+    const puntuacion = puntuacionesControles(registro.evaluacion).find((item) => item.id === control.id)?.puntuacion
+    return puntuacion === undefined ? [] : [{ id: registro.id, fecha: registro.fechaGuardado, valor: puntuacion }]
+  })
+  const ultimaPuntuacion = puntos.at(-1)
+  const anterior = puntos.at(-2)
+  const variacion = ultimaPuntuacion && anterior ? ultimaPuntuacion.valor - anterior.valor : null
+
   return (
     <div className={estilos.composicion}>
-      <nav className={estilos.lista} aria-label="Controles">
+      <nav className={estilos.lista} aria-label="Controles observables">
         {grupos.map((grupo) => (
           <div key={grupo.titulo} className={estilos.grupo}>
             <p className={`rotulo ${estilos.grupoTitulo}`}>{grupo.titulo}</p>
@@ -61,10 +75,10 @@ export function Controles() {
       <div className={estilos.detalle}>
         <Pagina
           titulo={`${control.id} ${control.nombre}`}
-          introduccion="Controles ISO/IEC 27001:2022 sobre confidencialidad, con su justificación para el DBA, su implementación en Oracle y lo que verifica un auditor externo."
+          introduccion="Controles observables ISO/IEC 27001:2022 sobre confidencialidad, con su justificación para el DBA, su implementación en Oracle y lo que verifica un auditor externo."
         >
           <label className={estilos.selector}>
-            <span className="rotulo">Control</span>
+            <span className="rotulo">Control observable</span>
             <select className="control-texto" value={control.id} onChange={(evento) => navegar(`/controles/${evento.target.value}`)}>
               {grupos.map((grupo) => (
                 <optgroup key={grupo.titulo} label={grupo.titulo}>
@@ -79,6 +93,25 @@ export function Controles() {
               ))}
             </select>
           </label>
+          <section className={estilos.evolucion} aria-labelledby="titulo-evolucion-control">
+            <div className={estilos.cabeceraEvolucion}>
+              <div>
+                <h2 id="titulo-evolucion-control">Evolución de {control.id}</h2>
+                <p>Puntuación de 0 a 1 en las evaluaciones guardadas de {organizacion || 'la organización actual'}, en orden cronológico.</p>
+              </div>
+              <Link to="/historial">Ver historial completo</Link>
+            </div>
+            {puntos.length === 0
+              ? <p className={estilos.graficoVacio}>Aún no hay evaluaciones guardadas de esta organización para mostrar la evolución de {control.id}.</p>
+              : <GraficoEvolucion puntos={puntos} etiqueta={`Evolución cronológica de ${control.id} ${control.nombre}, de cero a uno`} />}
+            {ultimaPuntuacion && (
+              <p className={estilos.notaEvolucion}>
+                Última puntuación: <strong>{formatoPuntuacion(ultimaPuntuacion.valor)} de 1</strong>
+                {variacion !== null && ` · ${variacion > 0 ? 'Subió' : variacion < 0 ? 'Bajó' : 'Sin cambio'}${variacion === 0 ? '' : ` ${formatoPuntuacion(Math.abs(variacion))}`} frente a la evaluación anterior.`}
+              </p>
+            )}
+            <LeyendaPuntuacion />
+          </section>
           <article key={control.id} className={estilos.articulo} aria-label={`Detalle de ${control.id}`}>
             <Detalle entidad={{ tipo: 'control', dato: control }} />
           </article>

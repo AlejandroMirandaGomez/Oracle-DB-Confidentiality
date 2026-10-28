@@ -6,6 +6,7 @@ import type {
   RegistroPrueba,
 } from '../data/tipos'
 import type { ResumenImportacion } from './archivoEvaluacion'
+import type { EvaluacionGuardada, ResultadoHistorial } from './historial'
 
 export type Progreso = { hechas: number; total: number }
 
@@ -27,6 +28,10 @@ export type ValorEvaluacion = {
   limpiarAvance: () => void
   exportarEvaluacion: () => void
   importarEvaluacion: (archivo: File) => Promise<ResultadoImportacion>
+  historial: EvaluacionGuardada[]
+  guardarEvaluacion: () => ResultadoHistorial
+  restaurarEvaluacion: (id: string) => boolean
+  eliminarEvaluacion: (id: string) => ResultadoHistorial
   hayDatos: boolean
   matrizCompleta: boolean
   bateriaCompleta: boolean

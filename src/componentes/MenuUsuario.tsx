@@ -83,7 +83,7 @@ export function MenuUsuario({ abierto, alAlternar, alCerrar, registrarDisparador
           <>
             <div className={estilos.identidad}>
               <p className="rotulo">Sin sesión</p>
-              <p className={estilos.ayuda}>Ponga el nombre de la empresa evaluada para que aparezca en los hallazgos y las exportaciones.</p>
+              <p className={estilos.ayuda}>Entre como Cliente para explorar las evaluaciones de demostración o indique otra empresa.</p>
             </div>
             <button type="button" className={estilos.accion} onClick={abrirModal}>
               <SignInIcon weight="bold" aria-hidden="true" />

@@ -40,6 +40,10 @@
   transform: scale(0.97);
 }
 
+.marcaCompacta {
+  display: none;
+}
+
 .acciones {
   display: flex;
   align-items: center;
@@ -198,6 +202,14 @@
 
   .marca {
     font-size: 1rem;
+  }
+
+  .marcaCompleta {
+    display: none;
+  }
+
+  .marcaCompacta {
+    display: inline;
   }
 
   .textoBoton {

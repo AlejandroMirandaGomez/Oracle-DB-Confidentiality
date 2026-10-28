@@ -4,7 +4,7 @@ import { tonoDeValor, type Tono, type ValorLampara } from './tonosLampara'
 type PropsLampara = {
   tono: Tono
   texto: string
-  className?: string
+  className?: string | undefined
 }
 
 export function Lampara({ tono, texto, className }: PropsLampara) {
@@ -15,7 +15,7 @@ export function Lampara({ tono, texto, className }: PropsLampara) {
   )
 }
 
-export function LamparaEstado({ valor, texto, className }: { valor: ValorLampara; texto?: string; className?: string }) {
+export function LamparaEstado({ valor, texto, className }: { valor: ValorLampara; texto?: string; className?: string | undefined }) {
   return <Lampara tono={tonoDeValor[valor]} texto={texto ?? valor} className={className} />
 }
 

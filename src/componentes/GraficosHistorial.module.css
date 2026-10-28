@@ -1,0 +1,209 @@
+.conjunto {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  min-width: 0;
+}
+
+.selector {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 25rem;
+  font-weight: 600;
+}
+
+.seccion {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.cabecera {
+  display: grid;
+  gap: 0.4rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--placa);
+}
+
+.cabecera h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.cabecera p,
+.nota {
+  max-width: 70ch;
+  color: var(--placa-suave);
+  font-size: 0.9375rem;
+}
+
+.escalaHorizontal {
+  max-width: 100%;
+  overflow-x: auto;
+  border-top: 1px solid var(--junta);
+  border-bottom: 1px solid var(--placa);
+}
+
+.accionesMapa {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.vacio {
+  padding: 1.25rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.mapa {
+  width: max-content;
+  min-width: 100%;
+  font-size: 0.875rem;
+}
+
+.mapa th,
+.mapa td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--junta);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.mapa thead th {
+  min-width: 8rem;
+  background: var(--panel-hondo);
+  border-bottom: 1px solid var(--placa);
+  font-size: 0.8125rem;
+}
+
+.mapa thead th:first-child,
+.mapa tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 16rem;
+  min-width: 16rem;
+  max-width: 16rem;
+  background: var(--panel-hondo);
+}
+
+.mapa tbody th {
+  background: var(--panel-claro);
+  font-weight: 600;
+}
+
+.filaControl {
+  cursor: pointer;
+}
+
+.filaControl:hover th,
+.filaControl:focus-within th,
+.filaControl[data-abierto] th {
+  background: var(--panel-hondo);
+}
+
+.filaControl:hover td,
+.filaControl:focus-within td {
+  filter: brightness(0.95);
+}
+
+.abrirControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.abrirControl:focus-visible {
+  outline: 2px solid var(--placa);
+  outline-offset: 3px;
+}
+
+.etiquetaControl {
+  min-width: 0;
+}
+
+.iconoControl {
+  flex: none;
+  transition: transform 160ms var(--ease-out);
+}
+
+.filaControl[data-abierto] .iconoControl {
+  transform: rotate(90deg);
+}
+
+.filaProgresion td {
+  padding: 0;
+  background: var(--panel-claro);
+}
+
+.detalleControl {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.cabeceraDetalle {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.cabeceraDetalle h3 {
+  font-size: 1.125rem;
+}
+
+.cabeceraDetalle p {
+  color: var(--placa-suave);
+  font-size: 0.8125rem;
+}
+
+.idControl,
+.puntuacion,
+.variacion {
+  display: block;
+  font-family: var(--mono);
+}
+
+.idControl,
+.puntuacion {
+  font-weight: 700;
+}
+
+.nombreControl {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.mapa td[data-salud='Rojo'] {
+  background: color-mix(in srgb, var(--lampara-roja) 22%, var(--panel-claro));
+}
+
+.mapa td[data-salud='Amarillo'] {
+  background: color-mix(in srgb, var(--lampara-ambar) 32%, var(--panel-claro));
+}
+
+.mapa td[data-salud='Verde'] {
+  background: color-mix(in srgb, var(--lampara-verde) 22%, var(--panel-claro));
+}
+
+.variacion {
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+@media (max-width: 760px) {
+  .mapa thead th:first-child,
+  .mapa tbody th {
+    width: 10rem;
+    min-width: 10rem;
+    max-width: 10rem;
+  }
+}

@@ -86,7 +86,7 @@ function DetalleRiesgo({ riesgo }: { riesgo: Riesgo }) {
         <Campo etiqueta="Tareas del DBA">
           <ListaRefs ids={riesgo.tareas} />
         </Campo>
-        <Campo etiqueta="Controles">
+        <Campo etiqueta="Controles observables">
           <ListaRefs ids={riesgo.controles} />
         </Campo>
         <Campo etiqueta="Filas de la matriz" ancho>
@@ -111,7 +111,7 @@ function DetalleTarea({ tarea }: { tarea: Tarea }) {
         <Campo etiqueta="Riesgos que mitiga">
           <ListaRefs ids={tarea.riesgos} />
         </Campo>
-        <Campo etiqueta="Controles">
+        <Campo etiqueta="Controles observables">
           <ListaRefs ids={tarea.controles} />
         </Campo>
         <Campo etiqueta="Filas de la matriz" ancho>
@@ -234,7 +234,7 @@ function VistaHallazgo({ hallazgo }: { hallazgo: DatosHallazgo }) {
         </div>
       )}
       <Rejilla>
-        <Campo etiqueta="Controles">
+        <Campo etiqueta="Controles observables">
           <ListaRefs ids={hallazgo.controles} />
         </Campo>
         <Campo etiqueta="Pruebas">

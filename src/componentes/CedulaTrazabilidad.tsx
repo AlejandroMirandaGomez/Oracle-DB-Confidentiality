@@ -20,7 +20,7 @@ export function CedulaTrazabilidad() {
         <caption className="solo-lectores">Trazabilidad de los cinco riesgos de confidencialidad hacia sus tareas, controles, pruebas y matriz</caption>
         <thead>
           <tr>
-            {['Riesgo', 'Inherente', 'Residual', 'Tareas', 'Controles', 'Pruebas', 'Matriz'].map((encabezado) => (
+            {['Riesgo', 'Inherente', 'Residual', 'Tareas', 'Controles observables', 'Pruebas', 'Matriz'].map((encabezado) => (
               <th key={encabezado} scope="col" className="rotulo">
                 {encabezado}
               </th>
@@ -61,7 +61,7 @@ export function CedulaTrazabilidad() {
                 <td data-etiqueta="Tareas">
                   <ListaRefs ids={riesgo.tareas} resaltado={encendido} />
                 </td>
-                <td data-etiqueta="Controles">
+                <td data-etiqueta="Controles observables">
                   <ListaRefs ids={riesgo.controles} resaltado={encendido} />
                 </td>
                 <td data-etiqueta="Pruebas">

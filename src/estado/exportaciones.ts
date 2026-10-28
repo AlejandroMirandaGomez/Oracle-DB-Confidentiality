@@ -34,7 +34,7 @@ export function matrizComoCsv(
     'Tarea',
     'Riesgo',
     'Control',
-    'Criterio',
+    'Madurez',
     'Nivel 0-4',
     'Estado',
     'Evidencias documentadas',

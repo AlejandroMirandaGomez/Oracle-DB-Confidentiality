@@ -6,7 +6,7 @@ const largoMaximoNombre = 120
 type PropsFormulario = { alCancelar: () => void; alEntrar: (nombre: string) => void }
 
 function FormularioSesion({ alCancelar, alEntrar }: PropsFormulario) {
-  const [nombre, setNombre] = useState('')
+  const [nombre, setNombre] = useState('Cliente')
   const id = useId()
   const nombreLimpio = nombre.trim()
 
@@ -37,7 +37,7 @@ function FormularioSesion({ alCancelar, alEntrar }: PropsFormulario) {
           onChange={(evento) => setNombre(evento.target.value)}
         />
         <p id={`${id}-ayuda`} className={estilos.ayuda}>
-          No se crea ninguna cuenta. El nombre se guarda solo en este navegador y aparece en los hallazgos y en las exportaciones.
+          Cliente incluye cinco evaluaciones de demostración. Puede cambiar el nombre de la empresa. La sesión se guarda solo en este navegador.
         </p>
       </div>
       <div className={estilos.acciones}>
