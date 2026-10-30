@@ -5,6 +5,7 @@ import { controles } from '../data/catalogo/controles'
 import { matriz } from '../data/catalogo/matriz'
 import type { EvaluacionGuardada } from '../estado/historial'
 import { formatoPuntuacion, puntuacionesControles, puntuacionSalud, saludDePuntuacion } from '../estado/puntuaciones'
+import { GraficoConjunto } from './GraficoConjunto'
 import { GraficoEvolucion, LeyendaPuntuacion } from './GraficoEvolucion'
 import estilos from './GraficosHistorial.module.css'
 
@@ -105,6 +106,7 @@ function GraficoControles({ registros }: { registros: EvaluacionGuardada[] }) {
 
 export function GraficosHistorial({ historial, organizacionActual }: { historial: EvaluacionGuardada[]; organizacionActual: string }) {
   const [seleccion, setSeleccion] = useState<string | null>(null)
+  const [conjuntoAbierto, setConjuntoAbierto] = useState(false)
   const organizaciones = Array.from(new Map(historial.map((registro) => [claveOrganizacion(registro), registro.evaluacion.organizacion.trim() || 'Organización sin nombre'])).entries())
   const clavePreferida = organizacionActual.trim().toLocaleLowerCase('es')
   const claveActual = seleccion !== null && organizaciones.some(([clave]) => clave === seleccion)
@@ -142,6 +144,26 @@ export function GraficosHistorial({ historial, organizacionActual }: { historial
         </div>
         {registros.length === 0 ? <p className={estilos.vacio}>Guarde una evaluación para comenzar la gráfica de controles observables.</p> : <GraficoControles registros={registros} />}
         <p className={estilos.nota}>Puntuación = (nivel de madurez ÷ 4) × promedio de evidencias. Sí vale 1, Parcial 0,5, y No o sin responder 0.</p>
+      </section>
+
+      <section className={estilos.seccion} aria-labelledby="grafico-conjunto">
+        <div className={estilos.cabecera}>
+          <h2 id="grafico-conjunto">Evolución conjunta</h2>
+          <p>Las progresiones de los {matriz.length} controles en una sola gráfica, cada uno con su color, junto a la salud general. Pase el cursor por una fecha para leer todos los valores en la leyenda o acérquelo a una línea para identificarla; pulse una serie de la leyenda para ocultarla o mostrarla.</p>
+        </div>
+        {registros.length === 0 ? <p className={estilos.vacio}>Guarde una evaluación para comenzar la gráfica conjunta.</p> : (
+          <>
+            <div className={estilos.accionesMapa}>
+              <button type="button" className="pulsador" aria-expanded={conjuntoAbierto} aria-controls="contenido-grafico-conjunto" onClick={() => setConjuntoAbierto((actual) => !actual)}>
+                {conjuntoAbierto ? <CaretUpIcon aria-hidden="true" /> : <CaretDownIcon aria-hidden="true" />}
+                {conjuntoAbierto ? 'Contraer gráfica conjunta' : 'Expandir gráfica conjunta'}
+              </button>
+            </div>
+            <div id="contenido-grafico-conjunto" hidden={!conjuntoAbierto}>
+              {conjuntoAbierto && <GraficoConjunto key={claveActual} registros={registros} />}
+            </div>
+          </>
+        )}
       </section>
     </div>
   )
