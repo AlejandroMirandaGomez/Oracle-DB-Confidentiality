@@ -10,6 +10,7 @@ import { GraficoEvolucion, LeyendaPuntuacion } from './GraficoEvolucion'
 import estilos from './GraficosHistorial.module.css'
 
 const fechaHora = new Intl.DateTimeFormat('es-CR', { dateStyle: 'medium', timeStyle: 'short' })
+const evaluacionesSinDesplazamiento = 7
 
 function claveOrganizacion(registro: EvaluacionGuardada): string {
   return registro.evaluacion.organizacion.trim().toLocaleLowerCase('es')
@@ -37,7 +38,7 @@ function GraficoControles({ registros }: { registros: EvaluacionGuardada[] }) {
       </button>
     </div>
     <div className={estilos.escalaHorizontal}>
-      <table className={estilos.mapa}>
+      <table className={estilos.mapa} data-desplazable={columnas.length > evaluacionesSinDesplazamiento || undefined}>
         <caption className="solo-lectores">Puntuación de cada control observable en cada evaluación, ordenada por fecha</caption>
         <thead>
           <tr>

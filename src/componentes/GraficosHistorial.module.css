@@ -54,9 +54,13 @@
 }
 
 .mapa {
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.mapa[data-desplazable] {
   width: max-content;
   min-width: 100%;
-  font-size: 0.875rem;
 }
 
 .mapa th,
@@ -67,8 +71,11 @@
   vertical-align: middle;
 }
 
-.mapa thead th {
+.mapa[data-desplazable] thead th {
   min-width: 8rem;
+}
+
+.mapa thead th {
   background: var(--panel-hondo);
   border-bottom: 1px solid var(--placa);
   font-size: 0.8125rem;

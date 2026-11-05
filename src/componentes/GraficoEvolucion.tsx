@@ -7,6 +7,7 @@ export type PuntoEvolucion = { id: string; fecha: string; valor: number }
 const fechaCorta = new Intl.DateTimeFormat('es-CR', { day: '2-digit', month: 'short', year: '2-digit' })
 const fechaHora = new Intl.DateTimeFormat('es-CR', { dateStyle: 'medium', timeStyle: 'short' })
 const horaCorta = new Intl.DateTimeFormat('es-CR', { hour: '2-digit', minute: '2-digit' })
+const puntosConRotulos = 7
 
 export function GraficoEvolucion({ puntos, etiqueta }: { puntos: PuntoEvolucion[]; etiqueta: string }) {
   const coordenadas = puntos.map((punto, indice) => ({
@@ -15,7 +16,7 @@ export function GraficoEvolucion({ puntos, etiqueta }: { puntos: PuntoEvolucion[
     x: puntos.length === 1 ? 392 : 58 + (indice / (puntos.length - 1)) * 672,
     y: 220 - punto.valor * 194,
   }))
-  const etiquetas = new Set(puntos.length <= 5
+  const etiquetas = new Set(puntos.length <= puntosConRotulos
     ? puntos.map((_, indice) => indice)
     : [0, 1, 2, 3, 4].map((indice) => Math.round((indice * (puntos.length - 1)) / 4)))
 
@@ -37,9 +38,9 @@ export function GraficoEvolucion({ puntos, etiqueta }: { puntos: PuntoEvolucion[
             <circle className={estilos.punto} data-salud={punto.salud} cx={punto.x} cy={punto.y} r="6">
               <title>{`${fechaHora.format(new Date(punto.fecha))}: ${formatoPuntuacion(punto.valor)} de 1, ${punto.salud.toLowerCase()}`}</title>
             </circle>
-            {coordenadas.length <= 5 && <text className={estilos.valorPunto} x={punto.x} y={punto.y - 13} textAnchor="middle">{formatoPuntuacion(punto.valor)}</text>}
+            {coordenadas.length <= puntosConRotulos && <text className={estilos.valorPunto} x={punto.x} y={punto.y - 13} textAnchor="middle">{formatoPuntuacion(punto.valor)}</text>}
             {etiquetas.has(indice) && (
-              <text className={estilos.rotuloEje} x={punto.x} y="251" textAnchor={indice === 0 && coordenadas.length > 1 ? 'start' : indice === coordenadas.length - 1 && coordenadas.length > 1 ? 'end' : 'middle'}>
+              <text className={estilos.rotuloEje} x={punto.x} y="251" textAnchor="middle">
                 <tspan x={punto.x}>{fechaCorta.format(new Date(punto.fecha))}</tspan>
                 <tspan x={punto.x} dy="15">{horaCorta.format(new Date(punto.fecha))}</tspan>
               </text>
