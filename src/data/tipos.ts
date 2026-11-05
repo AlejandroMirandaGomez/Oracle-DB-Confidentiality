@@ -8,8 +8,6 @@ export type Estado = 'Cumple' | 'Parcial' | 'No cumple' | 'Sin evaluar'
 
 export type Veredicto = 'Conforme' | 'Parcial' | 'No conforme'
 
-export type RespuestaEvidencia = 'Sí' | 'Parcial' | 'No'
-
 export type RespuestaPrueba = Veredicto
 
 export type FasePhva = 'Planificar' | 'Hacer' | 'Verificar' | 'Actuar'
@@ -143,14 +141,85 @@ export type Prueba = {
   sql: string
 }
 
+export type OrigenCampo = 'sql' | 'organizacion'
+
+export type CampoMedicion = {
+  id: string
+  etiqueta: string
+  origen: OrigenCampo
+  ayuda?: string
+  sugerido?: number
+  oculto?: boolean
+}
+
+export type OpcionMedicion = {
+  valor: string
+  texto: string
+  puntos: number
+}
+
+export type ItemComprobacion = {
+  id: string
+  texto: string
+  puntos: number
+}
+
+export type EjemploProporcion = {
+  casos: number
+  total: number
+}
+
+export type ReglaMedicion =
+  | {
+      tipo: 'proporcion'
+      casos: string
+      descontar?: string
+      total: string
+      sujeto: string
+      unidad: string
+      ejemplos: EjemploProporcion[]
+      maximoTolerado: number
+      topeConCasos: number
+      siTotalCero: 'excluir' | number
+    }
+  | { tipo: 'porCaso'; casos: string; descontar?: string; sujeto: string; restaPorCaso: number; motivo: string }
+  | { tipo: 'vigencia'; dias: string; objetivo: string; evento: string; vecesLimite: number }
+  | { tipo: 'cobertura'; valor: string; objetivo: string; unidad: string }
+  | { tipo: 'opciones'; campo: CampoMedicion; opciones: OpcionMedicion[] }
+  | { tipo: 'alcance'; campo: CampoMedicion; base: string; todos: string; ninguno: string; ejemploBase: number; siBaseCero: 'excluir' | number }
+  | { tipo: 'lista'; items: ItemComprobacion[] }
+
+export type AjusteConsulta = {
+  busque: string
+  cuando: string
+}
+
+export type ConsultaMedicion = {
+  contenedor: 'PDB' | 'CDB$ROOT'
+  codigo: string
+  ajustes?: AjusteConsulta[]
+}
+
+export type Medicion = {
+  id: string
+  nombre: string
+  pregunta: string
+  cita: string
+  porque: string
+  peso: number
+  critica?: boolean
+  instruccion?: string
+  campos: CampoMedicion[]
+  regla: ReglaMedicion
+}
+
 export type EvidenciaRequerida = {
   id: string
-  origen: 'observable' | 'prueba'
-  titulo: string
-  pasos: string[]
-  codigo: string
-  lenguaje: LenguajeCodigo
-  esperado: string
+  control: string
+  nombre: string
+  pregunta: string
+  consulta: ConsultaMedicion
+  mediciones: Medicion[]
 }
 
 export type FilaMatriz = {
@@ -160,7 +229,7 @@ export type FilaMatriz = {
   control: string
   criterio: string
   pruebas: string[]
-  evidenciasRequeridas: EvidenciaRequerida[]
+  evidencia: EvidenciaRequerida
 }
 
 export type PlantillaHallazgo = {
@@ -240,8 +309,10 @@ export type HallazgoEjemplo = {
   riesgos: string[]
 }
 
+export type ValorMedicion = number | string | boolean
+
 export type RegistroEvidencia = {
-  respuesta: RespuestaEvidencia | null
+  valores: Record<string, ValorMedicion>
   nota: string
 }
 

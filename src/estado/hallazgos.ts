@@ -13,6 +13,7 @@ import type {
   RespuestasEvidencia,
   RespuestasPruebas,
 } from '../data/tipos'
+import { evaluarMedicion, formatoPuntuacion } from './medicion'
 
 const ordenDePrioridad: Record<Prioridad, number> = { Alta: 0, Media: 1, Baja: 2 }
 
@@ -26,12 +27,15 @@ function bandaDeFila(fila: FilaMatriz): BandaRiesgo {
 }
 
 function evidenciasPendientes(fila: FilaMatriz, respuestas: RespuestasEvidencia): string[] {
-  return fila.evidenciasRequeridas.flatMap((evidencia) => {
-    const registro = respuestas[fila.id]?.[evidencia.id]
-    if (!registro || registro.respuesta === null || registro.respuesta === 'Sí') return []
-    const nota = registro.nota.trim()
-    return [`${evidencia.titulo} (${registro.respuesta})${nota ? `: ${nota}` : ''}`]
+  const registro = respuestas[fila.id]?.[fila.evidencia.id]
+  if (!registro) return []
+  const pendientes = fila.evidencia.mediciones.flatMap((medicion) => {
+    const resultado = evaluarMedicion(medicion, registro.valores)
+    if (resultado.estado !== 'medida' || resultado.puntaje >= 1) return []
+    return [`${medicion.nombre}: ${resultado.resumen}, puntaje ${formatoPuntuacion(resultado.puntaje)}`]
   })
+  const nota = registro.nota.trim()
+  return nota ? [...pendientes, `nota: ${nota}`] : pendientes
 }
 
 function pruebasFallidas(fila: FilaMatriz, respuestas: RespuestasPruebas) {
@@ -74,7 +78,7 @@ function hallazgoDeFila(
   const base = nivel <= 1 ? plantilla.condicionNoCumple : plantilla.condicionParcial
   const partes = [base]
   const pendientes = evidenciasPendientes(fila, evidencias)
-  if (pendientes.length > 0) partes.push(`Evidencias sin cumplir: ${pendientes.join('; ')}.`)
+  if (pendientes.length > 0) partes.push(`Mediciones sin cumplir: ${pendientes.join('; ')}.`)
   if (bateriaCompleta && fallidas.length > 0) partes.push(`Pruebas técnicas: ${describirPruebas(fallidas)}.`)
   return {
     id: `H-${fila.id.slice(2)}`,

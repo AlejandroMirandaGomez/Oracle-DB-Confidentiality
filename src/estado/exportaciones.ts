@@ -2,6 +2,7 @@ import { estadoDeNivel } from '../data/catalogo/escalas'
 import { matriz } from '../data/catalogo/matriz'
 import type { Hallazgo, NivelEvaluado, RegistroEvidencia } from '../data/tipos'
 import { fechaParaArchivo, nombreSeguro } from './archivoEvaluacion'
+import { calcularFila, formatoPuntuacion } from './medicion'
 
 const caracteresDeFormula = /^[=+\-@\t\r]/
 
@@ -37,16 +38,19 @@ export function matrizComoCsv(
     'Madurez',
     'Nivel 0-4',
     'Estado',
-    'Evidencias documentadas',
-    'Respuestas de evidencias',
+    'Puntuación 0-1',
+    'Mediciones hechas',
+    'Detalle de la evidencia',
   ]
   const filas = matriz.map((fila) => {
     const nivel = nivelDe(fila.id)
-    const registros = fila.evidenciasRequeridas.map((evidencia) => ({ evidencia, registro: respuestaEvidencia(fila.id, evidencia.id) }))
-    const documentadas = registros.filter(({ registro }) => registro.respuesta !== null).length
-    const detalle = registros
-      .map(({ evidencia, registro }) => `${evidencia.id}: ${registro.respuesta ?? 'Sin documentar'}${registro.nota.trim() ? ` (${registro.nota.trim()})` : ''}`)
-      .join(' | ')
+    const calculo = calcularFila(fila, respuestaEvidencia)
+    const nota = respuestaEvidencia(fila.id, fila.evidencia.id).nota.trim()
+    const mediciones = calculo.lineas.map(({ medicion, resultado }) => {
+      const puntaje = resultado.estado === 'medida' ? `: ${formatoPuntuacion(resultado.puntaje)}` : ''
+      return `${medicion.id} ${medicion.nombre}${puntaje} (${resultado.resumen})`
+    })
+    const detalle = [...mediciones, ...(nota ? [`Nota: ${nota}`] : [])].join(' | ')
     return [
       organizacion,
       fila.id,
@@ -56,7 +60,8 @@ export function matrizComoCsv(
       fila.criterio,
       nivel === null ? '' : String(nivel),
       estadoDeNivel(nivel),
-      `${documentadas} de ${registros.length}`,
+      formatoPuntuacion(calculo.puntuacion),
+      `${calculo.respondidas} de ${calculo.lineas.length}`,
       detalle,
     ]
   })

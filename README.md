@@ -16,7 +16,7 @@ La aplicación usa rutas por hash, así que cualquier ruta se puede recargar sin
 | `#/riesgos` | Tabla de los cinco riesgos de confidencialidad, mapa de calor y escalas |
 | `#/tareas` | Las 13 tareas críticas del DBA por fase PHVA |
 | `#/controles` y `#/controles/:id` | Controles observables ISO/IEC 27001:2022 con gráfica de evolución de su puntuación, implementación en Oracle, verificación de un auditor externo, texto de ISO/IEC 27002:2022 y mapeo a COBIT 4.1 |
-| `#/matriz` | Matriz de evaluación de 18 filas, con evidencias requeridas y nivel de madurez de 0 a 4 |
+| `#/matriz` | Matriz de evaluación de 18 filas, con una evidencia por control, su consulta única, el cálculo a la vista y nivel de madurez de 0 a 4 |
 | `#/pruebas` | Batería de 23 pruebas técnicas, con entorno de prueba y SQL para copiar |
 | `#/hallazgos` | Hallazgos y plan de acción, desbloqueados al completar la matriz |
 | `#/historial` y `#/historial/:id` | Evaluaciones guardadas con fecha, salud, detalle de solo lectura y gráficas de evolución |
@@ -37,8 +37,8 @@ Cualquier referencia (riesgo, tarea, control, fila, prueba o hallazgo) abre un p
 - El avance se guarda solo en el `localStorage` del navegador, con el prefijo `confidencialidad-oracle:`. No hay servidor ni cuentas.
 - El botón **Guardar evaluación**, junto al menú de usuario, se habilita al completar las 18 filas de la matriz. Crea una instantánea independiente del avance actual. En **Herramientas → Historial** se pueden revisar las instantáneas, exportarlas como JSON, restaurarlas o eliminarlas. El historial permanece en el mismo navegador aunque se limpie el avance actual.
 - En un navegador sin sesión previa, la aplicación inicia como **Cliente** y carga cinco evaluaciones simuladas, separadas en el tiempo, para mostrar mejoras de salud y mejoras o retrocesos de controles. Se identifican como **Demostración** en el historial. Se pueden eliminar o añadir nuevas evaluaciones; los guardados eliminados no reaparecen al iniciar sesión de nuevo. Si se cierra sesión, esa decisión se conserva al recargar y el formulario propone Cliente para volver a entrar.
-- Cada control de la matriz tiene una puntuación calculada entre 0 y 1: `(nivel de madurez / 4) × promedio de evidencias`. Cada evidencia vale 1 si responde Sí, 0,5 si responde Parcial y 0 si responde No o queda sin responder. La salud es el promedio de las 18 puntuaciones: roja por debajo de 0,50, amarilla desde 0,50 y verde desde 0,75. Las gráficas del historial muestran la evolución de la salud y de cada control para una organización a la vez; la ficha de cada control muestra su propia gráfica para la organización de la sesión.
-- La evaluación también se puede **exportar e importar** como archivo `.json` (formato `evaluacion-confidencialidad-oracle`, versión 1) desde el Inicio, la Matriz y los Hallazgos. El archivo incluye el nombre de la organización, los niveles y las respuestas de evidencias y de pruebas. No incluye la declaración del uso de IA ni su firma.
+- Cada control de la matriz tiene una evidencia y una puntuación calculada entre 0 y 1. Las evidencias están en `src/data/catalogo/mediciones.ts`: cada una tiene una sola consulta SQL, que devuelve una fila, y reúne de 2 a 4 mediciones. Cada medición cita su apartado de ISO/IEC 27002:2022 y tiene su regla (proporción, por caso, vigencia, cobertura, alcance, valor exacto, respuesta o lista). La puntuación es la suma de peso × puntaje; una medición sin dato vale 0, una que no aplica sale del cálculo y una medición crítica limita al control. El nivel de madurez no interviene: la puntuación solo lo sugiere. La norma no asigna puntajes, así que pesos, tolerancias y topes son criterio de esta aplicación. La salud es el promedio de las 18 puntuaciones: roja por debajo de 0,50, amarilla desde 0,50 y verde desde 0,75. Las gráficas del historial muestran la evolución de la salud y de cada control para una organización a la vez; la ficha de cada control muestra su propia gráfica para la organización de la sesión.
+- La evaluación también se puede **exportar e importar** como archivo `.json` (formato `evaluacion-confidencialidad-oracle`, versión 4; de los archivos anteriores solo se conservan los datos que siguen vigentes) desde el Inicio, la Matriz y los Hallazgos. El archivo incluye el nombre de la organización, los niveles y las respuestas de evidencias y de pruebas. No incluye la declaración del uso de IA ni su firma.
 - El nombre de la organización es opcional y aparece en los hallazgos, en el CSV de la matriz, en el plan de acción y en el archivo de la evaluación.
 - Los hallazgos se generan con una función pura (`src/estado/hallazgos.ts`) a partir de los niveles, las evidencias y las pruebas, y mejoran cuando la batería está completa.
 
@@ -59,7 +59,7 @@ Abrir `http://localhost:5173`. Para generar la versión estática: `npm run buil
 
 | Carpeta | Contenido |
 | --- | --- |
-| `src/data/catalogo/` | Contenido común a cualquier organización: riesgos, tareas, controles con su observable, matriz con sus evidencias requeridas, pruebas con su SQL, plantillas de hallazgos, marco teórico, referencias y uso de IA |
+| `src/data/catalogo/` | Contenido común a cualquier organización: riesgos, tareas, controles con su observable, matriz, evidencias medibles, pruebas con su SQL, plantillas de hallazgos, marco teórico, referencias y uso de IA |
 | `src/data/ejemplos/` | Ejemplos de solo lectura; `xepdb1/` conserva los datos reales de la instancia evaluada |
 | `src/estado/` | Evaluación guardada, cálculo de riesgo residual, generación de hallazgos, índice de referencias y exportaciones |
 | `src/paginas/` | Una página por ruta |

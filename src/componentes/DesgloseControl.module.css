@@ -1,0 +1,100 @@
+.desglose {
+  display: grid;
+  gap: 0.75rem;
+  margin-block: 1.75rem;
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.titulo {
+  font-size: 1.25rem;
+}
+
+.regla {
+  max-width: 62ch;
+  font-size: 0.9375rem;
+}
+
+.marco {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--junta);
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.tabla thead th {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-bottom-color: var(--placa);
+}
+
+.tabla tfoot th,
+.tabla tfoot td {
+  border-top: 2px solid var(--placa);
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.tabla .numero {
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--mono);
+}
+
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--placa-suave);
+}
+
+.critica {
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.operacion {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.nota {
+  font-size: 0.875rem;
+  color: var(--placa-suave);
+}
+
+.tope {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--lampara-roja);
+  background: var(--panel);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .desglose {
+    padding: 0.85rem 0.7rem;
+  }
+
+  .tabla {
+    font-size: 0.8125rem;
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 0.35rem 0.25rem;
+  }
+}

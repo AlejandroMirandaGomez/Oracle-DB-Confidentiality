@@ -5,7 +5,7 @@ import { GraficoEvolucion, LeyendaPuntuacion, type PuntoEvolucion } from '../com
 import { Pagina } from '../componentes/Pagina'
 import { controles } from '../data/catalogo/controles'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
-import { formatoPuntuacion, puntuacionesControles } from '../estado/puntuaciones'
+import { formatoPuntuacion, puntuacionesControles, tieneMediciones } from '../estado/puntuaciones'
 import estilos from './Controles.module.css'
 
 const grupos = [
@@ -33,7 +33,7 @@ export function Controles() {
 
   const claveOrganizacion = organizacion.trim().toLocaleLowerCase('es')
   const registros = historial
-    .filter((registro) => registro.evaluacion.organizacion.trim().toLocaleLowerCase('es') === claveOrganizacion)
+    .filter((registro) => registro.evaluacion.organizacion.trim().toLocaleLowerCase('es') === claveOrganizacion && tieneMediciones(registro.evaluacion))
     .sort((a, b) => Date.parse(a.fechaGuardado) - Date.parse(b.fechaGuardado))
   const puntos: PuntoEvolucion[] = registros.flatMap((registro) => {
     const puntuacion = puntuacionesControles(registro.evaluacion).find((item) => item.id === control.id)?.puntuacion

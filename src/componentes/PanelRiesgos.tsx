@@ -39,7 +39,7 @@ export function PanelRiesgos({ nivelTitulo = 2 }: { nivelTitulo?: 2 | 3 }) {
 
   const columnas: ColumnaTabular<FilaRiesgo>[] = [
     { clave: 'id', encabezado: 'ID', celda: ({ riesgo }) => <span className={estilos.id}>{riesgo.id}</span> },
-    { clave: 'riesgo', encabezado: 'Riesgo', celda: ({ riesgo }) => <span className={estilos.nombre}>{riesgo.nombre}</span> },
+    { clave: 'riesgo', encabezado: 'Factor de riesgo', celda: ({ riesgo }) => <span className={estilos.nombre}>{riesgo.nombre}</span> },
     {
       clave: 'impacto',
       encabezado: 'Impacto',
@@ -93,13 +93,13 @@ export function PanelRiesgos({ nivelTitulo = 2 }: { nivelTitulo?: 2 | 3 }) {
   return (
     <>
       <ComponenteTabular
-        etiqueta="Riesgos de confidencialidad con su impacto, probabilidad y valoración inherente y residual"
+        etiqueta="Factores de riesgo de confidencialidad con su impacto, probabilidad y valoración inherente y residual"
         columnas={columnas}
         filas={filas}
         idDe={({ riesgo }) => riesgo.id}
         nombreDe={({ riesgo }) => riesgo.nombre}
         alSeleccionar={abrirReferencia}
-        vacio="No hay riesgos para mostrar."
+        vacio="No hay factores de riesgo para mostrar."
       />
 
       <section className={estilos.mapa} aria-labelledby="titulo-mapa">
@@ -177,7 +177,7 @@ export function PanelRiesgos({ nivelTitulo = 2 }: { nivelTitulo?: 2 | 3 }) {
             <figcaption className={estilos.leyenda}>
               {vista === 'inherente'
                 ? 'Posición según impacto y probabilidad antes de considerar los controles.'
-                : 'Posición equivalente del riesgo residual: el impacto se mantiene y la probabilidad baja con la cobertura de los controles.'}
+                : 'Posición equivalente del factor de riesgo residual: el impacto se mantiene y la probabilidad baja con la cobertura de los controles.'}
               {vista === 'residual' && sinResidual.length > 0 && (
                 <span className={estilos.aviso}>
                   Sin evaluar en la matriz: {sinResidual.map(({ riesgo }) => riesgo.id).join(', ')}.

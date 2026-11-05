@@ -22,7 +22,8 @@ import { irA } from '../estado/desplazamiento'
 import { descargarArchivo } from '../estado/exportaciones'
 import { generarHallazgos } from '../estado/hallazgos'
 import type { EvaluacionGuardada } from '../estado/historial'
-import { formatoPuntuacion, puntuacionesControles, puntuacionSalud, saludDePuntuacion } from '../estado/puntuaciones'
+import { formatoPuntuacion, puntuacionesControles, puntuacionSalud, saludDePuntuacion, tieneMediciones } from '../estado/puntuaciones'
+import { evaluarMedicion, registroVacioEvidencia } from '../estado/medicion'
 import estilos from './Historial.module.css'
 
 const formatoFecha = new Intl.DateTimeFormat('es-CR', { dateStyle: 'medium', timeStyle: 'short' })
@@ -45,6 +46,7 @@ const columnasHistorial: ColumnaTabular<EvaluacionGuardada>[] = [
   { clave: 'organizacion', encabezado: 'Organización', celda: (registro) => <span className={estilos.organizacion}>{nombreOrganizacion(registro)}{registro.demostracion && <span className={estilos.demostracion}>Demostración</span>}</span> },
   { clave: 'fecha', encabezado: 'Fecha de evaluación', celda: (registro) => <time className={estilos.fecha} dateTime={registro.fechaGuardado}>{fechaGuardada(registro)}</time> },
   { clave: 'salud', encabezado: 'Salud', celda: (registro) => {
+    if (!tieneMediciones(registro.evaluacion)) return 'Sin puntuación: método anterior'
     const puntuacion = puntuacionSalud(registro.evaluacion)
     const salud = saludDePuntuacion(puntuacion)
     return <span className={estilos.salud}><Lampara tono={salud === 'Verde' ? 'verde' : salud === 'Amarillo' ? 'ambar' : 'roja'} texto={salud} /> <span>{formatoPuntuacion(puntuacion)}</span></span>
@@ -123,19 +125,22 @@ export function Historial() {
     { clave: 'puntuacion', encabezado: 'Puntuación 0-1', celda: (fila) => <span className={estilos.id}>{formatoPuntuacion(puntuaciones.get(fila.id) ?? 0)}</span> },
     { clave: 'estado', encabezado: 'Estado', celda: (fila) => <LamparaEstado valor={estadoDeNivel(evaluacion.niveles[fila.id] ?? null)} /> },
     {
-      clave: 'evidencias', encabezado: 'Evidencias documentadas', celda: (fila) => (
-        <ul className={estilos.evidencias}>
-          {fila.evidenciasRequeridas.map((evidencia) => {
-            const respuesta = evaluacion.respuestasEvidencia[fila.id]?.[evidencia.id]
-            return (
-              <li key={evidencia.id}>
-                <strong>{evidencia.titulo}:</strong> {respuesta?.respuesta ?? 'Sin responder'}
-                {respuesta?.nota && <span className={estilos.notaEvidencia}>{respuesta.nota}</span>}
-              </li>
-            )
-          })}
-        </ul>
-      ),
+      clave: 'evidencias', encabezado: 'Mediciones', celda: (fila) => {
+        const registro = evaluacion.respuestasEvidencia[fila.id]?.[fila.evidencia.id] ?? registroVacioEvidencia
+        return (
+          <ul className={estilos.evidencias}>
+            {fila.evidencia.mediciones.map((medicion) => {
+              const resultado = evaluarMedicion(medicion, registro.valores)
+              return (
+                <li key={medicion.id}>
+                  <strong>{medicion.nombre}:</strong> {resultado.resumen}{resultado.estado === 'medida' && `, vale ${formatoPuntuacion(resultado.puntaje)}`}
+                </li>
+              )
+            })}
+            {registro.nota && <li className={estilos.notaEvidencia}>{registro.nota}</li>}
+          </ul>
+        )
+      },
     },
   ]
 
@@ -197,16 +202,18 @@ export function Historial() {
 
       <section className={estilos.resumen} aria-label="Resumen de la evaluación guardada">
         <p>Matriz completa: {matriz.length} de {matriz.length} filas.</p>
-        <p className={estilos.salud}><span>Salud:</span> <Lampara tono={salud === 'Verde' ? 'verde' : salud === 'Amarillo' ? 'ambar' : 'roja'} texto={salud} /> <span>{formatoPuntuacion(saludNumerica)} de 1</span></p>
+        {tieneMediciones(evaluacion)
+          ? <p className={estilos.salud}><span>Salud:</span> <Lampara tono={salud === 'Verde' ? 'verde' : salud === 'Amarillo' ? 'ambar' : 'roja'} texto={salud} /> <span>{formatoPuntuacion(saludNumerica)} de 1</span></p>
+          : <p>Salud sin puntuación: esta evaluación se guardó con el método anterior y sus evidencias no se pueden medir.</p>}
         <p><LamparaEstado valor="Cumple" /> {conteo.Cumple} <LamparaEstado valor="Parcial" /> {conteo.Parcial} <LamparaEstado valor="No cumple" /> {conteo['No cumple']}</p>
         <p>Batería: {pruebasHechas} de {pruebas.length} pruebas documentadas. Hallazgos: {hallazgos.length}.</p>
       </section>
-      <p className={estilos.nota}>Cada puntuación de control combina el nivel de madurez (0 a 4) con sus evidencias documentadas; el promedio determina la salud de la evaluación.</p>
+      <p className={estilos.nota}>Cada evidencia se mide con su propia regla y el control suma peso × puntaje; el promedio de los controles determina la salud de la evaluación.</p>
 
       <nav className={estilos.anclas} aria-label="Secciones de la evaluación guardada">
         {[
           ['cedula', 'Cédula de trazabilidad'],
-          ['riesgos', 'Riesgos'],
+          ['riesgos', 'Factores de riesgo'],
           ['tareas', 'Tareas'],
           ['controles', 'Controles observables'],
           ['matriz', 'Matriz'],
@@ -221,7 +228,7 @@ export function Historial() {
       </section>
 
       <section id="historial-riesgos" className={estilos.seccion} aria-labelledby="titulo-historial-riesgos">
-        <h2 id="titulo-historial-riesgos">Riesgos</h2>
+        <h2 id="titulo-historial-riesgos">Factores de riesgo</h2>
         <PanelRiesgos nivelTitulo={3} />
       </section>
 

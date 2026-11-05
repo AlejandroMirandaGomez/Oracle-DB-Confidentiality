@@ -24,7 +24,7 @@ import estilos from './EjemploXepdb1.module.css'
 
 const secciones = [
   { id: 'cedula', titulo: 'Cédula de trazabilidad' },
-  { id: 'riesgos', titulo: 'Riesgos' },
+  { id: 'riesgos', titulo: 'Factores de riesgo' },
   { id: 'tareas', titulo: 'Tareas' },
   { id: 'controles', titulo: 'Controles observables' },
   { id: 'matriz', titulo: 'Matriz' },
@@ -162,7 +162,7 @@ export function EjemploXepdb1() {
 
       <section id="ejemplo-riesgos" className={estilos.seccion} aria-labelledby="titulo-riesgos">
         <h2 id="titulo-riesgos" className={estilos.subtitulo}>
-          Riesgos
+          Factores de riesgo
         </h2>
         <PanelRiesgos nivelTitulo={3} />
       </section>

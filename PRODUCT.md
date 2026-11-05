@@ -45,11 +45,11 @@ Contenido obligatorio del artefacto:
 6. Batería de pruebas: ID, Tipo, Procedimiento, Resultado esperado, Herramienta, con scripts de verificación.
 
 Capacidades de la herramienta:
-- Matriz de 18 filas que arranca sin evaluar; cada fila pide evidencias (Sí, Parcial, No) y sugiere un nivel que la persona confirma.
+- Matriz de 18 filas que arranca sin evaluar; cada fila tiene una evidencia con una sola consulta y de 2 a 4 mediciones con datos de la propia base, y muestra el cálculo de su puntuación. Esa puntuación sugiere un nivel que la persona confirma.
 - Batería de 23 pruebas con SQL para copiar y resultado observado documentado por la persona.
 - Hallazgos que se desbloquean al completar la matriz y se refinan al completar la batería.
 - Nombre opcional de la organización evaluada, exportación de la evaluación en `.json` y exportación de la matriz y del plan de acción.
-- Historial local de evaluaciones guardadas al completar la matriz, con detalle de solo lectura y gráficas de salud y de puntuación de los controles en el tiempo. La ficha de cada control también muestra su propia evolución para la organización de la sesión. La puntuación de cada control está entre 0 y 1 y combina su nivel de madurez de 0 a 4 con las evidencias documentadas.
+- Historial local de evaluaciones guardadas al completar la matriz, con detalle de solo lectura y gráficas de salud y de puntuación de los controles en el tiempo. La ficha de cada control también muestra su propia evolución para la organización de la sesión. La puntuación de cada control está entre 0 y 1 y suma peso × puntaje de las mediciones de su evidencia, cada una con su propia regla.
 - Un navegador sin sesión previa inicia como Cliente y carga cinco evaluaciones simuladas, identificadas como demostración y eliminables de forma permanente en ese navegador. El historial admite guardados adicionales y muestra controles que mejoran y otros que retroceden. El cierre de sesión explícito se conserva al recargar.
 
 Restricciones:

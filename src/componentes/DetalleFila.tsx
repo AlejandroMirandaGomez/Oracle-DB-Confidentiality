@@ -1,54 +1,18 @@
 import { estadoDeNivel } from '../data/catalogo/escalas'
-import type { EvidenciaRequerida, FilaMatriz, FilaMatrizEjemplo, RespuestaEvidencia } from '../data/tipos'
+import type { FilaMatriz, FilaMatrizEjemplo } from '../data/tipos'
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import { useInstantanea } from '../estado/instantanea'
+import { calcularFila, formatoPuntuacion, registroVacioEvidencia } from '../estado/medicion'
 import { nivelSugerido } from '../estado/nivelSugerido'
-import { BloqueCodigo } from './BloqueCodigo'
-import { BotoneraEstado } from './BotoneraEstado'
 import { Campo, Rejilla } from './Campo'
 import { DescripcionNivel } from './DescripcionNivel'
+import { DesgloseControl } from './DesgloseControl'
 import estilos from './DetalleFila.module.css'
 import { LamparaEstado } from './Lampara'
 import { RampaMadurez } from './RampaMadurez'
 import { ListaRefs } from './Ref'
 import { SelectorNivel } from './SelectorNivel'
-
-const opcionesEvidencia = ['Sí', 'Parcial', 'No'] as const
-
-function Evidencia({ filaId, evidencia }: { filaId: string; evidencia: EvidenciaRequerida }) {
-  const { respuestaEvidencia, fijarRespuestaEvidencia } = useEvaluacion()
-  const registro = respuestaEvidencia(filaId, evidencia.id)
-  return (
-    <li className={estilos.evidencia}>
-      <header className={estilos.cabeza}>
-        <h4 className={estilos.titulo}>
-          <span className={estilos.id}>{evidencia.id}</span>
-          <span>{evidencia.titulo}</span>
-        </h4>
-        <LamparaEstado valor={registro.respuesta ?? 'Sin documentar'} />
-      </header>
-      <ol className={estilos.pasos}>
-        {evidencia.pasos.map((paso) => (
-          <li key={paso}>{paso}</li>
-        ))}
-      </ol>
-      <BloqueCodigo codigo={evidencia.codigo} titulo={evidencia.lenguaje} />
-      <div className={estilos.esperado}>
-        <p className="rotulo">Resultado esperado</p>
-        <p>{evidencia.esperado}</p>
-      </div>
-      <BotoneraEstado<RespuestaEvidencia>
-        etiqueta={`Respuesta para ${evidencia.id}`}
-        opciones={opcionesEvidencia}
-        valor={registro.respuesta}
-        alCambiar={(respuesta) => fijarRespuestaEvidencia(filaId, evidencia.id, { respuesta })}
-        nota={registro.nota}
-        alCambiarNota={(nota) => fijarRespuestaEvidencia(filaId, evidencia.id, { nota })}
-        etiquetaNota="Nota opcional"
-      />
-    </li>
-  )
-}
+import { TarjetaEvidencia, TarjetaEvidenciaGuardada } from './TarjetaEvidencia'
 
 export function DetalleFila({ fila }: { fila: FilaMatriz }) {
   const instantanea = useInstantanea()
@@ -56,7 +20,8 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
   if (instantanea) return <DetalleFilaGuardada fila={fila} evaluacion={instantanea} />
   const nivel = nivelDe(fila.id)
   const progreso = progresoEvidencias(fila.id)
-  const sugerido = nivelSugerido(fila.evidenciasRequeridas.map((evidencia) => respuestaEvidencia(fila.id, evidencia.id).respuesta))
+  const calculo = calcularFila(fila, respuestaEvidencia)
+  const sugerido = nivelSugerido(calculo)
   return (
     <>
       <Rejilla>
@@ -71,20 +36,18 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
         </Campo>
       </Rejilla>
 
+      <DesgloseControl control={fila.control} calculo={calculo} />
+
       <section className={estilos.seccion} aria-labelledby={`evidencias-${fila.id}`}>
         <div className={estilos.encabezadoSeccion}>
           <h3 id={`evidencias-${fila.id}`} className={estilos.subtitulo}>
-            Evidencias requeridas
+            Evidencia por medir
           </h3>
           <p className={estilos.progreso} aria-live="polite">
-            {progreso.hechas} de {progreso.total} evidencias documentadas
+            {progreso.hechas} de {progreso.total} mediciones
           </p>
         </div>
-        <ol className={estilos.evidencias}>
-          {fila.evidenciasRequeridas.map((evidencia) => (
-            <Evidencia key={evidencia.id} filaId={fila.id} evidencia={evidencia} />
-          ))}
-        </ol>
+        <TarjetaEvidencia filaId={fila.id} evidencia={fila.evidencia} />
       </section>
 
       <section className={estilos.seccion} aria-labelledby={`nivel-${fila.id}`}>
@@ -93,10 +56,10 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
         </h3>
         <p className={estilos.sugerido} aria-live="polite">
           {sugerido === null ? (
-            'Documente al menos una evidencia para obtener un nivel sugerido.'
+            'Mida la evidencia para obtener un nivel sugerido.'
           ) : (
             <>
-              Nivel sugerido por sus respuestas: <RampaMadurez nivel={sugerido} control={fila.control} conNombre />
+              Nivel sugerido por la puntuación {formatoPuntuacion(calculo.puntuacion)}: <RampaMadurez nivel={sugerido} control={fila.control} conNombre />
             </>
           )}
         </p>
@@ -105,7 +68,7 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
           <LamparaEstado valor={estadoDeNivel(nivel)} />
         </div>
         <DescripcionNivel control={fila.control} nivel={nivel} />
-        <p className={estilos.nota}>El nivel 4 solo lo asigna usted, porque exige verificación periódica.</p>
+        <p className={estilos.nota}>Desde 0,75 se sugiere el nivel 3, desde 0,50 el nivel 2 y con menos el nivel 1 o 0. El nivel 4 solo lo asigna usted, porque exige verificación periódica. El nivel no cambia la puntuación.</p>
       </section>
 
       <Rejilla>
@@ -119,6 +82,7 @@ export function DetalleFila({ fila }: { fila: FilaMatriz }) {
 
 function DetalleFilaGuardada({ fila, evaluacion }: { fila: FilaMatriz; evaluacion: NonNullable<ReturnType<typeof useInstantanea>> }) {
   const nivel = evaluacion.niveles[fila.id] ?? null
+  const registroDe = (filaId: string, evidenciaId: string) => evaluacion.respuestasEvidencia[filaId]?.[evidenciaId] ?? registroVacioEvidencia
   return (
     <>
       <Rejilla>
@@ -134,24 +98,10 @@ function DetalleFilaGuardada({ fila, evaluacion }: { fila: FilaMatriz; evaluacio
           <DescripcionNivel control={fila.control} nivel={nivel} />
         </Campo>
       </Rejilla>
+      <DesgloseControl control={fila.control} calculo={calcularFila(fila, registroDe)} />
       <section className={estilos.seccion} aria-labelledby={`evidencias-${fila.id}`}>
-        <h3 id={`evidencias-${fila.id}`} className={estilos.subtitulo}>Evidencias guardadas</h3>
-        <ol className={estilos.evidencias}>
-          {fila.evidenciasRequeridas.map((evidencia) => {
-            const registro = evaluacion.respuestasEvidencia[fila.id]?.[evidencia.id]
-            return (
-              <li key={evidencia.id} className={estilos.evidencia}>
-                <header className={estilos.cabeza}>
-                  <h4 className={estilos.titulo}><span className={estilos.id}>{evidencia.id}</span><span>{evidencia.titulo}</span></h4>
-                  <LamparaEstado valor={registro?.respuesta ?? 'Sin documentar'} />
-                </header>
-                <p>{registro?.nota || 'Sin observación documentada.'}</p>
-                <p className="rotulo">Resultado esperado</p>
-                <p>{evidencia.esperado}</p>
-              </li>
-            )
-          })}
-        </ol>
+        <h3 id={`evidencias-${fila.id}`} className={estilos.subtitulo}>Evidencia guardada</h3>
+        <TarjetaEvidenciaGuardada evidencia={fila.evidencia} registro={registroDe(fila.id, fila.evidencia.id)} />
       </section>
       <Rejilla><Campo etiqueta="Pruebas de la batería" ancho><ListaRefs ids={fila.pruebas} conNombre /></Campo></Rejilla>
     </>

@@ -2,7 +2,8 @@ import { construirArchivo, validarArchivo, type Evaluacion } from './archivoEval
 import { crearEvaluacionesCliente } from './demoCliente'
 
 const claveHistorial = 'confidencialidad-oracle:historial'
-const claveDemostracionCliente = 'confidencialidad-oracle:cliente-demostracion-inicializada-v1'
+const clavesDemostracionAnteriores = ['confidencialidad-oracle:cliente-demostracion-inicializada-v1', 'confidencialidad-oracle:cliente-demostracion-inicializada-v2', 'confidencialidad-oracle:cliente-demostracion-inicializada-v3', 'confidencialidad-oracle:cliente-demostracion-inicializada-v4', 'confidencialidad-oracle:cliente-demostracion-inicializada-v5']
+const claveDemostracionCliente = 'confidencialidad-oracle:cliente-demostracion-inicializada-v6'
 const idsDemostracionesTemporales = new Set(Array.from({ length: 5 }, (_, indice) => `cliente-demostracion-adicional-${indice + 1}`))
 
 export type EvaluacionGuardada = {
@@ -62,9 +63,11 @@ export function escribirHistorial(historial: EvaluacionGuardada[]): ResultadoHis
 export function inicializarHistorialCliente(historial: EvaluacionGuardada[]): EvaluacionGuardada[] {
   try {
     if (window.localStorage.getItem(claveDemostracionCliente) === '1') return historial
-    const idsExistentes = new Set(historial.map((registro) => registro.id))
-    const demostraciones = crearEvaluacionesCliente(new Date()).filter((registro) => !idsExistentes.has(registro.id))
-    const siguientes = [...historial, ...demostraciones].sort((a, b) => Date.parse(b.fechaGuardado) - Date.parse(a.fechaGuardado))
+    const propias = historial.filter((registro) => !registro.demostracion)
+    const yaInicializado = clavesDemostracionAnteriores.some((clave) => window.localStorage.getItem(clave) === '1')
+    const conservaDemostraciones = propias.length !== historial.length
+    const demostraciones = !yaInicializado || conservaDemostraciones ? crearEvaluacionesCliente(new Date()) : []
+    const siguientes = [...propias, ...demostraciones].sort((a, b) => Date.parse(b.fechaGuardado) - Date.parse(a.fechaGuardado))
     if (!escribirHistorial(siguientes).ok) return historial
     try {
       window.localStorage.setItem(claveDemostracionCliente, '1')

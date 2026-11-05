@@ -24,11 +24,11 @@ import { guardarAlmacen, leerAlmacen } from './almacen'
 import { ContextoEvaluacion, type Progreso, type ResultadoImportacion, type ValorEvaluacion } from './contextoEvaluacion'
 import { generarHallazgos } from './hallazgos'
 import { escribirHistorial, inicializarHistorialCliente, leerHistorial } from './historial'
+import { calcularFila, registroVacioEvidencia } from './medicion'
 
-const registroVacioEvidencia: RegistroEvidencia = { respuesta: null, nota: '' }
 const registroVacioPrueba: RegistroPrueba = { respuesta: null, nota: '' }
 
-const totalDeEvidencias = new Map(matriz.map((fila) => [fila.id, fila.evidenciasRequeridas.length]))
+const filasPorId = new Map(matriz.map((fila) => [fila.id, fila]))
 
 function nombreDeSesion(nombre: unknown): string {
   const limpio = sanearOrganizacion(nombre).trim()
@@ -86,9 +86,9 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
   const fijarRespuestaEvidencia = useCallback((filaId: string, evidenciaId: string, cambios: Partial<RegistroEvidencia>) => {
     setRespuestasEvidencia((previas) => {
       const actual = previas[filaId]?.[evidenciaId] ?? registroVacioEvidencia
-      const siguiente: RegistroEvidencia = { respuesta: cambios.respuesta === undefined ? actual.respuesta : cambios.respuesta, nota: cambios.nota ?? actual.nota }
+      const siguiente: RegistroEvidencia = { valores: cambios.valores ?? actual.valores, nota: cambios.nota ?? actual.nota }
       const deLaFila = { ...previas[filaId] }
-      if (siguiente.respuesta === null && siguiente.nota === '') delete deLaFila[evidenciaId]
+      if (Object.keys(siguiente.valores).length === 0 && siguiente.nota === '') delete deLaFila[evidenciaId]
       else deLaFila[evidenciaId] = siguiente
       const resultado = { ...previas }
       if (Object.keys(deLaFila).length === 0) delete resultado[filaId]
@@ -202,10 +202,11 @@ export function EvaluacionProvider({ children }: { children: ReactNode }) {
 
   const progresoEvidencias = useCallback(
     (filaId: string): Progreso => {
-      const respuestas = Object.values(respuestasEvidencia[filaId] ?? {})
-      return { hechas: respuestas.filter((registro) => registro.respuesta !== null).length, total: totalDeEvidencias.get(filaId) ?? 0 }
+      const fila = filasPorId.get(filaId)
+      if (!fila) return { hechas: 0, total: 0 }
+      return { hechas: calcularFila(fila, respuestaEvidencia).respondidas, total: fila.evidencia.mediciones.length }
     },
-    [respuestasEvidencia],
+    [respuestaEvidencia],
   )
 
   const hallazgos = useMemo(

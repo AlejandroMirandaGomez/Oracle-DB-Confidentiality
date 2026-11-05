@@ -1,18 +1,21 @@
 import { matriz } from '../data/catalogo/matriz'
 import { pruebas } from '../data/catalogo/pruebas'
 import type {
+  EvidenciaRequerida,
   Nivel,
   Niveles,
   RegistroEvidencia,
   RegistroPrueba,
-  RespuestaEvidencia,
   RespuestaPrueba,
   RespuestasEvidencia,
   RespuestasPruebas,
+  ValorMedicion,
 } from '../data/tipos'
+import { camposDeEvidencia, idNingunaCondicion, valoresDeAlcance } from './medicion'
 
 export const formatoEvaluacion = 'evaluacion-confidencialidad-oracle'
-export const versionEvaluacion = 1
+export const versionEvaluacion = 4
+const versionesLegibles: unknown[] = [1, 2, 3, versionEvaluacion]
 
 export type Evaluacion = {
   organizacion: string
@@ -38,12 +41,12 @@ export type ResultadoValidacion =
   | { ok: true; evaluacion: Evaluacion; resumen: ResumenImportacion }
   | { ok: false; mensaje: string }
 
-const respuestasDeEvidencia: RespuestaEvidencia[] = ['Sí', 'Parcial', 'No']
 const respuestasDePrueba: RespuestaPrueba[] = ['Conforme', 'Parcial', 'No conforme']
 const largoMaximoOrganizacion = 120
 const largoMaximoNota = 2000
+const valorMaximoMedicion = 1_000_000_000_000
 
-const evidenciasPorFila = new Map(matriz.map((fila) => [fila.id, new Set(fila.evidenciasRequeridas.map((evidencia) => evidencia.id))]))
+const evidenciasPorFila = new Map(matriz.map((fila) => [fila.id, new Map([[fila.evidencia.id, fila.evidencia]])]))
 const idsDePruebas = new Set(pruebas.map((prueba) => prueba.id))
 
 function esObjeto(valor: unknown): valor is Record<string, unknown> {
@@ -72,6 +75,31 @@ export function sanearNiveles(valor: unknown, ignorados = { cuenta: 0 }): Nivele
   return niveles
 }
 
+function sanearValores(evidencia: EvidenciaRequerida, valor: Record<string, unknown>): Record<string, ValorMedicion> {
+  const limpios: Record<string, ValorMedicion> = {}
+  camposDeEvidencia(evidencia).forEach((campo) => {
+    const numero = valor[campo.id]
+    if (typeof numero === 'number' && Number.isFinite(numero) && numero >= 0 && numero <= valorMaximoMedicion) limpios[campo.id] = numero
+  })
+  evidencia.mediciones.forEach(({ regla }) => {
+    if (regla.tipo === 'opciones') {
+      const opcion = regla.opciones.find((item) => item.valor === valor[regla.campo.id])
+      if (opcion) limpios[regla.campo.id] = opcion.valor
+    }
+    if (regla.tipo === 'alcance') {
+      const opcion = valor[regla.campo.id]
+      if (typeof opcion === 'string' && valoresDeAlcance.includes(opcion)) limpios[regla.campo.id] = opcion
+    }
+    if (regla.tipo === 'lista') {
+      regla.items.forEach((item) => {
+        if (valor[item.id] === true) limpios[item.id] = true
+      })
+      if (valor[idNingunaCondicion] === true) limpios[idNingunaCondicion] = true
+    }
+  })
+  return limpios
+}
+
 export function sanearRespuestasEvidencia(valor: unknown, ignorados = { cuenta: 0 }): RespuestasEvidencia {
   const respuestas: RespuestasEvidencia = {}
   if (!esObjeto(valor)) return respuestas
@@ -82,14 +110,15 @@ export function sanearRespuestasEvidencia(valor: unknown, ignorados = { cuenta: 
       return
     }
     Object.entries(porEvidencia).forEach(([evidenciaId, registro]) => {
-      if (!conocidas.has(evidenciaId) || !esObjeto(registro)) {
+      const evidencia = conocidas.get(evidenciaId)
+      if (!evidencia || !esObjeto(registro) || !esObjeto(registro.valores)) {
         ignorados.cuenta += 1
         return
       }
-      const respuesta = respuestasDeEvidencia.find((opcion) => opcion === registro.respuesta) ?? null
+      const valores = sanearValores(evidencia, registro.valores)
       const nota = textoAcotado(registro.nota, largoMaximoNota)
-      if (respuesta === null && nota === '') return
-      const registroLimpio: RegistroEvidencia = { respuesta, nota }
+      if (Object.keys(valores).length === 0 && nota === '') return
+      const registroLimpio: RegistroEvidencia = { valores, nota }
       respuestas[filaId] = { ...respuestas[filaId], [evidenciaId]: registroLimpio }
     })
   })
@@ -175,7 +204,7 @@ export function validarArchivo(texto: string): ResultadoValidacion {
       mensaje: `El archivo no tiene el formato ${formatoEvaluacion}. Elija un archivo descargado con Exportar evaluación en esta aplicación.`,
     }
   }
-  if (contenido.version !== versionEvaluacion) {
+  if (!versionesLegibles.includes(contenido.version)) {
     return {
       ok: false,
       mensaje: `La versión del archivo (${String(contenido.version)}) no es compatible, esta aplicación lee la versión ${versionEvaluacion}. Exporte de nuevo la evaluación desde la aplicación que la generó.`,

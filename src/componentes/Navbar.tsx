@@ -17,7 +17,7 @@ const grupos: Grupo[] = [
     id: 'herramientas',
     titulo: 'Herramientas',
     enlaces: [
-      { ruta: '/riesgos', nombre: 'Riesgos' },
+      { ruta: '/riesgos', nombre: 'Factores de riesgo' },
       { ruta: '/tareas', nombre: 'Tareas del DBA' },
       { ruta: '/controles', nombre: 'Controles observables' },
       { ruta: '/matriz', nombre: 'Matriz de evaluación' },

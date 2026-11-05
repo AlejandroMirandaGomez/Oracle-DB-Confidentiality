@@ -2,7 +2,8 @@ import { EraserIcon } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
-import { LamparaEstado } from '../componentes/Lampara'
+import { ComoSeCalcula } from '../componentes/ComoSeCalcula'
+import { Lampara, LamparaEstado } from '../componentes/Lampara'
 import { Pagina } from '../componentes/Pagina'
 import { ListaRefs, Ref } from '../componentes/Ref'
 import { SelectorNivel } from '../componentes/SelectorNivel'
@@ -13,12 +14,16 @@ import { conteoDeEstados, formatoDecimal, madurezPromedio } from '../estado/calc
 import { useEvaluacion } from '../estado/contextoEvaluacion'
 import { useIndice } from '../estado/fuente'
 import { descargarArchivo, matrizComoCsv, nombreArchivoMatriz } from '../estado/exportaciones'
+import { calcularFila, formatoPuntuacion } from '../estado/medicion'
 import { nivelSugerido } from '../estado/nivelSugerido'
+import { saludDePuntuacion } from '../estado/puntuaciones'
 import estilos from './Matriz.module.css'
 
 type Filtro = 'Todas' | Estado
 
 const filtros: Filtro[] = ['Todas', 'Cumple', 'Parcial', 'No cumple', 'Sin evaluar']
+
+const tonoDeSalud = { Verde: 'verde', Amarillo: 'ambar', Rojo: 'roja' } as const
 
 export function Matriz() {
   const { nivelDe, fijarNivel, respuestaEvidencia, progresoEvidencias, progresoMatriz, limpiarMatriz, organizacion, abrirReferencia, marcarPasoVisto } = useEvaluacion()
@@ -32,19 +37,19 @@ export function Matriz() {
   const promedio = madurezPromedio(ids, nivelDe)
   const hayMatriz =
     progresoMatriz.hechas > 0 ||
-    matriz.some((fila) =>
-      fila.evidenciasRequeridas.some((evidencia) => {
-        const registro = respuestaEvidencia(fila.id, evidencia.id)
-        return registro.respuesta !== null || registro.nota !== ''
-      }),
-    )
+    matriz.some((fila) => {
+      const registro = respuestaEvidencia(fila.id, fila.evidencia.id)
+      return Object.keys(registro.valores).length > 0 || registro.nota !== ''
+    })
   const visibles = matriz.filter((fila) => filtro === 'Todas' || estadoDeNivel(nivelDe(fila.id)) === filtro)
 
   return (
     <Pagina
       titulo="Matriz de evaluación"
-      introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para documentar sus evidencias con Sí, Parcial o No y confirme un nivel de madurez de 0 a 4. Pase el cursor sobre un nivel para leer qué significa en el control de esa fila. La matriz arranca sin evaluar."
+      introduccion="Cada fila une una tarea, un riesgo y un control. Abra la fila para medir su evidencia con datos de su propia base y confirme un nivel de madurez de 0 a 4. Pase el cursor sobre un nivel para leer qué significa en el control de esa fila. La matriz arranca sin evaluar."
     >
+      <ComoSeCalcula />
+
       <section className={estilos.organizacion} aria-label="Organización y archivo de la evaluación">
         <ArchivoEvaluacion
           acciones={[
@@ -111,7 +116,8 @@ export function Matriz() {
             {visibles.map((fila) => {
               const nivel = nivelDe(fila.id)
               const progreso = progresoEvidencias(fila.id)
-              const sugerido = nivelSugerido(fila.evidenciasRequeridas.map((evidencia) => respuestaEvidencia(fila.id, evidencia.id).respuesta))
+              const calculo = calcularFila(fila, respuestaEvidencia)
+              const sugerido = nivelSugerido(calculo)
               return (
                 <tr key={fila.id}>
                   <th scope="row" data-etiqueta="Fila">
@@ -138,8 +144,9 @@ export function Matriz() {
                   <td data-etiqueta="Evidencia">
                     <div className={estilos.evidencia}>
                       <button type="button" className="pulsador" data-compacto="" onClick={() => abrirReferencia(fila.id)}>
-                        {progreso.hechas} de {progreso.total} evidencias documentadas
+                        {progreso.hechas} de {progreso.total} mediciones
                       </button>
+                      {calculo.respondidas > 0 && <Lampara tono={tonoDeSalud[saludDePuntuacion(calculo.puntuacion)]} texto={`Vale ${formatoPuntuacion(calculo.puntuacion)} de 1`} />}
                       <ListaRefs ids={fila.pruebas} />
                     </div>
                   </td>

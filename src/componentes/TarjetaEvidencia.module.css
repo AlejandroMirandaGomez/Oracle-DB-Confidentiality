@@ -1,0 +1,355 @@
+.tarjeta {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--placa);
+  background: var(--panel-claro);
+}
+
+.cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+
+.titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+  max-width: 34rem;
+  font-size: 1.125rem;
+  font-stretch: 85%;
+}
+
+.id {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--placa-suave);
+}
+
+.critica {
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--placa);
+  border-radius: var(--radio);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-stretch: 100%;
+}
+
+.contexto {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+}
+
+.pregunta {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cita {
+  font-size: 0.8125rem;
+  color: var(--remache);
+}
+
+.paso {
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--junta);
+}
+
+.tituloPaso {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.numero {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: var(--radio);
+  background: var(--placa);
+  color: var(--panel-claro);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.instruccion,
+.regla {
+  max-width: 62ch;
+  font-size: 0.9375rem;
+}
+
+.ajustes {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.listaAjustes {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.listaAjustes li {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.875rem;
+}
+
+.listaAjustes code {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.grupos {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.grupo {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.mediciones {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.medicion {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.75rem 0.85rem 0.85rem;
+  border: 1px solid var(--junta);
+}
+
+.medicion .tituloMedicion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.5rem;
+  max-width: 32rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.9rem 1.25rem;
+}
+
+.campo {
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+}
+
+.campo select:disabled {
+  color: var(--remache);
+  cursor: not-allowed;
+}
+
+.campo input:disabled {
+  color: var(--remache);
+  cursor: not-allowed;
+}
+
+.etiqueta {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.origen {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--placa-suave);
+  overflow-wrap: anywhere;
+}
+
+.ayuda {
+  font-size: 0.8125rem;
+  color: var(--remache);
+}
+
+.esperado {
+  max-width: 45ch;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--placa-suave);
+}
+
+.error {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--lampara-roja);
+}
+
+.lista {
+  display: grid;
+  gap: 0.4rem;
+  border: 0;
+}
+
+.condicion {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+}
+
+.condicion code {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.condicion input {
+  accent-color: var(--placa);
+}
+
+.puntos {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.escala {
+  width: 100%;
+  max-width: 30rem;
+  font-size: 0.875rem;
+}
+
+.escala th,
+.escala td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--junta);
+  text-align: left;
+  font-weight: 400;
+}
+
+.escala thead th {
+  font-weight: 700;
+  border-bottom-color: var(--placa);
+}
+
+.escala td,
+.escala thead th:last-child {
+  width: 5.5rem;
+  text-align: right;
+  font-family: var(--mono);
+}
+
+.desarrollo {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--panel);
+  font-size: 0.9375rem;
+}
+
+.desarrollo ol {
+  display: grid;
+  gap: 0.2rem;
+  list-style: none;
+}
+
+.aviso {
+  font-weight: 700;
+  color: var(--lampara-roja);
+}
+
+.informe {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0.6rem -0.35rem 0.3rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px dashed var(--placa-suave);
+  border-left: 0.3rem solid var(--placa-suave);
+  background: var(--panel);
+}
+
+.cabezaInforme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.tituloInforme {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.marcaInforme {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1.5px solid var(--placa-suave);
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--placa-suave);
+}
+
+.etiquetaInforme {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--placa-suave);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--placa-suave);
+}
+
+.avisoInforme {
+  max-width: 62ch;
+  font-size: 0.875rem;
+  color: var(--remache);
+}
+
+.informe .mediciones {
+  gap: 0;
+}
+
+.informe .medicion {
+  padding: 0.9rem 0 0.2rem;
+  border: 0;
+  border-top: 1px solid var(--junta);
+}
+
+.informe .medicion:first-child {
+  border-top: 0;
+  padding-top: 0.2rem;
+}
+
+.informe .desarrollo {
+  background: var(--panel-hondo);
+}
+
+.nota {
+  display: grid;
+  gap: 0.3rem;
+}

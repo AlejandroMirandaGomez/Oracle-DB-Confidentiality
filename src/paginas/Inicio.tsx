@@ -1,6 +1,7 @@
 import { ArrowRightIcon, EraserIcon, LockSimpleIcon } from '@phosphor-icons/react'
 import { useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router'
+import { ArbolRiesgo } from '../componentes/ArbolRiesgo'
 import { ArchivoEvaluacion } from '../componentes/ArchivoEvaluacion'
 import { BotonConfirmacion } from '../componentes/BotonConfirmacion'
 import { Lampara, PuntoLampara } from '../componentes/Lampara'
@@ -43,13 +44,13 @@ export function Inicio() {
       : { tono: 'ambar', texto: 'Listos', avance: `${hallazgos.length} ${hallazgos.length === 1 ? 'hallazgo' : 'hallazgos'}` }
 
   const pasos: Paso[] = [
-    { ruta: '/riesgos', nombre: 'Riesgos', frase: 'Entienda los cinco riesgos de confidencialidad y cómo se valoran.', estado: lectura('riesgos') },
+    { ruta: '/riesgos', nombre: 'Factores de riesgo', frase: 'Entienda los cinco factores de riesgo de confidencialidad y cómo se valoran.', estado: lectura('riesgos') },
     { ruta: '/tareas', nombre: 'Tareas', frase: 'Conozca las 13 tareas críticas del DBA por fase del ciclo PHVA.', estado: lectura('tareas') },
     { ruta: '/controles', nombre: 'Controles observables', frase: 'Elija los controles ISO/IEC 27001:2022 que mitigan cada riesgo.', estado: lectura('controles') },
     {
       ruta: '/matriz',
       nombre: 'Matriz',
-      frase: 'Evalúe la madurez de 18 filas con las evidencias que cada una requiere.',
+      frase: 'Evalúe la madurez de 18 filas con la evidencia que cada una requiere.',
       estado: avance(progresoMatriz.hechas, progresoMatriz.total, matrizCompleta, 'filas'),
     },
     {
@@ -87,6 +88,16 @@ export function Inicio() {
           <p>{proyecto.profesor}</p>
           <p>{proyecto.periodo}</p>
         </div>
+      </section>
+
+      <section className={estilos.bloque} aria-labelledby="titulo-mapa">
+        <div className={estilos.encabezado}>
+          <h2 id="titulo-mapa" className={estilos.subtitulo}>
+            Cómo se conecta todo
+          </h2>
+          <p className={estilos.apoyo}>Un riesgo se descompone en factores, cada factor se mitiga con controles y cada control se comprueba con consultas SQL.</p>
+        </div>
+        <ArbolRiesgo />
       </section>
 
       <section className={estilos.bloque} aria-labelledby="titulo-herramientas">

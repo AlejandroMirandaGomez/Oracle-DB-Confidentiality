@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { controles } from '../data/catalogo/controles'
 import { matriz } from '../data/catalogo/matriz'
 import type { EvaluacionGuardada } from '../estado/historial'
-import { formatoPuntuacion, puntuacionesControles, puntuacionSalud, saludDePuntuacion } from '../estado/puntuaciones'
+import { formatoPuntuacion, puntuacionesControles, puntuacionSalud, saludDePuntuacion, tieneMediciones } from '../estado/puntuaciones'
 import { GraficoConjunto } from './GraficoConjunto'
 import { GraficoEvolucion, LeyendaPuntuacion } from './GraficoEvolucion'
 import estilos from './GraficosHistorial.module.css'
@@ -113,7 +113,7 @@ export function GraficosHistorial({ historial, organizacionActual }: { historial
   const claveActual = seleccion !== null && organizaciones.some(([clave]) => clave === seleccion)
     ? seleccion
     : organizaciones.some(([clave]) => clave === clavePreferida) ? clavePreferida : organizaciones[0]?.[0]
-  const registros = historial.filter((registro) => claveOrganizacion(registro) === claveActual).sort((a, b) => Date.parse(a.fechaGuardado) - Date.parse(b.fechaGuardado))
+  const registros = historial.filter((registro) => claveOrganizacion(registro) === claveActual && tieneMediciones(registro.evaluacion)).sort((a, b) => Date.parse(a.fechaGuardado) - Date.parse(b.fechaGuardado))
 
   return (
     <div className={estilos.conjunto}>

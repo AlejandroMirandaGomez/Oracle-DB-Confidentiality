@@ -1,8 +1,7 @@
-import type { EvidenciaRequerida, FilaMatriz } from '../tipos'
-import { controles } from './controles'
-import { pruebas } from './pruebas'
+import type { FilaMatriz } from '../tipos'
+import { evidenciaDeControl } from './mediciones'
 
-type FilaBase = Omit<FilaMatriz, 'evidenciasRequeridas'>
+type FilaBase = Omit<FilaMatriz, 'evidencia'>
 
 const filasBase: FilaBase[] = [
   {
@@ -151,43 +150,7 @@ const filasBase: FilaBase[] = [
   },
 ]
 
-const pasosDeObservable = [
-  'Conéctese a la base con una cuenta autorizada a consultar el diccionario de datos.',
-  'Ejecute la consulta.',
-  'Compare el resultado con el criterio de aceptación.',
-]
-
-function evidenciasDeFila(controlId: string, pruebaIds: string[]): EvidenciaRequerida[] {
-  const evidencias: EvidenciaRequerida[] = []
-  const observable = controles.find((control) => control.id === controlId)?.observable
-  if (observable) {
-    evidencias.push({
-      id: observable.id,
-      origen: 'observable',
-      titulo: observable.enunciado,
-      pasos: pasosDeObservable,
-      codigo: observable.consulta,
-      lenguaje: 'SQL',
-      esperado: observable.criterio,
-    })
-  }
-  pruebaIds.forEach((pruebaId) => {
-    const prueba = pruebas.find((item) => item.id === pruebaId)
-    if (!prueba) return
-    evidencias.push({
-      id: prueba.id,
-      origen: 'prueba',
-      titulo: prueba.nombre,
-      pasos: prueba.procedimiento,
-      codigo: prueba.sql,
-      lenguaje: prueba.lenguaje,
-      esperado: prueba.resultadoEsperado,
-    })
-  })
-  return evidencias
-}
-
 export const matriz: FilaMatriz[] = filasBase.map((fila) => ({
   ...fila,
-  evidenciasRequeridas: evidenciasDeFila(fila.control, fila.pruebas),
+  evidencia: evidenciaDeControl(fila.control),
 }))
